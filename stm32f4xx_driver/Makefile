@@ -7,7 +7,8 @@ BUILD_DIR = build
 C_SOURCES =  \
 Core/Src/main.c \
 Core/Src/sysmem.c \
-Core/Src/syscalls.c
+Core/Src/syscalls.c \
+Drivers/Src/stm32f411xx_gpio_driver.c
 
 # ASM sources
 ASM_SOURCES =  \
