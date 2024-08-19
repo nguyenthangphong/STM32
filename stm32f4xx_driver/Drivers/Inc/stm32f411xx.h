@@ -132,7 +132,7 @@ typedef struct
     volatile uint32_t           SSCGR;                   /*!< RCC spread spectrum clock generation register,                        Address offset : 0x80 */
     volatile uint32_t           PLLI2SCFGR;              /*!< RCC PLLI2S configuration register,                                    Address offset : 0x84 */
     uint32_t                    RESERVED7;               /*!< Reserved,                                                             Address offset : 0x88 */
-    volatile uint32_t           DCKCFGR;                 /*!<  RCC Dedicated Clocks Configuration Register,                         Address offset : 0x8C */
+    volatile uint32_t           DCKCFGR;                 /*!< RCC Dedicated Clocks Configuration Register,                          Address offset : 0x8C */
 } RCC_RegDef_t;
 
 /*
