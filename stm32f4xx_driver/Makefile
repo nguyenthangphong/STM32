@@ -5,9 +5,10 @@ BUILD_DIR = build
 
 # C sources
 C_SOURCES =  \
-Core/Src/main.c \
+Core/Src/led_toggle.c \
 Core/Src/sysmem.c \
 Core/Src/syscalls.c \
+Core/Src/stm32f411xx_delay.c \
 Drivers/Src/stm32f411xx_gpio_driver.c
 
 # ASM sources
