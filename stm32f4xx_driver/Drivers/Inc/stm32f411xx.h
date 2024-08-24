@@ -4,6 +4,40 @@
 #include <stdint.h>
 
 /*
+ * ARM Cortex Mx Processor NVIC ISEx Interrupt Set-enable Register Address
+ */
+
+#define NVIC_ISER0                              ((volatile uint32_t *)0xE000E100U)
+#define NVIC_ISER1                              ((volatile uint32_t *)0xE000E104U)
+#define NVIC_ISER2                              ((volatile uint32_t *)0xE000E108U)
+#define NVIC_ISER3                              ((volatile uint32_t *)0xE000E10CU)
+#define NVIC_ISER4                              ((volatile uint32_t *)0xE000E110U)
+#define NVIC_ISER5                              ((volatile uint32_t *)0xE000E114U)
+#define NVIC_ISER6                              ((volatile uint32_t *)0xE000E118U)
+#define NVIC_ISER7                              ((volatile uint32_t *)0xE000E11CU)
+
+/*
+ * ARM Cortex Mx Processor NVIC ICEx Interrupt Clear-enable Register Address
+ */
+
+#define NVIC_ICER0                              ((volatile uint32_t *)0XE000E180U)
+#define NVIC_ICER1                              ((volatile uint32_t *)0xE000E184U)
+#define NVIC_ICER2                              ((volatile uint32_t *)0xE000E188U)
+#define NVIC_ICER3                              ((volatile uint32_t *)0xE000E18CU)
+#define NVIC_ICER4                              ((volatile uint32_t *)0xE000E190U)
+#define NVIC_ICER5                              ((volatile uint32_t *)0xE000E194U)
+#define NVIC_ICER6                              ((volatile uint32_t *)0xE000E198U)
+#define NVIC_ICER7                              ((volatile uint32_t *)0xE000E19CU)
+
+
+/*
+ * ARM Cortex Mx Processor NVIC Interrupt Priority Register Address
+ */
+
+#define NVIC_PR_BASEADDR                        ((volatile uint32_t *)0xE000E400U)
+#define NO_PR_BITS_IMPLEMENTED                  4
+
+/*
  * Base Address of Flash and SRAM memories
  */
 
@@ -135,6 +169,25 @@ typedef struct
     volatile uint32_t           DCKCFGR;                 /*!< RCC Dedicated Clocks Configuration Register,                          Address offset : 0x8C */
 } RCC_RegDef_t;
 
+typedef struct
+{
+    volatile uint32_t           IMR;                     /*!< Interrupt mask register,                                              Address offset : 0x00 */
+    volatile uint32_t           EMR;                     /*!< Event mask register,                                                  Address offset : 0x04 */
+    volatile uint32_t           RTSR;                    /*!< Rising trigger selection register,                                    Address offset : 0x08 */
+    volatile uint32_t           FTSR;                    /*!< Falling trigger selection register,                                   Address offset : 0x0C */
+    volatile uint32_t           SWIER;                   /*!< Software interrupt event register,                                    Address offset : 0x10 */
+    volatile uint32_t           PR;                      /*!< Pending register,                                                     Address offset : 0x14 */
+} EXTI_RegDef_t;
+
+typedef struct
+{
+    volatile uint32_t           MEMRMP;                  /*!< SYSCFG memory remap register,                                         Address offset : 0x00 */
+    volatile uint32_t           PMC;                     /*!< SYSCFG peripheral mode configuration register,                        Address offset : 0x04 */
+    volatile uint32_t           EXTICR[4];               /*!< SYSCFG external interrupt configuration register,                     Address offset : 0x08 - 0x14 */
+    uint32_t                    RESERVED[2];             /*!< Reserved,                                                             Address offset : 0x18 - 0x1C */
+    volatile uint32_t           CMPCR;                   /*!< Compensation cell control register,                                   Address offset : 0x20 */
+} SYSCFG_RegDef_t;
+
 /*
  * Peripheral Definition
  */
@@ -147,6 +200,8 @@ typedef struct
 #define GPIOH                   ((GPIO_RegDef_t *)GPIOH_BASEADDR)
 
 #define RCC                     ((RCC_RegDef_t *)RCC_BASEADDR)
+#define EXTI                    ((EXTI_RegDef_t *)EXTI_BASEADDR)
+#define SYSCFG                  ((SYSCFG_RegDef_t *)SYSCFG_BASEADDR)
 
 /******************************* Enable **********************************/
 
@@ -250,6 +305,12 @@ typedef struct
 #define GPIOH_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << 0)); (RCC->AHB1RSTR &= ~(1 << 7)); } while (0)
 
 /*
+ * Return port code for given GPIOx base address
+ */
+
+#define GPIO_BASEADDR_TO_CODE(x)    ((x == GPIOA) ? 0 : (x == GPIOB) ? 1 : (x == GPIOC) ? 2 : (x == GPIOD) ? 3 : (x == GPIOE) ? 4 : (x == GPIOH) ? 7 : 0)
+
+/*
  * Some Generic Macros
  */
 
@@ -259,5 +320,14 @@ typedef struct
 #define RESET                   DISABLE
 #define GPIO_PIN_SET            ENABLE
 #define GPIO_PIN_RESET          DISABLE
+
+/* IRQ (Interrupt Request) Numbers of STM32F411x MCU */
+#define IRQ_NO_EXTI0            6
+#define IRQ_NO_EXTI1            7
+#define IRQ_NO_EXTI2            8
+#define IRQ_NO_EXTI3            9
+#define IRQ_NO_EXTI4            10
+#define IRQ_NO_EXTI9_5          23
+#define IRQ_NO_EXTI15_10        40
 
 #endif /* INC_STM32F411XX_H_ */
