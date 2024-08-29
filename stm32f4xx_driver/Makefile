@@ -8,7 +8,7 @@ C_SOURCES =  \
 Core/Src/led_toggle.c \
 Core/Src/sysmem.c \
 Core/Src/syscalls.c \
-Core/Src/stm32f411xx_delay.c \
+Core/Src/delay.c \
 Drivers/Src/stm32f411xx_gpio_driver.c
 
 # ASM sources

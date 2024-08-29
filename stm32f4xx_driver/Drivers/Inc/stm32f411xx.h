@@ -29,7 +29,6 @@
 #define NVIC_ICER6                              ((volatile uint32_t *)0xE000E198U)
 #define NVIC_ICER7                              ((volatile uint32_t *)0xE000E19CU)
 
-
 /*
  * ARM Cortex Mx Processor NVIC Interrupt Priority Register Address
  */
@@ -321,7 +320,10 @@ typedef struct
 #define GPIO_PIN_SET            ENABLE
 #define GPIO_PIN_RESET          DISABLE
 
-/* IRQ (Interrupt Request) Numbers of STM32F411x MCU */
+/* 
+ * IRQ (Interrupt Request) Numbers of STM32F411x MCU 
+ */
+
 #define IRQ_NO_EXTI0            6
 #define IRQ_NO_EXTI1            7
 #define IRQ_NO_EXTI2            8
@@ -329,5 +331,12 @@ typedef struct
 #define IRQ_NO_EXTI4            10
 #define IRQ_NO_EXTI9_5          23
 #define IRQ_NO_EXTI15_10        40
+
+/* 
+ * Macros for all the possible priority levels
+ */
+
+#define IRQ_NO_PRIORITY_0       0
+#define IRQ_NO_PRIORITY_15      15
 
 #endif /* INC_STM32F411XX_H_ */
