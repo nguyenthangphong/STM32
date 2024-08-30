@@ -1,17 +1,5 @@
 #include "stm32f411xx_gpio_driver.h"
 
-/*
- * Peripheral Clock Setup
- */
-
-/**************************************************************************************************************************
- * @fn                                      - GPIO_PeriClockControl
- * @brief                                   - This function enable or disable peripheral clock for the given GPIO port
- * @param[in]                               - Base address of the GPIO Peripheral
- * @param[in]                               - ENABLE or DISABLE macros
- * @return                                  - none
- * @note                                    - none
- *************************************************************************************************************************/
 void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi)
 {
     if (EnorDi == ENABLE)
@@ -43,17 +31,6 @@ void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi)
     }
 }
 
-/*
- * Init and De Init
- */
-
-/**************************************************************************************************************************
- * @fn                                      - GPIO_Init
- * @brief                                   - 
- * @param[in]                               - 
- * @return                                  - none
- * @note                                    - none
- *************************************************************************************************************************/
 void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 {
     uint32_t temp = 0;
@@ -159,10 +136,6 @@ void GPIO_DeInit(GPIO_RegDef_t *pGPIOx)
         GPIOH_REG_RESET();
     }
 }
-
-/*
- * Data Read and Write
- */
 
 uint8_t GPIO_ReadFromInputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
 {
@@ -294,13 +267,13 @@ void GPIO_IRQConfig(uint8_t IRQNumber, uint8_t EnorDi)
     }
 }
 
-void GPIO_IRQPriorityConfig(uint8_t IRQNumber, uint8_t IRQPriority)
+void GPIO_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority)
 {
     // First lets find out the IPR Register
     uint8_t IPRx = IRQNumber / 4;
     uint8_t IPRx_section = IRQNumber % 4;
     uint8_t shift_amount = (8 * IPRx_section) + (8 - NO_PR_BITS_IMPLEMENTED);
-    *(NVIC_PR_BASEADDR + (IPRx * 4)) |= (IRQPriority << shift_amount);
+    *(NVIC_PR_BASEADDR + IPRx) |= (IRQPriority << shift_amount);
 }
 
 void GPIO_IRQHandling(uint8_t PinNumber)
