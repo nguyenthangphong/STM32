@@ -64,7 +64,7 @@ int main(void)
     SPI_Handle.SPI_Config.SPI_BugConfig = SPI_BUS_CONFIG_FULLDUPLEX;
     SPI_Handle.SPI_Config.SPI_DeviceMode = SPI_DEVICE_MODE_MASTER;
     SPI_Handle.SPI_Config.SPI_SCLKSpeed = SPI_SCLK_SPEED_DIV_8;
-    SPI_Handle.SPI_Config.SPI_DFF = SPI_DFF_8_BITS;
+    SPI_Handle.SPI_Config.SPI_DFF = SPI_DFF_8_BITS_DATA;
     SPI_Handle.SPI_Config.SPI_CPOL = SPI_CPOL_LOW;
     SPI_Handle.SPI_Config.SPI_CPHA = SPI_CPHA_LOW;
     SPI_Handle.SPI_Config.SPI_SSM = SPI_SSM_DI;

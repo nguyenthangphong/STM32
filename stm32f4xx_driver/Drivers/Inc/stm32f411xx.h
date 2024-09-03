@@ -187,6 +187,94 @@ typedef struct
     volatile uint32_t           CMPCR;                   /*!< Compensation cell control register,                                   Address offset : 0x20 */
 } st_SYSCFG_RegDef_t;
 
+typedef struct
+{
+    volatile uint32_t           CR1;                     /*!< SPI control register 1,                                                Address offset : 0x00 */
+    volatile uint32_t           CR2;                     /*!< SPI control register 2,                                                Address offset : 0x04 */
+    volatile uint32_t           SR;                      /*!< SPI status register,                                                   Address offset : 0x08 */
+    volatile uint32_t           DR;                      /*!< SPI data register,                                                     Address offset : 0x0C */
+    volatile uint32_t           CRCPR;                   /*!< SPI CRC polynomial register,                                           Address offset : 0x10 */
+    volatile uint32_t           RXCRCR;                  /*!< SPI RX CRC register,                                                   Address offset : 0x14 */
+    volatile uint32_t           TXCRCR;                  /*!< SPI TX CRC register,                                                   Address offset : 0x18 */
+    volatile uint32_t           I2SCFGR;                 /*!< SPI I2S configuration register,                                        Address offset : 0x1C */
+    volatile uint32_t           I2SPR;                   /*!< SPI I2S prescaler register,                                            Address offset : 0x20 */
+} st_SPI_RegDef_t;
+
+/*
+ * SPI Device Mode
+ */
+
+#define SPI_DEVICE_MODE_SLAVE           0
+#define SPI_DEVICE_MODE_MASTER          1
+
+/*
+ * SPI Bus Config
+ */
+
+#define SPI_BUS_CONFIG_FULLDUPLEX       1
+#define SPI_BUS_CONFIG_HALFDUPLEX       2
+#define SPI_BUS_CONFIG_SIMPLEX_RXONLY   3
+
+/*
+ * SPI SCLK Speed
+ */
+
+#define SPI_SCLK_SPEED_DIV_2            0
+#define SPI_SCLK_SPEED_DIV_4            1
+#define SPI_SCLK_SPEED_DIV_8            2
+#define SPI_SCLK_SPEED_DIV_16           3
+#define SPI_SCLK_SPEED_DIV_32           4
+#define SPI_SCLK_SPEED_DIV_64           5
+#define SPI_SCLK_SPEED_DIV_128          6
+#define SPI_SCLK_SPEED_DIV_256          7
+
+/*
+ * SPI DFF
+ */
+
+#define SPI_DFF_8_BITS_DATA             0
+#define SPI_DFF_16_BITS_DATA            1
+
+/*
+ * SPI CPOL
+ */
+
+#define SPI_CPOL_LOW                    0
+#define SPI_CPOL_HIGH                   1
+
+/*
+ * SPI CPHA
+ */
+
+#define SPI_CPHA_LOW                    0
+#define SPI_CPHA_HIGH                   1
+
+/*
+ * SPI SSM
+ */
+
+#define SPI_SSM_DI                      0
+#define SPI_SSM_EN                      1
+
+/*
+ * Pin configuration of CR1 Register
+ */
+
+#define SPI_CR1_CPHA            0
+#define SPI_CR1_CPOL            1
+#define SPI_CR1_MSTR            2
+#define SPI_CR1_BR              3
+#define SPI_CR1_SPE             6
+#define SPI_CR1_LSBFIRST        7
+#define SPI_CR1_SSI             8
+#define SPI_CR1_SSM             9
+#define SPI_CR1_RXONLY          10
+#define SPI_CR1_DFF             11
+#define SPI_CR1_CRCNEXT         12
+#define SPI_CR1_CRCEN           13
+#define SPI_CR1_BIDIOE          14
+#define SPI_CR1_BIDIMODE        15
+
 /*
  * Peripheral Definition
  */
@@ -201,6 +289,12 @@ typedef struct
 #define RCC                     ((st_RCC_RegDef_t *)RCC_BASEADDR)
 #define EXTI                    ((st_EXTI_RegDef_t *)EXTI_BASEADDR)
 #define SYSCFG                  ((st_SYSCFG_RegDef_t *)SYSCFG_BASEADDR)
+
+#define SPI1                    ((st_SPI_RegDef_t *)SPI1_BASEADDR)
+#define SPI2                    ((st_SPI_RegDef_t *)SPI2_BASEADDR)
+#define SPI3                    ((st_SPI_RegDef_t *)SPI3_BASEADDR)
+#define SPI4                    ((st_SPI_RegDef_t *)SPI4_BASEADDR)
+#define SPI5                    ((st_SPI_RegDef_t *)SPI5_BASEADDR)
 
 /******************************* Enable **********************************/
 
@@ -319,6 +413,8 @@ typedef struct
 #define RESET                   DISABLE
 #define GPIO_PIN_SET            ENABLE
 #define GPIO_PIN_RESET          DISABLE
+#define FLAG_SET                SET
+#define FLAG_RESET              RESET
 
 /* 
  * IRQ (Interrupt Request) Numbers of STM32F411x MCU 
