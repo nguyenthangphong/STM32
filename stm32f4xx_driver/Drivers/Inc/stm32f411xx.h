@@ -133,7 +133,7 @@ typedef struct
     volatile uint32_t            BSRR;                   /*!< GPIO port bit set/reset register,                                     Address offset : 0x18 */
     volatile uint32_t            LCKR;                   /*!< GPIO port configuration lock register,                                Address offset : 0x1C */
     volatile uint32_t            AFR[2];                 /*!< GPIO alternate function registers,                                    Address offset : 0x20 - 0x24 */
-} GPIO_RegDef_t;
+} st_GPIO_RegDef_t;
 
 typedef struct
 {
@@ -166,7 +166,7 @@ typedef struct
     volatile uint32_t           PLLI2SCFGR;              /*!< RCC PLLI2S configuration register,                                    Address offset : 0x84 */
     uint32_t                    RESERVED7;               /*!< Reserved,                                                             Address offset : 0x88 */
     volatile uint32_t           DCKCFGR;                 /*!< RCC Dedicated Clocks Configuration Register,                          Address offset : 0x8C */
-} RCC_RegDef_t;
+} st_RCC_RegDef_t;
 
 typedef struct
 {
@@ -176,7 +176,7 @@ typedef struct
     volatile uint32_t           FTSR;                    /*!< Falling trigger selection register,                                   Address offset : 0x0C */
     volatile uint32_t           SWIER;                   /*!< Software interrupt event register,                                    Address offset : 0x10 */
     volatile uint32_t           PR;                      /*!< Pending register,                                                     Address offset : 0x14 */
-} EXTI_RegDef_t;
+} st_EXTI_RegDef_t;
 
 typedef struct
 {
@@ -185,22 +185,22 @@ typedef struct
     volatile uint32_t           EXTICR[4];               /*!< SYSCFG external interrupt configuration register,                     Address offset : 0x08 - 0x14 */
     uint32_t                    RESERVED[2];             /*!< Reserved,                                                             Address offset : 0x18 - 0x1C */
     volatile uint32_t           CMPCR;                   /*!< Compensation cell control register,                                   Address offset : 0x20 */
-} SYSCFG_RegDef_t;
+} st_SYSCFG_RegDef_t;
 
 /*
  * Peripheral Definition
  */
 
-#define GPIOA                   ((GPIO_RegDef_t *)GPIOA_BASEADDR)
-#define GPIOB                   ((GPIO_RegDef_t *)GPIOB_BASEADDR)
-#define GPIOC                   ((GPIO_RegDef_t *)GPIOC_BASEADDR)
-#define GPIOD                   ((GPIO_RegDef_t *)GPIOD_BASEADDR)
-#define GPIOE                   ((GPIO_RegDef_t *)GPIOE_BASEADDR)
-#define GPIOH                   ((GPIO_RegDef_t *)GPIOH_BASEADDR)
+#define GPIOA                   ((st_GPIO_RegDef_t *)GPIOA_BASEADDR)
+#define GPIOB                   ((st_GPIO_RegDef_t *)GPIOB_BASEADDR)
+#define GPIOC                   ((st_GPIO_RegDef_t *)GPIOC_BASEADDR)
+#define GPIOD                   ((st_GPIO_RegDef_t *)GPIOD_BASEADDR)
+#define GPIOE                   ((st_GPIO_RegDef_t *)GPIOE_BASEADDR)
+#define GPIOH                   ((st_GPIO_RegDef_t *)GPIOH_BASEADDR)
 
-#define RCC                     ((RCC_RegDef_t *)RCC_BASEADDR)
-#define EXTI                    ((EXTI_RegDef_t *)EXTI_BASEADDR)
-#define SYSCFG                  ((SYSCFG_RegDef_t *)SYSCFG_BASEADDR)
+#define RCC                     ((st_RCC_RegDef_t *)RCC_BASEADDR)
+#define EXTI                    ((st_EXTI_RegDef_t *)EXTI_BASEADDR)
+#define SYSCFG                  ((st_SYSCFG_RegDef_t *)SYSCFG_BASEADDR)
 
 /******************************* Enable **********************************/
 

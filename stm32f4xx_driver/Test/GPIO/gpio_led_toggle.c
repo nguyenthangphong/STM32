@@ -4,7 +4,7 @@
 
 int main(void)
 {
-    GPIO_Handle_t led_1, led_2;
+    st_GPIO_Handle_t led_1, led_2;
 
     /* led_1 configuration for pull-up pull-down */
     led_1.pGPIOx                             = GPIOD;

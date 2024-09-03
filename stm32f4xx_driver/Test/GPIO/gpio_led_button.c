@@ -7,7 +7,7 @@
 
 int main(void)
 {
-    GPIO_Handle_t led, btn;
+    st_GPIO_Handle_t led, btn;
 
     /* led configuration */
     led.pGPIOx                             = GPIOD;

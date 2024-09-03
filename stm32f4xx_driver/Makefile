@@ -5,7 +5,7 @@ BUILD_DIR = build
 
 # C sources
 C_SOURCES =  \
-Core/Src/led_toggle.c \
+Test/GPIO/gpio_led_toggle.c \
 Core/Src/sysmem.c \
 Core/Src/syscalls.c \
 Core/Src/delay.c \
