@@ -27,14 +27,14 @@ int main(void)
     uint8_t length = strlen(data);
 
     /* GPIO Button Init */
-    // st_GPIO_Handle_t GPIO_Button_Handle;
-    // GPIO_Button_Handle.pGPIOx = GPIOA;
-    // GPIO_Button_Handle.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_0;
-    // GPIO_Button_Handle.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IN;
-    // GPIO_Button_Handle.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
-    // GPIO_Button_Handle.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+    st_GPIO_Handle_t GPIO_Button_Handle;
+    GPIO_Button_Handle.pGPIOx = GPIOA;
+    GPIO_Button_Handle.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_0;
+    GPIO_Button_Handle.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IN;
+    GPIO_Button_Handle.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
+    GPIO_Button_Handle.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
 
-    // GPIO_Init(&GPIO_Button_Handle);
+    GPIO_Init(&GPIO_Button_Handle);
 
     /* SPI2 GPIO Init */
     st_GPIO_Handle_t SPI_GPIO_Handle;
@@ -76,8 +76,8 @@ int main(void)
     while (1)
     {
         // Wait until button is pressed
-        // while (!GPIO_ReadFromInputPin(GPIOA, GPIO_PIN_NO_0));
-        // delay(500000);
+        while (!GPIO_ReadFromInputPin(GPIOA, GPIO_PIN_NO_0));
+        delay(500000);
 
         // Enable the SPI2 Peripheral
         SPI_PeriClockControl(SPI2, ENABLE);
@@ -86,7 +86,7 @@ int main(void)
         SPI_SendData(SPI2, &length, 1);
 
         // Send data
-        // SPI_SendData(SPI2, (uint8_t *)data, length);
+        SPI_SendData(SPI2, (uint8_t *)data, length);
 
         // Confirm SPI2 not busy
         while (SPI_GetFlagStatus(SPI2, SPI_BUSY_FLAG));
