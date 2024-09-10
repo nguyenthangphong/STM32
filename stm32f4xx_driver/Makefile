@@ -5,11 +5,12 @@ BUILD_DIR = build
 
 # C sources
 C_SOURCES =  \
-Core/Src/led_toggle.c \
+Test/SPI/spi_send_data_from_stm32_to_esp32.c \
 Core/Src/sysmem.c \
 Core/Src/syscalls.c \
 Core/Src/delay.c \
-Drivers/Src/stm32f411xx_gpio_driver.c
+Drivers/Src/stm32f411xx_gpio_driver.c \
+Drivers/Src/stm32f411xx_spi_driver.c
 
 # ASM sources
 ASM_SOURCES =  \
