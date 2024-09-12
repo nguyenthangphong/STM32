@@ -19,7 +19,7 @@ int main(void)
     led.pGPIOx                             = GPIOD;
     led.GPIO_PinConfig.GPIO_PinNumber      = GPIO_PIN_NO_12;
     led.GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_OUT;
-    led.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_LOW;
+    led.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
     led.GPIO_PinConfig.GPIO_PinOPType      = GPIO_OP_TYPE_PP;
     led.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
 
@@ -31,16 +31,16 @@ int main(void)
     btn.GPIO_PinConfig.GPIO_PinNumber      = GPIO_PIN_NO_0;
     btn.GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_IT_FT;
     btn.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
-    btn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PU;
+    btn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
 
     GPIO_PeriClockControl(GPIOA, ENABLE);
     GPIO_Init(&btn);
 
-    GPIO_WriteToOutputPin(GPIOD, GPIO_PIN_NO_12, GPIO_PIN_RESET);
+    /* IRQ Configuration */
+    GPIO_IRQConfig(IRQ_NO_EXTI0, ENABLE);
 
-    /* IRQ configuration */
-    GPIO_IRQPriorityConfig(IRQ_NO_EXTI9_5, IRQ_NO_PRIORITY_15);
-    GPIO_IRQConfig(IRQ_NO_EXTI9_5, ENABLE);
+    /* IRQ Priority */
+    GPIO_IRQPriorityConfig(IRQ_NO_EXTI0, IRQ_NO_PRIORITY_15);
 
     while (1);
 
@@ -50,7 +50,6 @@ int main(void)
 void EXTI9_5_IRQHandler(void)
 {
     delay(500000);
-    // Clear the pending event from EXTI line
     GPIO_IRQHandling(GPIO_PIN_NO_0);
     GPIO_ToggleOutputPin(GPIOD, GPIO_PIN_NO_12);
 }

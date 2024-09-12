@@ -4,7 +4,7 @@
 
 #define HIGH        1
 #define LOW         0
-#define BTN_PRESSED LOW
+#define BTN_PRESSED HIGH
 
 int main(void)
 {
@@ -33,7 +33,7 @@ int main(void)
 
     while (1)
     {
-        if (GPIO_ReadFromInputPin(GPIOB, GPIO_PIN_NO_12) == BTN_PRESSED)
+        if (GPIO_ReadFromInputPin(GPIOB, GPIO_PIN_NO_12) != BTN_PRESSED)
         {
             delay(500000);
             GPIO_ToggleOutputPin(GPIOA, GPIO_PIN_NO_8);

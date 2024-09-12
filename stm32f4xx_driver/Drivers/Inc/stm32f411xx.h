@@ -200,8 +200,19 @@ typedef struct
     volatile uint32_t           I2SPR;                   /*!< SPI I2S prescaler register,                                            Address offset : 0x20 */
 } st_SPI_RegDef_t;
 
+typedef struct
+{
+    volatile uint32_t           SR;                      /*!< USART Status register,                                                 Address offset : 0x00 */
+    volatile uint32_t           DR;                      /*!< USART Data register,                                                   Address offset : 0x04 */
+    volatile uint32_t           BRR;                     /*!< USART Baud rate register,                                              Address offset : 0x08 */
+    volatile uint32_t           CR1;                     /*!< USART Control register 1,                                              Address offset : 0x0C */
+    volatile uint32_t           CR2;                     /*!< USART Control register 2,                                              Address offset : 0x10 */
+    volatile uint32_t           CR3;                     /*!< USART Control register 3,                                              Address offset : 0x14 */
+    volatile uint32_t           GTPR;                    /*!< USART Guard time and prescaler register,                               Address offset : 0x18 */
+} st_USART_RegDef_t;
+
 /*
- * Pin configuration of CR1 Register
+ * SPI Pin configuration of CR1 Register
  */
 
 #define SPI_CR1_CPHA            0
@@ -220,7 +231,7 @@ typedef struct
 #define SPI_CR1_BIDIMODE        15
 
 /*
- * Pin configuration of CR2 Register
+ * SPI Pin configuration of CR2 Register
  */
 
 #define SPI_CR2_RXDMAEN         0
@@ -232,7 +243,7 @@ typedef struct
 #define SPI_CR2_TXEIE           7
 
 /*
- * Pin configuration of SR Register
+ * SPI Pin configuration of SR Register
  */
 
 #define SPI_SR_RXNE             0
@@ -246,68 +257,93 @@ typedef struct
 #define SPI_SR_FRE              8
 
 /*
- * SPI Device Mode
+ * USART Pin configuration of SR Register
  */
 
-#define SPI_DEVICE_MODE_SLAVE           0
-#define SPI_DEVICE_MODE_MASTER          1
+#define USART_SR_PE                     0
+#define USART_SR_FE                     1
+#define USART_SR_NF                     2
+#define USART_SR_ORE                    3
+#define USART_SR_IDLE                   4
+#define USART_SR_RXNE                   5
+#define USART_SR_TC                     6
+#define USART_SR_TXE                    7
+#define USART_SR_LBD                    8
+#define USART_SR_CTS                    9
 
 /*
- * SPI Bus Config
+ * USART Pin configuration of BRR Register
  */
 
-#define SPI_BUS_CONFIG_FULLDUPLEX       1
-#define SPI_BUS_CONFIG_HALFDUPLEX       2
-#define SPI_BUS_CONFIG_SIMPLEX_RXONLY   3
+#define USART_BRR_DIV_FRACTION          0
+#define USART_BRR_DIV_MANTISSA          4
 
 /*
- * SPI SCLK Speed
+ * USART Pin configuration of CR1 Register
  */
 
-#define SPI_SCLK_SPEED_DIV_2            0
-#define SPI_SCLK_SPEED_DIV_4            1
-#define SPI_SCLK_SPEED_DIV_8            2
-#define SPI_SCLK_SPEED_DIV_16           3
-#define SPI_SCLK_SPEED_DIV_32           4
-#define SPI_SCLK_SPEED_DIV_64           5
-#define SPI_SCLK_SPEED_DIV_128          6
-#define SPI_SCLK_SPEED_DIV_256          7
+#define USART_CR1_SBK                   0
+#define USART_CR1_RWU                   1
+#define USART_CR1_RE                    2
+#define USART_CR1_TE                    3
+#define USART_CR1_IDLEIE                4
+#define USART_CR1_RXNEIE                5
+#define USART_CR1_TCIE                  6
+#define USART_CR1_TXEIE                 7
+#define USART_CR1_PEIE                  8
+#define USART_CR1_PS                    9
+#define USART_CR1_PCE                   10
+#define USART_CR1_WAKE                  11
+#define USART_CR1_M                     12
+#define USART_CR1_UE                    13
+#define USART_CR1_OVER8                 15
 
 /*
- * SPI DFF
+ * USART Pin configuration of CR2 Register
  */
 
-#define SPI_DFF_8_BITS_DATA             0
-#define SPI_DFF_16_BITS_DATA            1
+#define USART_CR2_ADD                   0
+#define USART_CR2_LBDL                  5
+#define USART_CR2_LBDIE                 6
+#define USART_CR2_LBCL                  8
+#define USART_CR2_CPHA                  9
+#define USART_CR2_CPOL                  10
+#define USART_CR2_CLKEN                 11
+#define USART_CR2_STOP                  12
+#define USART_CR2_LINEN                 14
 
 /*
- * SPI CPOL
+ * USART Pin configuration of CR3 Register
  */
 
-#define SPI_CPOL_LOW                    0
-#define SPI_CPOL_HIGH                   1
+#define USART_CR3_EIE                   0
+#define USART_CR3_IREN                  1
+#define USART_CR3_IRLP                  2
+#define USART_CR3_HDSEL                 3
+#define USART_CR3_NACK                  4
+#define USART_CR3_SCEN                  5
+#define USART_CR3_DMAR                  6
+#define USART_CR3_DMAT                  7
+#define USART_CR3_RTSE                  8
+#define USART_CR3_CTSE                  9
+#define USART_CR3_CTSIE                 10
+#define USART_CR3_ONEBIT                11
 
 /*
- * SPI CPHA
+ * RCC Pin configuration of CFGR Register
  */
 
-#define SPI_CPHA_LOW                    0
-#define SPI_CPHA_HIGH                   1
-
-/*
- * SPI SSM
- */
-
-#define SPI_SSM_DI                      0
-#define SPI_SSM_EN                      1
-
-/*
- * SPI related status flags definitions
- */
-
-#define SPI_TXE_FLAG                    (1 << SPI_SR_TXE)
-#define SPI_RXNE_FLAG                   (1 << SPI_SR_RXNE)
-#define SPI_BUSY_FLAG                   (1 << SPI_SR_BSY)
+#define RCC_CFGR_SW                     0
+#define RCC_CFGR_SWS                    2
+#define RCC_CFGR_HPRE                   4
+#define RCC_CFGR_PPRE1                  10
+#define RCC_CFGR_PPRE2                  13
+#define RCC_CFGR_RTCPRE                 16
+#define RCC_CFGR_MCO1                   21
+#define RCC_CFGR_I2SSRC                 23
+#define RCC_CFGR_MCO1PRE                24
+#define RCC_CFGR_MCO2PRE                27
+#define RCC_CFGR_MCO2                   30
 
 /*
  * Peripheral Definition
@@ -329,6 +365,10 @@ typedef struct
 #define SPI3                    ((st_SPI_RegDef_t *)SPI3_BASEADDR)
 #define SPI4                    ((st_SPI_RegDef_t *)SPI4_BASEADDR)
 #define SPI5                    ((st_SPI_RegDef_t *)SPI5_BASEADDR)
+
+#define USART1                  ((st_USART_RegDef_t *)USART1_BASEADDR)
+#define USART2                  ((st_USART_RegDef_t *)USART2_BASEADDR)
+#define USART6                  ((st_USART_RegDef_t *)USART6_BASEADDR)
 
 /******************************* Enable **********************************/
 
@@ -430,6 +470,16 @@ typedef struct
 #define GPIOD_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << 0)); (RCC->AHB1RSTR &= ~(1 << 3)); } while (0)
 #define GPIOE_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << 0)); (RCC->AHB1RSTR &= ~(1 << 4)); } while (0)
 #define GPIOH_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << 0)); (RCC->AHB1RSTR &= ~(1 << 7)); } while (0)
+
+/*
+ * Macros to Reset SPIx Peripherals
+ */
+
+#define SPI1_REG_RESET()        do { (RCC->APB2ENR |= (1 << 12)); (RCC->APB2ENR &= ~(1 << 12)); } while (0)
+#define SPI2_REG_RESET()        do { (RCC->APB1ENR |= (1 << 14)); (RCC->APB1ENR &= ~(1 << 14)); } while (0)
+#define SPI3_REG_RESET()        do { (RCC->APB1ENR |= (1 << 15)); (RCC->APB1ENR &= ~(1 << 15)); } while (0)
+#define SPI4_REG_RESET()        do { (RCC->APB2ENR |= (1 << 13)); (RCC->APB2ENR &= ~(1 << 13)); } while (0)
+#define SPI5_REG_RESET()        do { (RCC->APB2ENR |= (1 << 20)); (RCC->APB2ENR &= ~(1 << 20)); } while (0)
 
 /*
  * Return port code for given GPIOx base address
