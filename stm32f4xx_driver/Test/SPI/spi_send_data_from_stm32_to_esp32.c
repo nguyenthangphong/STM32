@@ -4,96 +4,97 @@
 #include "delay.h"
 #include <string.h>
 
-/*
- *  STM32 - MASTER
- *  PB15 => SPI2_MOSI => Wire Green
- *  PB14 => SPI2_MISO => Wire Red
- *  PB13 => SPI2_SCLK => Wire Gray
- *  PB12 => SPI2_NSS  => Wire Yellow
- */
-
-/*
- *  ESP32 - SLAVE
- *  D23 => MOSI => Wire Green
- *  D19 => MISO => Wire Red
- *  D18 => SCLK => Wire Gray
- *  D5  => NSS  => Wire Yellow
- */
-
-const char data[] = "Nguyen Thang Phong - 2401001";
+void GPIO_BTN_Init(void);
+void GPIO_SPI2_Init(void);
+void SPI2_Init(void);
 
 int main(void)
 {
-    uint8_t length = strlen(data);
+    char data[] = "Hello World";
 
-    /* GPIO Button Init */
-    st_GPIO_Handle_t GPIO_Button_Handle;
-    GPIO_Button_Handle.pGPIOx = GPIOA;
-    GPIO_Button_Handle.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_0;
-    GPIO_Button_Handle.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IN;
-    GPIO_Button_Handle.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
-    GPIO_Button_Handle.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+    /* GPIO BTN Init */
+    GPIO_BTN_Init();
 
-    GPIO_Init(&GPIO_Button_Handle);
-
-    /* SPI2 GPIO Init */
-    st_GPIO_Handle_t SPI_GPIO_Handle;
-    SPI_GPIO_Handle.pGPIOx = GPIOB;
-    SPI_GPIO_Handle.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_ALTFN;
-    SPI_GPIO_Handle.GPIO_PinConfig.GPIO_PinAltFunMode = 5;
-    SPI_GPIO_Handle.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
-    SPI_GPIO_Handle.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PU;
-    SPI_GPIO_Handle.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
-
-    // SCLK
-    SPI_GPIO_Handle.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_13;
-    GPIO_Init(&SPI_GPIO_Handle);
-    // MOSI
-    SPI_GPIO_Handle.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_15;
-    GPIO_Init(&SPI_GPIO_Handle);
-    // MISO
-    SPI_GPIO_Handle.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_14;
-    GPIO_Init(&SPI_GPIO_Handle);
-    // NSS
-    SPI_GPIO_Handle.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_12;
-    GPIO_Init(&SPI_GPIO_Handle);
+    /* GPIO SPI2 Init */
+    GPIO_SPI2_Init();
 
     /* SPI2 Init */
-    st_SPI_Handle_t SPI_Handle;
-    SPI_Handle.pSPIx = SPI2;                                            /* SPI2 */
-    SPI_Handle.SPI_Config.SPI_BugConfig = SPI_BUS_CONFIG_FULLDUPLEX;    /* Full Duplex */
-    SPI_Handle.SPI_Config.SPI_DeviceMode = SPI_DEVICE_MODE_MASTER;      /* Master */
-    SPI_Handle.SPI_Config.SPI_SCLKSpeed = SPI_SCLK_SPEED_DIV_8;         /* Generate SCLK of 2MHz */
-    SPI_Handle.SPI_Config.SPI_DFF = SPI_DFF_8_BITS_DATA;                /* 8 bits */
-    SPI_Handle.SPI_Config.SPI_CPOL = SPI_CPOL_LOW;
-    SPI_Handle.SPI_Config.SPI_CPHA = SPI_CPHA_LOW;
-    SPI_Handle.SPI_Config.SPI_SSM = SPI_SSM_DI;                         /* Hardware Slave Management Enabled for NSS Pin */
+    SPI2_Init();
 
-    SPI_Init(&SPI_Handle);
+    /* Enable the SSI bit to make NSS signal internally high & avoid MODF error */
+    SPI_SSIConfig(SPI2, ENABLE);
 
-    SPI_SSOEConfig(SPI2, ENABLE);
+    /* Enable the SPI2 Peripheral */
+    SPI_PeripheralControl(SPI2, ENABLE);
 
-    while (1)
-    {
-        // Wait until button is pressed
-        while (!GPIO_ReadFromInputPin(GPIOA, GPIO_PIN_NO_0));
-        delay(500000);
+    /* Send data */
+    SPI_SendData(SPI2, (uint8_t *)data, strlen(data));
 
-        // Enable the SPI2 Peripheral
-        SPI_PeriClockControl(SPI2, ENABLE);
+    /* Checking whether the SPI2 is busy or not */
+    while (SPI_GetFlagStatus(SPI2, SPI_BUSY_FLAG));
 
-        // Send length of data
-        SPI_SendData(SPI2, &length, 1);
+    /* Disable the SPI2 Peripheral */
+    SPI_PeripheralControl(SPI2, DISABLE);
 
-        // Send data
-        SPI_SendData(SPI2, (uint8_t *)data, length);
-
-        // Confirm SPI2 not busy
-        while (SPI_GetFlagStatus(SPI2, SPI_BUSY_FLAG));
-
-        // Disable the SPI2 Peripheral
-        SPI_PeripheralControl(SPI2, DISABLE);
-    }
+    while (1);
 
     return 0;
+}
+
+void GPIO_BTN_Init(void)
+{
+    st_GPIO_Handle_t GPIO_BTN_Handle;
+
+    GPIO_BTN_Handle.pGPIOx = GPIOA;
+    GPIO_BTN_Handle.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_0;
+    GPIO_BTN_Handle.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IN;
+    GPIO_BTN_Handle.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
+    GPIO_BTN_Handle.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+
+    GPIO_Init(&GPIO_BTN_Handle);
+}
+
+void GPIO_SPI2_Init(void)
+{
+    st_GPIO_Handle_t GPIO_SPI2_Handle;
+
+    GPIO_SPI2_Handle.pGPIOx = GPIOB;
+    GPIO_SPI2_Handle.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_ALTFN;
+    GPIO_SPI2_Handle.GPIO_PinConfig.GPIO_PinAltFunMode = 5;
+    GPIO_SPI2_Handle.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
+    GPIO_SPI2_Handle.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PU;
+    GPIO_SPI2_Handle.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
+
+    /* SCLK */
+    GPIO_SPI2_Handle.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_13;
+    GPIO_Init(&GPIO_SPI2_Handle);
+
+    /* MOSI */
+    GPIO_SPI2_Handle.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_15;
+    GPIO_Init(&GPIO_SPI2_Handle);
+
+    /* MISO */
+    GPIO_SPI2_Handle.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_14;
+    GPIO_Init(&GPIO_SPI2_Handle);
+
+    /* NSS */
+    GPIO_SPI2_Handle.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_12;
+    GPIO_Init(&GPIO_SPI2_Handle);
+}
+
+void SPI2_Init(void)
+{
+    st_SPI_Handle_t SPI2_Handle;
+
+    SPI2_Handle.pSPIx = SPI2;
+    SPI2_Handle.SPI_Config.SPI_BugConfig = SPI_BUS_CONFIG_FULLDUPLEX;
+    SPI2_Handle.SPI_Config.SPI_DeviceMode = SPI_DEVICE_MODE_MASTER;
+    SPI2_Handle.SPI_Config.SPI_SCLKSpeed = SPI_SCLK_SPEED_DIV_8;
+    SPI2_Handle.SPI_Config.SPI_DFF = SPI_DFF_8_BITS_DATA;
+    SPI2_Handle.SPI_Config.SPI_CPOL = SPI_CPOL_LOW;
+    SPI2_Handle.SPI_Config.SPI_CPHA = SPI_CPHA_LOW;
+    SPI2_Handle.SPI_Config.SPI_SSM = SPI_SSM_DI;
+
+    SPI_Init(&SPI2_Handle);
+    SPI_SSOEConfig(SPI2, ENABLE);
 }

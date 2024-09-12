@@ -29,6 +29,70 @@ typedef struct
 } st_SPI_Handle_t;
 
 /*
+ * SPI Device Mode
+ */
+
+#define SPI_DEVICE_MODE_SLAVE           0
+#define SPI_DEVICE_MODE_MASTER          1
+
+/*
+ * SPI Bus Config
+ */
+
+#define SPI_BUS_CONFIG_FULLDUPLEX       1
+#define SPI_BUS_CONFIG_HALFDUPLEX       2
+#define SPI_BUS_CONFIG_SIMPLEX_RXONLY   3
+
+/*
+ * SPI SCLK Speed
+ */
+
+#define SPI_SCLK_SPEED_DIV_2            0
+#define SPI_SCLK_SPEED_DIV_4            1
+#define SPI_SCLK_SPEED_DIV_8            2
+#define SPI_SCLK_SPEED_DIV_16           3
+#define SPI_SCLK_SPEED_DIV_32           4
+#define SPI_SCLK_SPEED_DIV_64           5
+#define SPI_SCLK_SPEED_DIV_128          6
+#define SPI_SCLK_SPEED_DIV_256          7
+
+/*
+ * SPI DFF
+ */
+
+#define SPI_DFF_8_BITS_DATA             0
+#define SPI_DFF_16_BITS_DATA            1
+
+/*
+ * SPI CPOL
+ */
+
+#define SPI_CPOL_LOW                    0
+#define SPI_CPOL_HIGH                   1
+
+/*
+ * SPI CPHA
+ */
+
+#define SPI_CPHA_LOW                    0
+#define SPI_CPHA_HIGH                   1
+
+/*
+ * SPI SSM
+ */
+
+#define SPI_SSM_DI                      0
+#define SPI_SSM_EN                      1
+
+/*
+ * SPI related status flags definitions
+ */
+
+#define SPI_TXE_FLAG                    (1 << SPI_SR_TXE)
+#define SPI_RXNE_FLAG                   (1 << SPI_SR_RXNE)
+#define SPI_BUSY_FLAG                   (1 << SPI_SR_BSY)
+
+/*
  * Peripheral Clock Setup
  */
 

@@ -10,7 +10,9 @@ Core/Src/sysmem.c \
 Core/Src/syscalls.c \
 Core/Src/delay.c \
 Drivers/Src/stm32f411xx_gpio_driver.c \
-Drivers/Src/stm32f411xx_spi_driver.c
+Drivers/Src/stm32f411xx_spi_driver.c \
+Drivers/Src/stm32f411xx_rcc_driver.c \
+Drivers/Src/stm32f411xx_usart_driver.c
 
 # ASM sources
 ASM_SOURCES =  \
