@@ -197,10 +197,12 @@ void SPI_PeripheralControl(st_SPI_RegDef_t *pSPIx, uint8_t EnorDi)
 {
     if (EnorDi == ENABLE)
     {
+        /* Enable SPI */
         pSPIx->CR1 |= (1 << SPI_CR1_SPE);
     }
     else
     {
+        /* Disable SPI */
         pSPIx->CR1 &= ~(1 << SPI_CR1_SPE);
     }
 }
@@ -220,11 +222,13 @@ void SPI_SSIConfig(st_SPI_RegDef_t *pSPIx, uint8_t EnorDi)
 void SPI_SSOEConfig(st_SPI_RegDef_t *pSPIx, uint8_t EnorDi)
 {
     if (EnorDi == ENABLE)
-    {
+    {   
+        /* Enable SS output in master mode */
         pSPIx->CR2 |= (1 << SPI_CR2_SSOE);
     }
     else
     {
+        /* Disable SS output in master mode */
         pSPIx->CR2 &= ~(1 << SPI_CR2_SSOE);
     }
 }
