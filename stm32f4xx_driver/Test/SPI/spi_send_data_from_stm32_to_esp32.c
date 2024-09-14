@@ -27,7 +27,7 @@ int main(void)
     while (1)
     {
         /* When button is pressed, exit from this */
-        while(!(GPIO_ReadFromInputPin(GPIOA, GPIO_PIN_NO_0)));
+        while (!(GPIO_ReadFromInputPin(GPIOA, GPIO_PIN_NO_0)));
 
         /* Delay */
         delay(500000);
@@ -40,7 +40,7 @@ int main(void)
         SPI_SendData(SPI2, &length, 1);
 
         /* Send data */
-        SPI_SendData(SPI2, (uint8_t *)data, strlen(data));
+        // SPI_SendData(SPI2, (uint8_t *)data, strlen(data));
 
         /* Checking whether the SPI2 is busy or not */
         while (SPI_GetFlagStatus(SPI2, SPI_BUSY_FLAG));

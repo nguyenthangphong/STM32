@@ -5,30 +5,14 @@
 #define HIGH 1
 #define BTN_PRESSED HIGH
 
+void GPIO_LED_Init(void);
+void GPIO_BTN_Init(void);
+
 int main(void)
 {
-    st_GPIO_Handle_t led, btn;
+    GPIO_BTN_Init();
 
-    /* led configuration */
-    led.pGPIOx                             = GPIOD;
-    led.GPIO_PinConfig.GPIO_PinNumber      = GPIO_PIN_NO_12;
-    led.GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_OUT;
-    led.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
-    led.GPIO_PinConfig.GPIO_PinOPType      = GPIO_OP_TYPE_PP;
-    led.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
-
-    GPIO_PeriClockControl(GPIOD, ENABLE);
-    GPIO_Init(&led);
-
-    /* btn configuration */
-    btn.pGPIOx                             = GPIOA;
-    btn.GPIO_PinConfig.GPIO_PinNumber      = GPIO_PIN_NO_0;
-    btn.GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_IN;
-    btn.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
-    btn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
-
-    GPIO_PeriClockControl(GPIOA, ENABLE);
-    GPIO_Init(&btn);
+    GPIO_LED_Init();
 
     while (1)
     {
@@ -40,4 +24,31 @@ int main(void)
     }
 
     return 0;
+}
+
+void GPIO_LED_Init(void)
+{
+    st_GPIO_Handle_t led;
+
+    led.pGPIOx                             = GPIOD;
+    led.GPIO_PinConfig.GPIO_PinNumber      = GPIO_PIN_NO_12;
+    led.GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_OUT;
+    led.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
+    led.GPIO_PinConfig.GPIO_PinOPType      = GPIO_OP_TYPE_PP;
+    led.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+
+    GPIO_Init(&led);
+}
+
+void GPIO_BTN_Init(void)
+{
+    st_GPIO_Handle_t btn;
+
+    btn.pGPIOx                             = GPIOA;
+    btn.GPIO_PinConfig.GPIO_PinNumber      = GPIO_PIN_NO_0;
+    btn.GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_IN;
+    btn.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
+    btn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+
+    GPIO_Init(&btn);
 }

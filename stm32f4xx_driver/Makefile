@@ -5,7 +5,7 @@ BUILD_DIR = build
 
 # C sources
 C_SOURCES =  \
-Test/SPI/spi_send_data_from_stm32_to_esp32.c \
+Test/GPIO/gpio_led_button_interrupt.c \
 Core/Src/sysmem.c \
 Core/Src/syscalls.c \
 Core/Src/delay.c \

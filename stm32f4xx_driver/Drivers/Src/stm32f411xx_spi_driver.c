@@ -106,7 +106,7 @@ void SPI_Init(st_SPI_Handle_t *pSPIHandle)
     temp |= (pSPIHandle->SPI_Config.SPI_SSM << SPI_CR1_SSM);
 
     /* Configuration CR1 Register */
-    pSPIHandle->pSPIx->CR1 = temp;;
+    pSPIHandle->pSPIx->CR1 = temp;
 }
 
 void SPI_DeInit(st_SPI_RegDef_t *pSPIx)
