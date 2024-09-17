@@ -1,4 +1,5 @@
 #include "stm32f411xx_spi_driver.h"
+#include <stdio.h>
 
 void SPI_PeriClockControl(st_SPI_RegDef_t *pSPIx, uint8_t EnorDi)
 {
@@ -145,7 +146,7 @@ void SPI_SendData(st_SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t length)
         while (SPI_GetFlagStatus(pSPIx, SPI_TXE_FLAG) == FLAG_RESET);
 
         /* Check DFF bit in CR1 register */
-        if ((pSPIx->CR1 & (1 << SPI_CR1_DFF)))
+        if (pSPIx->CR1 & (1 << SPI_CR1_DFF))
         {
             /* 16 bits DFF, load data into DR register */
             pSPIx->DR = *(uint16_t *)pTxBuffer;
@@ -156,7 +157,7 @@ void SPI_SendData(st_SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t length)
         else
         {
             /* 8 bits DFF, load data into DR register */
-            pSPIx->DR = *pTxBuffer;
+            pSPIx->DR = *pTxBuffer; printf("DR = 0x%Xu, pTxBuffer = 0x%Xu", pSPIx->DR, pTxBuffer);
             length--;
             pTxBuffer++;
         }
