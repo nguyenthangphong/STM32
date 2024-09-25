@@ -22,6 +22,25 @@ void USART_PeriClockControl(st_USART_RegDef_t *pUSARTx, uint8_t EnOrDi)
             /* Do nothing */
         }
     }
+    else
+    {
+        if (pUSARTx == USART1)
+        {
+            USART1_PCLK_DI();
+        }
+        else if (pUSARTx == USART2)
+        {
+            USART2_PCLK_DI();
+        }
+        else if (pUSARTx == USART6)
+        {
+            USART6_PCLK_DI();
+        }
+        else
+        {
+            /* Do nothing */
+        }
+    }
 }
 
 void USART_Init(st_USART_Handle_t *pUSARTHandle)
@@ -171,7 +190,7 @@ void USART_SendData(st_USART_Handle_t *pUSARTHandle, uint8_t *pTxBuffer, uint32_
     }
 
     /* Wail until TC flag is set in the SR register */
-    while (! USART_GetFlagStatus(pUSARTHandle->pUSARTx, USART_FLAG_TC));
+    while (!USART_GetFlagStatus(pUSARTHandle->pUSARTx, USART_FLAG_TC));
 }
 
 uint8_t USART_GetFlagStatus(st_USART_RegDef_t *pUSARTx, uint8_t StatusFlagName)

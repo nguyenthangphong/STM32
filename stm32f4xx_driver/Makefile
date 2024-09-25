@@ -5,7 +5,7 @@ BUILD_DIR = build
 
 # C sources
 C_SOURCES =  \
-Test/GPIO/gpio_led_button_interrupt.c \
+Test/SPI/spi_tx_testing.c \
 Core/Src/sysmem.c \
 Core/Src/syscalls.c \
 Core/Src/delay.c \

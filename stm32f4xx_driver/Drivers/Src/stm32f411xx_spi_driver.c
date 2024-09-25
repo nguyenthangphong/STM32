@@ -157,7 +157,7 @@ void SPI_SendData(st_SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t length)
         else
         {
             /* 8 bits DFF, load data into DR register */
-            pSPIx->DR = *pTxBuffer; printf("DR = 0x%Xu, pTxBuffer = 0x%Xu", pSPIx->DR, pTxBuffer);
+            pSPIx->DR = *pTxBuffer;
             length--;
             pTxBuffer++;
         }
