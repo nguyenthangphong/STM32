@@ -107,7 +107,7 @@ void SPI2_Init(void)
     SPI2_Handle.SPI_Config.SPI_DFF = SPI_DFF_8_BITS_DATA;
     SPI2_Handle.SPI_Config.SPI_CPOL = SPI_CPOL_LOW;
     SPI2_Handle.SPI_Config.SPI_CPHA = SPI_CPHA_LOW;
-    SPI2_Handle.SPI_Config.SPI_SSM = SPI_SSM_EN;
+    SPI2_Handle.SPI_Config.SPI_SSM = SPI_SSM_DI;
 
     SPI_Init(&SPI2_Handle);
 }

@@ -4,7 +4,6 @@
 #include "delay.h"
 #include <string.h>
 
-void GPIO_BTN_Init(void);
 void GPIO_SPI2_Init(void);
 void SPI2_Init(void);
 
@@ -12,17 +11,14 @@ int main(void)
 {
     char data[] = "Hello World";
 
-    /* GPIO BTN Init */
-    GPIO_BTN_Init();
-
     /* GPIO SPI2 Init */
     GPIO_SPI2_Init();
 
     /* SPI2 Init */
     SPI2_Init();
 
-    /* Enabling SSOE to enable NSS Output */
-    SPI_SSOEConfig(SPI2, ENABLE);
+    /* Enable the SSI bit to NSS signal internally high and avoids MODF error */
+    SPI_SSIConfig(SPI2, ENABLE);
 
     /* Enable the SPI2 Peripheral */
     SPI_PeripheralControl(SPI2, ENABLE);
@@ -30,29 +26,12 @@ int main(void)
     /* Send data */
     SPI_SendData(SPI2, (uint8_t *)data, strlen(data));
 
-    /* Checking whether the SPI2 is busy or not */
-    while (SPI_GetFlagStatus(SPI2, SPI_BUSY_FLAG));
-
     /* Disable the SPI2 Peripheral */
     SPI_PeripheralControl(SPI2, DISABLE);
 
     while (1);
 
     return 0;
-}
-
-void GPIO_BTN_Init(void)
-{
-    st_GPIO_Handle_t GPIO_BTN_Handle;
-    memset(&GPIO_BTN_Handle, 0, sizeof(GPIO_BTN_Handle));
-
-    GPIO_BTN_Handle.pGPIOx = GPIOA;
-    GPIO_BTN_Handle.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_0;
-    GPIO_BTN_Handle.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IN;
-    GPIO_BTN_Handle.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
-    GPIO_BTN_Handle.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
-
-    GPIO_Init(&GPIO_BTN_Handle);
 }
 
 void GPIO_SPI2_Init(void)
@@ -86,7 +65,7 @@ void SPI2_Init(void)
     SPI2_Handle.SPI_Config.SPI_DeviceMode = SPI_DEVICE_MODE_MASTER;
     SPI2_Handle.SPI_Config.SPI_SCLKSpeed = SPI_SCLK_SPEED_DIV_2;
     SPI2_Handle.SPI_Config.SPI_DFF = SPI_DFF_8_BITS_DATA;
-    SPI2_Handle.SPI_Config.SPI_CPOL = SPI_CPOL_LOW;
+    SPI2_Handle.SPI_Config.SPI_CPOL = SPI_CPOL_HIGH;
     SPI2_Handle.SPI_Config.SPI_CPHA = SPI_CPHA_LOW;
     SPI2_Handle.SPI_Config.SPI_SSM = SPI_SSM_EN;
 
