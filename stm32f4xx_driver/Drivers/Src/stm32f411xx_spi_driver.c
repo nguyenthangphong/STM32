@@ -148,7 +148,7 @@ void SPI_SendData(st_SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t length)
         /* Check DFF bit in CR1 register */
         if (pSPIx->CR1 & (1 << SPI_CR1_DFF))
         {
-            /* 16 bits DFF, load data into DR register */
+            /* 16 bits DFF, write data to DR register */
             pSPIx->DR = *(uint16_t *)pTxBuffer;
             length--;
             length--;
@@ -156,7 +156,7 @@ void SPI_SendData(st_SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t length)
         }
         else
         {
-            /* 8 bits DFF, load data into DR register */
+            /* 8 bits DFF, write data to DR register */
             pSPIx->DR = *pTxBuffer;
             length--;
             pTxBuffer++;
@@ -166,7 +166,28 @@ void SPI_SendData(st_SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t length)
 
 void SPI_ReceiveData(st_SPI_RegDef_t *pSPIx, uint8_t *pRxBuffer, uint32_t length)
 {
+    while (length > 0)
+    {
+        /* Wait until the Rx buffer is full */
+        while (SPI_GetFlagStatus(pSPIx, SPI_RXNE_FLAG) == FLAG_RESET);
 
+        /* Check DFF bit int CR1 register */
+        if (pSPIx->CR1 & (1 << SPI_CR1_DFF))
+        {
+            /* 16 bits DFF, read data from DR register */
+            *((uint16_t *)pRxBuffer) = pSPIx->DR;
+            length--;
+            length--;
+            (uint16_t *)pRxBuffer++;
+        }
+        else
+        {
+            /* 8 bits DFF, read data from DR register */
+            *(pRxBuffer) = pSPIx->DR;
+            length--;
+            pRxBuffer++;
+        }
+    }
 }
 
 void SPI_IRQConfig(uint8_t IRQNumber, uint8_t EnorDi)
