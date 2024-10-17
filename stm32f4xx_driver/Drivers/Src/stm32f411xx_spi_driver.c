@@ -254,3 +254,27 @@ void SPI_SSOEConfig(st_SPI_RegDef_t *pSPIx, uint8_t EnorDi)
         pSPIx->CR2 &= ~(1 << SPI_CR2_SSOE);
     }
 }
+
+void SPI_ClearOVRFlag(st_SPI_RegDef_t *pSPIx)
+{
+    uint8_t temp;
+    temp = pSPIx->DR;
+    temp = pSPIx->SR;
+    (void)temp;
+}
+
+void SPI_CloseTransmission(st_SPI_Handle_t *pHandle)
+{
+    pHandle->pSPIx->CR2 &= ~(1 << SPI_CR2_TXEIE);
+    pHandle->pTxBuffer = NULL;
+    pHandle->TxLen = 0;
+    pHandle->TxState = SPI_READY;
+}
+
+void SPI_CloseReception(st_SPI_Handle_t *pHandle)
+{
+	pHandle->pSPIx->CR2 &= ~(1 << SPI_CR2_RXNEIE);
+	pHandle->pRxBuffer = NULL;
+	pHandle->RxLen = 0;
+	pHandle->RxState = SPI_READY;
+}

@@ -26,6 +26,12 @@ typedef struct
 {
     st_SPI_RegDef_t         *pSPIx;
     st_SPI_Config_t         SPI_Config;
+    uint8_t                 *pTxBuffer;
+    uint8_t                 *pRxBuffer;
+    uint32_t                TxLen;
+    uint32_t                RxLen;
+    uint8_t                 TxState;
+    uint8_t                 RxState;
 } st_SPI_Handle_t;
 
 /*
@@ -85,12 +91,35 @@ typedef struct
 #define SPI_SSM_EN                      1
 
 /*
+ * SPI APP STATE
+ */
+
+#define SPI_READY			            0
+#define SPI_BUSY_IN_RX		            1
+#define SPI_BUSY_IN_TX		            2
+
+/*
+ * SPI Application States
+ */
+
+#define SPI_EVENT_TX_CMPLT              1
+#define SPI_EVENT_RX_CMPLT              2
+#define SPI_EVENT_OVR_ERR	            3
+#define SPI_EVENT_CRC_ERR	            4
+
+/*
  * SPI related status flags definitions
  */
 
 #define SPI_TXE_FLAG                    (1 << SPI_SR_TXE)
 #define SPI_RXNE_FLAG                   (1 << SPI_SR_RXNE)
 #define SPI_BUSY_FLAG                   (1 << SPI_SR_BSY)
+#define SPI_CHSIDE_FLAG 		        (1 << SPI_SR_CHSIDE)
+#define SPI_UDR_FLAG 			        (1 << SPI_SR_UDR)
+#define SPI_CRCERR_FLAG 		        (1 << SPI_SR_CRCERR)
+#define SPI_MODF_FLAG 			        (1 << SPI_SR_MODF)
+#define SPI_OVR_FLAG 			        (1 << SPI_SR_OVR)
+#define SPI_FRE_FLAG 			        (1 << SPI_SR_FRE)
 
 /*
  * Peripheral Clock Setup
@@ -128,5 +157,8 @@ uint8_t SPI_GetFlagStatus(st_SPI_RegDef_t *pSPIx, uint32_t FlagName);
 void SPI_PeripheralControl(st_SPI_RegDef_t *pSPIx, uint8_t EnorDi);
 void SPI_SSIConfig(st_SPI_RegDef_t *pSPIx, uint8_t EnorDi);
 void SPI_SSOEConfig(st_SPI_RegDef_t *pSPIx, uint8_t EnorDi);
+void SPI_ClearOVRFlag(st_SPI_RegDef_t *pSPIx);
+void SPI_CloseTransmission(st_SPI_Handle_t *pHandle);
+void SPI_CloseReception(st_SPI_Handle_t *pHandle);
 
 #endif /* INC_STM32F411XX_SPI_DRIVER_H_ */
