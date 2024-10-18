@@ -140,6 +140,8 @@ void SPI_DeInit(st_SPI_RegDef_t *pSPIx);
 
 void SPI_SendData(st_SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t length);
 void SPI_ReceiveData(st_SPI_RegDef_t *pSPIx, uint8_t *pRxBuffer, uint32_t length);
+uint8_t SPI_SendDataIT(st_SPI_Handle_t *pHandle, uint8_t *pTxBuffer, uint32_t length);
+uint8_t SPI_ReceiveDataIT(st_SPI_Handle_t *pHandle, uint8_t *pRxBuffer, uint32_t length);
 
 /*
  * IRQ Configuration and ISR Handling
@@ -148,6 +150,10 @@ void SPI_ReceiveData(st_SPI_RegDef_t *pSPIx, uint8_t *pRxBuffer, uint32_t length
 void SPI_IRQConfig(uint8_t IRQNumber, uint8_t EnorDi);
 void SPI_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority);
 void SPI_IRQHandling(st_SPI_Handle_t *pHandle);
+
+static void SPI_TXE_Interrupt_Handle(st_SPI_Handle_t *pHandle);
+static void SPI_RXNE_Interrupt_Handle(st_SPI_Handle_t *pHandle);
+static void SPI_OVR_Interrupt_Handle(st_SPI_Handle_t *pHandle);
 
 /*
  * Other Peripheral Control APIs
@@ -160,5 +166,11 @@ void SPI_SSOEConfig(st_SPI_RegDef_t *pSPIx, uint8_t EnorDi);
 void SPI_ClearOVRFlag(st_SPI_RegDef_t *pSPIx);
 void SPI_CloseTransmission(st_SPI_Handle_t *pHandle);
 void SPI_CloseReception(st_SPI_Handle_t *pHandle);
+
+/*
+ * Application Callback
+ */
+
+void SPI_ApplicationEventCallback(st_SPI_Handle_t *pSandle, uint8_t AppEV);
 
 #endif /* INC_STM32F411XX_SPI_DRIVER_H_ */

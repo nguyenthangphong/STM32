@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 
+#define weak 		                            __attribute__((weak))
+
 /*
  * ARM Cortex Mx Processor NVIC ISEx Interrupt Set-enable Register Address
  */

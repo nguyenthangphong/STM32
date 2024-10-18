@@ -190,19 +190,184 @@ void SPI_ReceiveData(st_SPI_RegDef_t *pSPIx, uint8_t *pRxBuffer, uint32_t length
     }
 }
 
+uint8_t SPI_SendDataIT(st_SPI_Handle_t *pHandle, uint8_t *pTxBuffer, uint32_t length)
+{
+    uint8_t state = pHandle->TxState;
+
+    if (state != SPI_BUSY_IN_TX)
+    {
+        /* Save the Tx buffer address and length information in some global variables */
+        pHandle->pTxBuffer = pTxBuffer;
+        pHandle->TxLen = length;
+
+        /* Mark the SPI state as busy in transmission */
+        pHandle->TxState = SPI_BUSY_IN_TX;
+
+        /* Enable the TXEIE control bit to get interrupt whenever TXE flag is set in SR register */
+        pHandle->pSPIx->CR2 |= (1 << SPI_CR2_TXEIE);
+    }
+
+    return state;
+}
+
+uint8_t SPI_ReceiveDataIT(st_SPI_Handle_t *pHandle, uint8_t *pRxBuffer, uint32_t length)
+{
+    uint8_t state = pHandle->RxState;
+
+    if (state != SPI_BUSY_IN_RX)
+    {
+        /* Save the Rx buffer address and length information in some global variables */
+        pHandle->pRxBuffer = pRxBuffer;
+        pHandle->RxLen = length;
+
+        /* Mark the SPI state as busy in transmission */
+        pHandle->RxState = SPI_BUSY_IN_RX;
+
+        /* Enable the RXNEIE control bit to get interrupt whenever RXNE flag is set in SR register */
+        pHandle->pSPIx->CR2 |= (1 << SPI_CR2_RXNEIE);
+    }
+
+    return state;
+}
+
 void SPI_IRQConfig(uint8_t IRQNumber, uint8_t EnorDi)
 {
-
+    if (EnorDi == ENABLE)
+    {
+        if (IRQNumber < 32)
+        {
+            /* Enable NVIC ISER0 Register */
+            *NVIC_ISER0 |= (1 << IRQNumber);
+        }
+        else if (IRQNumber >= 32 && IRQNumber < 64)
+        {
+            /* Enable NVIC ISER1 Register */
+            *NVIC_ISER1 |= (1 << (IRQNumber % 32));
+        }
+        else if (IRQNumber >= 64 && IRQNumber < 96)
+        {
+            /* Enable NVIC ISER2 Register */
+            *NVIC_ISER2 |= (1 << (IRQNumber % 64));
+        }
+        else if (IRQNumber >= 96 && IRQNumber < 128)
+        {
+            /* Enable NVIC ISER3 Register */
+            *NVIC_ISER3 |= (1 << (IRQNumber % 96));
+        }
+        else if (IRQNumber >= 128 && IRQNumber < 160)
+        {
+            /* Enable NVIC ISER4 Register */
+            *NVIC_ISER4 |= (1 << (IRQNumber % 128));
+        }
+        else if (IRQNumber >= 160 && IRQNumber < 192)
+        {
+            /* Enable NVIC ISER5 Register */
+            *NVIC_ISER5 |= (1 << (IRQNumber % 160));
+        }
+        else if (IRQNumber >= 192 && IRQNumber < 224)
+        {
+            /* Enable NVIC ISER6 Register */
+            *NVIC_ISER6 |= (1 << (IRQNumber % 192));
+        }
+        else if (IRQNumber >= 224 && IRQNumber < 256)
+        {
+            /* Enable NVIC ISER7 Register */
+            *NVIC_ISER7 |= (1 << (IRQNumber % 224));
+        }
+        else
+        {
+            /* Do nothing */
+        }
+    }
+    else
+    {
+        if (IRQNumber < 32)
+        {
+            /* Disable NVIC ICER0 Register */
+            *NVIC_ICER0 |= (1 << IRQNumber);
+        }
+        else if (IRQNumber >= 32 && IRQNumber < 64)
+        {
+            /* Disable NVIC ICER1 Register */
+            *NVIC_ICER1 |= (1 << (IRQNumber % 32));
+        }
+        else if (IRQNumber >= 64 && IRQNumber < 96)
+        {
+            /* Disable NVIC ICER2 Register */
+            *NVIC_ICER2 |= (1 << (IRQNumber % 64));
+        }
+        else if (IRQNumber >= 96 && IRQNumber < 128)
+        {
+            /* Disable NVIC ICER3 Register */
+            *NVIC_ICER3 |= (1 << (IRQNumber % 96));
+        }
+        else if (IRQNumber >= 128 && IRQNumber < 160)
+        {
+            /* Disable NVIC ICER4 Register */
+            *NVIC_ICER4 |= (1 << (IRQNumber % 128));
+        }
+        else if (IRQNumber >= 160 && IRQNumber < 192)
+        {
+            /* Disable NVIC ICER5 Register */
+            *NVIC_ICER5 |= (1 << (IRQNumber % 160));
+        }
+        else if (IRQNumber >= 192 && IRQNumber < 224)
+        {
+            /* Disable NVIC ICER6 Register */
+            *NVIC_ICER6 |= (1 << (IRQNumber % 192));
+        }
+        else if (IRQNumber >= 224 && IRQNumber < 256)
+        {
+            /* Disable NVIC ICER7 Register */
+            *NVIC_ICER7 |= (1 << (IRQNumber % 224));
+        }
+        else
+        {
+            /* Do nothing */
+        }
+    }
 }
 
 void SPI_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority)
 {
-
+    /* First lets find out the IPR Register */
+    uint8_t IPRx = IRQNumber / 4;
+    uint8_t IPRx_section = IRQNumber % 4;
+    uint8_t shift_amount = (8 * IPRx_section) + (8 - NO_PR_BITS_IMPLEMENTED);
+    *(NVIC_PR_BASEADDR + IPRx) |= (IRQPriority << shift_amount);
 }
 
 void SPI_IRQHandling(st_SPI_Handle_t *pHandle)
 {
+    /* Check the TXE flag */
+	uint8_t temp1 = pHandle->pSPIx->SR & (1 << SPI_SR_TXE);
+	uint8_t temp2 = pHandle->pSPIx->CR2 & (1 << SPI_CR2_TXEIE);
 
+	if(temp1 && temp2)
+	{
+		/* Handle TXE error */
+		SPI_TXE_Interrupt_Handle(pHandle);
+	}
+
+    /* Check the RXNE flag */
+	temp1 = pHandle->pSPIx->SR & (1 << SPI_SR_RXNE);
+	temp2 = pHandle->pSPIx->CR2 & (1 << SPI_CR2_RXNEIE);
+
+	if(temp1 && temp2)
+	{
+		/* Handle RXNE error */
+		SPI_RXNE_Interrupt_Handle(pHandle);
+	}
+
+	/* Check the OVR flag */
+	temp1 = pHandle->pSPIx->SR & (1 << SPI_SR_OVR);
+	temp2 = pHandle->pSPIx->CR2 & (1 << SPI_CR2_ERRIE);
+
+	if(temp1 && temp2)
+	{
+		/* Handle OVR error */
+		SPI_Ovr_Interrupt_Handle(pHandle);
+	}
 }
 
 uint8_t SPI_GetFlagStatus(st_SPI_RegDef_t *pSPIx, uint32_t FlagName)
@@ -277,4 +442,83 @@ void SPI_CloseReception(st_SPI_Handle_t *pHandle)
 	pHandle->pRxBuffer = NULL;
 	pHandle->RxLen = 0;
 	pHandle->RxState = SPI_READY;
+}
+
+weak void SPI_ApplicationEventCallback(st_SPI_Handle_t *pHandle, uint8_t AppEV)
+{
+    /* This is a weak implementation. The user application may override this function */
+}
+
+static void SPI_TXE_Interrupt_Handle(st_SPI_Handle_t *pHandle)
+{
+    /* Check DFF bit in CR1 register */
+    if(pHandle->pSPIx->CR1 & (1 << SPI_CR1_DFF))
+    {
+        /* 16 bits DFF, write data from DR register */
+        pHandle->pSPIx->DR = *(uint16_t *)pHandle->pTxBuffer;
+        pHandle->TxLen--;
+        pHandle->TxLen--;
+        *(uint16_t *)pHandle->pTxBuffer++;
+    }
+    else
+    {
+        /* 8 bits DFF, write data from DR register */
+        pHandle->pSPIx->DR = *pHandle->pTxBuffer;
+        pHandle->TxLen--;
+        *pHandle->pTxBuffer++;
+    }
+
+    /* TxLen is 0, close the SPI transmission, inform the application that Tx is over */
+    if (!pHandle->TxLen)
+    {
+        /* Prevent the interrupt */
+        SPI_CloseTransmission(pHandle);
+        SPI_ApplicationEventCallback(pHandle, SPI_EVENT_TX_CMPLT);
+    }
+}
+
+static void SPI_RXNE_Interrupt_Handle(st_SPI_Handle_t *pHandle)
+{
+    /* Check DFF bit in CR1 register */
+    if(pHandle->pSPIx->CR1 & (1 << SPI_CR1_DFF))
+    {
+        /* 16 bits DFF, write data from DR register */
+        *((uint16_t *)pHandle->pRxBuffer) = (uint16_t)pHandle->pSPIx->DR;
+        pHandle->RxLen--;
+        pHandle->RxLen--;
+        pHandle->pRxBuffer++;
+        pHandle->pRxBuffer++;
+    }
+    else
+    {
+        /* 8 bits DFF, write data from DR register */
+        *pHandle->pRxBuffer = (uint8_t)pHandle->pSPIx->DR;
+        pHandle->RxLen--;
+        *pHandle->pRxBuffer++;
+    }
+
+    /* RxLen is 0, close the SPI transmission, inform the application that Rx is over */
+    if (!pHandle->RxLen)
+    {
+        /* Prevent the interrupt */
+        SPI_CloseTransmission(pHandle);
+        SPI_ApplicationEventCallback(pHandle, SPI_EVENT_RX_CMPLT);
+    }
+}
+
+static void SPI_OVR_Interrupt_Handle(st_SPI_Handle_t *pHandle)
+{
+    uint8_t temp;
+
+    /* Clear the OVR flag */
+	if(pHandle->TxState != SPI_BUSY_IN_TX)
+	{
+		temp = pHandle->pSPIx->DR;
+		temp = pHandle->pSPIx->SR;
+	}
+
+    (void)temp;
+
+    /* Inform Application */
+    SPI_ApplicationEventCallback(pHandle, SPI_EVENT_OVR_ERR);
 }
