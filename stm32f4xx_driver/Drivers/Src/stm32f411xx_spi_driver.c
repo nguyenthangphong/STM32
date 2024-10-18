@@ -366,7 +366,7 @@ void SPI_IRQHandling(st_SPI_Handle_t *pHandle)
 	if(temp1 && temp2)
 	{
 		/* Handle OVR error */
-		SPI_Ovr_Interrupt_Handle(pHandle);
+		SPI_OVR_Interrupt_Handle(pHandle);
 	}
 }
 
