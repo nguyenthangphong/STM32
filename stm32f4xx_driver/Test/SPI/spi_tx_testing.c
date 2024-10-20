@@ -9,7 +9,7 @@ void SPI2_Init(void);
 
 int main(void)
 {
-    char data[] = "Hello World";
+    char data[] = "Hello World ";
 
     /* GPIO SPI2 Init */
     GPIO_SPI2_Init();
@@ -20,16 +20,34 @@ int main(void)
     /* Enable the SSI bit to NSS signal internally high and avoids MODF error */
     SPI_SSIConfig(SPI2, ENABLE);
 
-    /* Enable the SPI2 Peripheral */
-    SPI_PeripheralControl(SPI2, ENABLE);
+    // /* Delay */
+    // delay(500000);
 
-    /* Send data */
-    SPI_SendData(SPI2, (uint8_t *)data, strlen(data));
+    // /* Enable the SPI2 Peripheral */
+    // SPI_PeripheralControl(SPI2, ENABLE);
 
-    /* Disable the SPI2 Peripheral */
-    SPI_PeripheralControl(SPI2, DISABLE);
+    // /* Send data */
+    // SPI_SendData(SPI2, (uint8_t *)data, strlen(data));
 
-    while (1);
+    // /* Disable the SPI2 Peripheral */
+    // SPI_PeripheralControl(SPI2, DISABLE);
+
+    // while (1);
+
+    while (1)
+    {
+        /* Delay */
+        delay(500000);
+
+        /* Enable the SPI2 Peripheral */
+        SPI_PeripheralControl(SPI2, ENABLE);
+
+        /* Send data */
+        SPI_SendData(SPI2, (uint8_t *)data, strlen(data));
+
+        /* Disable the SPI2 Peripheral */
+        SPI_PeripheralControl(SPI2, DISABLE);
+    }
 
     return 0;
 }
@@ -63,7 +81,7 @@ void SPI2_Init(void)
     SPI2_Handle.pSPIx                     = SPI2;
     SPI2_Handle.SPI_Config.SPI_BugConfig  = SPI_BUS_CONFIG_FULLDUPLEX;
     SPI2_Handle.SPI_Config.SPI_DeviceMode = SPI_DEVICE_MODE_MASTER;
-    SPI2_Handle.SPI_Config.SPI_SCLKSpeed  = SPI_SCLK_SPEED_DIV_2;
+    SPI2_Handle.SPI_Config.SPI_SCLKSpeed  = SPI_SCLK_SPEED_DIV_64;
     SPI2_Handle.SPI_Config.SPI_DFF        = SPI_DFF_8_BITS_DATA;
     SPI2_Handle.SPI_Config.SPI_CPOL       = SPI_CPOL_HIGH;
     SPI2_Handle.SPI_Config.SPI_CPHA       = SPI_CPHA_LOW;
