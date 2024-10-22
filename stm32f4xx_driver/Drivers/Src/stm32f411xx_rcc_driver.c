@@ -1,15 +1,15 @@
 #include "stm32f411xx_rcc_driver.h"
 
-uint16_t AHB_Prescalar[8] = {2, 4, 8, 16, 64, 128, 256, 512};
+uint16_t AHB_Prescalar[8] = {2u, 4u, 8u, 16u, 64u, 128u, 256u, 512u};
 
-uint16_t APB_Prescalar[4] = {2, 4, 8, 16};
+uint16_t APB_Prescalar[4] = {2u, 4u, 8u, 16u};
 
 uint32_t RCC_GetPCLK1Value(void)
 {
     uint32_t pclk1, systemClk, temp;
     uint8_t ahbp, apb1p, clkSrc;
 
-    clkSrc = ((RCC->CFGR >> RCC_CFGR_SWS) & 0x3);
+    clkSrc = ((RCC->CFGR >> RCC_CFGR_SWS) & 0x3u);
 
     if (clkSrc == RCC_SYSTEM_CLOCK_STATUS_HSI_OSCILLATOR)
     {
@@ -29,7 +29,7 @@ uint32_t RCC_GetPCLK1Value(void)
     }
 
     /* AHB */
-    temp = ((RCC->CFGR >> RCC_CFGR_HPRE) && 0xF);
+    temp = ((RCC->CFGR >> RCC_CFGR_HPRE) && 0xFu);
 
     if (temp < 8)
     {
@@ -41,7 +41,7 @@ uint32_t RCC_GetPCLK1Value(void)
     }
 
     /* APB1 */
-    temp = ((RCC->CFGR >> RCC_CFGR_PPRE1) && 0xF);
+    temp = ((RCC->CFGR >> RCC_CFGR_PPRE1) && 0xFu);
 
     if (temp < 4)
     {
@@ -62,7 +62,7 @@ uint32_t RCC_GetPCLK2Value(void)
     uint32_t pclk2, systemClk, temp;
     uint8_t ahbp, apb2p, clkSrc;
 
-    clkSrc = ((RCC->CFGR >> RCC_CFGR_SWS) & 0x03);
+    clkSrc = ((RCC->CFGR >> RCC_CFGR_SWS) & 0x03u);
 
     if (clkSrc == RCC_SYSTEM_CLOCK_STATUS_HSI_OSCILLATOR)
     {

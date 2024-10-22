@@ -7,8 +7,8 @@
 #define RCC_SYSTEM_CLOCK_STATUS_HSE_OSCILLATOR  1
 #define RCC_SYSTEM_CLOCK_STATUS_PLL             2
 
-#define RCC_HSI_CLOCK                           16000000
-#define RCC_HSE_CLOCK                           8000000
+#define RCC_HSI_CLOCK                           (16000000U)
+#define RCC_HSE_CLOCK                           (8000000U)
 
 uint32_t RCC_GetPCLK1Value(void);
 
