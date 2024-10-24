@@ -332,6 +332,33 @@ typedef struct
 #define USART_CR3_ONEBIT                11
 
 /*
+ * RCC Pin configuration of CR Register
+ */
+
+#define RCC_CR_HSION                    0
+#define RCC_CR_HSIRDY                   1
+#define RCC_CR_HSITRIM                  3
+#define RCC_CR_HSICAL                   8
+#define RCC_CR_HSEON                    16
+#define RCC_CR_HSERDY                   17
+#define RCC_CR_HSEBYP                   18
+#define RCC_CR_CSSON                    19
+#define RCC_CR_PLLON                    24
+#define RCC_CR_PLLRDY                   25
+#define RCC_CR_PLLI2SON                 26
+#define RCC_CR_PLLI2RDY                 27
+
+/*
+ * RCC Pin configuration of PLLCFGR Register
+ */
+
+#define RCC_PLLCFGR_PLLM                0
+#define RCC_PLLCFGR_PLLN                6
+#define RCC_PLLCFGR_PLLP                16
+#define RCC_PLLCFGR_SRC                 22
+#define RCC_PLLCFGR_PLLQ                24
+
+/*
  * RCC Pin configuration of CFGR Register
  */
 
@@ -346,6 +373,139 @@ typedef struct
 #define RCC_CFGR_MCO1PRE                24
 #define RCC_CFGR_MCO2PRE                27
 #define RCC_CFGR_MCO2                   30
+
+/*
+ * RCC Pin configuration of CIR Register
+ */
+
+#define RCC_CIR_LSIRDYF                 0
+#define RCC_CIR_LSERDYF                 1
+#define RCC_CIR_HSIRDYF                 2
+#define RCC_CIR_HSERDYF                 3
+#define RCC_CIR_PLLRDYF                 4
+#define RCC_CIR_PLLI2SRDYF              5
+#define RCC_CIR_CSSF                    7
+#define RCC_CIR_LSIRDYE                 8
+#define RCC_CIR_LSERDYE                 9
+#define RCC_CIR_HSIRDYE                 10
+#define RCC_CIR_HSERDYE                 11
+#define RCC_CIR_PLLRDYE                 12
+#define RCC_CIR_PLLI2SRDYE              13
+#define RCC_CIR_LSIRDYC                 16
+#define RCC_CIR_LSERDYC                 17
+#define RCC_CIR_HSIRDYC                 18
+#define RCC_CIR_HSERDYC                 19
+#define RCC_CIR_PLLRDYC                 20
+#define RCC_CIR_PLLI2SRDYC              21
+#define RCC_CIR_CSSC                    23
+
+/*
+ * RCC Pin configuration of AHB1RSTR Register
+ */
+
+#define RCC_AHB1RSTR_GPIOARST           0
+#define RCC_AHB1RSTR_GPIOBRST           1
+#define RCC_AHB1RSTR_GPIOCRST           2
+#define RCC_AHB1RSTR_GPIODRST           3
+#define RCC_AHB1RSTR_GPIOERST           4
+#define RCC_AHB1RSTR_GPIOHRST           7
+#define RCC_AHB1RSTR_CRCRST             12
+#define RCC_AHB1RSTR_DMA1RST            21
+#define RCC_AHB1RSTR_DMA2RST            22
+
+/*
+ * RCC Pin configuration of AHB2RSTR Register
+ */
+
+#define RCC_AHB2RSTR_OTGFSRST           7
+
+/*
+ * RCC Pin configuration of APB1RSTR Register
+ */
+
+#define RCC_APB1RSTR_TIM2RST            0
+#define RCC_APB1RSTR_TIM3RST            1
+#define RCC_APB1RSTR_TIM4RST            2
+#define RCC_APB1RSTR_TIM5RST            3
+#define RCC_APB1RSTR_WWDGRST            11
+#define RCC_APB1RSTR_SPI2RST            14
+#define RCC_APB1RSTR_SPI3RST            15
+#define RCC_APB1RSTR_USART2RST          17
+#define RCC_APB1RSTR_I2C1RST            21
+#define RCC_APB1RSTR_I2C2RST            22
+#define RCC_APB1RSTR_I2C3RST            23
+#define RCC_APB1RSTR_PWRRST             28
+
+/*
+ * RCC Pin configuration of APB2RSTR Register
+ */
+
+#define RCC_APB2RSTR_TIM1RST            0
+#define RCC_APB2RSTR_USART1RST          4
+#define RCC_APB2RSTR_USART6RST          5
+#define RCC_APB2RSTR_ADC1RST            8
+#define RCC_APB2RSTR_SDIORST            11
+#define RCC_APB2RSTR_SPI1RST            12
+#define RCC_APB2RSTR_SPI4RST            13
+#define RCC_APB2RSTR_SYSCFGRST          14
+#define RCC_APB2RSTR_TIM9RST            16
+#define RCC_APB2RSTR_TIM10RST           17
+#define RCC_APB2RSTR_TIM11RST           18
+#define RCC_APB2RSTR_SPI5RST            20
+
+/*
+ * RCC Pin configuration of AHB1ENR Register
+ */
+
+#define RCC_AHB1ENR_GPIOAEN             0
+#define RCC_AHB1ENR_GPIOBEN             1
+#define RCC_AHB1ENR_GPIOCEN             2
+#define RCC_AHB1ENR_GPIODEN             3
+#define RCC_AHB1ENR_GPIOEEN             4
+#define RCC_AHB1ENR_GPIOHEN             7
+#define RCC_AHB1ENR_CRCEN               12
+#define RCC_AHB1ENR_DMA1EN              21
+#define RCC_AHB1ENR_DMA2EN              22
+
+/*
+ * RCC Pin configuration of AHB2ENR Register
+ */
+
+#define RCC_AHB2ENR_OTGFSEN             7
+
+/*
+ * RCC Pin configuration of APB1ENR Register
+ */
+
+#define RCC_APB1ENR_TIM2EN              0
+#define RCC_APB1ENR_TIM3EN              1
+#define RCC_APB1ENR_TIM4EN              2
+#define RCC_APB1ENR_TIM5EN              3
+#define RCC_APB1ENR_WWDGEN              11
+#define RCC_APB1ENR_SPI2EN              14
+#define RCC_APB1ENR_SPI3EN              15
+#define RCC_APB1ENR_USART2EN            17
+#define RCC_APB1ENR_I2C1EN              21
+#define RCC_APB1ENR_I2C2EN              22
+#define RCC_APB1ENR_I2C3EN              23
+#define RCC_APB1ENR_PWREN               28
+
+/*
+ * RCC Pin configuration of APB2ENR Register
+ */
+
+#define RCC_APB2ENR_TIM1EN              0
+#define RCC_APB2ENR_USART1EN            4
+#define RCC_APB2ENR_USART6EN            5
+#define RCC_APB2ENR_ADC1EN              8
+#define RCC_APB2ENR_SDIOEN              11
+#define RCC_APB2ENR_SPI1EN              12
+#define RCC_APB2ENR_SPI4EN              13
+#define RCC_APB2ENR_SYSCFGEN            14
+#define RCC_APB2ENR_TIM9EN              16
+#define RCC_APB2ENR_TIM10EN             17
+#define RCC_APB2ENR_TIM11EN             18
+#define RCC_APB2ENR_SPI5EN              20
 
 /*
  * Peripheral Definition
@@ -378,44 +538,44 @@ typedef struct
  * Clock Enable Macros for GPIOx Peripherals
  */
 
-#define GPIOA_PCLK_EN()         (RCC->AHB1ENR |= (1 << 0))
-#define GPIOB_PCLK_EN()         (RCC->AHB1ENR |= (1 << 1))
-#define GPIOC_PCLK_EN()         (RCC->AHB1ENR |= (1 << 2))
-#define GPIOD_PCLK_EN()         (RCC->AHB1ENR |= (1 << 3))
-#define GPIOE_PCLK_EN()         (RCC->AHB1ENR |= (1 << 4))
-#define GPIOH_PCLK_EN()         (RCC->AHB1ENR |= (1 << 7))
+#define GPIOA_PCLK_EN()         (RCC->AHB1ENR |= (1 << RCC_AHB1ENR_GPIOAEN))
+#define GPIOB_PCLK_EN()         (RCC->AHB1ENR |= (1 << RCC_AHB1ENR_GPIOBEN))
+#define GPIOC_PCLK_EN()         (RCC->AHB1ENR |= (1 << RCC_AHB1ENR_GPIOCEN))
+#define GPIOD_PCLK_EN()         (RCC->AHB1ENR |= (1 << RCC_AHB1ENR_GPIODEN))
+#define GPIOE_PCLK_EN()         (RCC->AHB1ENR |= (1 << RCC_AHB1ENR_GPIOEEN))
+#define GPIOH_PCLK_EN()         (RCC->AHB1ENR |= (1 << RCC_AHB1ENR_GPIOHEN))
 
 /*
  * Clock Enable Macros for I2Cx Peripherals
  */
 
-#define I2C1_PCLK_EN()          (RCC->APB1ENR |= (1 << 21))
-#define I2C2_PCLK_EN()          (RCC->APB1ENR |= (1 << 22))
-#define I2C3_PCLK_EN()          (RCC->APB1ENR |= (1 << 23))
+#define I2C1_PCLK_EN()          (RCC->APB1ENR |= (1 << RCC_APB1ENR_I2C1EN))
+#define I2C2_PCLK_EN()          (RCC->APB1ENR |= (1 << RCC_APB1ENR_I2C2EN))
+#define I2C3_PCLK_EN()          (RCC->APB1ENR |= (1 << RCC_APB1ENR_I2C3EN))
 
 /*
  * Clock Enable Macros for SPIx Peripherals
  */
 
-#define SPI1_PCLK_EN()          (RCC->APB2ENR |= (1 << 12))
-#define SPI2_PCLK_EN()          (RCC->APB1ENR |= (1 << 14))
-#define SPI3_PCLK_EN()          (RCC->APB1ENR |= (1 << 15))
-#define SPI4_PCLK_EN()          (RCC->APB2ENR |= (1 << 13))
-#define SPI5_PCLK_EN()          (RCC->APB2ENR |= (1 << 20))
+#define SPI1_PCLK_EN()          (RCC->APB2ENR |= (1 << RCC_APB2ENR_SPI1EN))
+#define SPI2_PCLK_EN()          (RCC->APB1ENR |= (1 << RCC_APB1ENR_SPI2EN))
+#define SPI3_PCLK_EN()          (RCC->APB1ENR |= (1 << RCC_APB1ENR_SPI3EN))
+#define SPI4_PCLK_EN()          (RCC->APB2ENR |= (1 << RCC_APB2ENR_SPI4EN))
+#define SPI5_PCLK_EN()          (RCC->APB2ENR |= (1 << RCC_APB2ENR_SPI5EN))
 
 /*
  * Clock Enable Macros for USARTx Peripherals
  */
 
-#define USART1_PCLK_EN()        (RCC->APB2ENR |= (1 << 4))
-#define USART2_PCLK_EN()        (RCC->APB1ENR |= (1 << 17))
-#define USART6_PCLK_EN()        (RCC->APB2ENR |= (1 << 5))
+#define USART1_PCLK_EN()        (RCC->APB2ENR |= (1 << RCC_APB2ENR_USART1EN))
+#define USART2_PCLK_EN()        (RCC->APB1ENR |= (1 << RCC_APB1ENR_USART2EN))
+#define USART6_PCLK_EN()        (RCC->APB2ENR |= (1 << RCC_APB2ENR_USART6EN))
 
 /*
  * Clock Enable Macros for SYSCFG Peripherals
  */
 
-#define SYSCFG_PCLK_EN()        (RCC->APB2ENR |= (1 << 14))
+#define SYSCFG_PCLK_EN()        (RCC->APB2ENR |= (1 << RCC_APB2ENR_SYSCFGEN))
 
 /******************************* Disable **********************************/
 
@@ -423,65 +583,65 @@ typedef struct
  * Clock Disable Macros for GPIOx Peripherals
  */
 
-#define GPIOA_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << 0))
-#define GPIOB_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << 1))
-#define GPIOC_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << 2))
-#define GPIOD_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << 3))
-#define GPIOE_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << 4))
-#define GPIOH_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << 7))
+#define GPIOA_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << RCC_AHB1ENR_GPIOAEN))
+#define GPIOB_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << RCC_AHB1ENR_GPIOBEN))
+#define GPIOC_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << RCC_AHB1ENR_GPIOCEN))
+#define GPIOD_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << RCC_AHB1ENR_GPIODEN))
+#define GPIOE_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << RCC_AHB1ENR_GPIOEEN))
+#define GPIOH_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << RCC_AHB1ENR_GPIOHEN))
 
 /*
  * Clock Disable Macros for I2Cx Peripherals
  */
 
-#define I2C1_PCLK_DI()          (RCC->APB1ENR &= ~(1 << 21))
-#define I2C2_PCLK_DI()          (RCC->APB1ENR &= ~(1 << 22))
-#define I2C3_PCLK_DI()          (RCC->APB1ENR &= ~(1 << 23))
+#define I2C1_PCLK_DI()          (RCC->APB1ENR &= ~(1 << RCC_APB1ENR_I2C1EN))
+#define I2C2_PCLK_DI()          (RCC->APB1ENR &= ~(1 << RCC_APB1ENR_I2C2EN))
+#define I2C3_PCLK_DI()          (RCC->APB1ENR &= ~(1 << RCC_APB1ENR_I2C3EN))
 
 /*
  * Clock Disable Macros for SPIx Peripherals
  */
 
-#define SPI1_PCLK_DI()          (RCC->APB2ENR &= ~(1 << 12))
-#define SPI2_PCLK_DI()          (RCC->APB1ENR &= ~(1 << 14))
-#define SPI3_PCLK_DI()          (RCC->APB1ENR &= ~(1 << 15))
-#define SPI4_PCLK_DI()          (RCC->APB2ENR &= ~(1 << 13))
-#define SPI5_PCLK_DI()          (RCC->APB2ENR &= ~(1 << 20))
+#define SPI1_PCLK_DI()          (RCC->APB2ENR &= ~(1 << RCC_APB2ENR_SPI1EN))
+#define SPI2_PCLK_DI()          (RCC->APB1ENR &= ~(1 << RCC_APB1ENR_SPI2EN))
+#define SPI3_PCLK_DI()          (RCC->APB1ENR &= ~(1 << RCC_APB1ENR_SPI3EN))
+#define SPI4_PCLK_DI()          (RCC->APB2ENR &= ~(1 << RCC_APB2ENR_SPI4EN))
+#define SPI5_PCLK_DI()          (RCC->APB2ENR &= ~(1 << RCC_APB2ENR_SPI5EN))
 
 /*
  * Clock Disable Macros for USARTx Peripherals
  */
 
-#define USART1_PCLK_DI()        (RCC->APB2ENR &= ~(1 << 4))
-#define USART2_PCLK_DI()        (RCC->APB1ENR &= ~(1 << 17))
-#define USART6_PCLK_DI()        (RCC->APB2ENR &= ~(1 << 5))
+#define USART1_PCLK_DI()        (RCC->APB2ENR &= ~(1 << RCC_APB2ENR_USART1EN))
+#define USART2_PCLK_DI()        (RCC->APB1ENR &= ~(1 << RCC_APB1ENR_USART2EN))
+#define USART6_PCLK_DI()        (RCC->APB2ENR &= ~(1 << RCC_APB2ENR_USART6EN))
 
 /*
  * Clock Disable Macros for SYSCFG Peripherals
  */
 
-#define SYSCFG_PCLK_DI()        (RCC->APB2ENR &= ~(1 << 14))
+#define SYSCFG_PCLK_DI()        (RCC->APB2ENR &= ~(1 << RCC_APB2ENR_SYSCFGEN))
 
 /*
  * Macros to Reset GPIOx Peripherals
  */
 
-#define GPIOA_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << 0)); (RCC->AHB1RSTR &= ~(1 << 0)); } while (0)
-#define GPIOB_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << 0)); (RCC->AHB1RSTR &= ~(1 << 1)); } while (0)
-#define GPIOC_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << 0)); (RCC->AHB1RSTR &= ~(1 << 2)); } while (0)
-#define GPIOD_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << 0)); (RCC->AHB1RSTR &= ~(1 << 3)); } while (0)
-#define GPIOE_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << 0)); (RCC->AHB1RSTR &= ~(1 << 4)); } while (0)
-#define GPIOH_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << 0)); (RCC->AHB1RSTR &= ~(1 << 7)); } while (0)
+#define GPIOA_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << RCC_AHB1RSTR_GPIOARST)); (RCC->AHB1RSTR &= ~(1 << RCC_AHB1RSTR_GPIOARST)); } while (0)
+#define GPIOB_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << RCC_AHB1RSTR_GPIOBRST)); (RCC->AHB1RSTR &= ~(1 << RCC_AHB1RSTR_GPIOBRST)); } while (0)
+#define GPIOC_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << RCC_AHB1RSTR_GPIOCRST)); (RCC->AHB1RSTR &= ~(1 << RCC_AHB1RSTR_GPIOCRST)); } while (0)
+#define GPIOD_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << RCC_AHB1RSTR_GPIODRST)); (RCC->AHB1RSTR &= ~(1 << RCC_AHB1RSTR_GPIODRST)); } while (0)
+#define GPIOE_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << RCC_AHB1RSTR_GPIOERST)); (RCC->AHB1RSTR &= ~(1 << RCC_AHB1RSTR_GPIOERST)); } while (0)
+#define GPIOH_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << RCC_AHB1RSTR_GPIOHRST)); (RCC->AHB1RSTR &= ~(1 << RCC_AHB1RSTR_GPIOHRST)); } while (0)
 
 /*
  * Macros to Reset SPIx Peripherals
  */
 
-#define SPI1_REG_RESET()        do { (RCC->APB2ENR |= (1 << 12)); (RCC->APB2ENR &= ~(1 << 12)); } while (0)
-#define SPI2_REG_RESET()        do { (RCC->APB1ENR |= (1 << 14)); (RCC->APB1ENR &= ~(1 << 14)); } while (0)
-#define SPI3_REG_RESET()        do { (RCC->APB1ENR |= (1 << 15)); (RCC->APB1ENR &= ~(1 << 15)); } while (0)
-#define SPI4_REG_RESET()        do { (RCC->APB2ENR |= (1 << 13)); (RCC->APB2ENR &= ~(1 << 13)); } while (0)
-#define SPI5_REG_RESET()        do { (RCC->APB2ENR |= (1 << 20)); (RCC->APB2ENR &= ~(1 << 20)); } while (0)
+#define SPI1_REG_RESET()        do { (RCC->APB2RSTR |= (1 << RCC_APB2RSTR_SPI1RST)); (RCC->APB2RSTR &= ~(1 << RCC_APB2RSTR_SPI1RST)); } while (0)
+#define SPI2_REG_RESET()        do { (RCC->APB1RSTR |= (1 << RCC_APB1RSTR_SPI2RST)); (RCC->APB1RSTR &= ~(1 << RCC_APB1RSTR_SPI2RST)); } while (0)
+#define SPI3_REG_RESET()        do { (RCC->APB1RSTR |= (1 << RCC_APB1RSTR_SPI3RST)); (RCC->APB1RSTR &= ~(1 << RCC_APB1RSTR_SPI3RST)); } while (0)
+#define SPI4_REG_RESET()        do { (RCC->APB2RSTR |= (1 << RCC_APB2RSTR_SPI4RST)); (RCC->APB2RSTR &= ~(1 << RCC_APB2RSTR_SPI4RST)); } while (0)
+#define SPI5_REG_RESET()        do { (RCC->APB2RSTR |= (1 << RCC_APB2RSTR_SPI5RST)); (RCC->APB2RSTR &= ~(1 << RCC_APB2RSTR_SPI5RST)); } while (0)
 
 /*
  * Return port code for given GPIOx base address
