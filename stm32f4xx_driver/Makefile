@@ -5,7 +5,7 @@ BUILD_DIR = build
 
 # C sources
 C_SOURCES =  \
-Test/SPI/spi_tx_testing.c \
+Test/RCC/rcc_system_clock.c \
 Core/Src/sysmem.c \
 Core/Src/syscalls.c \
 Core/Src/delay.c \

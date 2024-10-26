@@ -1,112 +1,118 @@
 #include "stm32f411xx_rcc_driver.h"
 
-uint16_t AHB_Prescalar[8] = {2u, 4u, 8u, 16u, 64u, 128u, 256u, 512u};
-
-uint16_t APB_Prescalar[4] = {2u, 4u, 8u, 16u};
-
-uint32_t RCC_GetPCLK1Value(void)
+uint32_t RCC_GetSystemClock(void)
 {
-    uint32_t pclk1, systemClk, temp;
-    uint8_t ahbp, apb1p, clkSrc;
+    uint32_t System_Clock = 0u;
 
-    clkSrc = ((RCC->CFGR >> RCC_CFGR_SWS) & 0x3u);
+    uint8_t Clock_Status = ((RCC->CFGR >> RCC_CFGR_SWS) & 0x3u);
 
-    if (clkSrc == RCC_SYSTEM_CLOCK_STATUS_HSI_OSCILLATOR)
+    if (Clock_Status == RCC_SYSTEM_CLOCK_STATUS_HSI_OSCILLATOR)
     {
-        systemClk = RCC_HSI_CLOCK;
+        System_Clock = RCC_HSI_CLOCK;
     }
-    else if (clkSrc == RCC_SYSTEM_CLOCK_STATUS_HSE_OSCILLATOR)
+    else if (Clock_Status == RCC_SYSTEM_CLOCK_STATUS_HSE_OSCILLATOR)
     {
-        systemClk = RCC_HSE_CLOCK;
+        System_Clock = RCC_HSE_CLOCK;
     }
-    else if (clkSrc == RCC_SYSTEM_CLOCK_STATUS_PLL)
+    else if (Clock_Status == RCC_SYSTEM_CLOCK_STATUS_PLL)
     {
-        systemClk = RCC_GetPLLOutputClock();
+        System_Clock = RCC_GetPLLOutputClock();
     }
     else
     {
         /* Do nothing */
     }
 
-    /* AHB */
-    temp = ((RCC->CFGR >> RCC_CFGR_HPRE) && 0xFu);
-
-    if (temp < 8)
-    {
-        ahbp = 1;
-    }
-    else
-    {
-        ahbp = AHB_Prescalar[temp - 8];
-    }
-
-    /* APB1 */
-    temp = ((RCC->CFGR >> RCC_CFGR_PPRE1) && 0xFu);
-
-    if (temp < 4)
-    {
-        apb1p = 1;
-    }
-    else
-    {
-        apb1p = APB_Prescalar[temp - 4];
-    }
-
-    pclk1 = (systemClk / ahbp) / apb1p;
-
-    return pclk1;
+    return System_Clock;
 }
 
-uint32_t RCC_GetPCLK2Value(void)
+
+uint32_t RCC_GetAHBPrescaler(void)
 {
-    uint32_t pclk2, systemClk, temp;
-    uint8_t ahbp, apb2p, clkSrc;
+    uint32_t AHBP;
 
-    clkSrc = ((RCC->CFGR >> RCC_CFGR_SWS) & 0x03u);
+    uint32_t AHB_Prescaler = ((RCC->CFGR >> RCC_CFGR_HPRE) & 0xFu);
 
-    if (clkSrc == RCC_SYSTEM_CLOCK_STATUS_HSI_OSCILLATOR)
+    if (AHB_Prescaler < RCC_SYSTEM_CLOCK_DIV_2)
     {
-        systemClk = RCC_HSI_CLOCK;
-    }
-    else if (clkSrc == RCC_SYSTEM_CLOCK_STATUS_HSE_OSCILLATOR)
-    {
-        systemClk = RCC_HSE_CLOCK;
+        AHBP = 1u;
     }
     else
     {
-        /* Do nothing */
+        AHBP = RCC_AHB_PRESCALER(AHB_Prescaler);
     }
 
-    /* AHB */
-    temp = ((RCC->CFGR >> RCC_CFGR_HPRE) && 0xF);
+    return AHBP;
+}
 
-    if (temp < 8)
+uint32_t RCC_GetAPB1Prescaler(void)
+{
+    uint32_t APB1P;
+
+    uint32_t APB1_Prescaler = ((RCC->CFGR >> RCC_CFGR_PPRE1) & 0x7u);
+
+    if (APB1_Prescaler < RCC_AHB_CLOCK_DIV_2)
     {
-        ahbp = 1;
+        APB1P = 1u;
     }
     else
     {
-        ahbp = AHB_Prescalar[temp - 8];
+        APB1P = RCC_APB_PRESCALER(APB1_Prescaler);
     }
 
-    /* APB2 */
-    temp = ((RCC->CFGR >> RCC_CFGR_PPRE2) && 0xF);
+    return APB1P;
+}
 
-    if (temp < 4)
+uint32_t RCC_GetAPB2Prescaler(void)
+{
+    uint32_t APB2P;
+
+    uint32_t APB2_Prescaler = ((RCC->CFGR >> RCC_CFGR_PPRE2) & 0x7u);
+
+    if (APB2_Prescaler < RCC_AHB_CLOCK_DIV_2)
     {
-        apb2p = 1;
+        APB2P = 1u;
     }
     else
     {
-        apb2p = APB_Prescalar[temp - 4];
+        APB2P = RCC_APB_PRESCALER(APB2_Prescaler);
     }
 
-    pclk2 = (systemClk / ahbp) / apb2p;
+    return APB2P;
+}
 
-    return pclk2;
+uint32_t RCC_GetAPBLowSpeedPrescaler(void)
+{
+    uint32_t APB_Low_Speed_Prescaler = (RCC_GetSystemClock() / RCC_GetAHBPrescaler()) / RCC_GetAPB1Prescaler();
+    return APB_Low_Speed_Prescaler;
+}
+
+uint32_t RCC_GetAPBHighSpeedPrescaler(void)
+{
+    uint32_t APB_High_Speed_Prescaler = (RCC_GetSystemClock() / RCC_GetAHBPrescaler()) / RCC_GetAPB2Prescaler();
+    return APB_High_Speed_Prescaler;
 }
 
 uint32_t RCC_GetPLLOutputClock(void)
 {
-    return 0;
+    uint8_t PLLN = ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLN) & 0xFFu);
+    uint8_t PLLM = ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLM) & 0x3Fu);
+    uint8_t PLLP = ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLP) & 0x03u);
+
+    bool Oscillator_Type = ((RCC->PLLCFGR >> RCC_PLLCFGR_SRC) & 0x1u);
+
+    uint32_t f_PLL_Clock_Input;
+
+    if (Oscillator_Type)
+    {
+        f_PLL_Clock_Input = RCC_HSE_CLOCK;
+    }
+    else
+    {
+        f_PLL_Clock_Input = RCC_HSI_CLOCK;
+    }
+
+    uint32_t f_PLL_General_Clock_Output = (uint32_t)((f_PLL_Clock_Input * (PLLN / PLLM)) / RCC_PLLP_DIV_FACTOR(PLLP));
+
+    return f_PLL_General_Clock_Output;
 }

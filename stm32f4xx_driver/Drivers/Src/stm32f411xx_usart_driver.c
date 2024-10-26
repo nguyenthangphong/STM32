@@ -231,12 +231,12 @@ void USART_SetBaudRate(st_USART_RegDef_t *pUSARTx, uint32_t BaudRate)
     if (pUSARTx == USART1 || pUSARTx == USART6)
     {
         /* USART1 and USART6 are hanging on APB2 bus */
-        PCLKx = RCC_GetPCLK2Value();
+        PCLKx = RCC_GetAPBHighSpeedPrescaler();
     }
     else
     {
         /* USART2 is hanging on APB1 bus */
-        PCLKx = RCC_GetPCLK1Value();
+        PCLKx = RCC_GetAPBLowSpeedPrescaler();
     }
 
     /* Check for OVER8 configuration bit */

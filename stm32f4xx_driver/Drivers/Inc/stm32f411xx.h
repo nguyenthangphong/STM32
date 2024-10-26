@@ -2,6 +2,7 @@
 #define INC_STM32F411XX_H_
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #define weak 		                            __attribute__((weak))
 
@@ -506,6 +507,48 @@ typedef struct
 #define RCC_APB2ENR_TIM10EN             17
 #define RCC_APB2ENR_TIM11EN             18
 #define RCC_APB2ENR_SPI5EN              20
+
+/*
+ * RCC Pin configuration of BDCR Register
+ */
+
+#define RCC_BDCR_LSEON                  0
+#define RCC_BDCR_LSERDY                 1
+#define RCC_BDCR_LSEBYP                 2
+#define RCC_BDCR_LSEMOD                 3
+#define RCC_BDCR_RTCSEL                 8
+#define RCC_BDCR_RTCEN                  15
+#define RCC_BDCR_BDRST                  16
+
+/*
+ * RCC Pin configuration of CSR Register
+ */
+
+#define RCC_CSR_LSION                   0
+#define RCC_CSR_LSIRDY                  1
+#define RCC_CSR_RMVF                    24
+#define RCC_CSR_BORRSTF                 25
+#define RCC_CSR_PINRSTF                 26
+#define RCC_CSR_PORRSTF                 27
+#define RCC_CSR_SFTRSTF                 28
+#define RCC_CSR_IWDGRSTF                29
+#define RCC_CSR_WWDGRSTF                30
+#define RCC_CSR_LPWRRSTF                31
+
+/*
+ * RCC Pin configuration of SSCGR Register
+ */
+
+#define RCC_SSCGR_MODPER                0
+#define RCC_SSCGR_INCSTEP               13
+#define RCC_SSCGR_SPREADSEL             30
+#define RCC_SSCGR_SSCGEN                31
+
+/*
+ * RCC Pin configuration of PLLI2SCFGR Register
+ */
+
+
 
 /*
  * Peripheral Definition
