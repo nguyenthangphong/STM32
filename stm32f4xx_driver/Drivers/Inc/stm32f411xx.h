@@ -548,7 +548,15 @@ typedef struct
  * RCC Pin configuration of PLLI2SCFGR Register
  */
 
+#define RCC_PLLI2SCFGR_PLLI2SM          0
+#define RCC_PLLI2SCFGR_PLLI2SN          6
+#define RCC_PLLI2SCFGR_PLLI2SR          28
 
+/*
+ * RCC Pin configuration of DCKCFGR Register
+ */
+
+#define RCC_DCKCFGR_TIMPRE              24
 
 /*
  * Peripheral Definition

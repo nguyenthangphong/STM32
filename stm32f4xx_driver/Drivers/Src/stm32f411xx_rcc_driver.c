@@ -6,15 +6,15 @@ uint32_t RCC_GetSystemClock(void)
 
     uint8_t Clock_Status = ((RCC->CFGR >> RCC_CFGR_SWS) & 0x3u);
 
-    if (Clock_Status == RCC_SYSTEM_CLOCK_STATUS_HSI_OSCILLATOR)
+    if (Clock_Status == RCC_SWS_HSI_OSCILLATOR)
     {
         System_Clock = RCC_HSI_CLOCK;
     }
-    else if (Clock_Status == RCC_SYSTEM_CLOCK_STATUS_HSE_OSCILLATOR)
+    else if (Clock_Status == RCC_SWS_HSE_OSCILLATOR)
     {
         System_Clock = RCC_HSE_CLOCK;
     }
-    else if (Clock_Status == RCC_SYSTEM_CLOCK_STATUS_PLL)
+    else if (Clock_Status == RCC_SWS_PLL)
     {
         System_Clock = RCC_GetPLLOutputClock();
     }

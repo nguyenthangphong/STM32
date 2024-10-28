@@ -3,10 +3,6 @@
 
 #include "stm32f411xx.h"
 
-#define RCC_SYSTEM_CLOCK_STATUS_HSI_OSCILLATOR  0
-#define RCC_SYSTEM_CLOCK_STATUS_HSE_OSCILLATOR  1
-#define RCC_SYSTEM_CLOCK_STATUS_PLL             2
-
 #define RCC_HSI_CLOCK                           (16000000U)
 #define RCC_HSE_CLOCK                           (8000000U)
 
@@ -59,7 +55,39 @@
 #define RCC_PLLP_DIV_8                          (0x00000002U)
 #define RCC_PLLP_DIV_16                         (0x00000003U)
 
+/*
+ * RCC Microcontroller clock output 1
+ */
 
+#define RCC_MCO1_HSI_CLOCK                      (0x00000000U)
+#define RCC_MCO1_LSE_CLOCK                      (0x00000001U)
+#define RCC_MCO1_HSE_CLOCK                      (0x00000002U)
+#define RCC_MCO1_PLL_CLOCK                      (0x00000003U)
+
+/*
+ * RCC Microcontroller clock output 2
+ */
+
+#define RCC_MCO2_SYSTEM_CLOCK                   (0x00000000U)
+#define RCC_MCO2_PLLI2S_CLOCK                   (0x00000001U)
+#define RCC_MCO2_HSEOSCILLATOR_CLOCK            (0x00000002U)
+#define RCC_MCO2_PLL_CLOCK                      (0x00000003U)
+
+/*
+ * RCC System clock switch status
+ */
+
+#define RCC_SWS_HSI_OSCILLATOR                  (0x00000000U)
+#define RCC_SWS_HSE_OSCILLATOR                  (0x00000001U)
+#define RCC_SWS_PLL                             (0x00000002U)
+
+/*
+ * RCC System clock switch
+ */
+
+#define RCC_SW_HSI_OSCILLATOR                   (0x00000000U)
+#define RCC_SW_HSE_OSCILLATOR                   (0x00000001U)
+#define RCC_SW_PLL                              (0x00000002U)
 
 #define RCC_AHB_PRESCALER(x) \
     ((x == RCC_SYSTEM_CLOCK_DIV_2)      ? 2u     : \
@@ -83,7 +111,6 @@
      (x == RCC_PLLP_DIV_8)  ? 6u : \
      (x == RCC_PLLP_DIV_16) ? 8u : 2u)
 
-
 /*
  * RCC PLL configuration structure definition
  */
@@ -91,11 +118,27 @@ typedef struct
 {
     uint32_t PLLState;
     uint32_t PLLSource;
-    uint32_t PLLM;              /* PLLM : Division factor for the main PLL input clock, 2 <= PLLM <= 63 */
-    uint32_t PLLN;              /* PLLN : Main PLL multiplication factor for VCO, 50 <= PLLN <= 432 */
-    uint32_t PLLP;              /* PLLP : Main PLL division factor for main system clock, PLLP = 2, 4, 6, 8 */
-    uint32_t PLLQ;              /* PLLQ : Main PLL division factor for USB OTG FS, and SDIO clocks, 2 <= PLLQ <= 15 */
+    uint32_t PLLM;
+    uint32_t PLLN;
+    uint32_t PLLP;
+    uint32_t PLLQ;
 } st_RCC_PLLInitTypeDef_t;
+
+/*
+ * RCC Internal/External Oscillator (HSE, HSI, LSE and LSI) configuration structure definition
+ */
+
+typedef struct
+{
+    uint32_t OscillatorType;
+    uint32_t HSEState;
+    uint32_t LSEState;
+    uint32_t HSIState;
+    uint32_t HSICalibrationValue;
+    uint32_t LSIState;
+    st_RCC_PLLInitTypeDef_t PLL;
+} st_RCC_OscInitTypeDef_t;
+
 
 uint32_t RCC_GetSystemClock(void);
 
@@ -109,6 +152,7 @@ uint32_t RCC_GetAPBHighSpeedPrescaler(void);
 
 uint32_t RCC_GetPLLOutputClock(void);
 
+uint32_t RCC_MCOConfig(void);
 
 
 #endif /* INC_STM32F411XX_RCC_DRIVER_H_ */
