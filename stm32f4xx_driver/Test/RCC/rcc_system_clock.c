@@ -4,82 +4,51 @@
 #include "stm32f411xx_rcc_driver.h"
 #include "delay.h"
 
-void GPIO_SPI2_Init(void);
-void SPI2_Init(void);
+void GPIO_MCO1_Init(void);
+void GPIO_MCO2_Init(void);
 
 int main(void)
 {
-    uint8_t system_clock = (RCC_GetPLLOutputClock() / 1000000u) / 16u;
-
-    uint8_t APB1 = (RCC_GetAPBLowSpeedPrescaler() / 1000000u);
-
-    uint8_t APB2 = (RCC_GetAPBHighSpeedPrescaler() / 1000000u);
-
-    /* GPIO SPI2 Init */
-    GPIO_SPI2_Init();
-
-    /* SPI2 Init */
-    SPI2_Init();
-
-    /* Enable the SSI bit to NSS signal internally high and avoids MODF error */
-    SPI_SSIConfig(SPI2, ENABLE);
+    GPIO_MCO1_Init();
+    GPIO_MCO2_Init();
 
     while (1)
     {
-        /* Delay */
-        delay(500000);
-
-        /* Enable the SPI2 Peripheral */
-        SPI_PeripheralControl(SPI2, ENABLE);
-
-        /* Send data */
-        SPI_SendData(SPI2, &system_clock, 1);
-
-        SPI_SendData(SPI2, &APB1, 1);
-
-        SPI_SendData(SPI2, &APB2, 1);
-
-        /* Disable the SPI2 Peripheral */
-        SPI_PeripheralControl(SPI2, DISABLE);
+        GPIO_ToggleOutputPin(GPIOA, GPIO_PIN_NO_8);
+        delay(1000);
+        GPIO_ToggleOutputPin(GPIOC, GPIO_PIN_NO_9);
+        delay(1000);
     }
 
     return 0;
 }
 
-void GPIO_SPI2_Init(void)
+/* MCO1 Pin => PA8 */
+void GPIO_MCO1_Init(void)
 {
-    st_GPIO_Handle_t GPIO_SPI2_Handle;
-    memset(&GPIO_SPI2_Handle, 0, sizeof(GPIO_SPI2_Handle));
+    st_GPIO_Handle_t mco1;
 
-    GPIO_SPI2_Handle.pGPIOx                             = GPIOB;
-    GPIO_SPI2_Handle.GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_ALTFN;
-    GPIO_SPI2_Handle.GPIO_PinConfig.GPIO_PinAltFunMode  = 5;
-    GPIO_SPI2_Handle.GPIO_PinConfig.GPIO_PinOPType      = GPIO_OP_TYPE_PP;
-    GPIO_SPI2_Handle.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
-    GPIO_SPI2_Handle.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
+    mco1.pGPIOx                             = GPIOA;
+    mco1.GPIO_PinConfig.GPIO_PinNumber      = GPIO_PIN_NO_8;
+    mco1.GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_OUT;
+    mco1.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
+    mco1.GPIO_PinConfig.GPIO_PinOPType      = GPIO_OP_TYPE_PP;
+    mco1.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
 
-    /* SCLK */
-    GPIO_SPI2_Handle.GPIO_PinConfig.GPIO_PinNumber      = GPIO_PIN_NO_13;
-    GPIO_Init(&GPIO_SPI2_Handle);
-
-    /* MOSI */
-    GPIO_SPI2_Handle.GPIO_PinConfig.GPIO_PinNumber      = GPIO_PIN_NO_15;
-    GPIO_Init(&GPIO_SPI2_Handle);
+    GPIO_Init(&mco1);
 }
 
-void SPI2_Init(void)
+/* MCO2 Pin => PC9 */
+void GPIO_MCO2_Init(void)
 {
-    st_SPI_Handle_t SPI2_Handle;
-    memset(&SPI2_Handle, 0, sizeof(SPI2_Handle));
+    st_GPIO_Handle_t mco2;
 
-    SPI2_Handle.pSPIx                     = SPI2;
-    SPI2_Handle.SPI_Config.SPI_BugConfig  = SPI_BUS_CONFIG_FULLDUPLEX;
-    SPI2_Handle.SPI_Config.SPI_DeviceMode = SPI_DEVICE_MODE_MASTER;
-    SPI2_Handle.SPI_Config.SPI_SCLKSpeed  = SPI_SCLK_SPEED_DIV_16;
-    SPI2_Handle.SPI_Config.SPI_DFF        = SPI_DFF_8_BITS_DATA;
-    SPI2_Handle.SPI_Config.SPI_CPOL       = SPI_CPOL_HIGH;
-    SPI2_Handle.SPI_Config.SPI_CPHA       = SPI_CPHA_LOW;
-    SPI2_Handle.SPI_Config.SPI_SSM        = SPI_SSM_EN;
+    mco2.pGPIOx                             = GPIOC;
+    mco2.GPIO_PinConfig.GPIO_PinNumber      = GPIO_PIN_NO_9;
+    mco2.GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_OUT;
+    mco2.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
+    mco2.GPIO_PinConfig.GPIO_PinOPType      = GPIO_OP_TYPE_PP;
+    mco2.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
 
-    SPI_Init(&SPI2_Handle);
+    GPIO_Init(&mco2);
 }
