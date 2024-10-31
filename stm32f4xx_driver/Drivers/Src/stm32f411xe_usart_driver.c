@@ -1,5 +1,5 @@
-#include "stm32f411xx_usart_driver.h"
-#include "stm32f411xx_rcc_driver.h"
+#include "stm32f411xe_usart_driver.h"
+#include "stm32f411xe_rcc_driver.h"
 
 void USART_PeriClockControl(st_USART_RegDef_t *pUSARTx, uint8_t EnOrDi)
 {

@@ -1,4 +1,4 @@
-#include "stm32f411xx_spi_driver.h"
+#include "stm32f411xe_spi_driver.h"
 #include <stdio.h>
 
 void SPI_PeriClockControl(st_SPI_RegDef_t *pSPIx, uint8_t EnorDi)

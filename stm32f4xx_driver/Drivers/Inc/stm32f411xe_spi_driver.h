@@ -1,7 +1,7 @@
-#ifndef INC_STM32F411XX_SPI_DRIVER_H_
-#define INC_STM32F411XX_SPI_DRIVER_H_
+#ifndef INC_STM32F411XE_SPI_DRIVER_H_
+#define INC_STM32F411XE_SPI_DRIVER_H_
 
-#include "stm32f411xx.h"
+#include "stm32f411xe.h"
 
 /*
  *  Configuration structure for SPIx peripheral
@@ -173,4 +173,4 @@ void SPI_CloseReception(st_SPI_Handle_t *pHandle);
 
 void SPI_ApplicationEventCallback(st_SPI_Handle_t *pSandle, uint8_t AppEV);
 
-#endif /* INC_STM32F411XX_SPI_DRIVER_H_ */
+#endif /* INC_STM32F411XE_SPI_DRIVER_H_ */

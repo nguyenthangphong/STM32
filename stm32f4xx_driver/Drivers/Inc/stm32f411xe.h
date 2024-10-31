@@ -1,5 +1,5 @@
-#ifndef INC_STM32F411XX_H_
-#define INC_STM32F411XX_H_
+#ifndef INC_STM32F411XE_H_
+#define INC_STM32F411XE_H_
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -712,6 +712,7 @@ typedef struct
 #define GPIO_PIN_RESET          DISABLE
 #define FLAG_SET                SET
 #define FLAG_RESET              RESET
+#define UNUSED(x)               ((void)x)
 
 /* 
  * IRQ (Interrupt Request) Numbers of STM32F411x MCU 
@@ -732,4 +733,4 @@ typedef struct
 #define IRQ_NO_PRIORITY_0       0
 #define IRQ_NO_PRIORITY_15      15
 
-#endif /* INC_STM32F411XX_H_ */
+#endif /* INC_STM32F411XE_H_ */

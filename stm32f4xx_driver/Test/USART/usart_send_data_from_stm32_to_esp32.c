@@ -1,8 +1,8 @@
-#include "stm32f411xx.h"
-#include "stm32f411xx_usart_driver.h"
-#include "stm32f411xx_gpio_driver.h"
-#include "delay.h"
 #include <string.h>
+#include "stm32f411xe.h"
+#include "stm32f411xe_usart_driver.h"
+#include "stm32f411xe_gpio_driver.h"
+#include "delay.h"
 
 #define LOW         0
 #define BTN_PRESSED LOW

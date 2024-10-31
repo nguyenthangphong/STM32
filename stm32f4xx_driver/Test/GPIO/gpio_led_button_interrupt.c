@@ -1,8 +1,7 @@
-#include "stm32f411xx.h"
-#include "stm32f411xx_gpio_driver.h"
-#include "delay.h"
 #include <string.h>
-#include <stdio.h>
+#include "stm32f411xe.h"
+#include "stm32f411xe_gpio_driver.h"
+#include "delay.h"
 
 void GPIO_LED_Init(void);
 void GPIO_BTN_Init(void);

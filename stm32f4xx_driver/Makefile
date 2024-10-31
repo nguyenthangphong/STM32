@@ -6,13 +6,11 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 Test/RCC/rcc_system_clock.c \
-Core/Src/sysmem.c \
-Core/Src/syscalls.c \
 Core/Src/delay.c \
-Drivers/Src/stm32f411xx_gpio_driver.c \
-Drivers/Src/stm32f411xx_spi_driver.c \
-Drivers/Src/stm32f411xx_rcc_driver.c \
-Drivers/Src/stm32f411xx_usart_driver.c
+Drivers/Src/stm32f411xe_gpio_driver.c \
+Drivers/Src/stm32f411xe_spi_driver.c \
+Drivers/Src/stm32f411xe_rcc_driver.c \
+Drivers/Src/stm32f411xe_usart_driver.c
 
 # ASM sources
 ASM_SOURCES =  \

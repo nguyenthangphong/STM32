@@ -1,7 +1,8 @@
-#ifndef INC_STM32F411XX_RCC_DRIVER_H_
-#define INC_STM32F411XX_RCC_DRIVER_H_
+#ifndef INC_STM32F411XE_RCC_DRIVER_H_
+#define INC_STM32F411XE_RCC_DRIVER_H_
 
-#include "stm32f411xx.h"
+#include "stm32f411xe.h"
+#include "stm32f411xe_gpio_driver.h"
 
 #define RCC_HSI_CLOCK                           (16000000U)
 #define RCC_HSE_CLOCK                           (8000000U)
@@ -89,6 +90,12 @@
 #define RCC_SW_HSE_OSCILLATOR                   (0x00000001U)
 #define RCC_SW_PLL                              (0x00000002U)
 
+/* RCC MCO Index
+ *
+ */
+#define RCC_MCO1                                (0x00000000U)
+#define RCC_MCO2                                (0x00000001U)
+
 #define RCC_AHB_PRESCALER(x) \
     ((x == RCC_SYSTEM_CLOCK_DIV_2)      ? 2u     : \
      (x == RCC_SYSTEM_CLOCK_DIV_4)      ? 4u     : \
@@ -134,7 +141,6 @@ typedef struct
     uint32_t HSEState;
     uint32_t LSEState;
     uint32_t HSIState;
-    uint32_t HSICalibrationValue;
     uint32_t LSIState;
     st_RCC_PLLInitTypeDef_t PLL;
 } st_RCC_OscInitTypeDef_t;
@@ -152,7 +158,7 @@ uint32_t RCC_GetAPBHighSpeedPrescaler(void);
 
 uint32_t RCC_GetPLLOutputClock(void);
 
-uint32_t RCC_MCOConfig(void);
+void RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_MCODiv);
+void RCC_SystemClockConfig(void);
 
-
-#endif /* INC_STM32F411XX_RCC_DRIVER_H_ */
+#endif /* INC_STM32F411XE_RCC_DRIVER_H_ */

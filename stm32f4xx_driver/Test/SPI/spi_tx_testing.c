@@ -1,8 +1,8 @@
-#include "stm32f411xx.h"
-#include "stm32f411xx_gpio_driver.h"
-#include "stm32f411xx_spi_driver.h"
-#include "delay.h"
 #include <string.h>
+#include "stm32f411xe.h"
+#include "stm32f411xe_gpio_driver.h"
+#include "stm32f411xe_spi_driver.h"
+#include "delay.h"
 
 void GPIO_SPI2_Init(void);
 void SPI2_Init(void);
@@ -19,20 +19,6 @@ int main(void)
 
     /* Enable the SSI bit to NSS signal internally high and avoids MODF error */
     SPI_SSIConfig(SPI2, ENABLE);
-
-    // /* Delay */
-    // delay(500000);
-
-    // /* Enable the SPI2 Peripheral */
-    // SPI_PeripheralControl(SPI2, ENABLE);
-
-    // /* Send data */
-    // SPI_SendData(SPI2, (uint8_t *)data, strlen(data));
-
-    // /* Disable the SPI2 Peripheral */
-    // SPI_PeripheralControl(SPI2, DISABLE);
-
-    // while (1);
 
     while (1)
     {

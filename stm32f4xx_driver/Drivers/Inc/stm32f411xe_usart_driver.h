@@ -1,7 +1,7 @@
-#ifndef INC_STM32F411XX_USART_DRIVER_H_
-#define INC_STM32F411XX_USART_DRIVER_H_
+#ifndef INC_STM32F411XE_USART_DRIVER_H_
+#define INC_STM32F411XE_USART_DRIVER_H_
 
-#include "stm32f411xx.h"
+#include "stm32f411xe.h"
 
 /*
  *  Configuration structure for USARTx peripheral
@@ -165,4 +165,4 @@ void USART_SetBaudRate(st_USART_RegDef_t *pUSARTx, uint32_t BaudRate);
 
 void USART_ApplicationEventCallback(st_USART_Handle_t *pUSARTHandle, uint8_t ApEv);
 
-#endif /* INC_STM32F411XX_USART_DRIVER_H_ */
+#endif /* INC_STM32F411XE_USART_DRIVER_H_ */

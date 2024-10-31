@@ -1,7 +1,7 @@
-#ifndef INC_STM32F411XX_GPIO_DRIVER_H_
-#define INC_STM32F411XX_GPIO_DRIVER_H_
+#ifndef INC_STM32F411XE_GPIO_DRIVER_H_
+#define INC_STM32F411XE_GPIO_DRIVER_H_
 
-#include "stm32f411xx.h"
+#include "stm32f411xe.h"
 
 /*
  * Configuration Structure for GPIO Pin
@@ -85,6 +85,38 @@ typedef struct
 #define GPIO_PD                 2
 
 /*
+ * GPIO Pin Alternate Function Macros
+ */
+
+#define GPIO_AF0_MCO            0
+#define GPIO_AF1_TIM1           1
+#define GPIO_AF1_TIM2           1
+#define GPIO_AF2_TIM3           2
+#define GPIO_AF2_TIM4           2
+#define GPIO_AF2_TIM5           2
+#define GPIO_AF3_TIM9           3
+#define GPIO_AF3_TIM10          3
+#define GPIO_AF3_TIM11          3
+#define GPIO_AF4_I2C1           4
+#define GPIO_AF4_I2C2           4
+#define GPIO_AF4_I2C3           4
+#define GPIO_AF5_SPI1           5
+#define GPIO_AF5_SPI2           5
+#define GPIO_AF5_SPI3           5
+#define GPIO_AF5_SPI4           5
+#define GPIO_AF6_SPI3           6
+#define GPIO_AF6_SPI4           6
+#define GPIO_AF6_SPI5           6
+#define GPIO_AF7_USART1         7
+#define GPIO_AF7_USART2         7
+#define GPIO_AF8_USART6         8
+#define GPIO_AF9_I2C2           9
+#define GPIO_AF9_I2C3           9
+#define GPIO_AF10_OTG_FS        10
+#define GPIO_AF12_SDIO          12
+#define GPIO_AF15_EVENTOUT      15
+
+/*
  * Peripheral Clock Setup
  */
 
@@ -115,4 +147,4 @@ void GPIO_IRQConfig(uint8_t IRQNumber, uint8_t EnorDi);
 void GPIO_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority);
 void GPIO_IRQHandling(uint8_t PinNumber);
 
-#endif /* INC_STM32F411XX_GPIO_DRIVER_H_ */
+#endif /* INC_STM32F411XE_GPIO_DRIVER_H_ */

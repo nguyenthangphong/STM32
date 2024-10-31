@@ -1,8 +1,8 @@
-#include "stm32f411xx.h"
-#include "stm32f411xx_gpio_driver.h"
-#include "stm32f411xx_spi_driver.h"
-#include "delay.h"
 #include <string.h>
+#include "stm32f411xe.h"
+#include "stm32f411xe_gpio_driver.h"
+#include "stm32f411xe_spi_driver.h"
+#include "delay.h"
 
 void GPIO_BTN_Init(void);
 void GPIO_SPI2_Init(void);
