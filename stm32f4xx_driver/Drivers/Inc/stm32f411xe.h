@@ -356,7 +356,7 @@ typedef struct
 #define RCC_PLLCFGR_PLLM                0
 #define RCC_PLLCFGR_PLLN                6
 #define RCC_PLLCFGR_PLLP                16
-#define RCC_PLLCFGR_SRC                 22
+#define RCC_PLLCFGR_PLLSRC              22
 #define RCC_PLLCFGR_PLLQ                24
 
 /*

@@ -26,7 +26,6 @@ uint32_t RCC_GetSystemClock(void)
     return System_Clock;
 }
 
-
 uint32_t RCC_GetAHBPrescaler(void)
 {
     uint32_t AHBP;
@@ -99,7 +98,7 @@ uint32_t RCC_GetPLLOutputClock(void)
     uint8_t PLLM = ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLM) & 0x3Fu);
     uint8_t PLLP = ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLP) & 0x03u);
 
-    bool Oscillator_Type = ((RCC->PLLCFGR >> RCC_PLLCFGR_SRC) & 0x1u);
+    bool Oscillator_Type = ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLSRC) & 0x1u);
 
     uint32_t f_PLL_Clock_Input;
 
@@ -166,4 +165,39 @@ void RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_MCODi
         /* Configuration CFGR Register */
         RCC->CFGR = temp;
     }
+}
+
+void RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Oscillator)
+{
+    /* HSE Configuration */
+    if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_HSE) == RCC_OSCILLATORTYPE_HSE)
+    {
+        uint32_t Clock_Status = ((RCC->CFGR >> RCC_CFGR_SWS) & 0x3u);
+        uint32_t Oscillator_Type = ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLSRC) & 0x1u);
+
+        if ((Clock_Status == RCC_SWS_HSE_OSCILLATOR) || ((Clock_Status == RCC_SWS_PLL) && (Oscillator_Type == RCC_PLLSRC_HSE)))
+        {
+
+        }
+    }
+
+    /* HSI Configuration */
+    if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_HSI) == RCC_OSCILLATORTYPE_HSI)
+    {
+
+    }
+
+    /* LSE Configuration */
+    if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_LSE) == RCC_OSCILLATORTYPE_LSE)
+    {
+        
+    }
+
+    /* LSI Configuration */
+    if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_LSI) == RCC_OSCILLATORTYPE_LSI)
+    {
+        
+    }
+
+    /* PLL Configuration */
 }
