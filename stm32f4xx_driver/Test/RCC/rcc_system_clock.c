@@ -31,7 +31,7 @@ int main(void)
     while (1)
     {
         GPIO_ToggleOutputPin(GPIOA, GPIO_PIN_NO_8);
-        delay(1000);
+        delay(500000);
     }
 
     return 0;

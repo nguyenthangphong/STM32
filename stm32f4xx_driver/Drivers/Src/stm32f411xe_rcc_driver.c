@@ -169,35 +169,115 @@ void RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_MCODi
 
 void RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Oscillator)
 {
+    uint32_t Clock_Status = ((RCC->CFGR >> RCC_CFGR_SWS) & 0x3u);
+    uint32_t Oscillator_Type = ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLSRC) & 0x1u);
+
     /* HSE Configuration */
     if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_HSE) == RCC_OSCILLATORTYPE_HSE)
     {
-        uint32_t Clock_Status = ((RCC->CFGR >> RCC_CFGR_SWS) & 0x3u);
-        uint32_t Oscillator_Type = ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLSRC) & 0x1u);
-
         if ((Clock_Status == RCC_SWS_HSE_OSCILLATOR) || ((Clock_Status == RCC_SWS_PLL) && (Oscillator_Type == RCC_PLLSRC_HSE)))
         {
+            if ((RCC_GetFlagStatus(RCC_FLAG_HSERDY) != RESET) && (pRCC_Oscillator->HSEState == RCC_HSE_OFF))
+            {
+                return;
+            }
+            else
+            {
 
+            }
         }
     }
 
     /* HSI Configuration */
     if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_HSI) == RCC_OSCILLATORTYPE_HSI)
     {
-
+        if ((Clock_Status == RCC_SWS_HSI_OSCILLATOR) || ((Clock_Status == RCC_SWS_PLL) && (Oscillator_Type == RCC_PLLSRC_HSI)))
+        {
+            if ((RCC_GetFlagStatus(RCC_FLAG_HSIRDY) != RESET) && (pRCC_Oscillator->HSIState == RCC_HSI_OFF))
+            {
+                return;
+            }
+        }
     }
 
     /* LSE Configuration */
     if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_LSE) == RCC_OSCILLATORTYPE_LSE)
     {
-        
+        if ((Clock_Status == RCC_SWS_HSI_OSCILLATOR) || ((Clock_Status == RCC_SWS_PLL) && (Oscillator_Type == RCC_PLLSRC_HSI)))
+        {
+            if ((RCC_GetFlagStatus(RCC_FLAG_HSIRDY) != RESET) && (pRCC_Oscillator->HSIState == RCC_HSI_OFF))
+            {
+                return;
+            }
+        }
     }
 
     /* LSI Configuration */
     if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_LSI) == RCC_OSCILLATORTYPE_LSI)
     {
-        
+        if ((Clock_Status == RCC_SWS_HSI_OSCILLATOR) || ((Clock_Status == RCC_SWS_PLL) && (Oscillator_Type == RCC_PLLSRC_HSI)))
+        {
+            if ((RCC_GetFlagStatus(RCC_FLAG_HSIRDY) != RESET) && (pRCC_Oscillator->HSIState == RCC_HSI_OFF))
+            {
+                return;
+            }
+        }
     }
 
     /* PLL Configuration */
+}
+
+/* 
+ * RCC_Flag Flags
+ * Elements values convention: 0XXYYYYY
+ * YYYYY  : Flag position in the register
+ *   0XX  : Register index
+ *    01  : CR register
+ *    10  : BDCR register
+ *    11  : CSR register
+ */
+
+uint8_t RCC_GetFlagStatus(uint8_t FlagName)
+{
+    uint32_t register_value = 0u;
+    uint8_t temp;
+
+    if ((FlagName >> 5u) == 1u)
+    {
+        register_value = RCC->CR;
+    }
+    else if ((FlagName >> 5u) == 2u)
+    {
+        register_value = RCC->BDCR;
+    }
+    else if ((FlagName >> 5u) == 3u)
+    {
+        register_value = RCC->CSR;
+    }
+    else
+    {
+        /* Do nothing */
+    }
+
+    temp = (uint8_t)(((register_value & (1u << (FlagName & 0x1Fu))) != 0u) ? SET : RESET);
+
+    return temp;
+}
+
+void RCC_HSEConfig(uint32_t HSE_State)
+{
+    if (HSE_State == RCC_HSE_ON)
+    {
+        RCC->CR |= (1 << RCC_CR_HSEON);
+    }
+    else if (HSE_State == RCC_HSE_BYPASS)
+    {
+        RCC->CR |= (1 << RCC_CR_HSEON);
+        RCC->CR |= (1 << RCC_CR_HSEBYP);
+    }
+    else
+    {
+        RCC->CR &= ~(1 << RCC_CR_HSEON);
+        RCC->CR &= ~(1 << RCC_CR_HSEBYP);
+    }
 }
