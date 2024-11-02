@@ -181,9 +181,28 @@ void RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Oscillator)
             {
                 return;
             }
+        }
+        else
+        {
+            /* Set the new HSE State */
+            RCC_HSEConfig(pRCC_Oscillator->HSEState);
+
+            /* Check the HSE State */
+            if (pRCC_Oscillator->HSEState != RCC_HSE_OFF)
+            {
+                /* Wait till HSE is ready */
+                while (RCC_GetFlagStatus(RCC_FLAG_HSERDY) == RESET)
+                {
+
+                }
+            }
             else
             {
+                /* Wait till HSE is bypassed or disabled */
+                while (RCC_GetFlagStatus(RCC_FLAG_HSERDY) != RESET)
+                {
 
+                }
             }
         }
     }
@@ -198,16 +217,58 @@ void RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Oscillator)
                 return;
             }
         }
+        else
+        {
+            /* Check the HSI State */
+            if (pRCC_Oscillator->HSIState == RCC_HSI_ON)
+            {
+                /* Enable the Internal High Speed oscillator (HSI) */
+                RCC_HSI_ENABLE();
+
+                /* Wait till HSI is ready */
+                while (RCC_GetFlagStatus(RCC_FLAG_HSIRDY) == RESET)
+                {
+                    
+                }
+
+                /* Adjusts the Internal High Speed oscillator (HSI) calibration value */
+                RCC->CR |= (pRCC_Oscillator->HSICalibrationValue << RCC_CR_HSITRIM);
+            }
+            else
+            {
+                /* Disable the Internal High Speed oscillator (HSI) */
+                RCC_HSI_DISABLE();
+
+                /* Wait till HSI is bypassed or disabled */
+                while (RCC_GetFlagStatus(RCC_FLAG_HSIRDY) != RESET)
+                {
+
+                }
+            }
+        }
     }
 
     /* LSE Configuration */
     if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_LSE) == RCC_OSCILLATORTYPE_LSE)
     {
-        if ((Clock_Status == RCC_SWS_HSI_OSCILLATOR) || ((Clock_Status == RCC_SWS_PLL) && (Oscillator_Type == RCC_PLLSRC_HSI)))
+        /* Set the new LSE State */
+        RCC_LSEConfig(pRCC_Oscillator->LSEState);
+
+        /* Check the LSE State */
+        if (pRCC_Oscillator->LSEState != RCC_LSE_OFF)
         {
-            if ((RCC_GetFlagStatus(RCC_FLAG_HSIRDY) != RESET) && (pRCC_Oscillator->HSIState == RCC_HSI_OFF))
+            /* Wait till LSE is ready */
+            while (RCC_GetFlagStatus(RCC_FLAG_LSERDY) == RESET)
             {
-                return;
+                
+            }
+        }
+        else
+        {
+            /* Wait till LSE is bypassed or disabled */
+            while (RCC_GetFlagStatus(RCC_FLAG_LSERDY) != RESET)
+            {
+                
             }
         }
     }
@@ -215,16 +276,44 @@ void RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Oscillator)
     /* LSI Configuration */
     if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_LSI) == RCC_OSCILLATORTYPE_LSI)
     {
-        if ((Clock_Status == RCC_SWS_HSI_OSCILLATOR) || ((Clock_Status == RCC_SWS_PLL) && (Oscillator_Type == RCC_PLLSRC_HSI)))
+        /* Check the LSI State */
+        if (pRCC_Oscillator->LSIState == RCC_LSI_ON)
         {
-            if ((RCC_GetFlagStatus(RCC_FLAG_HSIRDY) != RESET) && (pRCC_Oscillator->HSIState == RCC_HSI_OFF))
+            /* Enable the Internal Low Speed oscillator (LSI) */
+            RCC_LSI_ENABLE();
+
+            /* Wait till LSI is ready */
+            while (RCC_GetFlagStatus(RCC_FLAG_LSIRDY) == RESET)
             {
-                return;
+                
+            }
+        }
+        else
+        {
+            /* Disable the Internal Low Speed oscillator (LSI) */
+            RCC_LSI_DISABLE();
+
+            /* Wait till LSI is bypassed or disabled */
+            while (RCC_GetFlagStatus(RCC_FLAG_LSIRDY) != RESET)
+            {
+
             }
         }
     }
 
     /* PLL Configuration */
+    if (pRCC_Oscillator->PLL.PLLState != RCC_PLL_NONE)
+    {
+        uint8_t System_Clock_Source = ((RCC->CFGR >> RCC_CFGR_SWS) & 0x3u);
+
+        if (System_Clock_Source != RCC_SWS_PLL)
+        {
+            if (pRCC_Oscillator->PLL.PLLState == RCC_PLL_ON)
+            {
+                
+            }
+        }
+    }
 }
 
 /* 
@@ -279,5 +368,47 @@ void RCC_HSEConfig(uint32_t HSE_State)
     {
         RCC->CR &= ~(1 << RCC_CR_HSEON);
         RCC->CR &= ~(1 << RCC_CR_HSEBYP);
+    }
+}
+
+void RCC_HSIConfig(uint32_t HSI_State)
+{
+    if (HSI_State == RCC_HSI_ON)
+    {
+        RCC->CR |= (1 << RCC_CR_HSION);
+    }
+    else
+    {
+        RCC->CR &= ~(1 << RCC_CR_HSION);
+    }
+}
+
+void RCC_LSEConfig(uint32_t LSE_State)
+{
+    if (LSE_State == RCC_LSE_ON)
+    {
+        RCC->BDCR |= (1 << RCC_BDCR_LSEON);
+    }
+    else if (LSE_State == RCC_LSE_BYPASS)
+    {
+        RCC->BDCR |= (1 << RCC_BDCR_LSEON);
+        RCC->BDCR |= (1 << RCC_BDCR_LSEBYP);
+    }
+    else
+    {
+        RCC->BDCR &= ~(1 << RCC_BDCR_LSEON);
+        RCC->BDCR &= ~(1 << RCC_BDCR_LSEBYP);
+    }
+}
+
+void RCC_LSIConfig(uint32_t LSI_State)
+{
+    if (LSI_State == RCC_LSI_ON)
+    {
+        RCC->CSR |= (1 << RCC_CSR_LSION);
+    }
+    else
+    {
+        RCC->CSR &= ~(1 << RCC_CSR_LSION);
     }
 }

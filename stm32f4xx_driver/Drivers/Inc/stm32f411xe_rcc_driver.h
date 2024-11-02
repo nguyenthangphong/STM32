@@ -23,14 +23,37 @@
 
 #define RCC_HSE_OFF                             (0 << RCC_CR_HSEON)
 #define RCC_HSE_ON                              (1 << RCC_CR_HSEON)
-#define RCC_HSE_BYPASS                          ((uint32_t)((1 << RCC_CR_HSEBYP) | (1 << RCC_CR_HSEON)))
+#define RCC_HSE_BYPASS                          ((1 << RCC_CR_HSEBYP) | (1 << RCC_CR_HSEON))
 
 /*
  * RCC HSI Config
  */
 
-#define RCC_HSI_OFF                             (0x00000000U)
-#define RCC_HSI_ON
+#define RCC_HSI_OFF                             (0 << RCC_CR_HSION)
+#define RCC_HSI_ON                              (1 << RCC_CR_HSION)
+
+/*
+ * RCC LSE Config
+ */
+
+#define RCC_LSE_OFF                             (0 << RCC_BDCR_LSEON)
+#define RCC_LSE_ON                              (1 << RCC_BDCR_LSEON)
+#define RCC_LSE_BYPASS                          ((1 << RCC_BDCR_LSEBYP) | (1 << RCC_BDCR_LSEON))
+
+/*
+ * RCC LSI Config
+ */
+
+#define RCC_LSI_OFF                             (0 << RCC_CSR_LSION)
+#define RCC_LSI_ON                              (1 << RCC_CSR_LSION)
+
+/*
+ * RCC PLL Config
+ */
+
+#define RCC_PLL_NONE
+#define RCC_PLL_OFF                             (0 << RCC_CR_PLLON)
+#define RCC_PLL_ON                              (1 << RCC_CR_PLLON)
 
 /*
  * RCC System Clock
@@ -139,6 +162,57 @@
 #define RCC_FLAG_WWDGRST                        ((uint8_t)0x7EU)
 #define RCC_FLAG_LPWRRST                        ((uint8_t)0x7FU)
 
+/*
+ * RCC registers bit address in the alias region
+ */
+
+#define RCC_OFFSET                              (RCC_BASEADDR - PERIPH_BASEADDR)
+
+/* CR Register */
+#define RCC_CR_OFFSET                           (RCC_OFFSET + 0x00u)
+
+/* BDCR Register */
+#define RCC_BDCR_OFFSET                         (RCC_OFFSET + 0x70u)
+
+/* CSR Register */
+#define RCC_CSR_OFFSET                          (RCC_OFFSET + 0x74u)
+
+/* Alias word address of HSION bit */
+#define RCC_HSION_BIT_NUMBER                    (0u)
+#define RCC_CR_HSION_BB                         (PERIPH_BASEADDR + (RCC_CR_OFFSET * 32u) + (RCC_HSION_BIT_NUMBER * 4u))
+
+/* Alias word address of PLLON bit */
+#define RCC_PLLON_BIT_NUMBER                    (24u)
+#define RCC_CR_PLLON_BB                         (PERIPH_BASEADDR + (RCC_CR_OFFSET * 32u) + (RCC_PLLON_BIT_NUMBER * 4u))
+
+/* Alias word address of LSEON bit */
+#define RCC_LSEON_BIT_NUMBER                    (0u)
+#define RCC_BDCR_LSEON_BB                       (PERIPH_BASEADDR + (RCC_BDCR_OFFSET * 32u) + (RCC_LSEON_BIT_NUMBER * 4u))
+
+/* Alias word address of LSION bit */
+#define RCC_LSION_BIT_NUMBER                    (0u)
+#define RCC_CSR_LSION_BB                        (PERIPH_BASEADDR + (RCC_CSR_OFFSET * 32u) + (RCC_LSION_BIT_NUMBER * 4u))
+
+/*
+ * RCC HSI Configuration
+ */
+
+#define RCC_HSI_ENABLE()                        (*(volatile uint32_t *)RCC_CR_HSION_BB = ENABLE)
+#define RCC_HSI_DISABLE()                       (*(volatile uint32_t *)RCC_CR_HSION_BB = DISABLE)
+
+/*
+ * RCC LSE Configuration
+ */
+
+#define RCC_LSE_ENABLE()                        (*(volatile uint32_t *)RCC_BDCR_LSEON_BB = ENABLE)
+#define RCC_LSE_DISABLE()                       (*(volatile uint32_t *)RCC_BDCR_LSEON_BB = DISABLE)
+
+/*
+ * RCC LSI Configuration
+ */
+
+#define RCC_LSI_ENABLE()                        (*(volatile uint32_t *)RCC_CSR_LSION_BB = ENABLE)
+#define RCC_LSI_DISABLE()                       (*(volatile uint32_t *)RCC_CSR_LSION_BB = DISABLE)
 
 #define RCC_AHB_PRESCALER(x) \
     ((x == RCC_SYSTEM_CLOCK_DIV_2)      ? 2u     : \
@@ -186,6 +260,7 @@ typedef struct
     uint32_t LSEState;
     uint32_t HSIState;
     uint32_t LSIState;
+    uint32_t HSICalibrationValue;
     st_RCC_PLLInitTypeDef_t PLL;
 } st_RCC_OscillatorInitTypeDef_t;
 
@@ -203,9 +278,14 @@ uint32_t RCC_GetAPBHighSpeedPrescaler(void);
 uint32_t RCC_GetPLLOutputClock(void);
 
 void RCC_HSEConfig(uint32_t HSE_State);
+void RCC_HSIConfig(uint32_t HSI_State);
+void RCC_LSEConfig(uint32_t LSE_State);
+void RCC_LSIConfig(uint32_t LSI_State);
 void RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_MCODiv);
+
 void RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Oscillator);
 void RCC_SystemClockConfig(void);
+
 uint8_t RCC_GetFlagStatus(uint8_t FlagName);
 
 #endif /* INC_STM32F411XE_RCC_DRIVER_H_ */
