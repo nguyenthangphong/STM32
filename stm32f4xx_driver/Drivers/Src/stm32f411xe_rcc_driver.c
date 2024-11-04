@@ -171,6 +171,7 @@ void RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Oscillator)
 {
     uint32_t Clock_Status = ((RCC->CFGR >> RCC_CFGR_SWS) & 0x3u);
     uint32_t Oscillator_Type = ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLSRC) & 0x1u);
+    uint32_t PLL_Config;
 
     /* HSE Configuration */
     if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_HSE) == RCC_OSCILLATORTYPE_HSE)
@@ -306,11 +307,73 @@ void RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Oscillator)
     {
         uint8_t System_Clock_Source = ((RCC->CFGR >> RCC_CFGR_SWS) & 0x3u);
 
+        /* Check if the PLL is used as system clock or not */
         if (System_Clock_Source != RCC_SWS_PLL)
         {
             if (pRCC_Oscillator->PLL.PLLState == RCC_PLL_ON)
             {
-                
+                /* Disable the main PLL */
+                RCC_PLL_DISABLE();
+
+                /* Wait till PLL is disabled */
+                while (RCC_GetFlagStatus(RCC_FLAG_PLLRDY) != RESET)
+                {
+
+                }
+
+                /* Configure the main PLL clock source, multiplication and division factos */
+                RCC->PLLCFGR |= (pRCC_Oscillator->PLL.PLLSource << RCC_PLLCFGR_PLLSRC);
+                RCC->PLLCFGR |= (pRCC_Oscillator->PLL.PLLM << RCC_PLLCFGR_PLLM);
+                RCC->PLLCFGR |= (pRCC_Oscillator->PLL.PLLN << RCC_PLLCFGR_PLLN);
+                RCC->PLLCFGR |= (((pRCC_Oscillator->PLL.PLLP >> 1u) - 1u) << RCC_PLLCFGR_PLLP);
+                RCC->PLLCFGR |= (pRCC_Oscillator->PLL.PLLQ << RCC_PLLCFGR_PLLQ);
+
+                /* Enable the main PLL */
+                RCC_PLL_ENABLE();
+
+                /* Wait till PLL is ready */
+                while (RCC_GetFlagStatus(RCC_FLAG_PLLRDY) == RESET)
+                {
+
+                }
+            }
+            else
+            {
+                /* Disable the main PLL */
+                RCC_PLL_DISABLE();
+
+                /* Wait till PLL is disabled */
+                while (RCC_GetFlagStatus(RCC_FLAG_PLLRDY) != RESET)
+                {
+
+                }
+            }
+        }
+        else
+        {
+            /* Check if there is a request to disable the PLL used as System clock source */
+            if (pRCC_Oscillator->PLL.PLLState == RCC_PLL_OFF)
+            {
+                return;
+            }
+            else
+            {
+                uint32_t pllsrc = ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLSRC) & 0x1u);
+                uint32_t pllm = ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLM) & 0x3Fu);
+                uint32_t plln = ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLN) & 0x1FFu);
+                uint32_t pllp = ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLP) & 0x2u);
+                uint32_t pllq = ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLQ) & 0xFu);
+
+                if ((pRCC_Oscillator->PLL.PLLState == RCC_PLL_OFF) || 
+                    (pllsrc != pRCC_Oscillator->PLL.PLLSource)     ||
+                    (pllm   |= pRCC_Oscillator->PLL.PLLM)          ||
+                    (plln   |= pRCC_Oscillator->PLL.PLLN)          ||
+                    (pllp   |= pRCC_Oscillator->PLL.PLLP)          ||
+                    (pllq   |= pRCC_Oscillator->PLL.PLLQ)
+                )
+                {
+                    return;
+                }
             }
         }
     }

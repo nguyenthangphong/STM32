@@ -50,6 +50,7 @@
 #define FLASH_OTP_BASEADDR                      0x1FFF7800U
 #define FLASH_OTP_END_BASEADDR                  0x1FFF7A0FU               
 #define PERIPH_BASEADDR                         0x40000000U
+#define PERIPH_BB_BASEADDR                      0x42000000U
 
 /*
  * AHBx and APBx Bus Peripheral Base Address 

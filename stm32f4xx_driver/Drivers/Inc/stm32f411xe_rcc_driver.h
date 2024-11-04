@@ -51,9 +51,9 @@
  * RCC PLL Config
  */
 
-#define RCC_PLL_NONE
-#define RCC_PLL_OFF                             (0 << RCC_CR_PLLON)
-#define RCC_PLL_ON                              (1 << RCC_CR_PLLON)
+#define RCC_PLL_NONE                            (0x00000000U)
+#define RCC_PLL_OFF                             (0x00000001U)
+#define RCC_PLL_ON                              (0x00000002U)
 
 /*
  * RCC System Clock
@@ -179,19 +179,19 @@
 
 /* Alias word address of HSION bit */
 #define RCC_HSION_BIT_NUMBER                    (0u)
-#define RCC_CR_HSION_BB                         (PERIPH_BASEADDR + (RCC_CR_OFFSET * 32u) + (RCC_HSION_BIT_NUMBER * 4u))
+#define RCC_CR_HSION_BB                         (PERIPH_BB_BASEADDR + (RCC_CR_OFFSET * 32u) + (RCC_HSION_BIT_NUMBER * 4u))
 
 /* Alias word address of PLLON bit */
 #define RCC_PLLON_BIT_NUMBER                    (24u)
-#define RCC_CR_PLLON_BB                         (PERIPH_BASEADDR + (RCC_CR_OFFSET * 32u) + (RCC_PLLON_BIT_NUMBER * 4u))
+#define RCC_CR_PLLON_BB                         (PERIPH_BB_BASEADDR + (RCC_CR_OFFSET * 32u) + (RCC_PLLON_BIT_NUMBER * 4u))
 
 /* Alias word address of LSEON bit */
 #define RCC_LSEON_BIT_NUMBER                    (0u)
-#define RCC_BDCR_LSEON_BB                       (PERIPH_BASEADDR + (RCC_BDCR_OFFSET * 32u) + (RCC_LSEON_BIT_NUMBER * 4u))
+#define RCC_BDCR_LSEON_BB                       (PERIPH_BB_BASEADDR + (RCC_BDCR_OFFSET * 32u) + (RCC_LSEON_BIT_NUMBER * 4u))
 
 /* Alias word address of LSION bit */
 #define RCC_LSION_BIT_NUMBER                    (0u)
-#define RCC_CSR_LSION_BB                        (PERIPH_BASEADDR + (RCC_CSR_OFFSET * 32u) + (RCC_LSION_BIT_NUMBER * 4u))
+#define RCC_CSR_LSION_BB                        (PERIPH_BB_BASEADDR + (RCC_CSR_OFFSET * 32u) + (RCC_LSION_BIT_NUMBER * 4u))
 
 /*
  * RCC HSI Configuration
@@ -213,6 +213,13 @@
 
 #define RCC_LSI_ENABLE()                        (*(volatile uint32_t *)RCC_CSR_LSION_BB = ENABLE)
 #define RCC_LSI_DISABLE()                       (*(volatile uint32_t *)RCC_CSR_LSION_BB = DISABLE)
+
+/*
+ * RCC PLL Configuration
+ */
+
+#define RCC_PLL_ENABLE()                        (*(volatile uint32_t *)RCC_CR_PLLON_BB = ENABLE)
+#define RCC_PLL_DISABLE()                       (*(volatile uint32_t *)RCC_CR_PLLON_BB = DISABLE)
 
 #define RCC_AHB_PRESCALER(x) \
     ((x == RCC_SYSTEM_CLOCK_DIV_2)      ? 2u     : \
