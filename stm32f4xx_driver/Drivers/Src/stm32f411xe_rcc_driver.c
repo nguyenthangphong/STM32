@@ -127,6 +127,7 @@ void RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_MCODi
         GPIOA_PCLK_EN();
 
         /* Configure the MCO1 Pin */
+        GPIO_MCOx.pGPIOx                             = GPIOA;
         GPIO_MCOx.GPIO_PinConfig.GPIO_PinNumber      = GPIO_PIN_NO_8;
         GPIO_MCOx.GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_ALTFN;
         GPIO_MCOx.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
@@ -149,6 +150,7 @@ void RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_MCODi
         GPIOC_PCLK_EN();
 
         /* Configure the MCO2 Pin */
+        GPIO_MCOx.pGPIOx                             = GPIOC;
         GPIO_MCOx.GPIO_PinConfig.GPIO_PinNumber      = GPIO_PIN_NO_9;
         GPIO_MCOx.GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_ALTFN;
         GPIO_MCOx.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
@@ -213,9 +215,15 @@ void RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Oscillator)
     {
         if ((Clock_Status == RCC_SWS_HSI_OSCILLATOR) || ((Clock_Status == RCC_SWS_PLL) && (Oscillator_Type == RCC_PLLSRC_HSI)))
         {
-            if ((RCC_GetFlagStatus(RCC_FLAG_HSIRDY) != RESET) && (pRCC_Oscillator->HSIState == RCC_HSI_OFF))
+            uint8_t Flag_Status = RCC_GetFlagStatus(RCC_FLAG_HSIRDY);
+            if ((Flag_Status != RESET) && (pRCC_Oscillator->HSIState == RCC_HSI_OFF))
             {
-                return;
+
+            }
+            else
+            {
+                /* Adjusts the Internal High Speed oscillator (HSI) calibration value */
+                RCC->CR |= (pRCC_Oscillator->HSICalibrationValue << RCC_CR_HSITRIM);
             }
         }
         else

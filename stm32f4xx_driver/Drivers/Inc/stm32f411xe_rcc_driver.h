@@ -32,6 +32,8 @@
 #define RCC_HSI_OFF                             (0 << RCC_CR_HSION)
 #define RCC_HSI_ON                              (1 << RCC_CR_HSION)
 
+#define RCC_HSICALIBRATION_DEFAULT              (0x10U)
+
 /*
  * RCC LSE Config
  */
@@ -90,19 +92,28 @@
  * RCC Microcontroller clock output 1
  */
 
-#define RCC_MCO1_HSI_CLOCK                      (0x00000000U)
-#define RCC_MCO1_LSE_CLOCK                      (0x00000001U)
-#define RCC_MCO1_HSE_CLOCK                      (0x00000002U)
-#define RCC_MCO1_PLL_CLOCK                      (0x00000003U)
+#define RCC_MCO1_HSI_CLOCK_SOURCE               (0x00000000U)
+#define RCC_MCO1_LSE_CLOCK_SOURCE               (0x00000001U)
+#define RCC_MCO1_HSE_CLOCK_SOURCE               (0x00000002U)
+#define RCC_MCO1_PLL_CLOCK_SOURCE               (0x00000003U)
+
+/*
+ * RCC Microcontroller clock output 1 MCO1 prescaler
+ */
+
+#define RCC_MCO1_PRESCALER_DIV_2                (0x00000004U)
+#define RCC_MCO1_PRESCALER_DIV_3                (0x00000005U)
+#define RCC_MCO1_PRESCALER_DIV_4                (0x00000006U)
+#define RCC_MCO1_PRESCALER_DIV_5                (0x00000007U)
 
 /*
  * RCC Microcontroller clock output 2
  */
 
-#define RCC_MCO2_SYSTEM_CLOCK                   (0x00000000U)
-#define RCC_MCO2_PLLI2S_CLOCK                   (0x00000001U)
-#define RCC_MCO2_HSEOSCILLATOR_CLOCK            (0x00000002U)
-#define RCC_MCO2_PLL_CLOCK                      (0x00000003U)
+#define RCC_MCO2_SYSTEM_CLOCK_SOURCE            (0x00000000U)
+#define RCC_MCO2_PLLI2S_CLOCK_SOURCE            (0x00000001U)
+#define RCC_MCO2_HSEOSCILLATOR_CLOCK_SOURCE     (0x00000002U)
+#define RCC_MCO2_PLL_CLOCK_SOURCE               (0x00000003U)
 
 /*
  * RCC System clock switch status

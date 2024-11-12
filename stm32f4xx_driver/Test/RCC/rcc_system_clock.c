@@ -1,38 +1,47 @@
+#include <string.h>
 #include "stm32f411xe.h"
 #include "stm32f411xe_gpio_driver.h"
 #include "stm32f411xe_rcc_driver.h"
 #include "delay.h"
 
+void GPIO_LED_Init(void);
+void RCC_SystemClockConfig(void);
+
 int main(void)
 {
-    volatile uint32_t ahb_prescaler = RCC_GetAHBPrescaler();
-    UNUSED(ahb_prescaler);
-
-    volatile uint32_t abp1_prescaler = RCC_GetAPB1Prescaler();
-    UNUSED(abp1_prescaler);
-
-    volatile uint32_t abp2_prescaler = RCC_GetAPB2Prescaler();
-    UNUSED(abp2_prescaler);
-
-    volatile uint32_t system_clock = RCC_GetSystemClock();
-    UNUSED(system_clock);
-
-    volatile uint32_t apb1_clock = RCC_GetAPBLowSpeedPrescaler();
-    UNUSED(apb1_clock);
-
-    volatile uint32_t apb2_clock = RCC_GetAPBHighSpeedPrescaler();
-    UNUSED(apb2_clock);
-
-    volatile uint32_t pll_output_clock = RCC_GetPLLOutputClock();
-    UNUSED(pll_output_clock);
-
-    RCC_MCOConfig(RCC_MCO1, RCC_MCO1_HSI_CLOCK, RCC_SYSTEM_CLOCK_DIV_2);
+    RCC_SystemClockConfig();
+    RCC_MCOConfig(RCC_MCO1, RCC_MCO1_HSI_CLOCK_SOURCE, RCC_MCO1_PRESCALER_DIV_2);
+    GPIO_LED_Init();
 
     while (1)
     {
+        GPIO_ToggleOutputPin(GPIOB, GPIO_PIN_NO_14);
+        delay(1000);
         GPIO_ToggleOutputPin(GPIOA, GPIO_PIN_NO_8);
-        delay(500000);
+        delay(1000);
     }
 
     return 0;
+}
+
+void GPIO_LED_Init(void)
+{
+    st_GPIO_Handle_t led = {0};
+    led.pGPIOx                             = GPIOB;
+    led.GPIO_PinConfig.GPIO_PinNumber      = GPIO_PIN_NO_14;
+    led.GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_OUT;
+    led.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
+    led.GPIO_PinConfig.GPIO_PinOPType      = GPIO_OP_TYPE_PP;
+    led.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+    GPIO_Init(&led);
+}
+
+void RCC_SystemClockConfig(void)
+{
+    st_RCC_OscillatorInitTypeDef_t rcc_system_clock_config = {0};
+    rcc_system_clock_config.OscillatorType      = RCC_OSCILLATORTYPE_HSI;
+    rcc_system_clock_config.HSIState            = RCC_HSI_ON;
+    rcc_system_clock_config.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+    rcc_system_clock_config.PLL.PLLState        = RCC_PLL_NONE;
+    RCC_OscillatorConfig(&rcc_system_clock_config);
 }
