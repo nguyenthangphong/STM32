@@ -3,6 +3,7 @@
 
 #include "stm32f411xe.h"
 #include "stm32f411xe_gpio_driver.h"
+#include "stm32f411xe_def.h"
 
 #define RCC_HSI_CLOCK                           (16000000U)
 #define RCC_HSE_CLOCK                           (8000000U)
@@ -21,9 +22,9 @@
  * RCC HSE Config
  */
 
-#define RCC_HSE_OFF                             (0 << RCC_CR_HSEON)
-#define RCC_HSE_ON                              (1 << RCC_CR_HSEON)
-#define RCC_HSE_BYPASS                          ((1 << RCC_CR_HSEBYP) | (1 << RCC_CR_HSEON))
+#define RCC_HSE_OFF                             (0x00000000U)
+#define RCC_HSE_ON                              (0x00000001U)
+#define RCC_HSE_BYPASS                          (0x00000002U)
 
 /*
  * RCC HSI Config
@@ -282,28 +283,21 @@ typedef struct
     st_RCC_PLLInitTypeDef_t PLL;
 } st_RCC_OscillatorInitTypeDef_t;
 
+/*
+ * RCC System, AHB and APB busses clock configuration structure definition
+ */
 
-uint32_t RCC_GetSystemClock(void);
+typedef struct
+{
+    uint32_t ClockType;
+    uint32_t SystemClockSource;
+    uint32_t AHB_ClockDivider;
+    uint32_t APB1_ClockDivider;
+    uint32_t APB2_ClockDivider;
+} st_RCC_ClockInitTypeDef_t;
 
-uint32_t RCC_GetAHBPrescaler(void);
-
-uint32_t RCC_GetAPB1Prescaler(void);
-uint32_t RCC_GetAPB1Prescaler(void);
-
-uint32_t RCC_GetAPBLowSpeedPrescaler(void);
-uint32_t RCC_GetAPBHighSpeedPrescaler(void);
-
-uint32_t RCC_GetPLLOutputClock(void);
-
-void RCC_HSEConfig(uint32_t HSE_State);
-void RCC_HSIConfig(uint32_t HSI_State);
-void RCC_LSEConfig(uint32_t LSE_State);
-void RCC_LSIConfig(uint32_t LSI_State);
+st_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Oscillator);
+st_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock);
 void RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_MCODiv);
-
-void RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Oscillator);
-void RCC_SystemClockConfig(void);
-
-uint8_t RCC_GetFlagStatus(uint8_t FlagName);
 
 #endif /* INC_STM32F411XE_RCC_DRIVER_H_ */
