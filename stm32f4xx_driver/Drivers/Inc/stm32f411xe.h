@@ -334,53 +334,210 @@ typedef struct
 #define USART_CR3_CTSIE                 10
 #define USART_CR3_ONEBIT                11
 
-/*
- * RCC Pin configuration of CR Register
- */
+/***************************
+ * Reset and Clock Control *
+ **************************/
 
-#define RCC_CR_HSION                    0
-#define RCC_CR_HSIRDY                   1
-#define RCC_CR_HSITRIM                  3
-#define RCC_CR_HSICAL                   8
-#define RCC_CR_HSEON                    16
-#define RCC_CR_HSERDY                   17
-#define RCC_CR_HSEBYP                   18
-#define RCC_CR_CSSON                    19
-#define RCC_CR_PLLON                    24
-#define RCC_CR_PLLRDY                   25
-#define RCC_CR_PLLI2SON                 26
-#define RCC_CR_PLLI2RDY                 27
+/**************************************** Bit definition for RCC_CR register ****************************************/
+#define RCC_CR_HSION_POSITION           (0U)
+#define RCC_CR_HSION_MASK               (0x1U << RCC_CR_HSION_POSITION)                     /*!< 0x00000001 */
+#define RCC_CR_HSION                    RCC_CR_HSION_MASK
 
-/*
- * RCC Pin configuration of PLLCFGR Register
- */
+#define RCC_CR_HSIRDY_POSITION          (1U)
+#define RCC_CR_HSIRDY_MASK              (0x1U << RCC_CR_HSIRDY_POSITION)                    /*!< 0x00000002 */
+#define RCC_CR_HSIRDY                   RCC_CR_HSIRDY_MASK
 
-#define RCC_PLLCFGR_PLLM                0
-#define RCC_PLLCFGR_PLLN                6
-#define RCC_PLLCFGR_PLLP                16
-#define RCC_PLLCFGR_PLLSRC              22
-#define RCC_PLLCFGR_PLLQ                24
+#define RCC_CR_HSITRIM_POSITION         (3U)
+#define RCC_CR_HSITRIM_MASK             (0x1FU << RCC_CR_HSITRIM_POSITION)                  /*!< 0x000000F8 */
+#define RCC_CR_HSITRIM                  RCC_CR_HSITRIM_MASK
+#define RCC_CR_HSITRIM_0                (0x01U << RCC_CR_HSITRIM_POSITION)                  /*!< 0x00000008 */
+#define RCC_CR_HSITRIM_1                (0x02U << RCC_CR_HSITRIM_POSITION)                  /*!< 0x00000010 */
+#define RCC_CR_HSITRIM_2                (0x04U << RCC_CR_HSITRIM_POSITION)                  /*!< 0x00000020 */
+#define RCC_CR_HSITRIM_3                (0x08U << RCC_CR_HSITRIM_POSITION)                  /*!< 0x00000040 */
+#define RCC_CR_HSITRIM_4                (0x10U << RCC_CR_HSITRIM_POSITION)                  /*!< 0x00000080 */
 
-/*
- * RCC Pin configuration of CFGR Register
- */
+#define RCC_CR_HSICAL_POSITION          (8U)
+#define RCC_CR_HSICAL_MASK              (0xFFU << RCC_CR_HSICAL_POSITION)                   /*!< 0x0000FF00 */
+#define RCC_CR_HSICAL                   RCC_CR_HSICAL_MASK
 
-#define RCC_CFGR_SW                     0
-#define RCC_CFGR_SWS                    2
-#define RCC_CFGR_HPRE                   4
-#define RCC_CFGR_PPRE1                  10
-#define RCC_CFGR_PPRE2                  13
-#define RCC_CFGR_RTCPRE                 16
-#define RCC_CFGR_MCO1                   21
-#define RCC_CFGR_I2SSRC                 23
-#define RCC_CFGR_MCO1PRE                24
-#define RCC_CFGR_MCO2PRE                27
-#define RCC_CFGR_MCO2                   30
+#define RCC_CR_HSEON_POSITION           (16U)
+#define RCC_CR_HSEON_MASK               (0x1U << RCC_CR_HSEON_POSITION)                     /*!< 0x00010000 */
+#define RCC_CR_HSEON                    RCC_CR_HSEON_MASK
 
-/*
- * RCC Pin configuration of CIR Register
- */
+#define RCC_CR_HSERDY_POSITION          (17U)
+#define RCC_CR_HSERDY_MASK              (0x1U << RCC_CR_HSERDY_POSITION)                    /*!< 0x00020000 */
+#define RCC_CR_HSERDY                   RCC_CR_HSERDY_MASK
 
+#define RCC_CR_HSEBYP_POSITION          (18U)
+#define RCC_CR_HSEBYP_MASK              (0x1U << RCC_CR_HSEBYP_POSITION)                    /*!< 0x00040000 */
+#define RCC_CR_HSEBYP                   RCC_CR_HSEBYP_MASK
+
+#define RCC_CR_CSSON_POSITION           (19U)
+#define RCC_CR_CSSON_MASK               (0x1U << RCC_CR_CSSON_POSITION)                     /*!< 0x00080000 */
+#define RCC_CR_CSSON                    RCC_CR_CSSON_MASK
+
+#define RCC_CR_PLLON_POSITION           (24U)
+#define RCC_CR_PLLON_MASK               (0x1U << RCC_CR_PLLON_POSITION)                     /*!< 0x01000000 */
+#define RCC_CR_PLLON                    RCC_CR_PLLON_MASK
+
+#define RCC_CR_PLLRDY_POSITION          (25U)
+#define RCC_CR_PLLRDY_MASK              (0x1U << RCC_CR_PLLRDY_POSITION)                    /*!< 0x02000000 */
+
+#define RCC_CR_PLLI2SON_POSITION        (26U)
+#define RCC_CR_PLLI2SON_MASK            (0x1U << RCC_CR_PLLI2SON_POSITION)                  /*!< 0x04000000 */
+#define RCC_CR_PLLI2SON                 RCC_CR_PLLI2SON_MASK
+
+#define RCC_CR_PLLI2SRDY_POSITION       (27U)
+#define RCC_CR_PLLI2SRDY_MASK           (0x1U << RCC_CR_PLLI2SRDY_POSITION)                 /*!< 0x08000000 */
+#define RCC_CR_PLLI2SRDY                RCC_CR_PLLI2SRDY_MASK
+
+/**************************************** Bit definition for RCC_PLLCFGR register ****************************************/
+#define RCC_PLLCFGR_PLLM_POSITION       (0U)
+#define RCC_PLLCFGR_PLLM_MASK           (0x3FU << RCC_PLLCFGR_PLLM_POSITION)                /*!< 0x0000003F */
+#define RCC_PLLCFGR_PLLM                RCC_PLLCFGR_PLLM_MASK
+#define RCC_PLLCFGR_PLLM_0              (0x01U << RCC_PLLCFGR_PLLM_POSITION)                /*!< 0x00000001 */
+#define RCC_PLLCFGR_PLLM_1              (0x02U << RCC_PLLCFGR_PLLM_POSITION)                /*!< 0x00000002 */
+#define RCC_PLLCFGR_PLLM_2              (0x04U << RCC_PLLCFGR_PLLM_POSITION)                /*!< 0x00000004 */
+#define RCC_PLLCFGR_PLLM_3              (0x08U << RCC_PLLCFGR_PLLM_POSITION)                /*!< 0x00000008 */
+#define RCC_PLLCFGR_PLLM_4              (0x10U << RCC_PLLCFGR_PLLM_POSITION)                /*!< 0x00000010 */
+#define RCC_PLLCFGR_PLLM_5              (0x20U << RCC_PLLCFGR_PLLM_POSITION)                /*!< 0x00000020 */
+
+#define RCC_PLLCFGR_PLLN_POSITION       (6U)
+#define RCC_PLLCFGR_PLLN_MASK           (0x1FFU << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00007FC0 */
+#define RCC_PLLCFGR_PLLN                RCC_PLLCFGR_PLLN_MASK
+#define RCC_PLLCFGR_PLLN_0              (0x001U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00000040 */
+#define RCC_PLLCFGR_PLLN_1              (0x002U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00000080 */
+#define RCC_PLLCFGR_PLLN_2              (0x004U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00000100 */
+#define RCC_PLLCFGR_PLLN_3              (0x008U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00000200 */
+#define RCC_PLLCFGR_PLLN_4              (0x010U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00000400 */
+#define RCC_PLLCFGR_PLLN_5              (0x020U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00000800 */
+#define RCC_PLLCFGR_PLLN_6              (0x040U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00001000 */
+#define RCC_PLLCFGR_PLLN_7              (0x080U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00002000 */
+#define RCC_PLLCFGR_PLLN_8              (0x100U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00004000 */
+
+#define RCC_PLLCFGR_PLLP_POSITION       (16U)
+#define RCC_PLLCFGR_PLLP_MASK           (0x3U << RCC_PLLCFGR_PLLP_POSITION)                 /*!< 0x00030000 */
+#define RCC_PLLCFGR_PLLP                RCC_PLLCFGR_PLLP_MASK
+#define RCC_PLLCFGR_PLLP_0              (0x1U << RCC_PLLCFGR_PLLP_POSITION)                 /*!< 0x00010000 */
+#define RCC_PLLCFGR_PLLP_1              (0x2U << RCC_PLLCFGR_PLLP_POSITION)                 /*!< 0x00020000 */
+
+#define RCC_PLLCFGR_PLLSRC_POSITION     (22U)
+#define RCC_PLLCFGR_PLLSRC_MASK         (0x1U << RCC_PLLCFGR_PLLSRC_POSITION)               /*!< 0x00400000 */
+#define RCC_PLLCFGR_PLLSRC              RCC_PLLCFGR_PLLSRC_MASK
+
+#define RCC_PLLCFGR_PLLQ_POSITION       (24U)
+#define RCC_PLLCFGR_PLLQ_MASK           (0xFU << RCC_PLLCFGR_PLLSRC_POSITION)               /*!< 0x0F000000 */
+#define RCC_PLLCFGR_PLLQ                RCC_PLLCFGR_PLLQ_MASK
+#define RCC_PLLCFGR_PLLQ_0              (0x1U << RCC_PLLCFGR_PLLSRC_POSITION)               /*!< 0x01000000 */
+#define RCC_PLLCFGR_PLLQ_1              (0x2U << RCC_PLLCFGR_PLLSRC_POSITION)               /*!< 0x02000000 */
+#define RCC_PLLCFGR_PLLQ_2              (0x4U << RCC_PLLCFGR_PLLSRC_POSITION)               /*!< 0x04000000 */
+#define RCC_PLLCFGR_PLLQ_3              (0x8U << RCC_PLLCFGR_PLLSRC_POSITION)               /*!< 0x08000000 */
+
+/**************************************** Bit definition for RCC_CFGR register ****************************************/
+#define RCC_CFGR_SW_POSITION            (0U)
+#define RCC_CFGR_SW_MASK                (0x3U << RCC_CFGR_SW_POSITION)                      /*!< 0x00000003 */
+#define RCC_CFGR_SW                     RCC_CFGR_SW_MASK
+#define RCC_CFGR_SW_0                   (0x1U << RCC_CFGR_SW_POSITION)                      /*!< 0x00000001 */
+#define RCC_CFGR_SW_1                   (0x2U << RCC_CFGR_SW_POSITION)                      /*!< 0x00000002 */
+
+#define RCC_CFGR_SW_HSI                 (0x00000000U)                                       /*!< HSI selected as system clock */
+#define RCC_CFGR_SW_HSE                 (0x00000001U)                                       /*!< HSE selected as system clock */
+#define RCC_CFGR_SW_PLL                 (0x00000002U)                                       /*!< PLL selected as system clock */
+
+#define RCC_CFGR_SWS_POSITION           (2U)
+#define RCC_CFGR_SWS_MASK               (0x3U << RCC_CFGR_SWS_POSITION)                     /*!< 0x0000000C */
+#define RCC_CFGR_SWS                    RCC_CFGR_SWS_MASK
+#define RCC_CFGR_SWS_0                  (0x1U << RCC_CFGR_SWS_POSITION)                     /*!< 0x00000004 */
+#define RCC_CFGR_SWS_1                  (0x2U << RCC_CFGR_SWS_POSITION)                     /*!< 0x00000008 */
+
+#define RCC_CFGR_SWS_HSI                (0x00000000U)                                       /*!< HSI oscillator used as system clock */
+#define RCC_CFGR_SWS_HSE                (0x00000004U)                                       /*!< HSE oscillator used as system clock */
+#define RCC_CFGR_SWS_PLL                (0x00000008U)                                       /*!< PLL oscillator used as system clock */
+
+#define RCC_CFGR_HPRE_POSITION          (4U)
+#define RCC_CFGR_HPRE_MASK              (0xFU << RCC_CFGR_HPRE_POSITION)                    /*!< 0x000000F0 */
+#define RCC_CFGR_HPRE                   RCC_CFGR_HPRE_MASK
+#define RCC_CFGR_HPRE_0                 (0x1U << RCC_CFGR_HPRE_POSITION)                    /*!< 0x00000010 */
+#define RCC_CFGR_HPRE_1                 (0x2U << RCC_CFGR_HPRE_POSITION)                    /*!< 0x00000020 */
+#define RCC_CFGR_HPRE_2                 (0x4U << RCC_CFGR_HPRE_POSITION)                    /*!< 0x00000040 */
+#define RCC_CFGR_HPRE_3                 (0x8U << RCC_CFGR_HPRE_POSITION)                    /*!< 0x00000080 */
+
+#define RCC_CFGR_HPRE_DIV_1             (0x00000000U)                                       /*!< system clock not divided */
+#define RCC_CFGR_HPRE_DIV_2             (0x00000080U)                                       /*!< system clock divided by 2 */
+#define RCC_CFGR_HPRE_DIV_4             (0x00000090U)                                       /*!< system clock divided by 4 */
+#define RCC_CFGR_HPRE_DIV_8             (0x000000A0U)                                       /*!< system clock divided by 8 */
+#define RCC_CFGR_HPRE_DIV_16            (0x000000B0U)                                       /*!< system clock divided by 16 */
+#define RCC_CFGR_HPRE_DIV_64            (0x000000C0U)                                       /*!< system clock divided by 64 */
+#define RCC_CFGR_HPRE_DIV_128           (0x000000D0U)                                       /*!< system clock divided by 128 */
+#define RCC_CFGR_HPRE_DIV_256           (0x000000E0U)                                       /*!< system clock divided by 256 */
+#define RCC_CFGR_HPRE_DIV_512           (0x000000F0U)                                       /*!< system clock divided by 512 */
+
+#define RCC_CFGR_PPRE1_POSITION         (10U)
+#define RCC_CFGR_PPRE1_MASK             (0x7U << RCC_CFGR_PPRE1_POSITION)                   /*!< 0x00001C00 */
+#define RCC_CFGR_PPRE1                  RCC_CFGR_PPRE1_MASK
+#define RCC_CFGR_PPRE1_0                (0x1U << RCC_CFGR_PPRE1_POSITION)                   /*!< 0x00000400 */
+#define RCC_CFGR_PPRE1_1                (0x2U << RCC_CFGR_PPRE1_POSITION)                   /*!< 0x00000800 */
+#define RCC_CFGR_PPRE1_2                (0x4U << RCC_CFGR_PPRE1_POSITION)                   /*!< 0x00001000 */
+
+#define RCC_CFGR_PPRE1_DIV_1            (0x00000000U)                                       /*!< AHB clock not divided */
+#define RCC_CFGR_PPRE1_DIV_2            (0x00001000U)                                       /*!< AHB clock divided by 2 */
+#define RCC_CFGR_PPRE1_DIV_4            (0x00001400U)                                       /*!< AHB clock divided by 4 */
+#define RCC_CFGR_PPRE1_DIV_8            (0x00001800U)                                       /*!< AHB clock divided by 8 */
+#define RCC_CFGR_PPRE1_DIV_16           (0x00001C00U)                                       /*!< AHB clock divided by 16 */
+
+#define RCC_CFGR_PPRE2_POSITION         (13U)
+#define RCC_CFGR_PPRE2_MASK             (0x7U << RCC_CFGR_PPRE2_POSITION)                   /*!< 0x0000E000 */
+#define RCC_CFGR_PPRE2                  RCC_CFGR_PPRE2_MASK
+#define RCC_CFGR_PPRE2_0                (0x1U << RCC_CFGR_PPRE2_POSITION)                   /*!< 0x00002000 */
+#define RCC_CFGR_PPRE2_1                (0x2U << RCC_CFGR_PPRE2_POSITION)                   /*!< 0x00004000 */
+#define RCC_CFGR_PPRE2_2                (0x4U << RCC_CFGR_PPRE2_POSITION)                   /*!< 0x00008000 */
+
+#define RCC_CFGR_PPRE2_DIV_1            (0x00000000U)                                       /*!< AHB clock not divided */
+#define RCC_CFGR_PPRE2_DIV_2            (0x00008000U)                                       /*!< AHB clock divided by 2 */
+#define RCC_CFGR_PPRE2_DIV_4            (0x0000A000U)                                       /*!< AHB clock divided by 4 */
+#define RCC_CFGR_PPRE2_DIV_8            (0x0000C000U)                                       /*!< AHB clock divided by 8 */
+#define RCC_CFGR_PPRE2_DIV_16           (0x0000E000U)                                       /*!< AHB clock divided by 16 */
+
+#define RCC_CFGR_RTCPRE_POSITION        (16U)
+#define RCC_CFGR_RTCPRE_MASK            (0x1FU << RCC_CFGR_RTCPRE_POSITION)                 /*!< 0x001F0000 */
+#define RCC_CFGR_RTCPRE                 RCC_CFGR_RTCPRE_MASK
+#define RCC_CFGR_RTCPRE_0               (0x01U << RCC_CFGR_RTCPRE_POSITION)                 /*!< 0x00010000 */
+#define RCC_CFGR_RTCPRE_1               (0x02U << RCC_CFGR_RTCPRE_POSITION)                 /*!< 0x00020000 */
+#define RCC_CFGR_RTCPRE_2               (0x04U << RCC_CFGR_RTCPRE_POSITION)                 /*!< 0x00040000 */
+#define RCC_CFGR_RTCPRE_3               (0x08U << RCC_CFGR_RTCPRE_POSITION)                 /*!< 0x00080000 */
+#define RCC_CFGR_RTCPRE_4               (0x10U << RCC_CFGR_RTCPRE_POSITION)                 /*!< 0x00100000 */
+
+#define RCC_CFGR_MCO1_POSITION          (21U)
+#define RCC_CFGR_MCO1_MASK              (0x3U << RCC_CFGR_MCO1_POSITION)                    /*!< 0x00600000 */
+#define RCC_CFGR_MCO1                   RCC_CFGR_MCO1_MASK
+#define RCC_CFGR_MCO1_0                 (0x1U << RCC_CFGR_MCO1_POSITION)                    /*!< 0x00200000 */
+#define RCC_CFGR_MCO1_1                 (0x2U << RCC_CFGR_MCO1_POSITION)                    /*!< 0x00400000 */
+
+#define RCC_CFGR_I2SSRC_POSITION        (23U)
+#define RCC_CFGR_I2SSRC_MASK            (0x1U << RCC_CFGR_I2SSRC_POSITION)                  /*!< 0x00800000 */
+#define RCC_CFGR_I2SSRC                 RCC_CFGR_I2SSRC_MASK
+
+#define RCC_CFGR_MCO1PRE_POSITION       (24U)
+#define RCC_CFGR_MCO1PRE_MASK           (0x7U << RCC_CFGR_MCO1PRE_POSITION)                 /*!< 0x07000000 */
+#define RCC_CFGR_MCO1PRE                RCC_CFGR_MCO1PRE_MASK
+#define RCC_CFGR_MCO1PRE_0              (0x1U << RCC_CFGR_MCO1PRE_POSITION)                 /*!< 0x01000000 */
+#define RCC_CFGR_MCO1PRE_1              (0x2U << RCC_CFGR_MCO1PRE_POSITION)                 /*!< 0x02000000 */
+#define RCC_CFGR_MCO1PRE_2              (0x4U << RCC_CFGR_MCO1PRE_POSITION)                 /*!< 0x04000000 */
+
+#define RCC_CFGR_MCO2PRE_POSITION       (27U)
+#define RCC_CFGR_MCO2PRE_MASK           (0x7U << RCC_CFGR_MCO2PRE_POSITION)                 /*!< 0x38000000 */
+#define RCC_CFGR_MCO2PRE                RCC_CFGR_MCO2PRE_MASK
+#define RCC_CFGR_MCO2PRE_0              (0x1U << RCC_CFGR_MCO2PRE_POSITION)                 /*!< 0x08000000 */
+#define RCC_CFGR_MCO2PRE_1              (0x2U << RCC_CFGR_MCO2PRE_POSITION)                 /*!< 0x10000000 */
+#define RCC_CFGR_MCO2PRE_2              (0x4U << RCC_CFGR_MCO2PRE_POSITION)                 /*!< 0x20000000 */
+
+#define RCC_CFGR_MCO2_POSITION          (30U)
+#define RCC_CFGR_MCO2_MASK              (0x3U << RCC_CFGR_MCO2_POSITION)                    /*!< 0xC0000000 */
+#define RCC_CFGR_MCO2                   RCC_CFGR_MCO2_MASK
+#define RCC_CFGR_MCO2_0                 (0x1U << RCC_CFGR_MCO2_POSITION)                    /*!< 0x40000000 */
+#define RCC_CFGR_MCO2_1                 (0x2U << RCC_CFGR_MCO2_POSITION)                    /*!< 0x80000000 */
+
+/**************************************** Bit definition for RCC_CIR register ****************************************/
 #define RCC_CIR_LSIRDYF                 0
 #define RCC_CIR_LSERDYF                 1
 #define RCC_CIR_HSIRDYF                 2
@@ -402,10 +559,7 @@ typedef struct
 #define RCC_CIR_PLLI2SRDYC              21
 #define RCC_CIR_CSSC                    23
 
-/*
- * RCC Pin configuration of AHB1RSTR Register
- */
-
+/**************************************** Bit definition for RCC_AHB1RSTR register ****************************************/
 #define RCC_AHB1RSTR_GPIOARST           0
 #define RCC_AHB1RSTR_GPIOBRST           1
 #define RCC_AHB1RSTR_GPIOCRST           2
@@ -416,16 +570,10 @@ typedef struct
 #define RCC_AHB1RSTR_DMA1RST            21
 #define RCC_AHB1RSTR_DMA2RST            22
 
-/*
- * RCC Pin configuration of AHB2RSTR Register
- */
-
+/**************************************** Bit definition for RCC_AHB2RSTR register ****************************************/
 #define RCC_AHB2RSTR_OTGFSRST           7
 
-/*
- * RCC Pin configuration of APB1RSTR Register
- */
-
+/**************************************** Bit definition for RCC_APB1RSTR register ****************************************/
 #define RCC_APB1RSTR_TIM2RST            0
 #define RCC_APB1RSTR_TIM3RST            1
 #define RCC_APB1RSTR_TIM4RST            2
@@ -439,10 +587,7 @@ typedef struct
 #define RCC_APB1RSTR_I2C3RST            23
 #define RCC_APB1RSTR_PWRRST             28
 
-/*
- * RCC Pin configuration of APB2RSTR Register
- */
-
+/**************************************** Bit definition for RCC_APB2RSTR register ****************************************/
 #define RCC_APB2RSTR_TIM1RST            0
 #define RCC_APB2RSTR_USART1RST          4
 #define RCC_APB2RSTR_USART6RST          5
@@ -456,10 +601,7 @@ typedef struct
 #define RCC_APB2RSTR_TIM11RST           18
 #define RCC_APB2RSTR_SPI5RST            20
 
-/*
- * RCC Pin configuration of AHB1ENR Register
- */
-
+/**************************************** Bit definition for RCC_AHB1ENR register ****************************************/
 #define RCC_AHB1ENR_GPIOAEN             0
 #define RCC_AHB1ENR_GPIOBEN             1
 #define RCC_AHB1ENR_GPIOCEN             2
@@ -470,16 +612,10 @@ typedef struct
 #define RCC_AHB1ENR_DMA1EN              21
 #define RCC_AHB1ENR_DMA2EN              22
 
-/*
- * RCC Pin configuration of AHB2ENR Register
- */
-
+/**************************************** Bit definition for RCC_AHB2ENR register ****************************************/
 #define RCC_AHB2ENR_OTGFSEN             7
 
-/*
- * RCC Pin configuration of APB1ENR Register
- */
-
+/**************************************** Bit definition for RCC_APB1ENR register ****************************************/
 #define RCC_APB1ENR_TIM2EN              0
 #define RCC_APB1ENR_TIM3EN              1
 #define RCC_APB1ENR_TIM4EN              2
@@ -493,10 +629,7 @@ typedef struct
 #define RCC_APB1ENR_I2C3EN              23
 #define RCC_APB1ENR_PWREN               28
 
-/*
- * RCC Pin configuration of APB2ENR Register
- */
-
+/**************************************** Bit definition for RCC_APB2ENR register ****************************************/
 #define RCC_APB2ENR_TIM1EN              0
 #define RCC_APB2ENR_USART1EN            4
 #define RCC_APB2ENR_USART6EN            5
@@ -510,10 +643,7 @@ typedef struct
 #define RCC_APB2ENR_TIM11EN             18
 #define RCC_APB2ENR_SPI5EN              20
 
-/*
- * RCC Pin configuration of BDCR Register
- */
-
+/**************************************** Bit definition for RCC_BDCR register ****************************************/
 #define RCC_BDCR_LSEON                  0
 #define RCC_BDCR_LSERDY                 1
 #define RCC_BDCR_LSEBYP                 2
@@ -522,10 +652,7 @@ typedef struct
 #define RCC_BDCR_RTCEN                  15
 #define RCC_BDCR_BDRST                  16
 
-/*
- * RCC Pin configuration of CSR Register
- */
-
+/**************************************** Bit definition for RCC_CSR register ****************************************/
 #define RCC_CSR_LSION                   0
 #define RCC_CSR_LSIRDY                  1
 #define RCC_CSR_RMVF                    24
@@ -537,27 +664,18 @@ typedef struct
 #define RCC_CSR_WWDGRSTF                30
 #define RCC_CSR_LPWRRSTF                31
 
-/*
- * RCC Pin configuration of SSCGR Register
- */
-
+/**************************************** Bit definition for RCC_SSCGR register ****************************************/
 #define RCC_SSCGR_MODPER                0
 #define RCC_SSCGR_INCSTEP               13
 #define RCC_SSCGR_SPREADSEL             30
 #define RCC_SSCGR_SSCGEN                31
 
-/*
- * RCC Pin configuration of PLLI2SCFGR Register
- */
-
+/**************************************** Bit definition for RCC_PLLI2SCFGR register ****************************************/
 #define RCC_PLLI2SCFGR_PLLI2SM          0
 #define RCC_PLLI2SCFGR_PLLI2SN          6
 #define RCC_PLLI2SCFGR_PLLI2SR          28
 
-/*
- * RCC Pin configuration of DCKCFGR Register
- */
-
+/**************************************** Bit definition for RCC_DCKCFGR register ****************************************/
 #define RCC_DCKCFGR_TIMPRE              24
 
 /*

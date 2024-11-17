@@ -19,6 +19,15 @@
 #define RCC_OSCILLATORTYPE_LSI                  (0x00000008U)
 
 /*
+ * RCC System Clock Type
+ */
+
+#define RCC_CLOCKTYPE_SYSCLK                    (0x00000001U)
+#define RCC_CLOCKTYPE_HCLK                      (0x00000002U)
+#define RCC_CLOCKTYPE_PCLK1                     (0x00000004U)
+#define RCC_CLOCKTYPE_PCLK2                     (0x00000008U)
+
+/*
  * RCC HSE Config
  */
 
@@ -30,16 +39,16 @@
  * RCC HSI Config
  */
 
-#define RCC_HSI_OFF                             (0 << RCC_CR_HSION)
-#define RCC_HSI_ON                              (1 << RCC_CR_HSION)
+#define RCC_HSI_OFF                             (0x00000000U)
+#define RCC_HSI_ON                              (0x00000001U)
 
-#define RCC_HSICALIBRATION_DEFAULT              (0x10U)
+#define RCC_HSICALIBRATION_DEFAULT              (0x00000010U)
 
 /*
  * RCC LSE Config
  */
 
-#define RCC_LSE_OFF                             (0 << RCC_BDCR_LSEON)
+#define RCC_LSE_OFF                             (0x00000000U)
 #define RCC_LSE_ON                              (1 << RCC_BDCR_LSEON)
 #define RCC_LSE_BYPASS                          ((1 << RCC_BDCR_LSEBYP) | (1 << RCC_BDCR_LSEON))
 
@@ -47,8 +56,8 @@
  * RCC LSI Config
  */
 
-#define RCC_LSI_OFF                             (0 << RCC_CSR_LSION)
-#define RCC_LSI_ON                              (1 << RCC_CSR_LSION)
+#define RCC_LSI_OFF                             (0x00000000U)
+#define RCC_LSI_ON                              (0x00000001U)
 
 /*
  * RCC PLL Config
@@ -296,8 +305,8 @@ typedef struct
     uint32_t APB2_ClockDivider;
 } st_RCC_ClockInitTypeDef_t;
 
-st_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Oscillator);
-st_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock);
+e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Oscillator);
+e_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock);
 void RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_MCODiv);
 
 #endif /* INC_STM32F411XE_RCC_DRIVER_H_ */

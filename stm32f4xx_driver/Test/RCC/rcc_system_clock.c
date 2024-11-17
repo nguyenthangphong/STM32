@@ -38,10 +38,14 @@ void GPIO_LED_Init(void)
 
 void RCC_SystemClockConfig(void)
 {
+    e_StatusTypeDef_t ret;
+
     st_RCC_OscillatorInitTypeDef_t rcc_system_clock_config = {0};
     rcc_system_clock_config.OscillatorType      = RCC_OSCILLATORTYPE_HSI;
     rcc_system_clock_config.HSIState            = RCC_HSI_ON;
     rcc_system_clock_config.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
     rcc_system_clock_config.PLL.PLLState        = RCC_PLL_NONE;
-    RCC_OscillatorConfig(&rcc_system_clock_config);
+
+    ret = RCC_OscillatorConfig(&rcc_system_clock_config);
+    UNUSED(ret);
 }

@@ -5,6 +5,6 @@ typedef enum
 {
     STATUS_OK        = 0u,
     STATUS_ERROR     = 1u
-} st_StatusTypeDef_t;
+} e_StatusTypeDef_t;
 
 #endif /* INC_STM32F411XE_DEF_H_ */

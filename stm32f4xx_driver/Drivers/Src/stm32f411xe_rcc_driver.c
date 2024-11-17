@@ -1,6 +1,6 @@
 #include "stm32f411xe_rcc_driver.h"
 
-st_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Oscillator)
+e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Oscillator)
 {
     if (pRCC_Oscillator == NULL)
     {
@@ -279,12 +279,20 @@ st_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osc
     return STATUS_OK;
 }
 
-st_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock)
+e_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock)
 {
-    /* HCLK Configuration */
-    if ((pRCC_Clock->ClockType))
+    if (pRCC_Clock == NULL)
     {
-        
+        return STATUS_ERROR;
+    }
+
+    /* HCLK Configuration */
+    if (((pRCC_Clock->ClockType) & RCC_CLOCKTYPE_HCLK) == RCC_CLOCKTYPE_HCLK)
+    {
+        if (((pRCC_Clock->ClockType) & RCC_CLOCKTYPE_PCLK1) == RCC_CLOCKTYPE_PCLK1)
+        {
+            RCC->CFGR |= (RCC_CFGR_PPRE1_DIV_16 << RCC_CFGR_PPRE1);
+        }
     }
 }
 
