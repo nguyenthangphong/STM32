@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include "stm32f411xe_def.h"
 
 #define weak 		                            __attribute__((weak))
 
@@ -591,102 +592,216 @@ typedef struct
 #define RCC_CIR_PLLI2SRDYE              RCC_CIR_PLLI2SRDYE_MASK
 
 #define RCC_CIR_LSIRDYC_POSITION        (16U)
+#define RCC_CIR_LSIRDYC_MASK            (0x1U << RCC_CIR_LSIRDYC_POSITION)                  /*!< 0x00010000 */
+#define RCC_CIR_LSIRDYC                 RCC_CIR_LSIRDYC_MASK
 
 #define RCC_CIR_LSERDYC_POSITION        (17U)
+#define RCC_CIR_LSERDYC_MASK            (0x1U << RCC_CIR_LSERDYC_POSITION)                  /*!< 0x00020000 */
+#define RCC_CIR_LSERDYC                 RCC_CIR_LSERDYC_MASK
 
 #define RCC_CIR_HSIRDYC_POSITION        (18U)
+#define RCC_CIR_HSIRDYC_MASK            (0x1U << RCC_CIR_HSIRDYC_POSITION)                  /*!< 0x00040000 */
+#define RCC_CIR_HSIRDYC                 RCC_CIR_HSIRDYC_MASK
 
 #define RCC_CIR_HSERDYC_POSITION        (19U)
+#define RCC_CIR_HSERDYC_MASK            (0x1U << RCC_CIR_HSERDYC_POSITION)                  /*!< 0x00080000 */
+#define RCC_CIR_HSERDYC                 RCC_CIR_HSERDYC_MASK
 
 #define RCC_CIR_PLLRDYC_POSITION        (20U)
+#define RCC_CIR_PLLRDYC_MASK            (0x1U << RCC_CIR_PLLRDYC_POSITION)                  /*!< 0x00100000 */
+#define RCC_CIR_PLLRDYC                 RCC_CIR_PLLRDYC_MASK
 
 #define RCC_CIR_PLLI2SRDYC_POSITION     (21U)
+#define RCC_CIR_PLLI2SRDYC_MASK         (0x1U << RCC_CIR_PLLI2SRDYC_POSITION)               /*!< 0x00200000 */
+#define RCC_CIR_PLLI2SRDYC              RCC_CIR_PLLI2SRDYC_MASK
 
 #define RCC_CIR_CSSC_POSITION           (23U)
+#define RCC_CIR_CSSC_MASK               (0x1U << RCC_CIR_CSSC_POSITION)                     /*!< 0x00800000 */
+#define RCC_CIR_CSSC                    RCC_CIR_CSSC_MASK
 
 /**************************************** Bit definition for RCC_AHB1RSTR register ****************************************/
-#define RCC_AHB1RSTR_GPIOARST           0
-#define RCC_AHB1RSTR_GPIOBRST           1
-#define RCC_AHB1RSTR_GPIOCRST           2
-#define RCC_AHB1RSTR_GPIODRST           3
-#define RCC_AHB1RSTR_GPIOERST           4
-#define RCC_AHB1RSTR_GPIOHRST           7
-#define RCC_AHB1RSTR_CRCRST             12
-#define RCC_AHB1RSTR_DMA1RST            21
-#define RCC_AHB1RSTR_DMA2RST            22
+#define RCC_AHB1RSTR_GPIOARST_POSITION  (0U)
+#define RCC_AHB1RSTR_GPIOARST_MASK      (0x1U << RCC_AHB1RSTR_GPIOARST_POSITION)            /*!< 0x00000001 */
+#define RCC_AHB1RSTR_GPIOARST           RCC_AHB1RSTR_GPIOARST_MASK
+
+#define RCC_AHB1RSTR_GPIOBRST_POSITION  (1U)
+#define RCC_AHB1RSTR_GPIOBRST_MASK      (0x1U << RCC_AHB1RSTR_GPIOBRST_POSITION)            /*!< 0x00000002 */
+#define RCC_AHB1RSTR_GPIOBRST           RCC_AHB1RSTR_GPIOBRST_MASK
+
+#define RCC_AHB1RSTR_GPIOCRST_POSITION  (2U)
+#define RCC_AHB1RSTR_GPIOCRST_MASK      (0x1U << RCC_AHB1RSTR_GPIOCRST_POSITION)            /*!< 0x00000004 */
+#define RCC_AHB1RSTR_GPIOCRST           RCC_AHB1RSTR_GPIOCRST_MASK
+
+#define RCC_AHB1RSTR_GPIODRST_POSITION  (3U)
+#define RCC_AHB1RSTR_GPIODRST_MASK      (0x1U << RCC_AHB1RSTR_GPIODRST_POSITION)            /*!< 0x00000008 */
+#define RCC_AHB1RSTR_GPIODRST           RCC_AHB1RSTR_GPIODRST_MASK
+
+#define RCC_AHB1RSTR_GPIOERST_POSITION  (4U)
+#define RCC_AHB1RSTR_GPIOERST_MASK      (0x1U << RCC_AHB1RSTR_GPIOERST_POSITION)            /*!< 0x00000010 */
+#define RCC_AHB1RSTR_GPIOERST           RCC_AHB1RSTR_GPIOERST_MASK
+
+#define RCC_AHB1RSTR_GPIOHRST_POSITION  (7U)
+#define RCC_AHB1RSTR_GPIOHRST_MASK      (0x1U << RCC_AHB1RSTR_GPIOHRST_POSITION)            /*!< 0x00000080 */
+#define RCC_AHB1RSTR_GPIOHRST           RCC_AHB1RSTR_GPIOHRST_MASK
+
+#define RCC_AHB1RSTR_CRCRST_POSITION    (12U)
+#define RCC_AHB1RSTR_CRCRST_MASK        (0x1U << RCC_AHB1RSTR_CRCRST_POSITION)              /*!< 0x00001000 */
+#define RCC_AHB1RSTR_CRCRST             RCC_AHB1RSTR_CRCRST_MASK
+
+#define RCC_AHB1RSTR_DMA1RST_POSITION   (21U)
+#define RCC_AHB1RSTR_DMA1RST_MASK       (0x1U << RCC_AHB1RSTR_DMA1RST_POSITION)             /*!< 0x00200000 */
+#define RCC_AHB1RSTR_DMA1RST            RCC_AHB1RSTR_DMA1RST_MASK
+
+#define RCC_AHB1RSTR_DMA2RST_POSITION   (22U)
+#define RCC_AHB1RSTR_DMA2RST_MASK       (0x1U << RCC_AHB1RSTR_DMA2RST_POSITION)             /*!< 0x00400000 */
+#define RCC_AHB1RSTR_DMA2RST            RCC_AHB1RSTR_DMA2RST_MASK
 
 /**************************************** Bit definition for RCC_AHB2RSTR register ****************************************/
-#define RCC_AHB2RSTR_OTGFSRST           7
+#define RCC_AHB2RSTR_OTGFSRST_POSITION  (7U)
+#define RCC_AHB2RSTR_OTGFSRST_MASK      (0x1U << RCC_AHB2RSTR_OTGFSRST_POSITION)            /*!< 0x00000080 */
+#define RCC_AHB2RSTR_OTGFSRST           RCC_CIR_CSSC_MASK
 
 /**************************************** Bit definition for RCC_APB1RSTR register ****************************************/
-#define RCC_APB1RSTR_TIM2RST            0
-#define RCC_APB1RSTR_TIM3RST            1
-#define RCC_APB1RSTR_TIM4RST            2
-#define RCC_APB1RSTR_TIM5RST            3
-#define RCC_APB1RSTR_WWDGRST            11
-#define RCC_APB1RSTR_SPI2RST            14
-#define RCC_APB1RSTR_SPI3RST            15
-#define RCC_APB1RSTR_USART2RST          17
-#define RCC_APB1RSTR_I2C1RST            21
-#define RCC_APB1RSTR_I2C2RST            22
-#define RCC_APB1RSTR_I2C3RST            23
-#define RCC_APB1RSTR_PWRRST             28
+#define RCC_APB1RSTR_TIM2RST_POSITION   (0U)
+#define RCC_APB1RSTR_TIM2RST_MASK       (0x1U << RCC_APB1RSTR_TIM2RST_POSITION)             /*!< 0x00000001 */
+#define RCC_APB1RSTR_TIM2RST            RCC_APB1RSTR_TIM2RST_MASK
+
+#define RCC_APB1RSTR_TIM3RST_POSITION   (1U)
+#define RCC_APB1RSTR_TIM3RST_MASK       (0x1U << RCC_APB1RSTR_TIM3RST_POSITION)             /*!< 0x00000002 */
+#define RCC_APB1RSTR_TIM3RST            RCC_APB1RSTR_TIM3RST_MASK
+
+#define RCC_APB1RSTR_TIM4RST_POSITION   (2U)
+#define RCC_APB1RSTR_TIM4RST_MASK       (0x1U << RCC_APB1RSTR_TIM4RST_POSITION)             /*!< 0x00000004 */
+#define RCC_APB1RSTR_TIM4RST            RCC_APB1RSTR_TIM4RST_MASK
+
+#define RCC_APB1RSTR_TIM5RST_POSITION   (3U)
+#define RCC_APB1RSTR_TIM5RST_MASK       (0x1U << RCC_APB1RSTR_TIM5RST_POSITION)             /*!< 0x00000008 */
+#define RCC_APB1RSTR_TIM5RST            RCC_APB1RSTR_TIM5RST_MASK
+
+#define RCC_APB1RSTR_WWDGRST_POSITION   (11U)
+#define RCC_APB1RSTR_WWDGRST_MASK       (0x1U << RCC_APB1RSTR_WWDGRST_POSITION)             /*!< 0x00000800 */
+#define RCC_APB1RSTR_WWDGRST            RCC_APB1RSTR_WWDGRST_MASK
+
+#define RCC_APB1RSTR_SPI2RST_POSITION   (14U)
+#define RCC_APB1RSTR_SPI2RST_MASK       (0x1U << RCC_APB1RSTR_SPI2RST_POSITION)             /*!< 0x00004000 */
+#define RCC_APB1RSTR_SPI2RST            RCC_APB1RSTR_SPI2RST_MASK
+
+#define RCC_APB1RSTR_SPI3RST_POSITION   (15U)
+#define RCC_APB1RSTR_SPI3RST_MASK       (0x1U << RCC_APB1RSTR_SPI3RST_POSITION)             /*!< 0x00008000 */
+#define RCC_APB1RSTR_SPI3RST            RCC_APB1RSTR_SPI3RST_MASK
+
+#define RCC_APB1RSTR_USART2RST_POSITION (17U)
+#define RCC_APB1RSTR_USART2RST_MASK     (0x1U << RCC_APB1RSTR_USART2RST_POSITION)           /*!< 0x00020000 */
+#define RCC_APB1RSTR_USART2RST          RCC_APB1RSTR_USART2RST_MASK
+
+#define RCC_APB1RSTR_I2C1RST_POSITION   (21U)
+#define RCC_APB1RSTR_I2C1RST_MASK       (0x1U << RCC_APB1RSTR_I2C1RST_POSITION)             /*!< 0x00200000 */
+#define RCC_APB1RSTR_I2C1RST            RCC_APB1RSTR_I2C1RST_MASK
+
+#define RCC_APB1RSTR_I2C2RST_POSITION   (22U)
+#define RCC_APB1RSTR_I2C2RST_MASK       (0x1U << RCC_APB1RSTR_I2C2RST_POSITION)             /*!< 0x00400000 */
+#define RCC_APB1RSTR_I2C2RST            RCC_APB1RSTR_I2C2RST_MASK
+
+#define RCC_APB1RSTR_I2C3RST_POSITION   (23U)
+#define RCC_APB1RSTR_I2C3RST_MASK       (0x1U << RCC_APB1RSTR_I2C3RST_POSITION)             /*!< 0x00800000 */
+#define RCC_APB1RSTR_I2C3RST            RCC_APB1RSTR_I2C3RST_MASK
+
+#define RCC_APB1RSTR_PWRRST_POSITION    (28U)
+#define RCC_APB1RSTR_PWRRST_MASK        (0x1U << RCC_APB1RSTR_PWRRST_POSITION)              /*!< 0x10000000 */
+#define RCC_APB1RSTR_PWRRST             RCC_APB1RSTR_PWRRST_MASK
 
 /**************************************** Bit definition for RCC_APB2RSTR register ****************************************/
-#define RCC_APB2RSTR_TIM1RST            0
-#define RCC_APB2RSTR_USART1RST          4
-#define RCC_APB2RSTR_USART6RST          5
-#define RCC_APB2RSTR_ADC1RST            8
-#define RCC_APB2RSTR_SDIORST            11
-#define RCC_APB2RSTR_SPI1RST            12
-#define RCC_APB2RSTR_SPI4RST            13
-#define RCC_APB2RSTR_SYSCFGRST          14
-#define RCC_APB2RSTR_TIM9RST            16
-#define RCC_APB2RSTR_TIM10RST           17
-#define RCC_APB2RSTR_TIM11RST           18
-#define RCC_APB2RSTR_SPI5RST            20
+#define RCC_APB2RSTR_TIM1RST_POSITION   (0U)
+#define RCC_APB2RSTR_TIM1RST_MASK       (0x1U << RCC_APB2RSTR_TIM1RST_POSITION)             /*!< 0x00000001 */
+#define RCC_APB2RSTR_TIM1RST            RCC_APB2RSTR_TIM1RST_MASK
+
+#define RCC_APB2RSTR_USART1RST_POSITION (4U)
+#define RCC_APB2RSTR_USART1RST_MASK     (0x1U << RCC_APB2RSTR_USART1RST_POSITION)           /*!< 0x00000010 */
+#define RCC_APB2RSTR_USART1RST          RCC_APB2RSTR_USART1RST_MASK
+
+#define RCC_APB2RSTR_USART6RST_POSITION (5U)
+#define RCC_APB2RSTR_USART6RST_MASK     (0x1U << RCC_APB2RSTR_USART6RST_POSITION)           /*!< 0x00000020 */
+#define RCC_APB2RSTR_USART6RST          RCC_APB2RSTR_USART6RST_MASK
+
+#define RCC_APB2RSTR_ADC1RST_POSITION   (8U)
+#define RCC_APB2RSTR_ADC1RST_MASK       (0x1U << RCC_APB2RSTR_ADC1RST_POSITION)             /*!< 0x00000100 */
+#define RCC_APB2RSTR_ADC1RST            RCC_APB2RSTR_ADC1RST_MASK
+
+#define RCC_APB2RSTR_SDIORST_POSITION   (11U)
+#define RCC_APB2RSTR_SDIORST_MASK       (0x1U << RCC_APB2RSTR_SDIORST_POSITION)             /*!< 0x00000800 */
+#define RCC_APB2RSTR_SDIORST            RCC_APB2RSTR_SDIORST_MASK
+
+#define RCC_APB2RSTR_SPI1RST_POSITION   (12U)
+#define RCC_APB2RSTR_SPI1RST_MASK       (0x1U << RCC_APB2RSTR_SPI1RST_POSITION)             /*!< 0x00001000 */
+#define RCC_APB2RSTR_SPI1RST            RCC_APB2RSTR_SPI1RST_MASK
+
+#define RCC_APB2RSTR_SPI4RST_POSITION   (13U)
+#define RCC_APB2RSTR_SPI4RST_MASK       (0x1U << RCC_APB2RSTR_SPI4RST_POSITION)             /*!< 0x00002000 */
+#define RCC_APB2RSTR_SPI4RST            RCC_APB2RSTR_SPI4RST_MASK
+
+#define RCC_APB2RSTR_SYSCFGRST_POSITION (14U)
+#define RCC_APB2RSTR_SYSCFGRST_MASK     (0x1U << RCC_APB2RSTR_SYSCFGRST_POSITION)           /*!< 0x00004000 */
+#define RCC_APB2RSTR_SYSCFGRST          RCC_APB2RSTR_SYSCFGRST_MASK
+
+#define RCC_APB2RSTR_TIM9RST_POSITION   (16U)
+#define RCC_APB2RSTR_TIM9RST_MASK       (0x1U << RCC_APB2RSTR_TIM9RST_POSITION)             /*!< 0x00010000 */
+#define RCC_APB2RSTR_TIM9RST            RCC_APB2RSTR_TIM9RST_MASK
+
+#define RCC_APB2RSTR_TIM10RST_POSITION  (17U)
+#define RCC_APB2RSTR_TIM10RST_MASK      (0x1U << RCC_APB2RSTR_TIM10RST_POSITION)            /*!< 0x00020000 */
+#define RCC_APB2RSTR_TIM10RST           RCC_APB2RSTR_TIM10RST_MASK
+
+#define RCC_APB2RSTR_TIM11RST_POSITION  (18U)
+#define RCC_APB2RSTR_TIM11RST_MASK      (0x1U << RCC_APB2RSTR_TIM11RST_POSITION)            /*!< 0x00040000 */
+#define RCC_APB2RSTR_TIM11RST           RCC_APB2RSTR_TIM11RST_MASK
+
+#define RCC_APB2RSTR_SPI5RST_POSITION   (20U)
+#define RCC_APB2RSTR_SPI5RST_MASK       (0x1U << RCC_APB2RSTR_SPI5RST_POSITION)             /*!< 0x00100000 */
+#define RCC_APB2RSTR_SPI5RST            RCC_APB2RSTR_SPI5RST_MASK
 
 /**************************************** Bit definition for RCC_AHB1ENR register ****************************************/
-#define RCC_AHB1ENR_GPIOAEN             0
-#define RCC_AHB1ENR_GPIOBEN             1
-#define RCC_AHB1ENR_GPIOCEN             2
-#define RCC_AHB1ENR_GPIODEN             3
-#define RCC_AHB1ENR_GPIOEEN             4
-#define RCC_AHB1ENR_GPIOHEN             7
-#define RCC_AHB1ENR_CRCEN               12
-#define RCC_AHB1ENR_DMA1EN              21
-#define RCC_AHB1ENR_DMA2EN              22
+#define RCC_AHB1ENR_GPIOAEN_POSITION    (0U)
+#define RCC_AHB1ENR_GPIOBEN_POSITION    (1U)
+#define RCC_AHB1ENR_GPIOCEN_POSITION    (2U)
+#define RCC_AHB1ENR_GPIODEN_POSITION    (3U)
+#define RCC_AHB1ENR_GPIOEEN_POSITION    (4U)
+#define RCC_AHB1ENR_GPIOHEN_POSITION    (7U)
+#define RCC_AHB1ENR_CRCEN_POSITION      (12U)
+#define RCC_AHB1ENR_DMA1EN_POSITION     (21U)
+#define RCC_AHB1ENR_DMA2EN_POSITION     (22U)
 
 /**************************************** Bit definition for RCC_AHB2ENR register ****************************************/
-#define RCC_AHB2ENR_OTGFSEN             7
+#define RCC_AHB2ENR_OTGFSEN_POSITION    (7U)
+#define RCC_AHB2ENR_OTGFSEN_MASK        (0x1U << RCC_AHB2ENR_OTGFSEN_POSITION)              /*!< 0x00000080 */
+#define RCC_AHB2ENR_OTGFSEN             RCC_AHB2ENR_OTGFSEN_MASK
 
 /**************************************** Bit definition for RCC_APB1ENR register ****************************************/
-#define RCC_APB1ENR_TIM2EN              0
-#define RCC_APB1ENR_TIM3EN              1
-#define RCC_APB1ENR_TIM4EN              2
-#define RCC_APB1ENR_TIM5EN              3
-#define RCC_APB1ENR_WWDGEN              11
-#define RCC_APB1ENR_SPI2EN              14
-#define RCC_APB1ENR_SPI3EN              15
-#define RCC_APB1ENR_USART2EN            17
-#define RCC_APB1ENR_I2C1EN              21
-#define RCC_APB1ENR_I2C2EN              22
-#define RCC_APB1ENR_I2C3EN              23
-#define RCC_APB1ENR_PWREN               28
+#define RCC_APB1ENR_TIM2EN_POSITION     (0U)
+#define RCC_APB1ENR_TIM3EN_POSITION     (1U)
+#define RCC_APB1ENR_TIM4EN_POSITION     (2U)
+#define RCC_APB1ENR_TIM5EN_POSITION     (3U)
+#define RCC_APB1ENR_WWDGEN_POSITION     (11U)
+#define RCC_APB1ENR_SPI2EN_POSITION     (14U)
+#define RCC_APB1ENR_SPI3EN_POSITION     (15U)
+#define RCC_APB1ENR_USART2EN_POSITION   (17U)
+#define RCC_APB1ENR_I2C1EN_POSITION     (21U)
+#define RCC_APB1ENR_I2C2EN_POSITION     (22U)
+#define RCC_APB1ENR_I2C3EN_POSITION     (23U)
+#define RCC_APB1ENR_PWREN_POSITION      (28U)
 
 /**************************************** Bit definition for RCC_APB2ENR register ****************************************/
-#define RCC_APB2ENR_TIM1EN              0
-#define RCC_APB2ENR_USART1EN            4
-#define RCC_APB2ENR_USART6EN            5
-#define RCC_APB2ENR_ADC1EN              8
-#define RCC_APB2ENR_SDIOEN              11
-#define RCC_APB2ENR_SPI1EN              12
-#define RCC_APB2ENR_SPI4EN              13
-#define RCC_APB2ENR_SYSCFGEN            14
-#define RCC_APB2ENR_TIM9EN              16
-#define RCC_APB2ENR_TIM10EN             17
-#define RCC_APB2ENR_TIM11EN             18
-#define RCC_APB2ENR_SPI5EN              20
+#define RCC_APB2ENR_TIM1EN_POSITION     (0U)
+#define RCC_APB2ENR_USART1EN_POSITION   (4U)
+#define RCC_APB2ENR_USART6EN_POSITION   (5U)
+#define RCC_APB2ENR_ADC1EN_POSITION     (8U)
+#define RCC_APB2ENR_SDIOEN_POSITION     (11U)
+#define RCC_APB2ENR_SPI1EN_POSITION     (12U)
+#define RCC_APB2ENR_SPI4EN_POSITION     (13U)
+#define RCC_APB2ENR_SYSCFGEN_POSITION   (14U)
+#define RCC_APB2ENR_TIM9EN_POSITION     (16U)
+#define RCC_APB2ENR_TIM10EN_POSITION    (17U)
+#define RCC_APB2ENR_TIM11EN_POSITION    (18U)
+#define RCC_APB2ENR_SPI5EN_POSITION     (20U)
 
 /**************************************** Bit definition for RCC_BDCR register ****************************************/
 #define RCC_BDCR_LSEON                  0
@@ -721,7 +836,9 @@ typedef struct
 #define RCC_PLLI2SCFGR_PLLI2SR          28
 
 /**************************************** Bit definition for RCC_DCKCFGR register ****************************************/
-#define RCC_DCKCFGR_TIMPRE              24
+#define RCC_DCKCFGR_TIMPRE_POSITION     (24U)
+#define RCC_DCKCFGR_TIMPRE_MASK         (0x1U << RCC_DCKCFGR_TIMPRE_POSITION)               /*!< 0x01000000 */
+#define RCC_DCKCFGR_TIMPRE              RCC_DCKCFGR_TIMPRE_MASK
 
 /*
  * Peripheral Definition
@@ -754,44 +871,44 @@ typedef struct
  * Clock Enable Macros for GPIOx Peripherals
  */
 
-#define GPIOA_PCLK_EN()         (RCC->AHB1ENR |= (1 << RCC_AHB1ENR_GPIOAEN))
-#define GPIOB_PCLK_EN()         (RCC->AHB1ENR |= (1 << RCC_AHB1ENR_GPIOBEN))
-#define GPIOC_PCLK_EN()         (RCC->AHB1ENR |= (1 << RCC_AHB1ENR_GPIOCEN))
-#define GPIOD_PCLK_EN()         (RCC->AHB1ENR |= (1 << RCC_AHB1ENR_GPIODEN))
-#define GPIOE_PCLK_EN()         (RCC->AHB1ENR |= (1 << RCC_AHB1ENR_GPIOEEN))
-#define GPIOH_PCLK_EN()         (RCC->AHB1ENR |= (1 << RCC_AHB1ENR_GPIOHEN))
+#define GPIOA_PCLK_EN()         (RCC->AHB1ENR |= (RCC_AHB1ENR_GPIOAEN))
+#define GPIOB_PCLK_EN()         (RCC->AHB1ENR |= (RCC_AHB1ENR_GPIOBEN))
+#define GPIOC_PCLK_EN()         (RCC->AHB1ENR |= (RCC_AHB1ENR_GPIOCEN))
+#define GPIOD_PCLK_EN()         (RCC->AHB1ENR |= (RCC_AHB1ENR_GPIODEN))
+#define GPIOE_PCLK_EN()         (RCC->AHB1ENR |= (RCC_AHB1ENR_GPIOEEN))
+#define GPIOH_PCLK_EN()         (RCC->AHB1ENR |= (RCC_AHB1ENR_GPIOHEN))
 
 /*
  * Clock Enable Macros for I2Cx Peripherals
  */
 
-#define I2C1_PCLK_EN()          (RCC->APB1ENR |= (1 << RCC_APB1ENR_I2C1EN))
-#define I2C2_PCLK_EN()          (RCC->APB1ENR |= (1 << RCC_APB1ENR_I2C2EN))
-#define I2C3_PCLK_EN()          (RCC->APB1ENR |= (1 << RCC_APB1ENR_I2C3EN))
+#define I2C1_PCLK_EN()          (RCC->APB1ENR |= (RCC_APB1ENR_I2C1EN))
+#define I2C2_PCLK_EN()          (RCC->APB1ENR |= (RCC_APB1ENR_I2C2EN))
+#define I2C3_PCLK_EN()          (RCC->APB1ENR |= (RCC_APB1ENR_I2C3EN))
 
 /*
  * Clock Enable Macros for SPIx Peripherals
  */
 
-#define SPI1_PCLK_EN()          (RCC->APB2ENR |= (1 << RCC_APB2ENR_SPI1EN))
-#define SPI2_PCLK_EN()          (RCC->APB1ENR |= (1 << RCC_APB1ENR_SPI2EN))
-#define SPI3_PCLK_EN()          (RCC->APB1ENR |= (1 << RCC_APB1ENR_SPI3EN))
-#define SPI4_PCLK_EN()          (RCC->APB2ENR |= (1 << RCC_APB2ENR_SPI4EN))
-#define SPI5_PCLK_EN()          (RCC->APB2ENR |= (1 << RCC_APB2ENR_SPI5EN))
+#define SPI1_PCLK_EN()          (RCC->APB2ENR |= (RCC_APB2ENR_SPI1EN))
+#define SPI2_PCLK_EN()          (RCC->APB1ENR |= (RCC_APB1ENR_SPI2EN))
+#define SPI3_PCLK_EN()          (RCC->APB1ENR |= (RCC_APB1ENR_SPI3EN))
+#define SPI4_PCLK_EN()          (RCC->APB2ENR |= (RCC_APB2ENR_SPI4EN))
+#define SPI5_PCLK_EN()          (RCC->APB2ENR |= (RCC_APB2ENR_SPI5EN))
 
 /*
  * Clock Enable Macros for USARTx Peripherals
  */
 
-#define USART1_PCLK_EN()        (RCC->APB2ENR |= (1 << RCC_APB2ENR_USART1EN))
-#define USART2_PCLK_EN()        (RCC->APB1ENR |= (1 << RCC_APB1ENR_USART2EN))
-#define USART6_PCLK_EN()        (RCC->APB2ENR |= (1 << RCC_APB2ENR_USART6EN))
+#define USART1_PCLK_EN()        (RCC->APB2ENR |= (RCC_APB2ENR_USART1EN))
+#define USART2_PCLK_EN()        (RCC->APB1ENR |= (RCC_APB1ENR_USART2EN))
+#define USART6_PCLK_EN()        (RCC->APB2ENR |= (RCC_APB2ENR_USART6EN))
 
 /*
  * Clock Enable Macros for SYSCFG Peripherals
  */
 
-#define SYSCFG_PCLK_EN()        (RCC->APB2ENR |= (1 << RCC_APB2ENR_SYSCFGEN))
+#define SYSCFG_PCLK_EN()        (RCC->APB2ENR |= (RCC_APB2ENR_SYSCFGEN))
 
 /******************************* Disable **********************************/
 
@@ -799,65 +916,65 @@ typedef struct
  * Clock Disable Macros for GPIOx Peripherals
  */
 
-#define GPIOA_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << RCC_AHB1ENR_GPIOAEN))
-#define GPIOB_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << RCC_AHB1ENR_GPIOBEN))
-#define GPIOC_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << RCC_AHB1ENR_GPIOCEN))
-#define GPIOD_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << RCC_AHB1ENR_GPIODEN))
-#define GPIOE_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << RCC_AHB1ENR_GPIOEEN))
-#define GPIOH_PCLK_DI()         (RCC->AHB1ENR &= ~(1 << RCC_AHB1ENR_GPIOHEN))
+#define GPIOA_PCLK_DI()         (RCC->AHB1ENR &= ~(RCC_AHB1ENR_GPIOAEN))
+#define GPIOB_PCLK_DI()         (RCC->AHB1ENR &= ~(RCC_AHB1ENR_GPIOBEN))
+#define GPIOC_PCLK_DI()         (RCC->AHB1ENR &= ~(RCC_AHB1ENR_GPIOCEN))
+#define GPIOD_PCLK_DI()         (RCC->AHB1ENR &= ~(RCC_AHB1ENR_GPIODEN))
+#define GPIOE_PCLK_DI()         (RCC->AHB1ENR &= ~(RCC_AHB1ENR_GPIOEEN))
+#define GPIOH_PCLK_DI()         (RCC->AHB1ENR &= ~(RCC_AHB1ENR_GPIOHEN))
 
 /*
  * Clock Disable Macros for I2Cx Peripherals
  */
 
-#define I2C1_PCLK_DI()          (RCC->APB1ENR &= ~(1 << RCC_APB1ENR_I2C1EN))
-#define I2C2_PCLK_DI()          (RCC->APB1ENR &= ~(1 << RCC_APB1ENR_I2C2EN))
-#define I2C3_PCLK_DI()          (RCC->APB1ENR &= ~(1 << RCC_APB1ENR_I2C3EN))
+#define I2C1_PCLK_DI()          (RCC->APB1ENR &= ~(RCC_APB1ENR_I2C1EN))
+#define I2C2_PCLK_DI()          (RCC->APB1ENR &= ~(RCC_APB1ENR_I2C2EN))
+#define I2C3_PCLK_DI()          (RCC->APB1ENR &= ~(RCC_APB1ENR_I2C3EN))
 
 /*
  * Clock Disable Macros for SPIx Peripherals
  */
 
-#define SPI1_PCLK_DI()          (RCC->APB2ENR &= ~(1 << RCC_APB2ENR_SPI1EN))
-#define SPI2_PCLK_DI()          (RCC->APB1ENR &= ~(1 << RCC_APB1ENR_SPI2EN))
-#define SPI3_PCLK_DI()          (RCC->APB1ENR &= ~(1 << RCC_APB1ENR_SPI3EN))
-#define SPI4_PCLK_DI()          (RCC->APB2ENR &= ~(1 << RCC_APB2ENR_SPI4EN))
-#define SPI5_PCLK_DI()          (RCC->APB2ENR &= ~(1 << RCC_APB2ENR_SPI5EN))
+#define SPI1_PCLK_DI()          (RCC->APB2ENR &= ~(RCC_APB2ENR_SPI1EN))
+#define SPI2_PCLK_DI()          (RCC->APB1ENR &= ~(RCC_APB1ENR_SPI2EN))
+#define SPI3_PCLK_DI()          (RCC->APB1ENR &= ~(RCC_APB1ENR_SPI3EN))
+#define SPI4_PCLK_DI()          (RCC->APB2ENR &= ~(RCC_APB2ENR_SPI4EN))
+#define SPI5_PCLK_DI()          (RCC->APB2ENR &= ~(RCC_APB2ENR_SPI5EN))
 
 /*
  * Clock Disable Macros for USARTx Peripherals
  */
 
-#define USART1_PCLK_DI()        (RCC->APB2ENR &= ~(1 << RCC_APB2ENR_USART1EN))
-#define USART2_PCLK_DI()        (RCC->APB1ENR &= ~(1 << RCC_APB1ENR_USART2EN))
-#define USART6_PCLK_DI()        (RCC->APB2ENR &= ~(1 << RCC_APB2ENR_USART6EN))
+#define USART1_PCLK_DI()        (RCC->APB2ENR &= ~(RCC_APB2ENR_USART1EN))
+#define USART2_PCLK_DI()        (RCC->APB1ENR &= ~(RCC_APB1ENR_USART2EN))
+#define USART6_PCLK_DI()        (RCC->APB2ENR &= ~(RCC_APB2ENR_USART6EN))
 
 /*
  * Clock Disable Macros for SYSCFG Peripherals
  */
 
-#define SYSCFG_PCLK_DI()        (RCC->APB2ENR &= ~(1 << RCC_APB2ENR_SYSCFGEN))
+#define SYSCFG_PCLK_DI()        (RCC->APB2ENR &= ~(RCC_APB2ENR_SYSCFGEN))
 
 /*
  * Macros to Reset GPIOx Peripherals
  */
 
-#define GPIOA_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << RCC_AHB1RSTR_GPIOARST)); (RCC->AHB1RSTR &= ~(1 << RCC_AHB1RSTR_GPIOARST)); } while (0)
-#define GPIOB_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << RCC_AHB1RSTR_GPIOBRST)); (RCC->AHB1RSTR &= ~(1 << RCC_AHB1RSTR_GPIOBRST)); } while (0)
-#define GPIOC_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << RCC_AHB1RSTR_GPIOCRST)); (RCC->AHB1RSTR &= ~(1 << RCC_AHB1RSTR_GPIOCRST)); } while (0)
-#define GPIOD_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << RCC_AHB1RSTR_GPIODRST)); (RCC->AHB1RSTR &= ~(1 << RCC_AHB1RSTR_GPIODRST)); } while (0)
-#define GPIOE_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << RCC_AHB1RSTR_GPIOERST)); (RCC->AHB1RSTR &= ~(1 << RCC_AHB1RSTR_GPIOERST)); } while (0)
-#define GPIOH_REG_RESET()       do { (RCC->AHB1RSTR |= (1 << RCC_AHB1RSTR_GPIOHRST)); (RCC->AHB1RSTR &= ~(1 << RCC_AHB1RSTR_GPIOHRST)); } while (0)
+#define GPIOA_REG_RESET()       do { (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOARST, SET)); (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOARST, RESET)); } while (0)
+#define GPIOB_REG_RESET()       do { (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOBRST, SET)); (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOBRST, RESET)); } while (0)
+#define GPIOC_REG_RESET()       do { (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOCRST, SET)); (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOCRST, RESET)); } while (0)
+#define GPIOD_REG_RESET()       do { (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIODRST, SET)); (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIODRST, RESET)); } while (0)
+#define GPIOE_REG_RESET()       do { (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOERST, SET)); (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOERST, RESET)); } while (0)
+#define GPIOH_REG_RESET()       do { (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOHRST, SET)); (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOHRST, RESET)); } while (0)
 
 /*
  * Macros to Reset SPIx Peripherals
  */
 
-#define SPI1_REG_RESET()        do { (RCC->APB2RSTR |= (1 << RCC_APB2RSTR_SPI1RST)); (RCC->APB2RSTR &= ~(1 << RCC_APB2RSTR_SPI1RST)); } while (0)
-#define SPI2_REG_RESET()        do { (RCC->APB1RSTR |= (1 << RCC_APB1RSTR_SPI2RST)); (RCC->APB1RSTR &= ~(1 << RCC_APB1RSTR_SPI2RST)); } while (0)
-#define SPI3_REG_RESET()        do { (RCC->APB1RSTR |= (1 << RCC_APB1RSTR_SPI3RST)); (RCC->APB1RSTR &= ~(1 << RCC_APB1RSTR_SPI3RST)); } while (0)
-#define SPI4_REG_RESET()        do { (RCC->APB2RSTR |= (1 << RCC_APB2RSTR_SPI4RST)); (RCC->APB2RSTR &= ~(1 << RCC_APB2RSTR_SPI4RST)); } while (0)
-#define SPI5_REG_RESET()        do { (RCC->APB2RSTR |= (1 << RCC_APB2RSTR_SPI5RST)); (RCC->APB2RSTR &= ~(1 << RCC_APB2RSTR_SPI5RST)); } while (0)
+#define SPI1_REG_RESET()        do { (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI1RST, SET)); (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI1RST, RESET)); } while (0)
+#define SPI2_REG_RESET()        do { (SET_REGISTER(RCC->APB1RSTR, RCC_APB1RSTR_SPI2RST, SET)); (SET_REGISTER(RCC->APB1RSTR, RCC_APB1RSTR_SPI2RST, RESET)); } while (0)
+#define SPI3_REG_RESET()        do { (SET_REGISTER(RCC->APB1RSTR, RCC_APB1RSTR_SPI3RST, SET)); (SET_REGISTER(RCC->APB1RSTR, RCC_APB1RSTR_SPI3RST, RESET)); } while (0)
+#define SPI4_REG_RESET()        do { (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI4RST, SET)); (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI4RST, RESET)); } while (0)
+#define SPI5_REG_RESET()        do { (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI5RST, SET)); (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI5RST, RESET)); } while (0)
 
 /*
  * Return port code for given GPIOx base address
