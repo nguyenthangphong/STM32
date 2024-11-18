@@ -538,26 +538,71 @@ typedef struct
 #define RCC_CFGR_MCO2_1                 (0x2U << RCC_CFGR_MCO2_POSITION)                    /*!< 0x80000000 */
 
 /**************************************** Bit definition for RCC_CIR register ****************************************/
-#define RCC_CIR_LSIRDYF                 0
-#define RCC_CIR_LSERDYF                 1
-#define RCC_CIR_HSIRDYF                 2
-#define RCC_CIR_HSERDYF                 3
-#define RCC_CIR_PLLRDYF                 4
-#define RCC_CIR_PLLI2SRDYF              5
-#define RCC_CIR_CSSF                    7
-#define RCC_CIR_LSIRDYE                 8
-#define RCC_CIR_LSERDYE                 9
-#define RCC_CIR_HSIRDYE                 10
-#define RCC_CIR_HSERDYE                 11
-#define RCC_CIR_PLLRDYE                 12
-#define RCC_CIR_PLLI2SRDYE              13
-#define RCC_CIR_LSIRDYC                 16
-#define RCC_CIR_LSERDYC                 17
-#define RCC_CIR_HSIRDYC                 18
-#define RCC_CIR_HSERDYC                 19
-#define RCC_CIR_PLLRDYC                 20
-#define RCC_CIR_PLLI2SRDYC              21
-#define RCC_CIR_CSSC                    23
+#define RCC_CIR_LSIRDYF_POSITION        (0U)
+#define RCC_CIR_LSIRDYF_MASK            (0x1U << RCC_CIR_LSIRDYF_POSITION)                  /*!< 0x00000001 */
+#define RCC_CIR_LSIRDYF                 RCC_CIR_LSIRDYF_MASK
+
+#define RCC_CIR_LSERDYF_POSITION        (1U)
+#define RCC_CIR_LSERDYF_MASK            (0x1U << RCC_CIR_LSERDYF_POSITION)                  /*!< 0x00000002 */
+#define RCC_CIR_LSERDYF                 RCC_CIR_LSERDYF_MASK
+
+#define RCC_CIR_HSIRDYF_POSITION        (2U)
+#define RCC_CIR_HSIRDYF_MASK            (0x1U << RCC_CIR_HSIRDYF_POSITION)                  /*!< 0x00000004 */
+#define RCC_CIR_HSIRDYF                 RCC_CIR_HSIRDYF_MASK
+
+#define RCC_CIR_HSERDYF_POSITION        (3U)
+#define RCC_CIR_HSERDYF_MASK            (0x1U << RCC_CIR_HSERDYF_POSITION)                  /*!< 0x00000008 */
+#define RCC_CIR_HSERDYF                 RCC_CIR_HSERDYF_MASK
+
+#define RCC_CIR_PLLRDYF_POSITION        (4U)
+#define RCC_CIR_PLLRDYF_MASK            (0x1U << RCC_CIR_PLLRDYF_POSITION)                  /*!< 0x00000010 */
+#define RCC_CIR_PLLRDYF                 RCC_CIR_PLLRDYF_MASK
+
+#define RCC_CIR_PLLI2SRDYF_POSITION     (5U)
+#define RCC_CIR_PLLI2SRDYF_MASK         (0x1U << RCC_CIR_PLLI2SRDYF_POSITION)               /*!< 0x00000020 */
+#define RCC_CIR_PLLI2SRDYF              RCC_CIR_PLLI2SRDYF_MASK
+
+#define RCC_CIR_CSSF_POSITION           (7U)
+#define RCC_CIR_CSSF_MASK               (0x1U << RCC_CIR_CSSF_POSITION)                     /*!< 0x00000080 */
+#define RCC_CIR_CSSF                    RCC_CIR_CSSF_MASK
+
+#define RCC_CIR_LSIRDYE_POSITION        (8U)
+#define RCC_CIR_LSIRDYE_MASK            (0x1U << RCC_CIR_LSIRDYE_POSITION)                  /*!< 0x00000100 */
+#define RCC_CIR_LSIRDYE                 RCC_CIR_LSIRDYE_MASK
+
+#define RCC_CIR_LSERDYE_POSITION        (9U)
+#define RCC_CIR_LSERDYE_MASK            (0x1U << RCC_CIR_LSERDYE_POSITION)                  /*!< 0x00000200 */
+#define RCC_CIR_LSERDYE                 RCC_CIR_LSERDYE_MASK
+
+#define RCC_CIR_HSIRDYE_POSITION        (10U)
+#define RCC_CIR_HSIRDYE_MASK            (0x1U << RCC_CIR_HSIRDYE_POSITION)                  /*!< 0x00000400 */
+#define RCC_CIR_HSIRDYE                 RCC_CIR_HSIRDYE_MASK
+
+#define RCC_CIR_HSERDYE_POSITION        (11U)
+#define RCC_CIR_HSERDYE_MASK            (0x1U << RCC_CIR_HSERDYE_POSITION)                  /*!< 0x00000800 */
+#define RCC_CIR_HSERDYE                 RCC_CIR_HSERDYE_MASK
+
+#define RCC_CIR_PLLRDYE_POSITION        (12U)
+#define RCC_CIR_PLLRDYE_MASK            (0x1U << RCC_CIR_PLLRDYE_POSITION)                  /*!< 0x00001000 */
+#define RCC_CIR_PLLRDYE                 RCC_CIR_PLLRDYE_MASK
+
+#define RCC_CIR_PLLI2SRDYE_POSITION     (13U)
+#define RCC_CIR_PLLI2SRDYE_MASK         (0x1U << RCC_CIR_PLLI2SRDYE_POSITION)               /*!< 0x00002000 */
+#define RCC_CIR_PLLI2SRDYE              RCC_CIR_PLLI2SRDYE_MASK
+
+#define RCC_CIR_LSIRDYC_POSITION        (16U)
+
+#define RCC_CIR_LSERDYC_POSITION        (17U)
+
+#define RCC_CIR_HSIRDYC_POSITION        (18U)
+
+#define RCC_CIR_HSERDYC_POSITION        (19U)
+
+#define RCC_CIR_PLLRDYC_POSITION        (20U)
+
+#define RCC_CIR_PLLI2SRDYC_POSITION     (21U)
+
+#define RCC_CIR_CSSC_POSITION           (23U)
 
 /**************************************** Bit definition for RCC_AHB1RSTR register ****************************************/
 #define RCC_AHB1RSTR_GPIOARST           0
