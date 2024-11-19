@@ -217,10 +217,11 @@ typedef struct
     volatile uint32_t           GTPR;                    /*!< USART Guard time and prescaler register,                               Address offset : 0x18 */
 } st_USART_RegDef_t;
 
-/*
- * SPI Pin configuration of CR1 Register
- */
+/***************************************************************************************************************************************
+ ************************************************** Serial Peripheral Interface (SPI) **************************************************
+ **************************************************************************************************************************************/
 
+/**************************************** Bit definition for SPI_CR1 register ****************************************/
 #define SPI_CR1_CPHA            0
 #define SPI_CR1_CPOL            1
 #define SPI_CR1_MSTR            2
@@ -236,10 +237,7 @@ typedef struct
 #define SPI_CR1_BIDIOE          14
 #define SPI_CR1_BIDIMODE        15
 
-/*
- * SPI Pin configuration of CR2 Register
- */
-
+/**************************************** Bit definition for SPI_CR2 register ****************************************/
 #define SPI_CR2_RXDMAEN         0
 #define SPI_CR2_TXDMAEN         1
 #define SPI_CR2_SSOE            2
@@ -248,10 +246,7 @@ typedef struct
 #define SPI_CR2_RXNEIE          6
 #define SPI_CR2_TXEIE           7
 
-/*
- * SPI Pin configuration of SR Register
- */
-
+/**************************************** Bit definition for SPI_SR register ****************************************/
 #define SPI_SR_RXNE             0
 #define SPI_SR_TXE              1
 #define SPI_SR_CHSIDE           2
@@ -262,10 +257,11 @@ typedef struct
 #define SPI_SR_BSY              7
 #define SPI_SR_FRE              8
 
-/*
- * USART Pin configuration of SR Register
- */
+/*********************************************************************************************************************************************************************
+ ************************************************** Universal Synchronous Asynchronous Receiver Transmitter (USART) **************************************************
+ ********************************************************************************************************************************************************************/
 
+/**************************************** Bit definition for USART_SR register ****************************************/
 #define USART_SR_PE                     0
 #define USART_SR_FE                     1
 #define USART_SR_NF                     2
@@ -277,17 +273,11 @@ typedef struct
 #define USART_SR_LBD                    8
 #define USART_SR_CTS                    9
 
-/*
- * USART Pin configuration of BRR Register
- */
-
+/**************************************** Bit definition for USART_BRR register ****************************************/
 #define USART_BRR_DIV_FRACTION          0
 #define USART_BRR_DIV_MANTISSA          4
 
-/*
- * USART Pin configuration of CR1 Register
- */
-
+/**************************************** Bit definition for USART_CR1 register ****************************************/
 #define USART_CR1_SBK                   0
 #define USART_CR1_RWU                   1
 #define USART_CR1_RE                    2
@@ -304,10 +294,7 @@ typedef struct
 #define USART_CR1_UE                    13
 #define USART_CR1_OVER8                 15
 
-/*
- * USART Pin configuration of CR2 Register
- */
-
+/**************************************** Bit definition for USART_CR2 register ****************************************/
 #define USART_CR2_ADD                   0
 #define USART_CR2_LBDL                  5
 #define USART_CR2_LBDIE                 6
@@ -318,10 +305,7 @@ typedef struct
 #define USART_CR2_STOP                  12
 #define USART_CR2_LINEN                 14
 
-/*
- * USART Pin configuration of CR3 Register
- */
-
+/**************************************** Bit definition for USART_CR3 register ****************************************/
 #define USART_CR3_EIE                   0
 #define USART_CR3_IREN                  1
 #define USART_CR3_IRLP                  2
@@ -335,9 +319,9 @@ typedef struct
 #define USART_CR3_CTSIE                 10
 #define USART_CR3_ONEBIT                11
 
-/***************************
- * Reset and Clock Control *
- **************************/
+/***********************************************************************************************************************************
+ ************************************************** Reset and Clock Control (RCC) **************************************************
+ **********************************************************************************************************************************/
 
 /**************************************** Bit definition for RCC_CR register ****************************************/
 #define RCC_CR_HSION_POSITION           (0U)
@@ -804,36 +788,43 @@ typedef struct
 #define RCC_APB2ENR_SPI5EN_POSITION     (20U)
 
 /**************************************** Bit definition for RCC_BDCR register ****************************************/
-#define RCC_BDCR_LSEON                  0
-#define RCC_BDCR_LSERDY                 1
-#define RCC_BDCR_LSEBYP                 2
-#define RCC_BDCR_LSEMOD                 3
-#define RCC_BDCR_RTCSEL                 8
-#define RCC_BDCR_RTCEN                  15
-#define RCC_BDCR_BDRST                  16
+#define RCC_BDCR_LSEON_POSITION         (0U)
+#define RCC_BDCR_LSEON_MASK             (0x1U << RCC_BDCR_LSEON_POSITION)                   /*!< 0x00000001 */
+#define RCC_BDCR_LSEON                  RCC_BDCR_LSEON_MASK
+
+#define RCC_BDCR_LSERDY_POSITION        (1U)
+
+#define RCC_BDCR_LSEBYP_POSITION        (2U)
+#define RCC_BDCR_LSEBYP_MASK            (0x1U << RCC_BDCR_LSEBYP_POSITION)                  /*!< 0x00000004 */
+#define RCC_BDCR_LSEBYP                 RCC_BDCR_LSEBYP_MASK
+
+#define RCC_BDCR_LSEMOD_POSITION        (3U)
+#define RCC_BDCR_RTCSEL_POSITION        (8U)
+#define RCC_BDCR_RTCEN_POSITION         (15U)
+#define RCC_BDCR_BDRST_POSITION         (16U)
 
 /**************************************** Bit definition for RCC_CSR register ****************************************/
-#define RCC_CSR_LSION                   0
-#define RCC_CSR_LSIRDY                  1
-#define RCC_CSR_RMVF                    24
-#define RCC_CSR_BORRSTF                 25
-#define RCC_CSR_PINRSTF                 26
-#define RCC_CSR_PORRSTF                 27
-#define RCC_CSR_SFTRSTF                 28
-#define RCC_CSR_IWDGRSTF                29
-#define RCC_CSR_WWDGRSTF                30
-#define RCC_CSR_LPWRRSTF                31
+#define RCC_CSR_LSION_POSITION          (0U)
+#define RCC_CSR_LSIRDY_POSITION         (1U)
+#define RCC_CSR_RMVF_POSITION           (24U)
+#define RCC_CSR_BORRSTF_POSITION        (25U)
+#define RCC_CSR_PINRSTF_POSITION        (26U)
+#define RCC_CSR_PORRSTF_POSITION        (27U)
+#define RCC_CSR_SFTRSTF_POSITION        (28U)
+#define RCC_CSR_IWDGRSTF_POSITION       (29U)
+#define RCC_CSR_WWDGRSTF_POSITION       (30U)
+#define RCC_CSR_LPWRRSTF_POSITION       (31U)
 
 /**************************************** Bit definition for RCC_SSCGR register ****************************************/
-#define RCC_SSCGR_MODPER                0
-#define RCC_SSCGR_INCSTEP               13
-#define RCC_SSCGR_SPREADSEL             30
-#define RCC_SSCGR_SSCGEN                31
+#define RCC_SSCGR_MODPER_POSITION       (0U)
+#define RCC_SSCGR_INCSTEP_POSITION      (13U)
+#define RCC_SSCGR_SPREADSEL_POSITION    (30U)
+#define RCC_SSCGR_SSCGEN_POSITION       (31U)
 
 /**************************************** Bit definition for RCC_PLLI2SCFGR register ****************************************/
-#define RCC_PLLI2SCFGR_PLLI2SM          0
-#define RCC_PLLI2SCFGR_PLLI2SN          6
-#define RCC_PLLI2SCFGR_PLLI2SR          28
+#define RCC_PLLI2SCFGR_PLLI2SM_POSITION (0U)
+#define RCC_PLLI2SCFGR_PLLI2SN_POSITION (6U)
+#define RCC_PLLI2SCFGR_PLLI2SR_POSITION (28U)
 
 /**************************************** Bit definition for RCC_DCKCFGR register ****************************************/
 #define RCC_DCKCFGR_TIMPRE_POSITION     (24U)

@@ -129,17 +129,17 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
         /* Set the new LSE State */
         if (pRCC_Oscillator->LSEState == RCC_LSE_ON)
         {
-            RCC->BDCR |= (1 << RCC_BDCR_LSEON);
+            SET_REGISTER(RCC->BDCR, RCC_BDCR_LSEON, SET);
         }
         else if (pRCC_Oscillator->LSEState == RCC_LSE_BYPASS)
         {
-            RCC->BDCR |= (1 << RCC_BDCR_LSEON);
-            RCC->BDCR |= (1 << RCC_BDCR_LSEBYP);
+            SET_REGISTER(RCC->BDCR, RCC_BDCR_LSEON, SET);
+            SET_REGISTER(RCC->BDCR, RCC_BDCR_LSEBYP, SET);
         }
         else
         {
-            RCC->BDCR &= ~(1 << RCC_BDCR_LSEON);
-            RCC->BDCR &= ~(1 << RCC_BDCR_LSEBYP);
+            SET_REGISTER(RCC->BDCR, RCC_BDCR_LSEON, RESET);
+            SET_REGISTER(RCC->BDCR, RCC_BDCR_LSEBYP, RESET);
         }
 
         /* Check the LSE State */
