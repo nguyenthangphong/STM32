@@ -222,20 +222,61 @@ typedef struct
  **************************************************************************************************************************************/
 
 /**************************************** Bit definition for SPI_CR1 register ****************************************/
-#define SPI_CR1_CPHA            0
-#define SPI_CR1_CPOL            1
-#define SPI_CR1_MSTR            2
-#define SPI_CR1_BR              3
-#define SPI_CR1_SPE             6
-#define SPI_CR1_LSBFIRST        7
-#define SPI_CR1_SSI             8
-#define SPI_CR1_SSM             9
-#define SPI_CR1_RXONLY          10
-#define SPI_CR1_DFF             11
-#define SPI_CR1_CRCNEXT         12
-#define SPI_CR1_CRCEN           13
-#define SPI_CR1_BIDIOE          14
-#define SPI_CR1_BIDIMODE        15
+#define SPI_CR1_CPHA_POSITION       (0U)
+#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
+
+#define SPI_CR1_CPOL_POSITION       (1U)
+#define SPI_CR1_CPOL_MASK           (0x1U << SPI_CR1_CPOL_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_CPOL                SPI_CR1_CPOL_MASK
+
+#define SPI_CR1_MSTR_POSITION       (2U)
+#define SPI_CR1_MSTR_MASK           (0x1U << SPI_CR1_MSTR_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_MSTR                SPI_CR1_MSTR_MASK
+
+#define SPI_CR1_BR_POSITION         (3U)
+#define SPI_CR1_BR_MASK             (0x1U << SPI_CR1_BR_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_BR                  SPI_CR1_BR_MASK
+
+#define SPI_CR1_SPE_POSITION        (6U)
+#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
+
+#define SPI_CR1_LSBFIRST_POSITION   (7U)
+#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
+
+#define SPI_CR1_SSI_POSITION        (8U)
+#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
+
+#define SPI_CR1_SSM_POSITION        (9U)
+#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
+
+#define SPI_CR1_RXONLY_POSITION     (10U)
+#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
+
+#define SPI_CR1_DFF_POSITION        (11U)
+#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
+
+#define SPI_CR1_CRCNEXT_POSITION    (12U)
+#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
+
+#define SPI_CR1_CRCEN_POSITION      (13U)
+#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
+
+#define SPI_CR1_BIDIOE_POSITION     (14U)
+#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
+
+#define SPI_CR1_BIDIMODE_POSITION   (15U)
+#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
 
 /**************************************** Bit definition for SPI_CR2 register ****************************************/
 #define SPI_CR2_RXDMAEN         0
@@ -745,14 +786,40 @@ typedef struct
 
 /**************************************** Bit definition for RCC_AHB1ENR register ****************************************/
 #define RCC_AHB1ENR_GPIOAEN_POSITION    (0U)
+#define RCC_AHB1ENR_GPIOAEN_MASK        (0x1U << RCC_AHB1ENR_GPIOAEN_POSITION)              /*!< 0x00000001 */
+#define RCC_AHB1ENR_GPIOAEN             RCC_AHB1ENR_GPIOAEN_MASK
+
 #define RCC_AHB1ENR_GPIOBEN_POSITION    (1U)
+#define RCC_AHB1ENR_GPIOBEN_MASK        (0x1U << RCC_AHB1ENR_GPIOBEN_POSITION)              /*!< 0x00000002 */
+#define RCC_AHB1ENR_GPIOBEN             RCC_AHB1ENR_GPIOBEN_MASK
+
 #define RCC_AHB1ENR_GPIOCEN_POSITION    (2U)
+#define RCC_AHB1ENR_GPIOCEN_MASK        (0x1U << RCC_AHB1ENR_GPIOCEN_POSITION)              /*!< 0x00000004 */
+#define RCC_AHB1ENR_GPIOCEN             RCC_AHB1ENR_GPIOCEN_MASK
+
 #define RCC_AHB1ENR_GPIODEN_POSITION    (3U)
+#define RCC_AHB1ENR_GPIODEN_MASK        (0x1U << RCC_AHB1ENR_GPIODEN_POSITION)              /*!< 0x00000008 */
+#define RCC_AHB1ENR_GPIODEN             RCC_AHB1ENR_GPIODEN_MASK
+
 #define RCC_AHB1ENR_GPIOEEN_POSITION    (4U)
+#define RCC_AHB1ENR_GPIOEEN_MASK        (0x1U << RCC_AHB1ENR_GPIOEEN_POSITION)              /*!< 0x00000010 */
+#define RCC_AHB1ENR_GPIOEEN             RCC_AHB1ENR_GPIOEEN_MASK
+
 #define RCC_AHB1ENR_GPIOHEN_POSITION    (7U)
+#define RCC_AHB1ENR_GPIOHEN_MASK        (0x1U << RCC_AHB1ENR_GPIOHEN_POSITION)              /*!< 0x00000080 */
+#define RCC_AHB1ENR_GPIOHEN             RCC_AHB1ENR_GPIOHEN_MASK
+
 #define RCC_AHB1ENR_CRCEN_POSITION      (12U)
+#define RCC_AHB1ENR_CRCEN_MASK          (0x1U << RCC_AHB1ENR_CRCEN_POSITION)                /*!< 0x00001000 */
+#define RCC_AHB1ENR_CRCEN               RCC_AHB1ENR_CRCEN_MASK
+
 #define RCC_AHB1ENR_DMA1EN_POSITION     (21U)
+#define RCC_AHB1ENR_DMA1EN_MASK         (0x1U << RCC_AHB1ENR_DMA1EN_POSITION)               /*!< 0x00200000 */
+#define RCC_AHB1ENR_DMA1EN              RCC_AHB1ENR_DMA1EN_MASK
+
 #define RCC_AHB1ENR_DMA2EN_POSITION     (22U)
+#define RCC_AHB1ENR_DMA2EN_MASK         (0x1U << RCC_AHB1ENR_DMA2EN_POSITION)               /*!< 0x00400000 */
+#define RCC_AHB1ENR_DMA2EN              RCC_AHB1ENR_DMA2EN_MASK
 
 /**************************************** Bit definition for RCC_AHB2ENR register ****************************************/
 #define RCC_AHB2ENR_OTGFSEN_POSITION    (7U)
@@ -761,31 +828,101 @@ typedef struct
 
 /**************************************** Bit definition for RCC_APB1ENR register ****************************************/
 #define RCC_APB1ENR_TIM2EN_POSITION     (0U)
+#define RCC_APB1ENR_TIM2EN_MASK         (0x1U << RCC_APB1ENR_TIM2EN_POSITION)               /*!< 0x00000001 */
+#define RCC_APB1ENR_TIM2EN              RCC_APB1ENR_TIM2EN_MASK
+
 #define RCC_APB1ENR_TIM3EN_POSITION     (1U)
+#define RCC_APB1ENR_TIM3EN_MASK         (0x1U << RCC_APB1ENR_TIM3EN_POSITION)               /*!< 0x00000002 */
+#define RCC_APB1ENR_TIM3EN              RCC_APB1ENR_TIM3EN_MASK
+
 #define RCC_APB1ENR_TIM4EN_POSITION     (2U)
+#define RCC_APB1ENR_TIM4EN_MASK         (0x1U << RCC_APB1ENR_TIM4EN_POSITION)               /*!< 0x00000004 */
+#define RCC_APB1ENR_TIM4EN              RCC_APB1ENR_TIM4EN_MASK
+
 #define RCC_APB1ENR_TIM5EN_POSITION     (3U)
+#define RCC_APB1ENR_TIM5EN_MASK         (0x1U << RCC_APB1ENR_TIM5EN_POSITION)               /*!< 0x00000008 */
+#define RCC_APB1ENR_TIM5EN              RCC_APB1ENR_TIM5EN_MASK
+
 #define RCC_APB1ENR_WWDGEN_POSITION     (11U)
+#define RCC_APB1ENR_WWDGEN_MASK         (0x1U << RCC_APB1ENR_WWDGEN_POSITION)               /*!< 0x00000800 */
+#define RCC_APB1ENR_WWDGEN              RCC_APB1ENR_WWDGEN_MASK
+
 #define RCC_APB1ENR_SPI2EN_POSITION     (14U)
+#define RCC_APB1ENR_SPI2EN_MASK         (0x1U << RCC_APB1ENR_SPI2EN_POSITION)               /*!< 0x00004000 */
+#define RCC_APB1ENR_SPI2EN              RCC_APB1ENR_SPI2EN_MASK
+
 #define RCC_APB1ENR_SPI3EN_POSITION     (15U)
+#define RCC_APB1ENR_SPI3EN_MASK         (0x1U << RCC_APB1ENR_SPI3EN_POSITION)               /*!< 0x00008000 */
+#define RCC_APB1ENR_SPI3EN              RCC_APB1ENR_SPI3EN_MASK
+
 #define RCC_APB1ENR_USART2EN_POSITION   (17U)
+#define RCC_APB1ENR_USART2EN_MASK       (0x1U << RCC_APB1ENR_USART2EN_POSITION)             /*!< 0x00020000 */
+#define RCC_APB1ENR_USART2EN            RCC_APB1ENR_USART2EN_MASK
+
 #define RCC_APB1ENR_I2C1EN_POSITION     (21U)
+#define RCC_APB1ENR_I2C1EN_MASK         (0x1U << RCC_APB1ENR_I2C1EN_POSITION)               /*!< 0x00200000 */
+#define RCC_APB1ENR_I2C1EN              RCC_APB1ENR_I2C1EN_MASK
+
 #define RCC_APB1ENR_I2C2EN_POSITION     (22U)
+#define RCC_APB1ENR_I2C2EN_MASK         (0x1U << RCC_APB1ENR_I2C2EN_POSITION)               /*!< 0x00400000 */
+#define RCC_APB1ENR_I2C2EN              RCC_APB1ENR_I2C2EN_MASK
+
 #define RCC_APB1ENR_I2C3EN_POSITION     (23U)
+#define RCC_APB1ENR_I2C3EN_MASK         (0x1U << RCC_APB1ENR_I2C3EN_POSITION)               /*!< 0x00800000 */
+#define RCC_APB1ENR_I2C3EN              RCC_APB1ENR_I2C3EN_MASK
+
 #define RCC_APB1ENR_PWREN_POSITION      (28U)
+#define RCC_APB1ENR_PWREN_MASK          (0x1U << RCC_APB1ENR_PWREN_POSITION)                /*!< 0x10000000 */
+#define RCC_APB1ENR_PWREN               RCC_APB1ENR_PWREN_MASK
 
 /**************************************** Bit definition for RCC_APB2ENR register ****************************************/
 #define RCC_APB2ENR_TIM1EN_POSITION     (0U)
+#define RCC_APB2ENR_TIM1EN_MASK         (0x1U << RCC_APB2ENR_TIM1EN_POSITION)               /*!< 0x00000001 */
+#define RCC_APB2ENR_TIM1EN              RCC_APB2ENR_TIM1EN_MASK
+
 #define RCC_APB2ENR_USART1EN_POSITION   (4U)
+#define RCC_APB2ENR_USART1EN_MASK       (0x1U << RCC_APB2ENR_USART1EN_POSITION)             /*!< 0x00000010 */
+#define RCC_APB2ENR_USART1EN            RCC_APB2ENR_USART1EN_MASK
+
 #define RCC_APB2ENR_USART6EN_POSITION   (5U)
+#define RCC_APB2ENR_USART6EN_MASK       (0x1U << RCC_APB2ENR_USART6EN_POSITION)             /*!< 0x00000020 */
+#define RCC_APB2ENR_USART6EN            RCC_APB2ENR_USART6EN_MASK
+
 #define RCC_APB2ENR_ADC1EN_POSITION     (8U)
+#define RCC_APB2ENR_ADC1EN_MASK         (0x1U << RCC_APB2ENR_ADC1EN_POSITION)               /*!< 0x00000100 */
+#define RCC_APB2ENR_ADC1EN              RCC_APB2ENR_ADC1EN_MASK
+
 #define RCC_APB2ENR_SDIOEN_POSITION     (11U)
+#define RCC_APB2ENR_SDIOEN_MASK         (0x1U << RCC_APB2ENR_SDIOEN_POSITION)               /*!< 0x00000800 */
+#define RCC_APB2ENR_SDIOEN              RCC_APB2ENR_SDIOEN_MASK
+
 #define RCC_APB2ENR_SPI1EN_POSITION     (12U)
+#define RCC_APB2ENR_SPI1EN_MASK         (0x1U << RCC_APB2ENR_SPI1EN_POSITION)               /*!< 0x00001000 */
+#define RCC_APB2ENR_SPI1EN              RCC_APB2ENR_SPI1EN_MASK
+
 #define RCC_APB2ENR_SPI4EN_POSITION     (13U)
+#define RCC_APB2ENR_SPI4EN_MASK         (0x1U << RCC_APB2ENR_SPI4EN_POSITION)               /*!< 0x00002000 */
+#define RCC_APB2ENR_SPI4EN              RCC_APB2ENR_SPI4EN_MASK
+
 #define RCC_APB2ENR_SYSCFGEN_POSITION   (14U)
+#define RCC_APB2ENR_SYSCFGEN_MASK       (0x1U << RCC_APB2ENR_SYSCFGEN_POSITION)             /*!< 0x00004000 */
+#define RCC_APB2ENR_SYSCFGEN            RCC_APB2ENR_SYSCFGEN_MASK
+
 #define RCC_APB2ENR_TIM9EN_POSITION     (16U)
+#define RCC_APB2ENR_TIM9EN_MASK         (0x1U << RCC_APB2ENR_TIM9EN_POSITION)               /*!< 0x00010000 */
+#define RCC_APB2ENR_TIM9EN              RCC_APB2ENR_TIM9EN_MASK
+
 #define RCC_APB2ENR_TIM10EN_POSITION    (17U)
+#define RCC_APB2ENR_TIM10EN_MASK        (0x1U << RCC_APB2ENR_TIM10EN_POSITION)              /*!< 0x00020000 */
+#define RCC_APB2ENR_TIM10EN             RCC_APB2ENR_TIM10EN_MASK
+
 #define RCC_APB2ENR_TIM11EN_POSITION    (18U)
+#define RCC_APB2ENR_TIM11EN_MASK        (0x1U << RCC_APB2ENR_TIM11EN_POSITION)              /*!< 0x00040000 */
+#define RCC_APB2ENR_TIM11EN             RCC_APB2ENR_TIM11EN_MASK
+
 #define RCC_APB2ENR_SPI5EN_POSITION     (20U)
+#define RCC_APB2ENR_SPI5EN_MASK         (0x1U << RCC_APB2ENR_SPI5EN_POSITION)               /*!< 0x00100000 */
+#define RCC_APB2ENR_SPI5EN              RCC_APB2ENR_SPI5EN_MASK
 
 /**************************************** Bit definition for RCC_BDCR register ****************************************/
 #define RCC_BDCR_LSEON_POSITION         (0U)
@@ -793,47 +930,125 @@ typedef struct
 #define RCC_BDCR_LSEON                  RCC_BDCR_LSEON_MASK
 
 #define RCC_BDCR_LSERDY_POSITION        (1U)
+#define RCC_BDCR_LSERDY_MASK            (0x1U << RCC_BDCR_LSERDY_POSITION)                  /*!< 0x00000002 */
+#define RCC_BDCR_LSERDY                 RCC_BDCR_LSERDY_MASK
 
 #define RCC_BDCR_LSEBYP_POSITION        (2U)
 #define RCC_BDCR_LSEBYP_MASK            (0x1U << RCC_BDCR_LSEBYP_POSITION)                  /*!< 0x00000004 */
 #define RCC_BDCR_LSEBYP                 RCC_BDCR_LSEBYP_MASK
 
 #define RCC_BDCR_LSEMOD_POSITION        (3U)
+#define RCC_BDCR_LSEMOD_MASK            (0x1U << RCC_BDCR_LSEMOD_POSITION)                  /*!< 0x00000008 */
+#define RCC_BDCR_LSEMOD                 RCC_BDCR_LSEMOD_MASK
+
 #define RCC_BDCR_RTCSEL_POSITION        (8U)
+#define RCC_BDCR_RTCSEL_MASK            (0x3U << RCC_BDCR_RTCSEL_POSITION)                  /*!< 0x00000300 */
+#define RCC_BDCR_RTCSEL                 RCC_BDCR_RTCSEL_MASK
+#define RCC_BDCR_RTCSEL_0               (0x1U << RCC_BDCR_RTCSEL_POSITION)                  /*!< 0x00000100 */
+#define RCC_BDCR_RTCSEL_1               (0x2U << RCC_BDCR_RTCSEL_POSITION)                  /*!< 0x00000200 */
+
 #define RCC_BDCR_RTCEN_POSITION         (15U)
+#define RCC_BDCR_RTCEN_MASK             (0x1U << RCC_BDCR_RTCEN_POSITION)                   /*!< 0x00008000 */
+#define RCC_BDCR_RTCEN                  RCC_BDCR_RTCEN_MASK
+
 #define RCC_BDCR_BDRST_POSITION         (16U)
+#define RCC_BDCR_BDRST_MASK             (0x1U << RCC_BDCR_BDRST_POSITION)                   /*!< 0x00010000 */
+#define RCC_BDCR_BDRST                  RCC_BDCR_BDRST_MASK
 
 /**************************************** Bit definition for RCC_CSR register ****************************************/
 #define RCC_CSR_LSION_POSITION          (0U)
+#define RCC_CSR_LSION_MASK              (0x1U << RCC_CSR_LSION_POSITION)                    /*!< 0x00000001 */
+#define RCC_CSR_LSION                   RCC_CSR_LSION_MASK
+
 #define RCC_CSR_LSIRDY_POSITION         (1U)
+#define RCC_CSR_LSIRDY_MASK             (0x1U << RCC_CSR_LSIRDY_POSITION)                   /*!< 0x00000002 */
+#define RCC_CSR_LSIRDY                  RCC_CSR_LSIRDY_MASK
+
 #define RCC_CSR_RMVF_POSITION           (24U)
+#define RCC_CSR_RMVF_MASK               (0x1U << RCC_CSR_RMVF_POSITION)                     /*!< 0x01000000 */
+#define RCC_CSR_RMVF                    RCC_CSR_RMVF_MASK
+
 #define RCC_CSR_BORRSTF_POSITION        (25U)
+#define RCC_CSR_BORRSTF_MASK            (0x1U << RCC_CSR_BORRSTF_POSITION)                  /*!< 0x02000000 */
+#define RCC_CSR_BORRSTF                 RCC_CSR_BORRSTF_MASK
+
 #define RCC_CSR_PINRSTF_POSITION        (26U)
+#define RCC_CSR_PINRSTF_MASK            (0x1U << RCC_CSR_PINRSTF_POSITION)                  /*!< 0x04000000 */
+#define RCC_CSR_PINRSTF                 RCC_CSR_PINRSTF_MASK
+
 #define RCC_CSR_PORRSTF_POSITION        (27U)
+#define RCC_CSR_PORRSTF_MASK            (0x1U << RCC_CSR_PORRSTF_POSITION)                  /*!< 0x08000000 */
+#define RCC_CSR_PORRSTF                 RCC_CSR_PORRSTF_MASK
+
 #define RCC_CSR_SFTRSTF_POSITION        (28U)
+#define RCC_CSR_SFTRSTF_MASK            (0x1U << RCC_CSR_SFTRSTF_POSITION)                  /*!< 0x10000000 */
+#define RCC_CSR_SFTRSTF                 RCC_CSR_SFTRSTF_MASK
+
 #define RCC_CSR_IWDGRSTF_POSITION       (29U)
+#define RCC_CSR_IWDGRSTF_MASK           (0x1U << RCC_CSR_IWDGRSTF_POSITION)                 /*!< 0x20000000 */
+#define RCC_CSR_IWDGRSTF                RCC_CSR_IWDGRSTF_MASK
+
 #define RCC_CSR_WWDGRSTF_POSITION       (30U)
+#define RCC_CSR_WWDGRSTF_MASK           (0x1U << RCC_CSR_WWDGRSTF_POSITION)                 /*!< 0x40000000 */
+#define RCC_CSR_WWDGRSTF                RCC_CSR_WWDGRSTF_MASK
+
 #define RCC_CSR_LPWRRSTF_POSITION       (31U)
+#define RCC_CSR_LPWRRSTF_MASK           (0x1U << RCC_CSR_LPWRRSTF_POSITION)                 /*!< 0x80000000 */
+#define RCC_CSR_LPWRRSTF                RCC_CSR_LPWRRSTF_MASK
 
 /**************************************** Bit definition for RCC_SSCGR register ****************************************/
 #define RCC_SSCGR_MODPER_POSITION       (0U)
+#define RCC_SSCGR_MODPER_MASK           (0x1U << RCC_SSCGR_MODPER_POSITION)                 /*!< 0x00000001 */
+#define RCC_SSCGR_MODPER                RCC_SSCGR_MODPER_MASK
+
 #define RCC_SSCGR_INCSTEP_POSITION      (13U)
+#define RCC_SSCGR_INCSTEP_MASK          (0x1U << RCC_SSCGR_INCSTEP_POSITION)                /*!< 0x00002000 */
+#define RCC_SSCGR_INCSTEP               RCC_SSCGR_INCSTEP_MASK
+
 #define RCC_SSCGR_SPREADSEL_POSITION    (30U)
+#define RCC_SSCGR_SPREADSEL_MASK        (0x1U << RCC_SSCGR_SPREADSEL_POSITION)              /*!< 0x40000000 */
+#define RCC_SSCGR_SPREADSEL             RCC_SSCGR_SPREADSEL_MASK
+
 #define RCC_SSCGR_SSCGEN_POSITION       (31U)
+#define RCC_SSCGR_SSCGEN_MASK           (0x1U << RCC_SSCGR_SSCGEN_POSITION)                 /*!< 0x80000000 */
+#define RCC_SSCGR_SSCGEN                RCC_SSCGR_SSCGEN_MASK
 
 /**************************************** Bit definition for RCC_PLLI2SCFGR register ****************************************/
 #define RCC_PLLI2SCFGR_PLLI2SM_POSITION (0U)
+#define RCC_PLLI2SCFGR_PLLI2SM_MASK     (0x3FU << RCC_PLLI2SCFGR_PLLI2SM_POSITION)          /*!< 0x0000003F */
+#define RCC_PLLI2SCFGR_PLLI2SM          RCC_PLLI2SCFGR_PLLI2SM_MASK
+#define RCC_PLLI2SCFGR_PLLI2SM_0        (0x01U << RCC_PLLI2SCFGR_PLLI2SM_POSITION)          /*!< 0x00000001 */
+#define RCC_PLLI2SCFGR_PLLI2SM_1        (0x02U << RCC_PLLI2SCFGR_PLLI2SM_POSITION)          /*!< 0x00000002 */
+#define RCC_PLLI2SCFGR_PLLI2SM_2        (0x04U << RCC_PLLI2SCFGR_PLLI2SM_POSITION)          /*!< 0x00000004 */
+#define RCC_PLLI2SCFGR_PLLI2SM_3        (0x08U << RCC_PLLI2SCFGR_PLLI2SM_POSITION)          /*!< 0x00000008 */
+#define RCC_PLLI2SCFGR_PLLI2SM_4        (0x10U << RCC_PLLI2SCFGR_PLLI2SM_POSITION)          /*!< 0x00000010 */
+#define RCC_PLLI2SCFGR_PLLI2SM_5        (0x20U << RCC_PLLI2SCFGR_PLLI2SM_POSITION)          /*!< 0x00000020 */
+
 #define RCC_PLLI2SCFGR_PLLI2SN_POSITION (6U)
+#define RCC_PLLI2SCFGR_PLLI2SN_MASK     (0x1FFU << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00007FC0 */
+#define RCC_PLLI2SCFGR_PLLI2SN          RCC_PLLI2SCFGR_PLLI2SN_MASK
+#define RCC_PLLI2SCFGR_PLLI2SN_0        (0x001U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00000040 */
+#define RCC_PLLI2SCFGR_PLLI2SN_1        (0x002U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00000080 */
+#define RCC_PLLI2SCFGR_PLLI2SN_2        (0x004U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00000100 */
+#define RCC_PLLI2SCFGR_PLLI2SN_3        (0x008U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00000200 */
+#define RCC_PLLI2SCFGR_PLLI2SN_4        (0x010U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00000400 */
+#define RCC_PLLI2SCFGR_PLLI2SN_5        (0x020U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00000800 */
+#define RCC_PLLI2SCFGR_PLLI2SN_6        (0x040U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00001000 */
+#define RCC_PLLI2SCFGR_PLLI2SN_7        (0x080U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00002000 */
+#define RCC_PLLI2SCFGR_PLLI2SN_8        (0x100U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00004000 */
+
 #define RCC_PLLI2SCFGR_PLLI2SR_POSITION (28U)
+#define RCC_PLLI2SCFGR_PLLI2SR_MASK     (0x7U << RCC_PLLI2SCFGR_PLLI2SR_POSITION)           /*!< 0x70000000 */
+#define RCC_PLLI2SCFGR_PLLI2SR          RCC_PLLI2SCFGR_PLLI2SR_MASK
 
 /**************************************** Bit definition for RCC_DCKCFGR register ****************************************/
 #define RCC_DCKCFGR_TIMPRE_POSITION     (24U)
 #define RCC_DCKCFGR_TIMPRE_MASK         (0x1U << RCC_DCKCFGR_TIMPRE_POSITION)               /*!< 0x01000000 */
 #define RCC_DCKCFGR_TIMPRE              RCC_DCKCFGR_TIMPRE_MASK
 
-/*
- * Peripheral Definition
- */
+/***************************************************************************************************************************
+ ************************************************** Peripheral Definition **************************************************
+ **************************************************************************************************************************/
 
 #define GPIOA                   ((st_GPIO_RegDef_t *)GPIOA_BASEADDR)
 #define GPIOB                   ((st_GPIO_RegDef_t *)GPIOB_BASEADDR)
@@ -841,115 +1056,87 @@ typedef struct
 #define GPIOD                   ((st_GPIO_RegDef_t *)GPIOD_BASEADDR)
 #define GPIOE                   ((st_GPIO_RegDef_t *)GPIOE_BASEADDR)
 #define GPIOH                   ((st_GPIO_RegDef_t *)GPIOH_BASEADDR)
-
 #define RCC                     ((st_RCC_RegDef_t *)RCC_BASEADDR)
 #define EXTI                    ((st_EXTI_RegDef_t *)EXTI_BASEADDR)
 #define SYSCFG                  ((st_SYSCFG_RegDef_t *)SYSCFG_BASEADDR)
-
 #define SPI1                    ((st_SPI_RegDef_t *)SPI1_BASEADDR)
 #define SPI2                    ((st_SPI_RegDef_t *)SPI2_BASEADDR)
 #define SPI3                    ((st_SPI_RegDef_t *)SPI3_BASEADDR)
 #define SPI4                    ((st_SPI_RegDef_t *)SPI4_BASEADDR)
 #define SPI5                    ((st_SPI_RegDef_t *)SPI5_BASEADDR)
-
 #define USART1                  ((st_USART_RegDef_t *)USART1_BASEADDR)
 #define USART2                  ((st_USART_RegDef_t *)USART2_BASEADDR)
 #define USART6                  ((st_USART_RegDef_t *)USART6_BASEADDR)
 
-/******************************* Enable **********************************/
+/************************************************************************************************************************
+ ************************************************** Enable Peripherals **************************************************
+ ***********************************************************************************************************************/
 
-/*
- * Clock Enable Macros for GPIOx Peripherals
- */
+/* Enable for GPIOx Peripherals */
+#define GPIOA_PCLK_EN()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOAEN, ENABLE))   /*!< Enable GPIOA */
+#define GPIOB_PCLK_EN()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOBEN, ENABLE))   /*!< Enable GPIOB */
+#define GPIOC_PCLK_EN()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOCEN, ENABLE))   /*!< Enable GPIOC */
+#define GPIOD_PCLK_EN()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIODEN, ENABLE))   /*!< Enable GPIOD */
+#define GPIOE_PCLK_EN()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOEEN, ENABLE))   /*!< Enable GPIOE */
+#define GPIOH_PCLK_EN()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOHEN, ENABLE))   /*!< Enable GPIOH */
 
-#define GPIOA_PCLK_EN()         (RCC->AHB1ENR |= (RCC_AHB1ENR_GPIOAEN))
-#define GPIOB_PCLK_EN()         (RCC->AHB1ENR |= (RCC_AHB1ENR_GPIOBEN))
-#define GPIOC_PCLK_EN()         (RCC->AHB1ENR |= (RCC_AHB1ENR_GPIOCEN))
-#define GPIOD_PCLK_EN()         (RCC->AHB1ENR |= (RCC_AHB1ENR_GPIODEN))
-#define GPIOE_PCLK_EN()         (RCC->AHB1ENR |= (RCC_AHB1ENR_GPIOEEN))
-#define GPIOH_PCLK_EN()         (RCC->AHB1ENR |= (RCC_AHB1ENR_GPIOHEN))
+/* Enable for I2Cx Peripherals */
+#define I2C1_PCLK_EN()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_I2C1EN, ENABLE))    /*!< Enable I2C1 */
+#define I2C2_PCLK_EN()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_I2C2EN, ENABLE))    /*!< Enable I2C2 */
+#define I2C3_PCLK_EN()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_I2C3EN, ENABLE))    /*!< Enable I2C3 */
 
-/*
- * Clock Enable Macros for I2Cx Peripherals
- */
+/* Enable for SPIx Peripherals */
+#define SPI1_PCLK_EN()          (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_SPI1EN, ENABLE))    /*!< Enable SPI1 */
+#define SPI2_PCLK_EN()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_SPI2EN, ENABLE))    /*!< Enable SPI2 */
+#define SPI3_PCLK_EN()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_SPI3EN, ENABLE))    /*!< Enable SPI3 */
+#define SPI4_PCLK_EN()          (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_SPI4EN, ENABLE))    /*!< Enable SPI4 */
+#define SPI5_PCLK_EN()          (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_SPI5EN, ENABLE))    /*!< Enable SPI5 */
 
-#define I2C1_PCLK_EN()          (RCC->APB1ENR |= (RCC_APB1ENR_I2C1EN))
-#define I2C2_PCLK_EN()          (RCC->APB1ENR |= (RCC_APB1ENR_I2C2EN))
-#define I2C3_PCLK_EN()          (RCC->APB1ENR |= (RCC_APB1ENR_I2C3EN))
+/* Enable for USARTx Peripherals */
+#define USART1_PCLK_EN()        (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_USART1EN, ENABLE))  /*!< Enable USART1 */
+#define USART2_PCLK_EN()        (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_USART2EN, ENABLE))  /*!< Enable USART2 */
+#define USART6_PCLK_EN()        (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_USART6EN, ENABLE))  /*!< Enable USART3 */
 
-/*
- * Clock Enable Macros for SPIx Peripherals
- */
+/* Enable for SYSCFG Peripherals */
+#define SYSCFG_PCLK_EN()        (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_SYSCFGEN, ENABLE))  /*!< Enable SYSCFG */
 
-#define SPI1_PCLK_EN()          (RCC->APB2ENR |= (RCC_APB2ENR_SPI1EN))
-#define SPI2_PCLK_EN()          (RCC->APB1ENR |= (RCC_APB1ENR_SPI2EN))
-#define SPI3_PCLK_EN()          (RCC->APB1ENR |= (RCC_APB1ENR_SPI3EN))
-#define SPI4_PCLK_EN()          (RCC->APB2ENR |= (RCC_APB2ENR_SPI4EN))
-#define SPI5_PCLK_EN()          (RCC->APB2ENR |= (RCC_APB2ENR_SPI5EN))
+/*************************************************************************************************************************
+ ************************************************** Disable Peripherals **************************************************
+ ************************************************************************************************************************/
 
-/*
- * Clock Enable Macros for USARTx Peripherals
- */
+/* Disable for GPIOx Peripherals */
+#define GPIOA_PCLK_DI()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOAEN, DISABLE))  /*!< Disable GPIOA */
+#define GPIOB_PCLK_DI()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOBEN, DISABLE))  /*!< Disable GPIOB */
+#define GPIOC_PCLK_DI()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOCEN, DISABLE))  /*!< Disable GPIOC */
+#define GPIOD_PCLK_DI()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIODEN, DISABLE))  /*!< Disable GPIOD */
+#define GPIOE_PCLK_DI()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOEEN, DISABLE))  /*!< Disable GPIOE */
+#define GPIOH_PCLK_DI()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOHEN, DISABLE))  /*!< Disable GPIOH */
 
-#define USART1_PCLK_EN()        (RCC->APB2ENR |= (RCC_APB2ENR_USART1EN))
-#define USART2_PCLK_EN()        (RCC->APB1ENR |= (RCC_APB1ENR_USART2EN))
-#define USART6_PCLK_EN()        (RCC->APB2ENR |= (RCC_APB2ENR_USART6EN))
+/* Disable for I2Cx Peripherals */
+#define I2C1_PCLK_DI()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_I2C1EN, DISABLE))   /*!< Disable I2C1 */
+#define I2C2_PCLK_DI()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_I2C2EN, DISABLE))   /*!< Disable I2C2 */
+#define I2C3_PCLK_DI()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_I2C3EN, DISABLE))   /*!< Disable I2C3 */
 
-/*
- * Clock Enable Macros for SYSCFG Peripherals
- */
+/* Disable for SPIx Peripherals */
+#define SPI1_PCLK_DI()          (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_SPI1EN, DISABLE))   /*!< Disable SPI1 */
+#define SPI2_PCLK_DI()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_SPI2EN, DISABLE))   /*!< Disable SPI2 */
+#define SPI3_PCLK_DI()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_SPI3EN, DISABLE))   /*!< Disable SPI3 */
+#define SPI4_PCLK_DI()          (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_SPI4EN, DISABLE))   /*!< Disable SPI4 */
+#define SPI5_PCLK_DI()          (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_SPI5EN, DISABLE))   /*!< Disable SPI5 */
 
-#define SYSCFG_PCLK_EN()        (RCC->APB2ENR |= (RCC_APB2ENR_SYSCFGEN))
+/* Disable for USARTx Peripherals */
+#define USART1_PCLK_DI()        (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_USART1EN, DISABLE)) /*!< Disable USART1 */
+#define USART2_PCLK_DI()        (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_USART2EN, DISABLE)) /*!< Disable USART2 */
+#define USART6_PCLK_DI()        (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_USART6EN, DISABLE)) /*!< Disable USART6 */
 
-/******************************* Disable **********************************/
+/* Disable for SYSCFG Peripherals */
+#define SYSCFG_PCLK_DI()        (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_SYSCFGEN, DISABLE)) /*!< Disable SYSCFG */
 
-/*
- * Clock Disable Macros for GPIOx Peripherals
- */
+/***********************************************************************************************************************
+ ************************************************** Reset Peripherals **************************************************
+ **********************************************************************************************************************/
 
-#define GPIOA_PCLK_DI()         (RCC->AHB1ENR &= ~(RCC_AHB1ENR_GPIOAEN))
-#define GPIOB_PCLK_DI()         (RCC->AHB1ENR &= ~(RCC_AHB1ENR_GPIOBEN))
-#define GPIOC_PCLK_DI()         (RCC->AHB1ENR &= ~(RCC_AHB1ENR_GPIOCEN))
-#define GPIOD_PCLK_DI()         (RCC->AHB1ENR &= ~(RCC_AHB1ENR_GPIODEN))
-#define GPIOE_PCLK_DI()         (RCC->AHB1ENR &= ~(RCC_AHB1ENR_GPIOEEN))
-#define GPIOH_PCLK_DI()         (RCC->AHB1ENR &= ~(RCC_AHB1ENR_GPIOHEN))
-
-/*
- * Clock Disable Macros for I2Cx Peripherals
- */
-
-#define I2C1_PCLK_DI()          (RCC->APB1ENR &= ~(RCC_APB1ENR_I2C1EN))
-#define I2C2_PCLK_DI()          (RCC->APB1ENR &= ~(RCC_APB1ENR_I2C2EN))
-#define I2C3_PCLK_DI()          (RCC->APB1ENR &= ~(RCC_APB1ENR_I2C3EN))
-
-/*
- * Clock Disable Macros for SPIx Peripherals
- */
-
-#define SPI1_PCLK_DI()          (RCC->APB2ENR &= ~(RCC_APB2ENR_SPI1EN))
-#define SPI2_PCLK_DI()          (RCC->APB1ENR &= ~(RCC_APB1ENR_SPI2EN))
-#define SPI3_PCLK_DI()          (RCC->APB1ENR &= ~(RCC_APB1ENR_SPI3EN))
-#define SPI4_PCLK_DI()          (RCC->APB2ENR &= ~(RCC_APB2ENR_SPI4EN))
-#define SPI5_PCLK_DI()          (RCC->APB2ENR &= ~(RCC_APB2ENR_SPI5EN))
-
-/*
- * Clock Disable Macros for USARTx Peripherals
- */
-
-#define USART1_PCLK_DI()        (RCC->APB2ENR &= ~(RCC_APB2ENR_USART1EN))
-#define USART2_PCLK_DI()        (RCC->APB1ENR &= ~(RCC_APB1ENR_USART2EN))
-#define USART6_PCLK_DI()        (RCC->APB2ENR &= ~(RCC_APB2ENR_USART6EN))
-
-/*
- * Clock Disable Macros for SYSCFG Peripherals
- */
-
-#define SYSCFG_PCLK_DI()        (RCC->APB2ENR &= ~(RCC_APB2ENR_SYSCFGEN))
-
-/*
- * Macros to Reset GPIOx Peripherals
- */
-
+/* Reset GPIOx Peripherals */
 #define GPIOA_REG_RESET()       do { (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOARST, SET)); (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOARST, RESET)); } while (0)
 #define GPIOB_REG_RESET()       do { (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOBRST, SET)); (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOBRST, RESET)); } while (0)
 #define GPIOC_REG_RESET()       do { (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOCRST, SET)); (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOCRST, RESET)); } while (0)
@@ -957,52 +1144,26 @@ typedef struct
 #define GPIOE_REG_RESET()       do { (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOERST, SET)); (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOERST, RESET)); } while (0)
 #define GPIOH_REG_RESET()       do { (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOHRST, SET)); (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOHRST, RESET)); } while (0)
 
-/*
- * Macros to Reset SPIx Peripherals
- */
-
+/* Reset SPIx Peripherals */
 #define SPI1_REG_RESET()        do { (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI1RST, SET)); (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI1RST, RESET)); } while (0)
 #define SPI2_REG_RESET()        do { (SET_REGISTER(RCC->APB1RSTR, RCC_APB1RSTR_SPI2RST, SET)); (SET_REGISTER(RCC->APB1RSTR, RCC_APB1RSTR_SPI2RST, RESET)); } while (0)
 #define SPI3_REG_RESET()        do { (SET_REGISTER(RCC->APB1RSTR, RCC_APB1RSTR_SPI3RST, SET)); (SET_REGISTER(RCC->APB1RSTR, RCC_APB1RSTR_SPI3RST, RESET)); } while (0)
 #define SPI4_REG_RESET()        do { (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI4RST, SET)); (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI4RST, RESET)); } while (0)
 #define SPI5_REG_RESET()        do { (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI5RST, SET)); (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI5RST, RESET)); } while (0)
 
-/*
- * Return port code for given GPIOx base address
- */
+/* Return port code for given GPIOx base address */
+#define GPIO_BASEADDR_TO_CODE(x)    ((x == GPIOA) ? 0U : (x == GPIOB) ? 1U : (x == GPIOC) ? 2U : (x == GPIOD) ? 3U : (x == GPIOE) ? 4U : (x == GPIOH) ? 7U : 0U)
 
-#define GPIO_BASEADDR_TO_CODE(x)    ((x == GPIOA) ? 0 : (x == GPIOB) ? 1 : (x == GPIOC) ? 2 : (x == GPIOD) ? 3 : (x == GPIOE) ? 4 : (x == GPIOH) ? 7 : 0)
+/* IRQ (Interrupt Request) Numbers of STM32F411x MCU */
+#define IRQ_NO_EXTI0            (6U)
+#define IRQ_NO_EXTI1            (7U)
+#define IRQ_NO_EXTI2            (8U)
+#define IRQ_NO_EXTI3            (9U)
+#define IRQ_NO_EXTI4            (10U)
+#define IRQ_NO_EXTI9_5          (23U)
+#define IRQ_NO_EXTI15_10        (40U)
 
-/*
- * Some Generic Macros
- */
-
-#define ENABLE                  1
-#define DISABLE                 0
-#define SET                     ENABLE
-#define RESET                   DISABLE
-#define GPIO_PIN_SET            ENABLE
-#define GPIO_PIN_RESET          DISABLE
-#define FLAG_SET                SET
-#define FLAG_RESET              RESET
-#define UNUSED(x)               ((void)x)
-
-/* 
- * IRQ (Interrupt Request) Numbers of STM32F411x MCU 
- */
-
-#define IRQ_NO_EXTI0            6
-#define IRQ_NO_EXTI1            7
-#define IRQ_NO_EXTI2            8
-#define IRQ_NO_EXTI3            9
-#define IRQ_NO_EXTI4            10
-#define IRQ_NO_EXTI9_5          23
-#define IRQ_NO_EXTI15_10        40
-
-/* 
- * Macros for all the possible priority levels
- */
-
+/* Macros for all the possible priority levels */
 #define IRQ_NO_PRIORITY_0       0
 #define IRQ_NO_PRIORITY_15      15
 
