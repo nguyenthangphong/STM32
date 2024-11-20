@@ -222,81 +222,183 @@ typedef struct
  **************************************************************************************************************************************/
 
 /**************************************** Bit definition for SPI_CR1 register ****************************************/
-#define SPI_CR1_CPHA_POSITION       (0U)
-#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_CPHA_POS            (0U)
+#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POS)                         /*!< 0x00000001 */
 #define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
 
-#define SPI_CR1_CPOL_POSITION       (1U)
-#define SPI_CR1_CPOL_MASK           (0x1U << SPI_CR1_CPOL_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_CPOL_POS            (1U)
+#define SPI_CR1_CPOL_MASK           (0x1U << SPI_CR1_CPOL_POS)                         /*!< 0x00000002 */
 #define SPI_CR1_CPOL                SPI_CR1_CPOL_MASK
 
-#define SPI_CR1_MSTR_POSITION       (2U)
-#define SPI_CR1_MSTR_MASK           (0x1U << SPI_CR1_MSTR_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_MSTR_POS            (2U)
+#define SPI_CR1_MSTR_MASK           (0x1U << SPI_CR1_MSTR_POS)                         /*!< 0x00000004 */
 #define SPI_CR1_MSTR                SPI_CR1_MSTR_MASK
 
-#define SPI_CR1_BR_POSITION         (3U)
-#define SPI_CR1_BR_MASK             (0x1U << SPI_CR1_BR_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_BR_POS              (3U)
+#define SPI_CR1_BR_MASK             (0x1U << SPI_CR1_BR_POS)                           /*!< 0x00000008 */
 #define SPI_CR1_BR                  SPI_CR1_BR_MASK
 
-#define SPI_CR1_SPE_POSITION        (6U)
-#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
+#define SPI_CR1_SPE_POS             (6U)
+#define SPI_CR1_SPE_MASK            (0x1U << SPI_CR1_SPE_POS)                          /*!< 0x00000040 */
+#define SPI_CR1_SPE                 SPI_CR1_SPE_MASK
+
+#define SPI_CR1_LSBFIRST_POS        (7U)
+#define SPI_CR1_LSBFIRST_MASK       (0x1U << SPI_CR1_LSBFIRST_POS)                     /*!< 0x00000080 */
+#define SPI_CR1_LSBFIRST            SPI_CR1_LSBFIRST_MASK
+
+#define SPI_CR1_SSI_POS             (8U)
+#define SPI_CR1_SSI_MASK            (0x1U << SPI_CR1_SSI_POS)                          /*!< 0x00000100 */
+#define SPI_CR1_SSI                 SPI_CR1_SSI_MASK
+
+#define SPI_CR1_SSM_POS             (9U)
+#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POS)                         /*!< 0x00000200 */
 #define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
 
-#define SPI_CR1_LSBFIRST_POSITION   (7U)
-#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
-#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
+#define SPI_CR1_RXONLY_POS          (10U)
+#define SPI_CR1_RXONLY_MASK         (0x1U << SPI_CR1_RXONLY_POS)                       /*!< 0x00000400 */
+#define SPI_CR1_RXONLY              SPI_CR1_RXONLY_MASK
 
-#define SPI_CR1_SSI_POSITION        (8U)
-#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
-#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
+#define SPI_CR1_DFF_POS             (11U)
+#define SPI_CR1_DFF_MASK            (0x1U << SPI_CR1_DFF_POS)                          /*!< 0x00000800 */
+#define SPI_CR1_DFF                 SPI_CR1_DFF_MASK
 
-#define SPI_CR1_SSM_POSITION        (9U)
-#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
-#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
+#define SPI_CR1_CRCNEXT_POS         (12U)
+#define SPI_CR1_CRCNEXT_MASK        (0x1U << SPI_CR1_CRCNEXT_POS)                      /*!< 0x00001000 */
+#define SPI_CR1_CRCNEXT             SPI_CR1_CRCNEXT_MASK
 
-#define SPI_CR1_RXONLY_POSITION     (10U)
-#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
-#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
+#define SPI_CR1_CRCEN_POS           (13U)
+#define SPI_CR1_CRCEN_MASK          (0x1U << SPI_CR1_CRCEN_POS)                        /*!< 0x00002000 */
+#define SPI_CR1_CRCEN               SPI_CR1_CRCEN_MASK
 
-#define SPI_CR1_DFF_POSITION        (11U)
-#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
-#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
+#define SPI_CR1_BIDIOE_POS          (14U)
+#define SPI_CR1_BIDIOE_MASK         (0x1U << SPI_CR1_BIDIOE_POS)                       /*!< 0x00004000 */
+#define SPI_CR1_BIDIOE              SPI_CR1_BIDIOE_MASK
 
-#define SPI_CR1_CRCNEXT_POSITION    (12U)
-#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
-#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
-
-#define SPI_CR1_CRCEN_POSITION      (13U)
-#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
-#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
-
-#define SPI_CR1_BIDIOE_POSITION     (14U)
-#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
-#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
-
-#define SPI_CR1_BIDIMODE_POSITION   (15U)
-#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POSITION)                         /*!< 0x00000000 */
-#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
+#define SPI_CR1_BIDIMODE_POS        (15U)
+#define SPI_CR1_BIDIMODE_MASK       (0x1U << SPI_CR1_BIDIMODE_POS)                     /*!< 0x00008000 */
+#define SPI_CR1_BIDIMODE            SPI_CR1_BIDIMODE_MASK
 
 /**************************************** Bit definition for SPI_CR2 register ****************************************/
-#define SPI_CR2_RXDMAEN         0
-#define SPI_CR2_TXDMAEN         1
-#define SPI_CR2_SSOE            2
-#define SPI_CR2_FRF             4
-#define SPI_CR2_ERRIE           5
-#define SPI_CR2_RXNEIE          6
-#define SPI_CR2_TXEIE           7
+#define SPI_CR2_RXDMAEN_POS         (0U)
+#define SPI_CR2_RXDMAEN_MASK        (0x1U << SPI_CR2_RXDMAEN_POS)                      /*!< 0x00000001 */
+#define SPI_CR2_RXDMAEN             SPI_CR2_RXDMAEN_MASK
+
+#define SPI_CR2_TXDMAEN_POS         (1U)
+#define SPI_CR2_TXDMAEN_MASK        (0x1U << SPI_CR2_TXDMAEN_POS)                      /*!< 0x00000002 */
+#define SPI_CR2_TXDMAEN             SPI_CR2_TXDMAEN_MASK
+
+#define SPI_CR2_SSOE_POS            (2U)
+#define SPI_CR2_SSOE_MASK           (0x1U << SPI_CR2_SSOE_POS)                         /*!< 0x00000004 */
+#define SPI_CR2_SSOE                SPI_CR2_SSOE_MASK
+
+#define SPI_CR2_FRF_POS             (4U)
+#define SPI_CR2_FRF_MASK            (0x1U << SPI_CR2_FRF_POS)                          /*!< 0x00000010 */
+#define SPI_CR2_FRF                 SPI_CR2_FRF_MASK
+
+#define SPI_CR2_ERRIE_POS           (5U)
+#define SPI_CR2_ERRIE_MASK          (0x1U << SPI_CR2_ERRIE_POS)                        /*!< 0x00000020 */
+#define SPI_CR2_ERRIE               SPI_CR2_ERRIE_MASK
+
+#define SPI_CR2_RXNEIE_POS          (6U)
+#define SPI_CR2_RXNEIE_MASK         (0x1U << SPI_CR2_RXNEIE_POS)                       /*!< 0x00000040 */
+#define SPI_CR2_RXNEIE              SPI_CR2_RXNEIE_MASK
+
+#define SPI_CR2_TXEIE_POS           (7U)
+#define SPI_CR2_TXEIE_MASK          (0x1U << SPI_CR2_TXEIE_POS)                        /*!< 0x00000080 */
+#define SPI_CR2_TXEIE               SPI_CR2_TXEIE_MASK
 
 /**************************************** Bit definition for SPI_SR register ****************************************/
-#define SPI_SR_RXNE             0
-#define SPI_SR_TXE              1
-#define SPI_SR_CHSIDE           2
-#define SPI_SR_UDR              3
-#define SPI_SR_CRCERR           4
-#define SPI_SR_MODF             5
-#define SPI_SR_OVR              6
-#define SPI_SR_BSY              7
-#define SPI_SR_FRE              8
+#define SPI_SR_RXNE_POS             (0U)
+#define SPI_SR_RXNE_MASK            (0x1U << SPI_SR_RXNE_POS)                          /*!< 0x00000001 */
+#define SPI_SR_RXNE                 SPI_SR_RXNE_MASK
+
+#define SPI_SR_TXE_POS              (1U)
+#define SPI_SR_TXE_MASK             (0x1U << SPI_SR_TXE_POS)                           /*!< 0x00000002 */
+#define SPI_SR_TXE                  SPI_SR_TXE_MASK
+
+#define SPI_SR_CHSIDE_POS           (2U)
+#define SPI_SR_CHSIDE_MASK          (0x1U << SPI_SR_CHSIDE_POS)                        /*!< 0x00000004 */
+#define SPI_SR_CHSIDE               SPI_SR_CHSIDE_MASK
+
+#define SPI_SR_UDR_POS              (3U)
+#define SPI_SR_UDR_MASK             (0x1U << SPI_SR_UDR_POS)                           /*!< 0x00000008 */
+#define SPI_SR_UDR                  SPI_SR_UDR_MASK
+
+#define SPI_SR_CRCERR_POS           (4U)
+#define SPI_SR_CRCERR_MASK          (0x1U << SPI_SR_CRCERR_POS)                        /*!< 0x00000010 */
+#define SPI_SR_CRCERR               SPI_SR_CRCERR_MASK
+
+#define SPI_SR_MODF_POS             (5U)
+#define SPI_SR_MODF_MASK            (0x1U << SPI_SR_MODF_POS)                          /*!< 0x00000020 */
+#define SPI_SR_MODF                 SPI_SR_MODF_MASK
+
+#define SPI_SR_OVR_POS              (6U)
+#define SPI_SR_OVR_MASK             (0x1U << SPI_SR_OVR_POS)                           /*!< 0x00000040 */
+#define SPI_SR_OVR                  SPI_SR_OVR_MASK
+
+#define SPI_SR_BSY_POS              (7U)
+#define SPI_SR_BSY_MASK             (0x1U << SPI_SR_BSY_POS)                           /*!< 0x00000080 */
+#define SPI_SR_BSY                  SPI_SR_BSY_MASK
+
+#define SPI_SR_FRE_POS              (8U)
+#define SPI_SR_FRE_MASK             (0x1U << SPI_SR_FRE_POS)                           /*!< 0x00000100 */
+#define SPI_SR_FRE                  SPI_SR_FRE_MASK
+
+/**************************************** Bit definition for SPI_I2SCFGR register ****************************************/
+#define SPI_I2SCFGR_CHLEN_POS       (0U)
+#define SPI_I2SCFGR_CHLEN_MASK      (0x1U << SPI_I2SCFGR_CHLEN_POS)                    /*!< 0x00000001 */
+#define SPI_I2SCFGR_CHLEN           SPI_I2SCFGR_CHLEN_MASK
+
+#define SPI_I2SCFGR_DATLEN_POS      (1U)
+#define SPI_I2SCFGR_DATLEN_MASK     (0x3U << SPI_I2SCFGR_DATLEN_POS)                   /*!< 0x00000006 */
+#define SPI_I2SCFGR_DATLEN          SPI_I2SCFGR_DATLEN_MASK
+#define SPI_I2SCFGR_DATLEN_0        (0x1U << SPI_I2SCFGR_DATLEN_POS)                   /*!< 0x00000002 */
+#define SPI_I2SCFGR_DATLEN_1        (0x2U << SPI_I2SCFGR_DATLEN_POS)                   /*!< 0x00000004 */
+
+#define SPI_I2SCFGR_CKPOL_POS       (3U)
+#define SPI_I2SCFGR_CKPOL_MASK      (0x1U << SPI_I2SCFGR_CKPOL_POS)                    /*!< 0x00000008 */
+#define SPI_I2SCFGR_CKPOL           SPI_I2SCFGR_CKPOL_MASK
+
+#define SPI_I2SCFGR_I2SSTD_POS      (4U)
+#define SPI_I2SCFGR_I2SSTD_MASK     (0x3U << SPI_I2SCFGR_I2SSTD_POS)                   /*!< 0x00000030 */
+#define SPI_I2SCFGR_I2SSTD          SPI_I2SCFGR_I2SSTD_MASK
+#define SPI_I2SCFGR_I2SSTD_0        (0x1U << SPI_I2SCFGR_I2SSTD_POS)                   /*!< 0x00000010 */
+#define SPI_I2SCFGR_I2SSTD_1        (0x2U << SPI_I2SCFGR_I2SSTD_POS)                   /*!< 0x00000020 */
+
+#define SPI_I2SCFGR_PCMSYNC_POS     (7U)
+#define SPI_I2SCFGR_PCMSYNC_MASK    (0x1U << SPI_I2SCFGR_PCMSYNC_POS)                  /*!< 0x00000080 */
+#define SPI_I2SCFGR_PCMSYNC         SPI_I2SCFGR_PCMSYNC_MASK
+
+#define SPI_I2SCFGR_I2SCFG_POS      (8U)
+#define SPI_I2SCFGR_I2SCFG_MASK     (0x3U << SPI_I2SCFGR_I2SCFG_POS)                   /*!< 0x00000300 */
+#define SPI_I2SCFGR_I2SCFG          SPI_I2SCFGR_I2SCFG_MASK
+#define SPI_I2SCFGR_I2SCFG_0        (0x1U << SPI_I2SCFGR_I2SCFG_POS)                   /*!< 0x00000100 */
+#define SPI_I2SCFGR_I2SCFG_1        (0x2U << SPI_I2SCFGR_I2SCFG_POS)                   /*!< 0x00000200 */
+
+#define SPI_I2SCFGR_I2SE_POS        (10U)
+#define SPI_I2SCFGR_I2SE_MASK       (0x1U << SPI_I2SCFGR_I2SE_POS)                     /*!< 0x00000080 */
+#define SPI_I2SCFGR_I2SE            SPI_I2SCFGR_I2SE_MASK
+
+/**************************************** Bit definition for SPI_I2SPR register ****************************************/
+#define SPI_I2SPR_I2SDIV_POS        (0U)
+#define SPI_I2SPR_I2SDIV_MASK       (0xFFU << SPI_I2SPR_I2SDIV_POS)                    /*!< 0x000000FF */
+#define SPI_I2SPR_I2SDIV            SPI_I2SPR_I2SDIV_MASK
+#define SPI_I2SPR_I2SDIV_0          (0x01U << SPI_I2SPR_I2SDIV_POS)                    /*!< 0x00000001 */
+#define SPI_I2SPR_I2SDIV_1          (0x02U << SPI_I2SPR_I2SDIV_POS)                    /*!< 0x00000002 */
+#define SPI_I2SPR_I2SDIV_2          (0x04U << SPI_I2SPR_I2SDIV_POS)                    /*!< 0x00000004 */
+#define SPI_I2SPR_I2SDIV_3          (0x08U << SPI_I2SPR_I2SDIV_POS)                    /*!< 0x00000008 */
+#define SPI_I2SPR_I2SDIV_4          (0x10U << SPI_I2SPR_I2SDIV_POS)                    /*!< 0x00000010 */
+#define SPI_I2SPR_I2SDIV_5          (0x20U << SPI_I2SPR_I2SDIV_POS)                    /*!< 0x00000020 */
+#define SPI_I2SPR_I2SDIV_6          (0x40U << SPI_I2SPR_I2SDIV_POS)                    /*!< 0x00000040 */
+#define SPI_I2SPR_I2SDIV_7          (0x80U << SPI_I2SPR_I2SDIV_POS)                    /*!< 0x00000080 */
+
+#define SPI_I2SPR_ODD_POS           (8U)
+#define SPI_I2SPR_ODD_MASK          (0x1U << SPI_I2SPR_ODD_POS)                        /*!< 0x00000100 */
+#define SPI_I2SPR_ODD               SPI_I2SPR_ODD_MASK
+
+#define SPI_I2SPR_MCKOE_POS         (9U)
+#define SPI_I2SPR_MCKOE_MASK        (0x1U << SPI_I2SPR_MCKOE_POS)                      /*!< 0x00000200 */
+#define SPI_I2SPR_MCKOE             SPI_I2SPR_MCKOE_MASK
 
 /*********************************************************************************************************************************************************************
  ************************************************** Universal Synchronous Asynchronous Receiver Transmitter (USART) **************************************************
@@ -365,685 +467,686 @@ typedef struct
  **********************************************************************************************************************************/
 
 /**************************************** Bit definition for RCC_CR register ****************************************/
-#define RCC_CR_HSION_POSITION           (0U)
-#define RCC_CR_HSION_MASK               (0x1U << RCC_CR_HSION_POSITION)                     /*!< 0x00000001 */
+#define RCC_CR_HSION_POS                (0U)
+#define RCC_CR_HSION_MASK               (0x1U << RCC_CR_HSION_POS)                     /*!< 0x00000001 */
 #define RCC_CR_HSION                    RCC_CR_HSION_MASK
 
-#define RCC_CR_HSIRDY_POSITION          (1U)
-#define RCC_CR_HSIRDY_MASK              (0x1U << RCC_CR_HSIRDY_POSITION)                    /*!< 0x00000002 */
+#define RCC_CR_HSIRDY_POS               (1U)
+#define RCC_CR_HSIRDY_MASK              (0x1U << RCC_CR_HSIRDY_POS)                    /*!< 0x00000002 */
 #define RCC_CR_HSIRDY                   RCC_CR_HSIRDY_MASK
 
-#define RCC_CR_HSITRIM_POSITION         (3U)
-#define RCC_CR_HSITRIM_MASK             (0x1FU << RCC_CR_HSITRIM_POSITION)                  /*!< 0x000000F8 */
+#define RCC_CR_HSITRIM_POS              (3U)
+#define RCC_CR_HSITRIM_MASK             (0x1FU << RCC_CR_HSITRIM_POS)                  /*!< 0x000000F8 */
 #define RCC_CR_HSITRIM                  RCC_CR_HSITRIM_MASK
-#define RCC_CR_HSITRIM_0                (0x01U << RCC_CR_HSITRIM_POSITION)                  /*!< 0x00000008 */
-#define RCC_CR_HSITRIM_1                (0x02U << RCC_CR_HSITRIM_POSITION)                  /*!< 0x00000010 */
-#define RCC_CR_HSITRIM_2                (0x04U << RCC_CR_HSITRIM_POSITION)                  /*!< 0x00000020 */
-#define RCC_CR_HSITRIM_3                (0x08U << RCC_CR_HSITRIM_POSITION)                  /*!< 0x00000040 */
-#define RCC_CR_HSITRIM_4                (0x10U << RCC_CR_HSITRIM_POSITION)                  /*!< 0x00000080 */
+#define RCC_CR_HSITRIM_0                (0x01U << RCC_CR_HSITRIM_POS)                  /*!< 0x00000008 */
+#define RCC_CR_HSITRIM_1                (0x02U << RCC_CR_HSITRIM_POS)                  /*!< 0x00000010 */
+#define RCC_CR_HSITRIM_2                (0x04U << RCC_CR_HSITRIM_POS)                  /*!< 0x00000020 */
+#define RCC_CR_HSITRIM_3                (0x08U << RCC_CR_HSITRIM_POS)                  /*!< 0x00000040 */
+#define RCC_CR_HSITRIM_4                (0x10U << RCC_CR_HSITRIM_POS)                  /*!< 0x00000080 */
 
-#define RCC_CR_HSICAL_POSITION          (8U)
-#define RCC_CR_HSICAL_MASK              (0xFFU << RCC_CR_HSICAL_POSITION)                   /*!< 0x0000FF00 */
+#define RCC_CR_HSICAL_POS               (8U)
+#define RCC_CR_HSICAL_MASK              (0xFFU << RCC_CR_HSICAL_POS)                   /*!< 0x0000FF00 */
 #define RCC_CR_HSICAL                   RCC_CR_HSICAL_MASK
 
-#define RCC_CR_HSEON_POSITION           (16U)
-#define RCC_CR_HSEON_MASK               (0x1U << RCC_CR_HSEON_POSITION)                     /*!< 0x00010000 */
+#define RCC_CR_HSEON_POS                (16U)
+#define RCC_CR_HSEON_MASK               (0x1U << RCC_CR_HSEON_POS)                     /*!< 0x00010000 */
 #define RCC_CR_HSEON                    RCC_CR_HSEON_MASK
 
-#define RCC_CR_HSERDY_POSITION          (17U)
-#define RCC_CR_HSERDY_MASK              (0x1U << RCC_CR_HSERDY_POSITION)                    /*!< 0x00020000 */
+#define RCC_CR_HSERDY_POS               (17U)
+#define RCC_CR_HSERDY_MASK              (0x1U << RCC_CR_HSERDY_POS)                    /*!< 0x00020000 */
 #define RCC_CR_HSERDY                   RCC_CR_HSERDY_MASK
 
-#define RCC_CR_HSEBYP_POSITION          (18U)
-#define RCC_CR_HSEBYP_MASK              (0x1U << RCC_CR_HSEBYP_POSITION)                    /*!< 0x00040000 */
+#define RCC_CR_HSEBYP_POS               (18U)
+#define RCC_CR_HSEBYP_MASK              (0x1U << RCC_CR_HSEBYP_POS)                    /*!< 0x00040000 */
 #define RCC_CR_HSEBYP                   RCC_CR_HSEBYP_MASK
 
-#define RCC_CR_CSSON_POSITION           (19U)
-#define RCC_CR_CSSON_MASK               (0x1U << RCC_CR_CSSON_POSITION)                     /*!< 0x00080000 */
+#define RCC_CR_CSSON_POS                (19U)
+#define RCC_CR_CSSON_MASK               (0x1U << RCC_CR_CSSON_POS)                     /*!< 0x00080000 */
 #define RCC_CR_CSSON                    RCC_CR_CSSON_MASK
 
-#define RCC_CR_PLLON_POSITION           (24U)
-#define RCC_CR_PLLON_MASK               (0x1U << RCC_CR_PLLON_POSITION)                     /*!< 0x01000000 */
+#define RCC_CR_PLLON_POS                (24U)
+#define RCC_CR_PLLON_MASK               (0x1U << RCC_CR_PLLON_POS)                     /*!< 0x01000000 */
 #define RCC_CR_PLLON                    RCC_CR_PLLON_MASK
 
-#define RCC_CR_PLLRDY_POSITION          (25U)
-#define RCC_CR_PLLRDY_MASK              (0x1U << RCC_CR_PLLRDY_POSITION)                    /*!< 0x02000000 */
+#define RCC_CR_PLLRDY_POS               (25U)
+#define RCC_CR_PLLRDY_MASK              (0x1U << RCC_CR_PLLRDY_POS)                    /*!< 0x02000000 */
+#define RCC_CR_PLLRDY                   RCC_CR_PLLRDY_MASK
 
-#define RCC_CR_PLLI2SON_POSITION        (26U)
-#define RCC_CR_PLLI2SON_MASK            (0x1U << RCC_CR_PLLI2SON_POSITION)                  /*!< 0x04000000 */
+#define RCC_CR_PLLI2SON_POS             (26U)
+#define RCC_CR_PLLI2SON_MASK            (0x1U << RCC_CR_PLLI2SON_POS)                  /*!< 0x04000000 */
 #define RCC_CR_PLLI2SON                 RCC_CR_PLLI2SON_MASK
 
-#define RCC_CR_PLLI2SRDY_POSITION       (27U)
-#define RCC_CR_PLLI2SRDY_MASK           (0x1U << RCC_CR_PLLI2SRDY_POSITION)                 /*!< 0x08000000 */
+#define RCC_CR_PLLI2SRDY_POS            (27U)
+#define RCC_CR_PLLI2SRDY_MASK           (0x1U << RCC_CR_PLLI2SRDY_POS)                 /*!< 0x08000000 */
 #define RCC_CR_PLLI2SRDY                RCC_CR_PLLI2SRDY_MASK
 
 /**************************************** Bit definition for RCC_PLLCFGR register ****************************************/
-#define RCC_PLLCFGR_PLLM_POSITION       (0U)
-#define RCC_PLLCFGR_PLLM_MASK           (0x3FU << RCC_PLLCFGR_PLLM_POSITION)                /*!< 0x0000003F */
+#define RCC_PLLCFGR_PLLM_POS            (0U)
+#define RCC_PLLCFGR_PLLM_MASK           (0x3FU << RCC_PLLCFGR_PLLM_POS)                /*!< 0x0000003F */
 #define RCC_PLLCFGR_PLLM                RCC_PLLCFGR_PLLM_MASK
-#define RCC_PLLCFGR_PLLM_0              (0x01U << RCC_PLLCFGR_PLLM_POSITION)                /*!< 0x00000001 */
-#define RCC_PLLCFGR_PLLM_1              (0x02U << RCC_PLLCFGR_PLLM_POSITION)                /*!< 0x00000002 */
-#define RCC_PLLCFGR_PLLM_2              (0x04U << RCC_PLLCFGR_PLLM_POSITION)                /*!< 0x00000004 */
-#define RCC_PLLCFGR_PLLM_3              (0x08U << RCC_PLLCFGR_PLLM_POSITION)                /*!< 0x00000008 */
-#define RCC_PLLCFGR_PLLM_4              (0x10U << RCC_PLLCFGR_PLLM_POSITION)                /*!< 0x00000010 */
-#define RCC_PLLCFGR_PLLM_5              (0x20U << RCC_PLLCFGR_PLLM_POSITION)                /*!< 0x00000020 */
+#define RCC_PLLCFGR_PLLM_0              (0x01U << RCC_PLLCFGR_PLLM_POS)                /*!< 0x00000001 */
+#define RCC_PLLCFGR_PLLM_1              (0x02U << RCC_PLLCFGR_PLLM_POS)                /*!< 0x00000002 */
+#define RCC_PLLCFGR_PLLM_2              (0x04U << RCC_PLLCFGR_PLLM_POS)                /*!< 0x00000004 */
+#define RCC_PLLCFGR_PLLM_3              (0x08U << RCC_PLLCFGR_PLLM_POS)                /*!< 0x00000008 */
+#define RCC_PLLCFGR_PLLM_4              (0x10U << RCC_PLLCFGR_PLLM_POS)                /*!< 0x00000010 */
+#define RCC_PLLCFGR_PLLM_5              (0x20U << RCC_PLLCFGR_PLLM_POS)                /*!< 0x00000020 */
 
-#define RCC_PLLCFGR_PLLN_POSITION       (6U)
-#define RCC_PLLCFGR_PLLN_MASK           (0x1FFU << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00007FC0 */
+#define RCC_PLLCFGR_PLLN_POS            (6U)
+#define RCC_PLLCFGR_PLLN_MASK           (0x1FFU << RCC_PLLCFGR_PLLN_POS)               /*!< 0x00007FC0 */
 #define RCC_PLLCFGR_PLLN                RCC_PLLCFGR_PLLN_MASK
-#define RCC_PLLCFGR_PLLN_0              (0x001U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00000040 */
-#define RCC_PLLCFGR_PLLN_1              (0x002U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00000080 */
-#define RCC_PLLCFGR_PLLN_2              (0x004U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00000100 */
-#define RCC_PLLCFGR_PLLN_3              (0x008U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00000200 */
-#define RCC_PLLCFGR_PLLN_4              (0x010U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00000400 */
-#define RCC_PLLCFGR_PLLN_5              (0x020U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00000800 */
-#define RCC_PLLCFGR_PLLN_6              (0x040U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00001000 */
-#define RCC_PLLCFGR_PLLN_7              (0x080U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00002000 */
-#define RCC_PLLCFGR_PLLN_8              (0x100U << RCC_PLLCFGR_PLLN_POSITION)               /*!< 0x00004000 */
+#define RCC_PLLCFGR_PLLN_0              (0x001U << RCC_PLLCFGR_PLLN_POS)               /*!< 0x00000040 */
+#define RCC_PLLCFGR_PLLN_1              (0x002U << RCC_PLLCFGR_PLLN_POS)               /*!< 0x00000080 */
+#define RCC_PLLCFGR_PLLN_2              (0x004U << RCC_PLLCFGR_PLLN_POS)               /*!< 0x00000100 */
+#define RCC_PLLCFGR_PLLN_3              (0x008U << RCC_PLLCFGR_PLLN_POS)               /*!< 0x00000200 */
+#define RCC_PLLCFGR_PLLN_4              (0x010U << RCC_PLLCFGR_PLLN_POS)               /*!< 0x00000400 */
+#define RCC_PLLCFGR_PLLN_5              (0x020U << RCC_PLLCFGR_PLLN_POS)               /*!< 0x00000800 */
+#define RCC_PLLCFGR_PLLN_6              (0x040U << RCC_PLLCFGR_PLLN_POS)               /*!< 0x00001000 */
+#define RCC_PLLCFGR_PLLN_7              (0x080U << RCC_PLLCFGR_PLLN_POS)               /*!< 0x00002000 */
+#define RCC_PLLCFGR_PLLN_8              (0x100U << RCC_PLLCFGR_PLLN_POS)               /*!< 0x00004000 */
 
-#define RCC_PLLCFGR_PLLP_POSITION       (16U)
-#define RCC_PLLCFGR_PLLP_MASK           (0x3U << RCC_PLLCFGR_PLLP_POSITION)                 /*!< 0x00030000 */
+#define RCC_PLLCFGR_PLLP_POS            (16U)
+#define RCC_PLLCFGR_PLLP_MASK           (0x3U << RCC_PLLCFGR_PLLP_POS)                 /*!< 0x00030000 */
 #define RCC_PLLCFGR_PLLP                RCC_PLLCFGR_PLLP_MASK
-#define RCC_PLLCFGR_PLLP_0              (0x1U << RCC_PLLCFGR_PLLP_POSITION)                 /*!< 0x00010000 */
-#define RCC_PLLCFGR_PLLP_1              (0x2U << RCC_PLLCFGR_PLLP_POSITION)                 /*!< 0x00020000 */
+#define RCC_PLLCFGR_PLLP_0              (0x1U << RCC_PLLCFGR_PLLP_POS)                 /*!< 0x00010000 */
+#define RCC_PLLCFGR_PLLP_1              (0x2U << RCC_PLLCFGR_PLLP_POS)                 /*!< 0x00020000 */
 
-#define RCC_PLLCFGR_PLLSRC_POSITION     (22U)
-#define RCC_PLLCFGR_PLLSRC_MASK         (0x1U << RCC_PLLCFGR_PLLSRC_POSITION)               /*!< 0x00400000 */
+#define RCC_PLLCFGR_PLLSRC_POS          (22U)
+#define RCC_PLLCFGR_PLLSRC_MASK         (0x1U << RCC_PLLCFGR_PLLSRC_POS)               /*!< 0x00400000 */
 #define RCC_PLLCFGR_PLLSRC              RCC_PLLCFGR_PLLSRC_MASK
 
-#define RCC_PLLCFGR_PLLQ_POSITION       (24U)
-#define RCC_PLLCFGR_PLLQ_MASK           (0xFU << RCC_PLLCFGR_PLLSRC_POSITION)               /*!< 0x0F000000 */
+#define RCC_PLLCFGR_PLLQ_POS            (24U)
+#define RCC_PLLCFGR_PLLQ_MASK           (0xFU << RCC_PLLCFGR_PLLSRC_POS)               /*!< 0x0F000000 */
 #define RCC_PLLCFGR_PLLQ                RCC_PLLCFGR_PLLQ_MASK
-#define RCC_PLLCFGR_PLLQ_0              (0x1U << RCC_PLLCFGR_PLLSRC_POSITION)               /*!< 0x01000000 */
-#define RCC_PLLCFGR_PLLQ_1              (0x2U << RCC_PLLCFGR_PLLSRC_POSITION)               /*!< 0x02000000 */
-#define RCC_PLLCFGR_PLLQ_2              (0x4U << RCC_PLLCFGR_PLLSRC_POSITION)               /*!< 0x04000000 */
-#define RCC_PLLCFGR_PLLQ_3              (0x8U << RCC_PLLCFGR_PLLSRC_POSITION)               /*!< 0x08000000 */
+#define RCC_PLLCFGR_PLLQ_0              (0x1U << RCC_PLLCFGR_PLLSRC_POS)               /*!< 0x01000000 */
+#define RCC_PLLCFGR_PLLQ_1              (0x2U << RCC_PLLCFGR_PLLSRC_POS)               /*!< 0x02000000 */
+#define RCC_PLLCFGR_PLLQ_2              (0x4U << RCC_PLLCFGR_PLLSRC_POS)               /*!< 0x04000000 */
+#define RCC_PLLCFGR_PLLQ_3              (0x8U << RCC_PLLCFGR_PLLSRC_POS)               /*!< 0x08000000 */
 
 /**************************************** Bit definition for RCC_CFGR register ****************************************/
-#define RCC_CFGR_SW_POSITION            (0U)
-#define RCC_CFGR_SW_MASK                (0x3U << RCC_CFGR_SW_POSITION)                      /*!< 0x00000003 */
+#define RCC_CFGR_SW_POS                 (0U)
+#define RCC_CFGR_SW_MASK                (0x3U << RCC_CFGR_SW_POS)                      /*!< 0x00000003 */
 #define RCC_CFGR_SW                     RCC_CFGR_SW_MASK
-#define RCC_CFGR_SW_0                   (0x1U << RCC_CFGR_SW_POSITION)                      /*!< 0x00000001 */
-#define RCC_CFGR_SW_1                   (0x2U << RCC_CFGR_SW_POSITION)                      /*!< 0x00000002 */
+#define RCC_CFGR_SW_0                   (0x1U << RCC_CFGR_SW_POS)                      /*!< 0x00000001 */
+#define RCC_CFGR_SW_1                   (0x2U << RCC_CFGR_SW_POS)                      /*!< 0x00000002 */
 
-#define RCC_CFGR_SW_HSI                 (0x00000000U)                                       /*!< HSI selected as system clock */
-#define RCC_CFGR_SW_HSE                 (0x00000001U)                                       /*!< HSE selected as system clock */
-#define RCC_CFGR_SW_PLL                 (0x00000002U)                                       /*!< PLL selected as system clock */
+#define RCC_CFGR_SW_HSI                 (0x00000000U)                                  /*!< HSI selected as system clock */
+#define RCC_CFGR_SW_HSE                 (0x00000001U)                                  /*!< HSE selected as system clock */
+#define RCC_CFGR_SW_PLL                 (0x00000002U)                                  /*!< PLL selected as system clock */
 
-#define RCC_CFGR_SWS_POSITION           (2U)
-#define RCC_CFGR_SWS_MASK               (0x3U << RCC_CFGR_SWS_POSITION)                     /*!< 0x0000000C */
+#define RCC_CFGR_SWS_POS                (2U)
+#define RCC_CFGR_SWS_MASK               (0x3U << RCC_CFGR_SWS_POS)                     /*!< 0x0000000C */
 #define RCC_CFGR_SWS                    RCC_CFGR_SWS_MASK
-#define RCC_CFGR_SWS_0                  (0x1U << RCC_CFGR_SWS_POSITION)                     /*!< 0x00000004 */
-#define RCC_CFGR_SWS_1                  (0x2U << RCC_CFGR_SWS_POSITION)                     /*!< 0x00000008 */
+#define RCC_CFGR_SWS_0                  (0x1U << RCC_CFGR_SWS_POS)                     /*!< 0x00000004 */
+#define RCC_CFGR_SWS_1                  (0x2U << RCC_CFGR_SWS_POS)                     /*!< 0x00000008 */
 
-#define RCC_CFGR_SWS_HSI                (0x00000000U)                                       /*!< HSI oscillator used as system clock */
-#define RCC_CFGR_SWS_HSE                (0x00000004U)                                       /*!< HSE oscillator used as system clock */
-#define RCC_CFGR_SWS_PLL                (0x00000008U)                                       /*!< PLL oscillator used as system clock */
+#define RCC_CFGR_SWS_HSI                (0x00000000U)                                  /*!< HSI oscillator used as system clock */
+#define RCC_CFGR_SWS_HSE                (0x00000004U)                                  /*!< HSE oscillator used as system clock */
+#define RCC_CFGR_SWS_PLL                (0x00000008U)                                  /*!< PLL oscillator used as system clock */
 
-#define RCC_CFGR_HPRE_POSITION          (4U)
-#define RCC_CFGR_HPRE_MASK              (0xFU << RCC_CFGR_HPRE_POSITION)                    /*!< 0x000000F0 */
+#define RCC_CFGR_HPRE_POS               (4U)
+#define RCC_CFGR_HPRE_MASK              (0xFU << RCC_CFGR_HPRE_POS)                    /*!< 0x000000F0 */
 #define RCC_CFGR_HPRE                   RCC_CFGR_HPRE_MASK
-#define RCC_CFGR_HPRE_0                 (0x1U << RCC_CFGR_HPRE_POSITION)                    /*!< 0x00000010 */
-#define RCC_CFGR_HPRE_1                 (0x2U << RCC_CFGR_HPRE_POSITION)                    /*!< 0x00000020 */
-#define RCC_CFGR_HPRE_2                 (0x4U << RCC_CFGR_HPRE_POSITION)                    /*!< 0x00000040 */
-#define RCC_CFGR_HPRE_3                 (0x8U << RCC_CFGR_HPRE_POSITION)                    /*!< 0x00000080 */
+#define RCC_CFGR_HPRE_0                 (0x1U << RCC_CFGR_HPRE_POS)                    /*!< 0x00000010 */
+#define RCC_CFGR_HPRE_1                 (0x2U << RCC_CFGR_HPRE_POS)                    /*!< 0x00000020 */
+#define RCC_CFGR_HPRE_2                 (0x4U << RCC_CFGR_HPRE_POS)                    /*!< 0x00000040 */
+#define RCC_CFGR_HPRE_3                 (0x8U << RCC_CFGR_HPRE_POS)                    /*!< 0x00000080 */
 
-#define RCC_CFGR_HPRE_DIV_1             (0x00000000U)                                       /*!< system clock not divided */
-#define RCC_CFGR_HPRE_DIV_2             (0x00000080U)                                       /*!< system clock divided by 2 */
-#define RCC_CFGR_HPRE_DIV_4             (0x00000090U)                                       /*!< system clock divided by 4 */
-#define RCC_CFGR_HPRE_DIV_8             (0x000000A0U)                                       /*!< system clock divided by 8 */
-#define RCC_CFGR_HPRE_DIV_16            (0x000000B0U)                                       /*!< system clock divided by 16 */
-#define RCC_CFGR_HPRE_DIV_64            (0x000000C0U)                                       /*!< system clock divided by 64 */
-#define RCC_CFGR_HPRE_DIV_128           (0x000000D0U)                                       /*!< system clock divided by 128 */
-#define RCC_CFGR_HPRE_DIV_256           (0x000000E0U)                                       /*!< system clock divided by 256 */
-#define RCC_CFGR_HPRE_DIV_512           (0x000000F0U)                                       /*!< system clock divided by 512 */
+#define RCC_CFGR_HPRE_DIV_1             (0x00000000U)                                  /*!< system clock not divided */
+#define RCC_CFGR_HPRE_DIV_2             (0x00000080U)                                  /*!< system clock divided by 2 */
+#define RCC_CFGR_HPRE_DIV_4             (0x00000090U)                                  /*!< system clock divided by 4 */
+#define RCC_CFGR_HPRE_DIV_8             (0x000000A0U)                                  /*!< system clock divided by 8 */
+#define RCC_CFGR_HPRE_DIV_16            (0x000000B0U)                                  /*!< system clock divided by 16 */
+#define RCC_CFGR_HPRE_DIV_64            (0x000000C0U)                                  /*!< system clock divided by 64 */
+#define RCC_CFGR_HPRE_DIV_128           (0x000000D0U)                                  /*!< system clock divided by 128 */
+#define RCC_CFGR_HPRE_DIV_256           (0x000000E0U)                                  /*!< system clock divided by 256 */
+#define RCC_CFGR_HPRE_DIV_512           (0x000000F0U)                                  /*!< system clock divided by 512 */
 
-#define RCC_CFGR_PPRE1_POSITION         (10U)
-#define RCC_CFGR_PPRE1_MASK             (0x7U << RCC_CFGR_PPRE1_POSITION)                   /*!< 0x00001C00 */
+#define RCC_CFGR_PPRE1_POS              (10U)
+#define RCC_CFGR_PPRE1_MASK             (0x7U << RCC_CFGR_PPRE1_POS)                   /*!< 0x00001C00 */
 #define RCC_CFGR_PPRE1                  RCC_CFGR_PPRE1_MASK
-#define RCC_CFGR_PPRE1_0                (0x1U << RCC_CFGR_PPRE1_POSITION)                   /*!< 0x00000400 */
-#define RCC_CFGR_PPRE1_1                (0x2U << RCC_CFGR_PPRE1_POSITION)                   /*!< 0x00000800 */
-#define RCC_CFGR_PPRE1_2                (0x4U << RCC_CFGR_PPRE1_POSITION)                   /*!< 0x00001000 */
+#define RCC_CFGR_PPRE1_0                (0x1U << RCC_CFGR_PPRE1_POS)                   /*!< 0x00000400 */
+#define RCC_CFGR_PPRE1_1                (0x2U << RCC_CFGR_PPRE1_POS)                   /*!< 0x00000800 */
+#define RCC_CFGR_PPRE1_2                (0x4U << RCC_CFGR_PPRE1_POS)                   /*!< 0x00001000 */
 
-#define RCC_CFGR_PPRE1_DIV_1            (0x00000000U)                                       /*!< AHB clock not divided */
-#define RCC_CFGR_PPRE1_DIV_2            (0x00001000U)                                       /*!< AHB clock divided by 2 */
-#define RCC_CFGR_PPRE1_DIV_4            (0x00001400U)                                       /*!< AHB clock divided by 4 */
-#define RCC_CFGR_PPRE1_DIV_8            (0x00001800U)                                       /*!< AHB clock divided by 8 */
-#define RCC_CFGR_PPRE1_DIV_16           (0x00001C00U)                                       /*!< AHB clock divided by 16 */
+#define RCC_CFGR_PPRE1_DIV_1            (0x00000000U)                                  /*!< AHB clock not divided */
+#define RCC_CFGR_PPRE1_DIV_2            (0x00001000U)                                  /*!< AHB clock divided by 2 */
+#define RCC_CFGR_PPRE1_DIV_4            (0x00001400U)                                  /*!< AHB clock divided by 4 */
+#define RCC_CFGR_PPRE1_DIV_8            (0x00001800U)                                  /*!< AHB clock divided by 8 */
+#define RCC_CFGR_PPRE1_DIV_16           (0x00001C00U)                                  /*!< AHB clock divided by 16 */
 
-#define RCC_CFGR_PPRE2_POSITION         (13U)
-#define RCC_CFGR_PPRE2_MASK             (0x7U << RCC_CFGR_PPRE2_POSITION)                   /*!< 0x0000E000 */
+#define RCC_CFGR_PPRE2_POS              (13U)
+#define RCC_CFGR_PPRE2_MASK             (0x7U << RCC_CFGR_PPRE2_POS)                   /*!< 0x0000E000 */
 #define RCC_CFGR_PPRE2                  RCC_CFGR_PPRE2_MASK
-#define RCC_CFGR_PPRE2_0                (0x1U << RCC_CFGR_PPRE2_POSITION)                   /*!< 0x00002000 */
-#define RCC_CFGR_PPRE2_1                (0x2U << RCC_CFGR_PPRE2_POSITION)                   /*!< 0x00004000 */
-#define RCC_CFGR_PPRE2_2                (0x4U << RCC_CFGR_PPRE2_POSITION)                   /*!< 0x00008000 */
+#define RCC_CFGR_PPRE2_0                (0x1U << RCC_CFGR_PPRE2_POS)                   /*!< 0x00002000 */
+#define RCC_CFGR_PPRE2_1                (0x2U << RCC_CFGR_PPRE2_POS)                   /*!< 0x00004000 */
+#define RCC_CFGR_PPRE2_2                (0x4U << RCC_CFGR_PPRE2_POS)                   /*!< 0x00008000 */
 
-#define RCC_CFGR_PPRE2_DIV_1            (0x00000000U)                                       /*!< AHB clock not divided */
-#define RCC_CFGR_PPRE2_DIV_2            (0x00008000U)                                       /*!< AHB clock divided by 2 */
-#define RCC_CFGR_PPRE2_DIV_4            (0x0000A000U)                                       /*!< AHB clock divided by 4 */
-#define RCC_CFGR_PPRE2_DIV_8            (0x0000C000U)                                       /*!< AHB clock divided by 8 */
-#define RCC_CFGR_PPRE2_DIV_16           (0x0000E000U)                                       /*!< AHB clock divided by 16 */
+#define RCC_CFGR_PPRE2_DIV_1            (0x00000000U)                                  /*!< AHB clock not divided */
+#define RCC_CFGR_PPRE2_DIV_2            (0x00008000U)                                  /*!< AHB clock divided by 2 */
+#define RCC_CFGR_PPRE2_DIV_4            (0x0000A000U)                                  /*!< AHB clock divided by 4 */
+#define RCC_CFGR_PPRE2_DIV_8            (0x0000C000U)                                  /*!< AHB clock divided by 8 */
+#define RCC_CFGR_PPRE2_DIV_16           (0x0000E000U)                                  /*!< AHB clock divided by 16 */
 
-#define RCC_CFGR_RTCPRE_POSITION        (16U)
-#define RCC_CFGR_RTCPRE_MASK            (0x1FU << RCC_CFGR_RTCPRE_POSITION)                 /*!< 0x001F0000 */
+#define RCC_CFGR_RTCPRE_POS             (16U)
+#define RCC_CFGR_RTCPRE_MASK            (0x1FU << RCC_CFGR_RTCPRE_POS)                 /*!< 0x001F0000 */
 #define RCC_CFGR_RTCPRE                 RCC_CFGR_RTCPRE_MASK
-#define RCC_CFGR_RTCPRE_0               (0x01U << RCC_CFGR_RTCPRE_POSITION)                 /*!< 0x00010000 */
-#define RCC_CFGR_RTCPRE_1               (0x02U << RCC_CFGR_RTCPRE_POSITION)                 /*!< 0x00020000 */
-#define RCC_CFGR_RTCPRE_2               (0x04U << RCC_CFGR_RTCPRE_POSITION)                 /*!< 0x00040000 */
-#define RCC_CFGR_RTCPRE_3               (0x08U << RCC_CFGR_RTCPRE_POSITION)                 /*!< 0x00080000 */
-#define RCC_CFGR_RTCPRE_4               (0x10U << RCC_CFGR_RTCPRE_POSITION)                 /*!< 0x00100000 */
+#define RCC_CFGR_RTCPRE_0               (0x01U << RCC_CFGR_RTCPRE_POS)                 /*!< 0x00010000 */
+#define RCC_CFGR_RTCPRE_1               (0x02U << RCC_CFGR_RTCPRE_POS)                 /*!< 0x00020000 */
+#define RCC_CFGR_RTCPRE_2               (0x04U << RCC_CFGR_RTCPRE_POS)                 /*!< 0x00040000 */
+#define RCC_CFGR_RTCPRE_3               (0x08U << RCC_CFGR_RTCPRE_POS)                 /*!< 0x00080000 */
+#define RCC_CFGR_RTCPRE_4               (0x10U << RCC_CFGR_RTCPRE_POS)                 /*!< 0x00100000 */
 
-#define RCC_CFGR_MCO1_POSITION          (21U)
-#define RCC_CFGR_MCO1_MASK              (0x3U << RCC_CFGR_MCO1_POSITION)                    /*!< 0x00600000 */
+#define RCC_CFGR_MCO1_POS               (21U)
+#define RCC_CFGR_MCO1_MASK              (0x3U << RCC_CFGR_MCO1_POS)                    /*!< 0x00600000 */
 #define RCC_CFGR_MCO1                   RCC_CFGR_MCO1_MASK
-#define RCC_CFGR_MCO1_0                 (0x1U << RCC_CFGR_MCO1_POSITION)                    /*!< 0x00200000 */
-#define RCC_CFGR_MCO1_1                 (0x2U << RCC_CFGR_MCO1_POSITION)                    /*!< 0x00400000 */
+#define RCC_CFGR_MCO1_0                 (0x1U << RCC_CFGR_MCO1_POS)                    /*!< 0x00200000 */
+#define RCC_CFGR_MCO1_1                 (0x2U << RCC_CFGR_MCO1_POS)                    /*!< 0x00400000 */
 
-#define RCC_CFGR_I2SSRC_POSITION        (23U)
-#define RCC_CFGR_I2SSRC_MASK            (0x1U << RCC_CFGR_I2SSRC_POSITION)                  /*!< 0x00800000 */
+#define RCC_CFGR_I2SSRC_POS             (23U)
+#define RCC_CFGR_I2SSRC_MASK            (0x1U << RCC_CFGR_I2SSRC_POS)                  /*!< 0x00800000 */
 #define RCC_CFGR_I2SSRC                 RCC_CFGR_I2SSRC_MASK
 
-#define RCC_CFGR_MCO1PRE_POSITION       (24U)
-#define RCC_CFGR_MCO1PRE_MASK           (0x7U << RCC_CFGR_MCO1PRE_POSITION)                 /*!< 0x07000000 */
+#define RCC_CFGR_MCO1PRE_POS            (24U)
+#define RCC_CFGR_MCO1PRE_MASK           (0x7U << RCC_CFGR_MCO1PRE_POS)                 /*!< 0x07000000 */
 #define RCC_CFGR_MCO1PRE                RCC_CFGR_MCO1PRE_MASK
-#define RCC_CFGR_MCO1PRE_0              (0x1U << RCC_CFGR_MCO1PRE_POSITION)                 /*!< 0x01000000 */
-#define RCC_CFGR_MCO1PRE_1              (0x2U << RCC_CFGR_MCO1PRE_POSITION)                 /*!< 0x02000000 */
-#define RCC_CFGR_MCO1PRE_2              (0x4U << RCC_CFGR_MCO1PRE_POSITION)                 /*!< 0x04000000 */
+#define RCC_CFGR_MCO1PRE_0              (0x1U << RCC_CFGR_MCO1PRE_POS)                 /*!< 0x01000000 */
+#define RCC_CFGR_MCO1PRE_1              (0x2U << RCC_CFGR_MCO1PRE_POS)                 /*!< 0x02000000 */
+#define RCC_CFGR_MCO1PRE_2              (0x4U << RCC_CFGR_MCO1PRE_POS)                 /*!< 0x04000000 */
 
-#define RCC_CFGR_MCO2PRE_POSITION       (27U)
-#define RCC_CFGR_MCO2PRE_MASK           (0x7U << RCC_CFGR_MCO2PRE_POSITION)                 /*!< 0x38000000 */
+#define RCC_CFGR_MCO2PRE_POS            (27U)
+#define RCC_CFGR_MCO2PRE_MASK           (0x7U << RCC_CFGR_MCO2PRE_POS)                 /*!< 0x38000000 */
 #define RCC_CFGR_MCO2PRE                RCC_CFGR_MCO2PRE_MASK
-#define RCC_CFGR_MCO2PRE_0              (0x1U << RCC_CFGR_MCO2PRE_POSITION)                 /*!< 0x08000000 */
-#define RCC_CFGR_MCO2PRE_1              (0x2U << RCC_CFGR_MCO2PRE_POSITION)                 /*!< 0x10000000 */
-#define RCC_CFGR_MCO2PRE_2              (0x4U << RCC_CFGR_MCO2PRE_POSITION)                 /*!< 0x20000000 */
+#define RCC_CFGR_MCO2PRE_0              (0x1U << RCC_CFGR_MCO2PRE_POS)                 /*!< 0x08000000 */
+#define RCC_CFGR_MCO2PRE_1              (0x2U << RCC_CFGR_MCO2PRE_POS)                 /*!< 0x10000000 */
+#define RCC_CFGR_MCO2PRE_2              (0x4U << RCC_CFGR_MCO2PRE_POS)                 /*!< 0x20000000 */
 
-#define RCC_CFGR_MCO2_POSITION          (30U)
-#define RCC_CFGR_MCO2_MASK              (0x3U << RCC_CFGR_MCO2_POSITION)                    /*!< 0xC0000000 */
+#define RCC_CFGR_MCO2_POS               (30U)
+#define RCC_CFGR_MCO2_MASK              (0x3U << RCC_CFGR_MCO2_POS)                    /*!< 0xC0000000 */
 #define RCC_CFGR_MCO2                   RCC_CFGR_MCO2_MASK
-#define RCC_CFGR_MCO2_0                 (0x1U << RCC_CFGR_MCO2_POSITION)                    /*!< 0x40000000 */
-#define RCC_CFGR_MCO2_1                 (0x2U << RCC_CFGR_MCO2_POSITION)                    /*!< 0x80000000 */
+#define RCC_CFGR_MCO2_0                 (0x1U << RCC_CFGR_MCO2_POS)                    /*!< 0x40000000 */
+#define RCC_CFGR_MCO2_1                 (0x2U << RCC_CFGR_MCO2_POS)                    /*!< 0x80000000 */
 
 /**************************************** Bit definition for RCC_CIR register ****************************************/
-#define RCC_CIR_LSIRDYF_POSITION        (0U)
-#define RCC_CIR_LSIRDYF_MASK            (0x1U << RCC_CIR_LSIRDYF_POSITION)                  /*!< 0x00000001 */
+#define RCC_CIR_LSIRDYF_POS             (0U)
+#define RCC_CIR_LSIRDYF_MASK            (0x1U << RCC_CIR_LSIRDYF_POS)                  /*!< 0x00000001 */
 #define RCC_CIR_LSIRDYF                 RCC_CIR_LSIRDYF_MASK
 
-#define RCC_CIR_LSERDYF_POSITION        (1U)
-#define RCC_CIR_LSERDYF_MASK            (0x1U << RCC_CIR_LSERDYF_POSITION)                  /*!< 0x00000002 */
+#define RCC_CIR_LSERDYF_POS             (1U)
+#define RCC_CIR_LSERDYF_MASK            (0x1U << RCC_CIR_LSERDYF_POS)                  /*!< 0x00000002 */
 #define RCC_CIR_LSERDYF                 RCC_CIR_LSERDYF_MASK
 
-#define RCC_CIR_HSIRDYF_POSITION        (2U)
-#define RCC_CIR_HSIRDYF_MASK            (0x1U << RCC_CIR_HSIRDYF_POSITION)                  /*!< 0x00000004 */
+#define RCC_CIR_HSIRDYF_POS             (2U)
+#define RCC_CIR_HSIRDYF_MASK            (0x1U << RCC_CIR_HSIRDYF_POS)                  /*!< 0x00000004 */
 #define RCC_CIR_HSIRDYF                 RCC_CIR_HSIRDYF_MASK
 
-#define RCC_CIR_HSERDYF_POSITION        (3U)
-#define RCC_CIR_HSERDYF_MASK            (0x1U << RCC_CIR_HSERDYF_POSITION)                  /*!< 0x00000008 */
+#define RCC_CIR_HSERDYF_POS             (3U)
+#define RCC_CIR_HSERDYF_MASK            (0x1U << RCC_CIR_HSERDYF_POS)                  /*!< 0x00000008 */
 #define RCC_CIR_HSERDYF                 RCC_CIR_HSERDYF_MASK
 
-#define RCC_CIR_PLLRDYF_POSITION        (4U)
-#define RCC_CIR_PLLRDYF_MASK            (0x1U << RCC_CIR_PLLRDYF_POSITION)                  /*!< 0x00000010 */
+#define RCC_CIR_PLLRDYF_POS             (4U)
+#define RCC_CIR_PLLRDYF_MASK            (0x1U << RCC_CIR_PLLRDYF_POS)                  /*!< 0x00000010 */
 #define RCC_CIR_PLLRDYF                 RCC_CIR_PLLRDYF_MASK
 
-#define RCC_CIR_PLLI2SRDYF_POSITION     (5U)
-#define RCC_CIR_PLLI2SRDYF_MASK         (0x1U << RCC_CIR_PLLI2SRDYF_POSITION)               /*!< 0x00000020 */
+#define RCC_CIR_PLLI2SRDYF_POS          (5U)
+#define RCC_CIR_PLLI2SRDYF_MASK         (0x1U << RCC_CIR_PLLI2SRDYF_POS)               /*!< 0x00000020 */
 #define RCC_CIR_PLLI2SRDYF              RCC_CIR_PLLI2SRDYF_MASK
 
-#define RCC_CIR_CSSF_POSITION           (7U)
-#define RCC_CIR_CSSF_MASK               (0x1U << RCC_CIR_CSSF_POSITION)                     /*!< 0x00000080 */
+#define RCC_CIR_CSSF_POS                (7U)
+#define RCC_CIR_CSSF_MASK               (0x1U << RCC_CIR_CSSF_POS)                     /*!< 0x00000080 */
 #define RCC_CIR_CSSF                    RCC_CIR_CSSF_MASK
 
-#define RCC_CIR_LSIRDYE_POSITION        (8U)
-#define RCC_CIR_LSIRDYE_MASK            (0x1U << RCC_CIR_LSIRDYE_POSITION)                  /*!< 0x00000100 */
+#define RCC_CIR_LSIRDYE_POS             (8U)
+#define RCC_CIR_LSIRDYE_MASK            (0x1U << RCC_CIR_LSIRDYE_POS)                  /*!< 0x00000100 */
 #define RCC_CIR_LSIRDYE                 RCC_CIR_LSIRDYE_MASK
 
-#define RCC_CIR_LSERDYE_POSITION        (9U)
-#define RCC_CIR_LSERDYE_MASK            (0x1U << RCC_CIR_LSERDYE_POSITION)                  /*!< 0x00000200 */
+#define RCC_CIR_LSERDYE_POS             (9U)
+#define RCC_CIR_LSERDYE_MASK            (0x1U << RCC_CIR_LSERDYE_POS)                  /*!< 0x00000200 */
 #define RCC_CIR_LSERDYE                 RCC_CIR_LSERDYE_MASK
 
-#define RCC_CIR_HSIRDYE_POSITION        (10U)
-#define RCC_CIR_HSIRDYE_MASK            (0x1U << RCC_CIR_HSIRDYE_POSITION)                  /*!< 0x00000400 */
+#define RCC_CIR_HSIRDYE_POS             (10U)
+#define RCC_CIR_HSIRDYE_MASK            (0x1U << RCC_CIR_HSIRDYE_POS)                  /*!< 0x00000400 */
 #define RCC_CIR_HSIRDYE                 RCC_CIR_HSIRDYE_MASK
 
-#define RCC_CIR_HSERDYE_POSITION        (11U)
-#define RCC_CIR_HSERDYE_MASK            (0x1U << RCC_CIR_HSERDYE_POSITION)                  /*!< 0x00000800 */
+#define RCC_CIR_HSERDYE_POS             (11U)
+#define RCC_CIR_HSERDYE_MASK            (0x1U << RCC_CIR_HSERDYE_POS)                  /*!< 0x00000800 */
 #define RCC_CIR_HSERDYE                 RCC_CIR_HSERDYE_MASK
 
-#define RCC_CIR_PLLRDYE_POSITION        (12U)
-#define RCC_CIR_PLLRDYE_MASK            (0x1U << RCC_CIR_PLLRDYE_POSITION)                  /*!< 0x00001000 */
+#define RCC_CIR_PLLRDYE_POS             (12U)
+#define RCC_CIR_PLLRDYE_MASK            (0x1U << RCC_CIR_PLLRDYE_POS)                  /*!< 0x00001000 */
 #define RCC_CIR_PLLRDYE                 RCC_CIR_PLLRDYE_MASK
 
-#define RCC_CIR_PLLI2SRDYE_POSITION     (13U)
-#define RCC_CIR_PLLI2SRDYE_MASK         (0x1U << RCC_CIR_PLLI2SRDYE_POSITION)               /*!< 0x00002000 */
+#define RCC_CIR_PLLI2SRDYE_POS          (13U)
+#define RCC_CIR_PLLI2SRDYE_MASK         (0x1U << RCC_CIR_PLLI2SRDYE_POS)               /*!< 0x00002000 */
 #define RCC_CIR_PLLI2SRDYE              RCC_CIR_PLLI2SRDYE_MASK
 
-#define RCC_CIR_LSIRDYC_POSITION        (16U)
-#define RCC_CIR_LSIRDYC_MASK            (0x1U << RCC_CIR_LSIRDYC_POSITION)                  /*!< 0x00010000 */
+#define RCC_CIR_LSIRDYC_POS             (16U)
+#define RCC_CIR_LSIRDYC_MASK            (0x1U << RCC_CIR_LSIRDYC_POS)                  /*!< 0x00010000 */
 #define RCC_CIR_LSIRDYC                 RCC_CIR_LSIRDYC_MASK
 
-#define RCC_CIR_LSERDYC_POSITION        (17U)
-#define RCC_CIR_LSERDYC_MASK            (0x1U << RCC_CIR_LSERDYC_POSITION)                  /*!< 0x00020000 */
+#define RCC_CIR_LSERDYC_POS             (17U)
+#define RCC_CIR_LSERDYC_MASK            (0x1U << RCC_CIR_LSERDYC_POS)                  /*!< 0x00020000 */
 #define RCC_CIR_LSERDYC                 RCC_CIR_LSERDYC_MASK
 
-#define RCC_CIR_HSIRDYC_POSITION        (18U)
-#define RCC_CIR_HSIRDYC_MASK            (0x1U << RCC_CIR_HSIRDYC_POSITION)                  /*!< 0x00040000 */
+#define RCC_CIR_HSIRDYC_POS             (18U)
+#define RCC_CIR_HSIRDYC_MASK            (0x1U << RCC_CIR_HSIRDYC_POS)                  /*!< 0x00040000 */
 #define RCC_CIR_HSIRDYC                 RCC_CIR_HSIRDYC_MASK
 
-#define RCC_CIR_HSERDYC_POSITION        (19U)
-#define RCC_CIR_HSERDYC_MASK            (0x1U << RCC_CIR_HSERDYC_POSITION)                  /*!< 0x00080000 */
+#define RCC_CIR_HSERDYC_POS             (19U)
+#define RCC_CIR_HSERDYC_MASK            (0x1U << RCC_CIR_HSERDYC_POS)                  /*!< 0x00080000 */
 #define RCC_CIR_HSERDYC                 RCC_CIR_HSERDYC_MASK
 
-#define RCC_CIR_PLLRDYC_POSITION        (20U)
-#define RCC_CIR_PLLRDYC_MASK            (0x1U << RCC_CIR_PLLRDYC_POSITION)                  /*!< 0x00100000 */
+#define RCC_CIR_PLLRDYC_POS             (20U)
+#define RCC_CIR_PLLRDYC_MASK            (0x1U << RCC_CIR_PLLRDYC_POS)                  /*!< 0x00100000 */
 #define RCC_CIR_PLLRDYC                 RCC_CIR_PLLRDYC_MASK
 
-#define RCC_CIR_PLLI2SRDYC_POSITION     (21U)
-#define RCC_CIR_PLLI2SRDYC_MASK         (0x1U << RCC_CIR_PLLI2SRDYC_POSITION)               /*!< 0x00200000 */
+#define RCC_CIR_PLLI2SRDYC_POS          (21U)
+#define RCC_CIR_PLLI2SRDYC_MASK         (0x1U << RCC_CIR_PLLI2SRDYC_POS)               /*!< 0x00200000 */
 #define RCC_CIR_PLLI2SRDYC              RCC_CIR_PLLI2SRDYC_MASK
 
-#define RCC_CIR_CSSC_POSITION           (23U)
-#define RCC_CIR_CSSC_MASK               (0x1U << RCC_CIR_CSSC_POSITION)                     /*!< 0x00800000 */
+#define RCC_CIR_CSSC_POS                (23U)
+#define RCC_CIR_CSSC_MASK               (0x1U << RCC_CIR_CSSC_POS)                     /*!< 0x00800000 */
 #define RCC_CIR_CSSC                    RCC_CIR_CSSC_MASK
 
 /**************************************** Bit definition for RCC_AHB1RSTR register ****************************************/
-#define RCC_AHB1RSTR_GPIOARST_POSITION  (0U)
-#define RCC_AHB1RSTR_GPIOARST_MASK      (0x1U << RCC_AHB1RSTR_GPIOARST_POSITION)            /*!< 0x00000001 */
+#define RCC_AHB1RSTR_GPIOARST_POS       (0U)
+#define RCC_AHB1RSTR_GPIOARST_MASK      (0x1U << RCC_AHB1RSTR_GPIOARST_POS)            /*!< 0x00000001 */
 #define RCC_AHB1RSTR_GPIOARST           RCC_AHB1RSTR_GPIOARST_MASK
 
-#define RCC_AHB1RSTR_GPIOBRST_POSITION  (1U)
-#define RCC_AHB1RSTR_GPIOBRST_MASK      (0x1U << RCC_AHB1RSTR_GPIOBRST_POSITION)            /*!< 0x00000002 */
+#define RCC_AHB1RSTR_GPIOBRST_POS       (1U)
+#define RCC_AHB1RSTR_GPIOBRST_MASK      (0x1U << RCC_AHB1RSTR_GPIOBRST_POS)            /*!< 0x00000002 */
 #define RCC_AHB1RSTR_GPIOBRST           RCC_AHB1RSTR_GPIOBRST_MASK
 
-#define RCC_AHB1RSTR_GPIOCRST_POSITION  (2U)
-#define RCC_AHB1RSTR_GPIOCRST_MASK      (0x1U << RCC_AHB1RSTR_GPIOCRST_POSITION)            /*!< 0x00000004 */
+#define RCC_AHB1RSTR_GPIOCRST_POS       (2U)
+#define RCC_AHB1RSTR_GPIOCRST_MASK      (0x1U << RCC_AHB1RSTR_GPIOCRST_POS)            /*!< 0x00000004 */
 #define RCC_AHB1RSTR_GPIOCRST           RCC_AHB1RSTR_GPIOCRST_MASK
 
-#define RCC_AHB1RSTR_GPIODRST_POSITION  (3U)
-#define RCC_AHB1RSTR_GPIODRST_MASK      (0x1U << RCC_AHB1RSTR_GPIODRST_POSITION)            /*!< 0x00000008 */
+#define RCC_AHB1RSTR_GPIODRST_POS       (3U)
+#define RCC_AHB1RSTR_GPIODRST_MASK      (0x1U << RCC_AHB1RSTR_GPIODRST_POS)            /*!< 0x00000008 */
 #define RCC_AHB1RSTR_GPIODRST           RCC_AHB1RSTR_GPIODRST_MASK
 
-#define RCC_AHB1RSTR_GPIOERST_POSITION  (4U)
-#define RCC_AHB1RSTR_GPIOERST_MASK      (0x1U << RCC_AHB1RSTR_GPIOERST_POSITION)            /*!< 0x00000010 */
+#define RCC_AHB1RSTR_GPIOERST_POS       (4U)
+#define RCC_AHB1RSTR_GPIOERST_MASK      (0x1U << RCC_AHB1RSTR_GPIOERST_POS)            /*!< 0x00000010 */
 #define RCC_AHB1RSTR_GPIOERST           RCC_AHB1RSTR_GPIOERST_MASK
 
-#define RCC_AHB1RSTR_GPIOHRST_POSITION  (7U)
-#define RCC_AHB1RSTR_GPIOHRST_MASK      (0x1U << RCC_AHB1RSTR_GPIOHRST_POSITION)            /*!< 0x00000080 */
+#define RCC_AHB1RSTR_GPIOHRST_POS       (7U)
+#define RCC_AHB1RSTR_GPIOHRST_MASK      (0x1U << RCC_AHB1RSTR_GPIOHRST_POS)            /*!< 0x00000080 */
 #define RCC_AHB1RSTR_GPIOHRST           RCC_AHB1RSTR_GPIOHRST_MASK
 
-#define RCC_AHB1RSTR_CRCRST_POSITION    (12U)
-#define RCC_AHB1RSTR_CRCRST_MASK        (0x1U << RCC_AHB1RSTR_CRCRST_POSITION)              /*!< 0x00001000 */
+#define RCC_AHB1RSTR_CRCRST_POS         (12U)
+#define RCC_AHB1RSTR_CRCRST_MASK        (0x1U << RCC_AHB1RSTR_CRCRST_POS)              /*!< 0x00001000 */
 #define RCC_AHB1RSTR_CRCRST             RCC_AHB1RSTR_CRCRST_MASK
 
-#define RCC_AHB1RSTR_DMA1RST_POSITION   (21U)
-#define RCC_AHB1RSTR_DMA1RST_MASK       (0x1U << RCC_AHB1RSTR_DMA1RST_POSITION)             /*!< 0x00200000 */
+#define RCC_AHB1RSTR_DMA1RST_POS        (21U)
+#define RCC_AHB1RSTR_DMA1RST_MASK       (0x1U << RCC_AHB1RSTR_DMA1RST_POS)             /*!< 0x00200000 */
 #define RCC_AHB1RSTR_DMA1RST            RCC_AHB1RSTR_DMA1RST_MASK
 
-#define RCC_AHB1RSTR_DMA2RST_POSITION   (22U)
-#define RCC_AHB1RSTR_DMA2RST_MASK       (0x1U << RCC_AHB1RSTR_DMA2RST_POSITION)             /*!< 0x00400000 */
+#define RCC_AHB1RSTR_DMA2RST_POS        (22U)
+#define RCC_AHB1RSTR_DMA2RST_MASK       (0x1U << RCC_AHB1RSTR_DMA2RST_POS)             /*!< 0x00400000 */
 #define RCC_AHB1RSTR_DMA2RST            RCC_AHB1RSTR_DMA2RST_MASK
 
 /**************************************** Bit definition for RCC_AHB2RSTR register ****************************************/
-#define RCC_AHB2RSTR_OTGFSRST_POSITION  (7U)
-#define RCC_AHB2RSTR_OTGFSRST_MASK      (0x1U << RCC_AHB2RSTR_OTGFSRST_POSITION)            /*!< 0x00000080 */
+#define RCC_AHB2RSTR_OTGFSRST_POS       (7U)
+#define RCC_AHB2RSTR_OTGFSRST_MASK      (0x1U << RCC_AHB2RSTR_OTGFSRST_POS)            /*!< 0x00000080 */
 #define RCC_AHB2RSTR_OTGFSRST           RCC_CIR_CSSC_MASK
 
 /**************************************** Bit definition for RCC_APB1RSTR register ****************************************/
-#define RCC_APB1RSTR_TIM2RST_POSITION   (0U)
-#define RCC_APB1RSTR_TIM2RST_MASK       (0x1U << RCC_APB1RSTR_TIM2RST_POSITION)             /*!< 0x00000001 */
+#define RCC_APB1RSTR_TIM2RST_POS        (0U)
+#define RCC_APB1RSTR_TIM2RST_MASK       (0x1U << RCC_APB1RSTR_TIM2RST_POS)             /*!< 0x00000001 */
 #define RCC_APB1RSTR_TIM2RST            RCC_APB1RSTR_TIM2RST_MASK
 
-#define RCC_APB1RSTR_TIM3RST_POSITION   (1U)
-#define RCC_APB1RSTR_TIM3RST_MASK       (0x1U << RCC_APB1RSTR_TIM3RST_POSITION)             /*!< 0x00000002 */
+#define RCC_APB1RSTR_TIM3RST_POS        (1U)
+#define RCC_APB1RSTR_TIM3RST_MASK       (0x1U << RCC_APB1RSTR_TIM3RST_POS)             /*!< 0x00000002 */
 #define RCC_APB1RSTR_TIM3RST            RCC_APB1RSTR_TIM3RST_MASK
 
-#define RCC_APB1RSTR_TIM4RST_POSITION   (2U)
-#define RCC_APB1RSTR_TIM4RST_MASK       (0x1U << RCC_APB1RSTR_TIM4RST_POSITION)             /*!< 0x00000004 */
+#define RCC_APB1RSTR_TIM4RST_POS        (2U)
+#define RCC_APB1RSTR_TIM4RST_MASK       (0x1U << RCC_APB1RSTR_TIM4RST_POS)             /*!< 0x00000004 */
 #define RCC_APB1RSTR_TIM4RST            RCC_APB1RSTR_TIM4RST_MASK
 
-#define RCC_APB1RSTR_TIM5RST_POSITION   (3U)
-#define RCC_APB1RSTR_TIM5RST_MASK       (0x1U << RCC_APB1RSTR_TIM5RST_POSITION)             /*!< 0x00000008 */
+#define RCC_APB1RSTR_TIM5RST_POS        (3U)
+#define RCC_APB1RSTR_TIM5RST_MASK       (0x1U << RCC_APB1RSTR_TIM5RST_POS)             /*!< 0x00000008 */
 #define RCC_APB1RSTR_TIM5RST            RCC_APB1RSTR_TIM5RST_MASK
 
-#define RCC_APB1RSTR_WWDGRST_POSITION   (11U)
-#define RCC_APB1RSTR_WWDGRST_MASK       (0x1U << RCC_APB1RSTR_WWDGRST_POSITION)             /*!< 0x00000800 */
+#define RCC_APB1RSTR_WWDGRST_POS        (11U)
+#define RCC_APB1RSTR_WWDGRST_MASK       (0x1U << RCC_APB1RSTR_WWDGRST_POS)             /*!< 0x00000800 */
 #define RCC_APB1RSTR_WWDGRST            RCC_APB1RSTR_WWDGRST_MASK
 
-#define RCC_APB1RSTR_SPI2RST_POSITION   (14U)
-#define RCC_APB1RSTR_SPI2RST_MASK       (0x1U << RCC_APB1RSTR_SPI2RST_POSITION)             /*!< 0x00004000 */
+#define RCC_APB1RSTR_SPI2RST_POS        (14U)
+#define RCC_APB1RSTR_SPI2RST_MASK       (0x1U << RCC_APB1RSTR_SPI2RST_POS)             /*!< 0x00004000 */
 #define RCC_APB1RSTR_SPI2RST            RCC_APB1RSTR_SPI2RST_MASK
 
-#define RCC_APB1RSTR_SPI3RST_POSITION   (15U)
-#define RCC_APB1RSTR_SPI3RST_MASK       (0x1U << RCC_APB1RSTR_SPI3RST_POSITION)             /*!< 0x00008000 */
+#define RCC_APB1RSTR_SPI3RST_POS        (15U)
+#define RCC_APB1RSTR_SPI3RST_MASK       (0x1U << RCC_APB1RSTR_SPI3RST_POS)             /*!< 0x00008000 */
 #define RCC_APB1RSTR_SPI3RST            RCC_APB1RSTR_SPI3RST_MASK
 
-#define RCC_APB1RSTR_USART2RST_POSITION (17U)
-#define RCC_APB1RSTR_USART2RST_MASK     (0x1U << RCC_APB1RSTR_USART2RST_POSITION)           /*!< 0x00020000 */
+#define RCC_APB1RSTR_USART2RST_POS      (17U)
+#define RCC_APB1RSTR_USART2RST_MASK     (0x1U << RCC_APB1RSTR_USART2RST_POS)           /*!< 0x00020000 */
 #define RCC_APB1RSTR_USART2RST          RCC_APB1RSTR_USART2RST_MASK
 
-#define RCC_APB1RSTR_I2C1RST_POSITION   (21U)
-#define RCC_APB1RSTR_I2C1RST_MASK       (0x1U << RCC_APB1RSTR_I2C1RST_POSITION)             /*!< 0x00200000 */
+#define RCC_APB1RSTR_I2C1RST_POS        (21U)
+#define RCC_APB1RSTR_I2C1RST_MASK       (0x1U << RCC_APB1RSTR_I2C1RST_POS)             /*!< 0x00200000 */
 #define RCC_APB1RSTR_I2C1RST            RCC_APB1RSTR_I2C1RST_MASK
 
-#define RCC_APB1RSTR_I2C2RST_POSITION   (22U)
-#define RCC_APB1RSTR_I2C2RST_MASK       (0x1U << RCC_APB1RSTR_I2C2RST_POSITION)             /*!< 0x00400000 */
+#define RCC_APB1RSTR_I2C2RST_POS        (22U)
+#define RCC_APB1RSTR_I2C2RST_MASK       (0x1U << RCC_APB1RSTR_I2C2RST_POS)             /*!< 0x00400000 */
 #define RCC_APB1RSTR_I2C2RST            RCC_APB1RSTR_I2C2RST_MASK
 
-#define RCC_APB1RSTR_I2C3RST_POSITION   (23U)
-#define RCC_APB1RSTR_I2C3RST_MASK       (0x1U << RCC_APB1RSTR_I2C3RST_POSITION)             /*!< 0x00800000 */
+#define RCC_APB1RSTR_I2C3RST_POS        (23U)
+#define RCC_APB1RSTR_I2C3RST_MASK       (0x1U << RCC_APB1RSTR_I2C3RST_POS)             /*!< 0x00800000 */
 #define RCC_APB1RSTR_I2C3RST            RCC_APB1RSTR_I2C3RST_MASK
 
-#define RCC_APB1RSTR_PWRRST_POSITION    (28U)
-#define RCC_APB1RSTR_PWRRST_MASK        (0x1U << RCC_APB1RSTR_PWRRST_POSITION)              /*!< 0x10000000 */
+#define RCC_APB1RSTR_PWRRST_POS         (28U)
+#define RCC_APB1RSTR_PWRRST_MASK        (0x1U << RCC_APB1RSTR_PWRRST_POS)              /*!< 0x10000000 */
 #define RCC_APB1RSTR_PWRRST             RCC_APB1RSTR_PWRRST_MASK
 
 /**************************************** Bit definition for RCC_APB2RSTR register ****************************************/
-#define RCC_APB2RSTR_TIM1RST_POSITION   (0U)
-#define RCC_APB2RSTR_TIM1RST_MASK       (0x1U << RCC_APB2RSTR_TIM1RST_POSITION)             /*!< 0x00000001 */
+#define RCC_APB2RSTR_TIM1RST_POS        (0U)
+#define RCC_APB2RSTR_TIM1RST_MASK       (0x1U << RCC_APB2RSTR_TIM1RST_POS)             /*!< 0x00000001 */
 #define RCC_APB2RSTR_TIM1RST            RCC_APB2RSTR_TIM1RST_MASK
 
-#define RCC_APB2RSTR_USART1RST_POSITION (4U)
-#define RCC_APB2RSTR_USART1RST_MASK     (0x1U << RCC_APB2RSTR_USART1RST_POSITION)           /*!< 0x00000010 */
+#define RCC_APB2RSTR_USART1RST_POS      (4U)
+#define RCC_APB2RSTR_USART1RST_MASK     (0x1U << RCC_APB2RSTR_USART1RST_POS)           /*!< 0x00000010 */
 #define RCC_APB2RSTR_USART1RST          RCC_APB2RSTR_USART1RST_MASK
 
-#define RCC_APB2RSTR_USART6RST_POSITION (5U)
-#define RCC_APB2RSTR_USART6RST_MASK     (0x1U << RCC_APB2RSTR_USART6RST_POSITION)           /*!< 0x00000020 */
+#define RCC_APB2RSTR_USART6RST_POS      (5U)
+#define RCC_APB2RSTR_USART6RST_MASK     (0x1U << RCC_APB2RSTR_USART6RST_POS)           /*!< 0x00000020 */
 #define RCC_APB2RSTR_USART6RST          RCC_APB2RSTR_USART6RST_MASK
 
-#define RCC_APB2RSTR_ADC1RST_POSITION   (8U)
-#define RCC_APB2RSTR_ADC1RST_MASK       (0x1U << RCC_APB2RSTR_ADC1RST_POSITION)             /*!< 0x00000100 */
+#define RCC_APB2RSTR_ADC1RST_POS        (8U)
+#define RCC_APB2RSTR_ADC1RST_MASK       (0x1U << RCC_APB2RSTR_ADC1RST_POS)             /*!< 0x00000100 */
 #define RCC_APB2RSTR_ADC1RST            RCC_APB2RSTR_ADC1RST_MASK
 
-#define RCC_APB2RSTR_SDIORST_POSITION   (11U)
-#define RCC_APB2RSTR_SDIORST_MASK       (0x1U << RCC_APB2RSTR_SDIORST_POSITION)             /*!< 0x00000800 */
+#define RCC_APB2RSTR_SDIORST_POS        (11U)
+#define RCC_APB2RSTR_SDIORST_MASK       (0x1U << RCC_APB2RSTR_SDIORST_POS)             /*!< 0x00000800 */
 #define RCC_APB2RSTR_SDIORST            RCC_APB2RSTR_SDIORST_MASK
 
-#define RCC_APB2RSTR_SPI1RST_POSITION   (12U)
-#define RCC_APB2RSTR_SPI1RST_MASK       (0x1U << RCC_APB2RSTR_SPI1RST_POSITION)             /*!< 0x00001000 */
+#define RCC_APB2RSTR_SPI1RST_POS        (12U)
+#define RCC_APB2RSTR_SPI1RST_MASK       (0x1U << RCC_APB2RSTR_SPI1RST_POS)             /*!< 0x00001000 */
 #define RCC_APB2RSTR_SPI1RST            RCC_APB2RSTR_SPI1RST_MASK
 
-#define RCC_APB2RSTR_SPI4RST_POSITION   (13U)
-#define RCC_APB2RSTR_SPI4RST_MASK       (0x1U << RCC_APB2RSTR_SPI4RST_POSITION)             /*!< 0x00002000 */
+#define RCC_APB2RSTR_SPI4RST_POS        (13U)
+#define RCC_APB2RSTR_SPI4RST_MASK       (0x1U << RCC_APB2RSTR_SPI4RST_POS)             /*!< 0x00002000 */
 #define RCC_APB2RSTR_SPI4RST            RCC_APB2RSTR_SPI4RST_MASK
 
-#define RCC_APB2RSTR_SYSCFGRST_POSITION (14U)
-#define RCC_APB2RSTR_SYSCFGRST_MASK     (0x1U << RCC_APB2RSTR_SYSCFGRST_POSITION)           /*!< 0x00004000 */
+#define RCC_APB2RSTR_SYSCFGRST_POS      (14U)
+#define RCC_APB2RSTR_SYSCFGRST_MASK     (0x1U << RCC_APB2RSTR_SYSCFGRST_POS)           /*!< 0x00004000 */
 #define RCC_APB2RSTR_SYSCFGRST          RCC_APB2RSTR_SYSCFGRST_MASK
 
-#define RCC_APB2RSTR_TIM9RST_POSITION   (16U)
-#define RCC_APB2RSTR_TIM9RST_MASK       (0x1U << RCC_APB2RSTR_TIM9RST_POSITION)             /*!< 0x00010000 */
+#define RCC_APB2RSTR_TIM9RST_POS        (16U)
+#define RCC_APB2RSTR_TIM9RST_MASK       (0x1U << RCC_APB2RSTR_TIM9RST_POS)             /*!< 0x00010000 */
 #define RCC_APB2RSTR_TIM9RST            RCC_APB2RSTR_TIM9RST_MASK
 
-#define RCC_APB2RSTR_TIM10RST_POSITION  (17U)
-#define RCC_APB2RSTR_TIM10RST_MASK      (0x1U << RCC_APB2RSTR_TIM10RST_POSITION)            /*!< 0x00020000 */
+#define RCC_APB2RSTR_TIM10RST_POS       (17U)
+#define RCC_APB2RSTR_TIM10RST_MASK      (0x1U << RCC_APB2RSTR_TIM10RST_POS)            /*!< 0x00020000 */
 #define RCC_APB2RSTR_TIM10RST           RCC_APB2RSTR_TIM10RST_MASK
 
-#define RCC_APB2RSTR_TIM11RST_POSITION  (18U)
-#define RCC_APB2RSTR_TIM11RST_MASK      (0x1U << RCC_APB2RSTR_TIM11RST_POSITION)            /*!< 0x00040000 */
+#define RCC_APB2RSTR_TIM11RST_POS       (18U)
+#define RCC_APB2RSTR_TIM11RST_MASK      (0x1U << RCC_APB2RSTR_TIM11RST_POS)            /*!< 0x00040000 */
 #define RCC_APB2RSTR_TIM11RST           RCC_APB2RSTR_TIM11RST_MASK
 
-#define RCC_APB2RSTR_SPI5RST_POSITION   (20U)
-#define RCC_APB2RSTR_SPI5RST_MASK       (0x1U << RCC_APB2RSTR_SPI5RST_POSITION)             /*!< 0x00100000 */
+#define RCC_APB2RSTR_SPI5RST_POS        (20U)
+#define RCC_APB2RSTR_SPI5RST_MASK       (0x1U << RCC_APB2RSTR_SPI5RST_POS)             /*!< 0x00100000 */
 #define RCC_APB2RSTR_SPI5RST            RCC_APB2RSTR_SPI5RST_MASK
 
 /**************************************** Bit definition for RCC_AHB1ENR register ****************************************/
-#define RCC_AHB1ENR_GPIOAEN_POSITION    (0U)
-#define RCC_AHB1ENR_GPIOAEN_MASK        (0x1U << RCC_AHB1ENR_GPIOAEN_POSITION)              /*!< 0x00000001 */
+#define RCC_AHB1ENR_GPIOAEN_POS         (0U)
+#define RCC_AHB1ENR_GPIOAEN_MASK        (0x1U << RCC_AHB1ENR_GPIOAEN_POS)              /*!< 0x00000001 */
 #define RCC_AHB1ENR_GPIOAEN             RCC_AHB1ENR_GPIOAEN_MASK
 
-#define RCC_AHB1ENR_GPIOBEN_POSITION    (1U)
-#define RCC_AHB1ENR_GPIOBEN_MASK        (0x1U << RCC_AHB1ENR_GPIOBEN_POSITION)              /*!< 0x00000002 */
+#define RCC_AHB1ENR_GPIOBEN_POS         (1U)
+#define RCC_AHB1ENR_GPIOBEN_MASK        (0x1U << RCC_AHB1ENR_GPIOBEN_POS)              /*!< 0x00000002 */
 #define RCC_AHB1ENR_GPIOBEN             RCC_AHB1ENR_GPIOBEN_MASK
 
-#define RCC_AHB1ENR_GPIOCEN_POSITION    (2U)
-#define RCC_AHB1ENR_GPIOCEN_MASK        (0x1U << RCC_AHB1ENR_GPIOCEN_POSITION)              /*!< 0x00000004 */
+#define RCC_AHB1ENR_GPIOCEN_POS         (2U)
+#define RCC_AHB1ENR_GPIOCEN_MASK        (0x1U << RCC_AHB1ENR_GPIOCEN_POS)              /*!< 0x00000004 */
 #define RCC_AHB1ENR_GPIOCEN             RCC_AHB1ENR_GPIOCEN_MASK
 
-#define RCC_AHB1ENR_GPIODEN_POSITION    (3U)
-#define RCC_AHB1ENR_GPIODEN_MASK        (0x1U << RCC_AHB1ENR_GPIODEN_POSITION)              /*!< 0x00000008 */
+#define RCC_AHB1ENR_GPIODEN_POS         (3U)
+#define RCC_AHB1ENR_GPIODEN_MASK        (0x1U << RCC_AHB1ENR_GPIODEN_POS)              /*!< 0x00000008 */
 #define RCC_AHB1ENR_GPIODEN             RCC_AHB1ENR_GPIODEN_MASK
 
-#define RCC_AHB1ENR_GPIOEEN_POSITION    (4U)
-#define RCC_AHB1ENR_GPIOEEN_MASK        (0x1U << RCC_AHB1ENR_GPIOEEN_POSITION)              /*!< 0x00000010 */
+#define RCC_AHB1ENR_GPIOEEN_POS         (4U)
+#define RCC_AHB1ENR_GPIOEEN_MASK        (0x1U << RCC_AHB1ENR_GPIOEEN_POS)              /*!< 0x00000010 */
 #define RCC_AHB1ENR_GPIOEEN             RCC_AHB1ENR_GPIOEEN_MASK
 
-#define RCC_AHB1ENR_GPIOHEN_POSITION    (7U)
-#define RCC_AHB1ENR_GPIOHEN_MASK        (0x1U << RCC_AHB1ENR_GPIOHEN_POSITION)              /*!< 0x00000080 */
+#define RCC_AHB1ENR_GPIOHEN_POS         (7U)
+#define RCC_AHB1ENR_GPIOHEN_MASK        (0x1U << RCC_AHB1ENR_GPIOHEN_POS)              /*!< 0x00000080 */
 #define RCC_AHB1ENR_GPIOHEN             RCC_AHB1ENR_GPIOHEN_MASK
 
-#define RCC_AHB1ENR_CRCEN_POSITION      (12U)
-#define RCC_AHB1ENR_CRCEN_MASK          (0x1U << RCC_AHB1ENR_CRCEN_POSITION)                /*!< 0x00001000 */
+#define RCC_AHB1ENR_CRCEN_POS           (12U)
+#define RCC_AHB1ENR_CRCEN_MASK          (0x1U << RCC_AHB1ENR_CRCEN_POS)                /*!< 0x00001000 */
 #define RCC_AHB1ENR_CRCEN               RCC_AHB1ENR_CRCEN_MASK
 
-#define RCC_AHB1ENR_DMA1EN_POSITION     (21U)
-#define RCC_AHB1ENR_DMA1EN_MASK         (0x1U << RCC_AHB1ENR_DMA1EN_POSITION)               /*!< 0x00200000 */
+#define RCC_AHB1ENR_DMA1EN_POS          (21U)
+#define RCC_AHB1ENR_DMA1EN_MASK         (0x1U << RCC_AHB1ENR_DMA1EN_POS)               /*!< 0x00200000 */
 #define RCC_AHB1ENR_DMA1EN              RCC_AHB1ENR_DMA1EN_MASK
 
-#define RCC_AHB1ENR_DMA2EN_POSITION     (22U)
-#define RCC_AHB1ENR_DMA2EN_MASK         (0x1U << RCC_AHB1ENR_DMA2EN_POSITION)               /*!< 0x00400000 */
+#define RCC_AHB1ENR_DMA2EN_POS          (22U)
+#define RCC_AHB1ENR_DMA2EN_MASK         (0x1U << RCC_AHB1ENR_DMA2EN_POS)               /*!< 0x00400000 */
 #define RCC_AHB1ENR_DMA2EN              RCC_AHB1ENR_DMA2EN_MASK
 
 /**************************************** Bit definition for RCC_AHB2ENR register ****************************************/
-#define RCC_AHB2ENR_OTGFSEN_POSITION    (7U)
-#define RCC_AHB2ENR_OTGFSEN_MASK        (0x1U << RCC_AHB2ENR_OTGFSEN_POSITION)              /*!< 0x00000080 */
+#define RCC_AHB2ENR_OTGFSEN_POS         (7U)
+#define RCC_AHB2ENR_OTGFSEN_MASK        (0x1U << RCC_AHB2ENR_OTGFSEN_POS)              /*!< 0x00000080 */
 #define RCC_AHB2ENR_OTGFSEN             RCC_AHB2ENR_OTGFSEN_MASK
 
 /**************************************** Bit definition for RCC_APB1ENR register ****************************************/
-#define RCC_APB1ENR_TIM2EN_POSITION     (0U)
-#define RCC_APB1ENR_TIM2EN_MASK         (0x1U << RCC_APB1ENR_TIM2EN_POSITION)               /*!< 0x00000001 */
+#define RCC_APB1ENR_TIM2EN_POS          (0U)
+#define RCC_APB1ENR_TIM2EN_MASK         (0x1U << RCC_APB1ENR_TIM2EN_POS)               /*!< 0x00000001 */
 #define RCC_APB1ENR_TIM2EN              RCC_APB1ENR_TIM2EN_MASK
 
-#define RCC_APB1ENR_TIM3EN_POSITION     (1U)
-#define RCC_APB1ENR_TIM3EN_MASK         (0x1U << RCC_APB1ENR_TIM3EN_POSITION)               /*!< 0x00000002 */
+#define RCC_APB1ENR_TIM3EN_POS          (1U)
+#define RCC_APB1ENR_TIM3EN_MASK         (0x1U << RCC_APB1ENR_TIM3EN_POS)               /*!< 0x00000002 */
 #define RCC_APB1ENR_TIM3EN              RCC_APB1ENR_TIM3EN_MASK
 
-#define RCC_APB1ENR_TIM4EN_POSITION     (2U)
-#define RCC_APB1ENR_TIM4EN_MASK         (0x1U << RCC_APB1ENR_TIM4EN_POSITION)               /*!< 0x00000004 */
+#define RCC_APB1ENR_TIM4EN_POS          (2U)
+#define RCC_APB1ENR_TIM4EN_MASK         (0x1U << RCC_APB1ENR_TIM4EN_POS)               /*!< 0x00000004 */
 #define RCC_APB1ENR_TIM4EN              RCC_APB1ENR_TIM4EN_MASK
 
-#define RCC_APB1ENR_TIM5EN_POSITION     (3U)
-#define RCC_APB1ENR_TIM5EN_MASK         (0x1U << RCC_APB1ENR_TIM5EN_POSITION)               /*!< 0x00000008 */
+#define RCC_APB1ENR_TIM5EN_POS          (3U)
+#define RCC_APB1ENR_TIM5EN_MASK         (0x1U << RCC_APB1ENR_TIM5EN_POS)               /*!< 0x00000008 */
 #define RCC_APB1ENR_TIM5EN              RCC_APB1ENR_TIM5EN_MASK
 
-#define RCC_APB1ENR_WWDGEN_POSITION     (11U)
-#define RCC_APB1ENR_WWDGEN_MASK         (0x1U << RCC_APB1ENR_WWDGEN_POSITION)               /*!< 0x00000800 */
+#define RCC_APB1ENR_WWDGEN_POS          (11U)
+#define RCC_APB1ENR_WWDGEN_MASK         (0x1U << RCC_APB1ENR_WWDGEN_POS)               /*!< 0x00000800 */
 #define RCC_APB1ENR_WWDGEN              RCC_APB1ENR_WWDGEN_MASK
 
-#define RCC_APB1ENR_SPI2EN_POSITION     (14U)
-#define RCC_APB1ENR_SPI2EN_MASK         (0x1U << RCC_APB1ENR_SPI2EN_POSITION)               /*!< 0x00004000 */
+#define RCC_APB1ENR_SPI2EN_POS          (14U)
+#define RCC_APB1ENR_SPI2EN_MASK         (0x1U << RCC_APB1ENR_SPI2EN_POS)               /*!< 0x00004000 */
 #define RCC_APB1ENR_SPI2EN              RCC_APB1ENR_SPI2EN_MASK
 
-#define RCC_APB1ENR_SPI3EN_POSITION     (15U)
-#define RCC_APB1ENR_SPI3EN_MASK         (0x1U << RCC_APB1ENR_SPI3EN_POSITION)               /*!< 0x00008000 */
+#define RCC_APB1ENR_SPI3EN_POS          (15U)
+#define RCC_APB1ENR_SPI3EN_MASK         (0x1U << RCC_APB1ENR_SPI3EN_POS)               /*!< 0x00008000 */
 #define RCC_APB1ENR_SPI3EN              RCC_APB1ENR_SPI3EN_MASK
 
-#define RCC_APB1ENR_USART2EN_POSITION   (17U)
-#define RCC_APB1ENR_USART2EN_MASK       (0x1U << RCC_APB1ENR_USART2EN_POSITION)             /*!< 0x00020000 */
+#define RCC_APB1ENR_USART2EN_POS        (17U)
+#define RCC_APB1ENR_USART2EN_MASK       (0x1U << RCC_APB1ENR_USART2EN_POS)             /*!< 0x00020000 */
 #define RCC_APB1ENR_USART2EN            RCC_APB1ENR_USART2EN_MASK
 
-#define RCC_APB1ENR_I2C1EN_POSITION     (21U)
-#define RCC_APB1ENR_I2C1EN_MASK         (0x1U << RCC_APB1ENR_I2C1EN_POSITION)               /*!< 0x00200000 */
+#define RCC_APB1ENR_I2C1EN_POS          (21U)
+#define RCC_APB1ENR_I2C1EN_MASK         (0x1U << RCC_APB1ENR_I2C1EN_POS)               /*!< 0x00200000 */
 #define RCC_APB1ENR_I2C1EN              RCC_APB1ENR_I2C1EN_MASK
 
-#define RCC_APB1ENR_I2C2EN_POSITION     (22U)
-#define RCC_APB1ENR_I2C2EN_MASK         (0x1U << RCC_APB1ENR_I2C2EN_POSITION)               /*!< 0x00400000 */
+#define RCC_APB1ENR_I2C2EN_POS          (22U)
+#define RCC_APB1ENR_I2C2EN_MASK         (0x1U << RCC_APB1ENR_I2C2EN_POS)               /*!< 0x00400000 */
 #define RCC_APB1ENR_I2C2EN              RCC_APB1ENR_I2C2EN_MASK
 
-#define RCC_APB1ENR_I2C3EN_POSITION     (23U)
-#define RCC_APB1ENR_I2C3EN_MASK         (0x1U << RCC_APB1ENR_I2C3EN_POSITION)               /*!< 0x00800000 */
+#define RCC_APB1ENR_I2C3EN_POS          (23U)
+#define RCC_APB1ENR_I2C3EN_MASK         (0x1U << RCC_APB1ENR_I2C3EN_POS)               /*!< 0x00800000 */
 #define RCC_APB1ENR_I2C3EN              RCC_APB1ENR_I2C3EN_MASK
 
-#define RCC_APB1ENR_PWREN_POSITION      (28U)
-#define RCC_APB1ENR_PWREN_MASK          (0x1U << RCC_APB1ENR_PWREN_POSITION)                /*!< 0x10000000 */
+#define RCC_APB1ENR_PWREN_POS           (28U)
+#define RCC_APB1ENR_PWREN_MASK          (0x1U << RCC_APB1ENR_PWREN_POS)                /*!< 0x10000000 */
 #define RCC_APB1ENR_PWREN               RCC_APB1ENR_PWREN_MASK
 
 /**************************************** Bit definition for RCC_APB2ENR register ****************************************/
-#define RCC_APB2ENR_TIM1EN_POSITION     (0U)
-#define RCC_APB2ENR_TIM1EN_MASK         (0x1U << RCC_APB2ENR_TIM1EN_POSITION)               /*!< 0x00000001 */
+#define RCC_APB2ENR_TIM1EN_POS          (0U)
+#define RCC_APB2ENR_TIM1EN_MASK         (0x1U << RCC_APB2ENR_TIM1EN_POS)               /*!< 0x00000001 */
 #define RCC_APB2ENR_TIM1EN              RCC_APB2ENR_TIM1EN_MASK
 
-#define RCC_APB2ENR_USART1EN_POSITION   (4U)
-#define RCC_APB2ENR_USART1EN_MASK       (0x1U << RCC_APB2ENR_USART1EN_POSITION)             /*!< 0x00000010 */
+#define RCC_APB2ENR_USART1EN_POS        (4U)
+#define RCC_APB2ENR_USART1EN_MASK       (0x1U << RCC_APB2ENR_USART1EN_POS)             /*!< 0x00000010 */
 #define RCC_APB2ENR_USART1EN            RCC_APB2ENR_USART1EN_MASK
 
-#define RCC_APB2ENR_USART6EN_POSITION   (5U)
-#define RCC_APB2ENR_USART6EN_MASK       (0x1U << RCC_APB2ENR_USART6EN_POSITION)             /*!< 0x00000020 */
+#define RCC_APB2ENR_USART6EN_POS        (5U)
+#define RCC_APB2ENR_USART6EN_MASK       (0x1U << RCC_APB2ENR_USART6EN_POS)             /*!< 0x00000020 */
 #define RCC_APB2ENR_USART6EN            RCC_APB2ENR_USART6EN_MASK
 
-#define RCC_APB2ENR_ADC1EN_POSITION     (8U)
-#define RCC_APB2ENR_ADC1EN_MASK         (0x1U << RCC_APB2ENR_ADC1EN_POSITION)               /*!< 0x00000100 */
+#define RCC_APB2ENR_ADC1EN_POS          (8U)
+#define RCC_APB2ENR_ADC1EN_MASK         (0x1U << RCC_APB2ENR_ADC1EN_POS)               /*!< 0x00000100 */
 #define RCC_APB2ENR_ADC1EN              RCC_APB2ENR_ADC1EN_MASK
 
-#define RCC_APB2ENR_SDIOEN_POSITION     (11U)
-#define RCC_APB2ENR_SDIOEN_MASK         (0x1U << RCC_APB2ENR_SDIOEN_POSITION)               /*!< 0x00000800 */
+#define RCC_APB2ENR_SDIOEN_POS          (11U)
+#define RCC_APB2ENR_SDIOEN_MASK         (0x1U << RCC_APB2ENR_SDIOEN_POS)               /*!< 0x00000800 */
 #define RCC_APB2ENR_SDIOEN              RCC_APB2ENR_SDIOEN_MASK
 
-#define RCC_APB2ENR_SPI1EN_POSITION     (12U)
-#define RCC_APB2ENR_SPI1EN_MASK         (0x1U << RCC_APB2ENR_SPI1EN_POSITION)               /*!< 0x00001000 */
+#define RCC_APB2ENR_SPI1EN_POS          (12U)
+#define RCC_APB2ENR_SPI1EN_MASK         (0x1U << RCC_APB2ENR_SPI1EN_POS)               /*!< 0x00001000 */
 #define RCC_APB2ENR_SPI1EN              RCC_APB2ENR_SPI1EN_MASK
 
-#define RCC_APB2ENR_SPI4EN_POSITION     (13U)
-#define RCC_APB2ENR_SPI4EN_MASK         (0x1U << RCC_APB2ENR_SPI4EN_POSITION)               /*!< 0x00002000 */
+#define RCC_APB2ENR_SPI4EN_POS          (13U)
+#define RCC_APB2ENR_SPI4EN_MASK         (0x1U << RCC_APB2ENR_SPI4EN_POS)               /*!< 0x00002000 */
 #define RCC_APB2ENR_SPI4EN              RCC_APB2ENR_SPI4EN_MASK
 
-#define RCC_APB2ENR_SYSCFGEN_POSITION   (14U)
-#define RCC_APB2ENR_SYSCFGEN_MASK       (0x1U << RCC_APB2ENR_SYSCFGEN_POSITION)             /*!< 0x00004000 */
+#define RCC_APB2ENR_SYSCFGEN_POS        (14U)
+#define RCC_APB2ENR_SYSCFGEN_MASK       (0x1U << RCC_APB2ENR_SYSCFGEN_POS)             /*!< 0x00004000 */
 #define RCC_APB2ENR_SYSCFGEN            RCC_APB2ENR_SYSCFGEN_MASK
 
-#define RCC_APB2ENR_TIM9EN_POSITION     (16U)
-#define RCC_APB2ENR_TIM9EN_MASK         (0x1U << RCC_APB2ENR_TIM9EN_POSITION)               /*!< 0x00010000 */
+#define RCC_APB2ENR_TIM9EN_POS          (16U)
+#define RCC_APB2ENR_TIM9EN_MASK         (0x1U << RCC_APB2ENR_TIM9EN_POS)               /*!< 0x00010000 */
 #define RCC_APB2ENR_TIM9EN              RCC_APB2ENR_TIM9EN_MASK
 
-#define RCC_APB2ENR_TIM10EN_POSITION    (17U)
-#define RCC_APB2ENR_TIM10EN_MASK        (0x1U << RCC_APB2ENR_TIM10EN_POSITION)              /*!< 0x00020000 */
+#define RCC_APB2ENR_TIM10EN_POS         (17U)
+#define RCC_APB2ENR_TIM10EN_MASK        (0x1U << RCC_APB2ENR_TIM10EN_POS)              /*!< 0x00020000 */
 #define RCC_APB2ENR_TIM10EN             RCC_APB2ENR_TIM10EN_MASK
 
-#define RCC_APB2ENR_TIM11EN_POSITION    (18U)
-#define RCC_APB2ENR_TIM11EN_MASK        (0x1U << RCC_APB2ENR_TIM11EN_POSITION)              /*!< 0x00040000 */
+#define RCC_APB2ENR_TIM11EN_POS         (18U)
+#define RCC_APB2ENR_TIM11EN_MASK        (0x1U << RCC_APB2ENR_TIM11EN_POS)              /*!< 0x00040000 */
 #define RCC_APB2ENR_TIM11EN             RCC_APB2ENR_TIM11EN_MASK
 
-#define RCC_APB2ENR_SPI5EN_POSITION     (20U)
-#define RCC_APB2ENR_SPI5EN_MASK         (0x1U << RCC_APB2ENR_SPI5EN_POSITION)               /*!< 0x00100000 */
+#define RCC_APB2ENR_SPI5EN_POS          (20U)
+#define RCC_APB2ENR_SPI5EN_MASK         (0x1U << RCC_APB2ENR_SPI5EN_POS)               /*!< 0x00100000 */
 #define RCC_APB2ENR_SPI5EN              RCC_APB2ENR_SPI5EN_MASK
 
 /**************************************** Bit definition for RCC_BDCR register ****************************************/
-#define RCC_BDCR_LSEON_POSITION         (0U)
-#define RCC_BDCR_LSEON_MASK             (0x1U << RCC_BDCR_LSEON_POSITION)                   /*!< 0x00000001 */
+#define RCC_BDCR_LSEON_POS              (0U)
+#define RCC_BDCR_LSEON_MASK             (0x1U << RCC_BDCR_LSEON_POS)                   /*!< 0x00000001 */
 #define RCC_BDCR_LSEON                  RCC_BDCR_LSEON_MASK
 
-#define RCC_BDCR_LSERDY_POSITION        (1U)
-#define RCC_BDCR_LSERDY_MASK            (0x1U << RCC_BDCR_LSERDY_POSITION)                  /*!< 0x00000002 */
+#define RCC_BDCR_LSERDY_POS             (1U)
+#define RCC_BDCR_LSERDY_MASK            (0x1U << RCC_BDCR_LSERDY_POS)                  /*!< 0x00000002 */
 #define RCC_BDCR_LSERDY                 RCC_BDCR_LSERDY_MASK
 
-#define RCC_BDCR_LSEBYP_POSITION        (2U)
-#define RCC_BDCR_LSEBYP_MASK            (0x1U << RCC_BDCR_LSEBYP_POSITION)                  /*!< 0x00000004 */
+#define RCC_BDCR_LSEBYP_POS             (2U)
+#define RCC_BDCR_LSEBYP_MASK            (0x1U << RCC_BDCR_LSEBYP_POS)                  /*!< 0x00000004 */
 #define RCC_BDCR_LSEBYP                 RCC_BDCR_LSEBYP_MASK
 
-#define RCC_BDCR_LSEMOD_POSITION        (3U)
-#define RCC_BDCR_LSEMOD_MASK            (0x1U << RCC_BDCR_LSEMOD_POSITION)                  /*!< 0x00000008 */
+#define RCC_BDCR_LSEMOD_POS             (3U)
+#define RCC_BDCR_LSEMOD_MASK            (0x1U << RCC_BDCR_LSEMOD_POS)                  /*!< 0x00000008 */
 #define RCC_BDCR_LSEMOD                 RCC_BDCR_LSEMOD_MASK
 
-#define RCC_BDCR_RTCSEL_POSITION        (8U)
-#define RCC_BDCR_RTCSEL_MASK            (0x3U << RCC_BDCR_RTCSEL_POSITION)                  /*!< 0x00000300 */
+#define RCC_BDCR_RTCSEL_POS             (8U)
+#define RCC_BDCR_RTCSEL_MASK            (0x3U << RCC_BDCR_RTCSEL_POS)                  /*!< 0x00000300 */
 #define RCC_BDCR_RTCSEL                 RCC_BDCR_RTCSEL_MASK
-#define RCC_BDCR_RTCSEL_0               (0x1U << RCC_BDCR_RTCSEL_POSITION)                  /*!< 0x00000100 */
-#define RCC_BDCR_RTCSEL_1               (0x2U << RCC_BDCR_RTCSEL_POSITION)                  /*!< 0x00000200 */
+#define RCC_BDCR_RTCSEL_0               (0x1U << RCC_BDCR_RTCSEL_POS)                  /*!< 0x00000100 */
+#define RCC_BDCR_RTCSEL_1               (0x2U << RCC_BDCR_RTCSEL_POS)                  /*!< 0x00000200 */
 
-#define RCC_BDCR_RTCEN_POSITION         (15U)
-#define RCC_BDCR_RTCEN_MASK             (0x1U << RCC_BDCR_RTCEN_POSITION)                   /*!< 0x00008000 */
+#define RCC_BDCR_RTCEN_POS              (15U)
+#define RCC_BDCR_RTCEN_MASK             (0x1U << RCC_BDCR_RTCEN_POS)                   /*!< 0x00008000 */
 #define RCC_BDCR_RTCEN                  RCC_BDCR_RTCEN_MASK
 
-#define RCC_BDCR_BDRST_POSITION         (16U)
-#define RCC_BDCR_BDRST_MASK             (0x1U << RCC_BDCR_BDRST_POSITION)                   /*!< 0x00010000 */
+#define RCC_BDCR_BDRST_POS              (16U)
+#define RCC_BDCR_BDRST_MASK             (0x1U << RCC_BDCR_BDRST_POS)                   /*!< 0x00010000 */
 #define RCC_BDCR_BDRST                  RCC_BDCR_BDRST_MASK
 
 /**************************************** Bit definition for RCC_CSR register ****************************************/
-#define RCC_CSR_LSION_POSITION          (0U)
-#define RCC_CSR_LSION_MASK              (0x1U << RCC_CSR_LSION_POSITION)                    /*!< 0x00000001 */
+#define RCC_CSR_LSION_POS               (0U)
+#define RCC_CSR_LSION_MASK              (0x1U << RCC_CSR_LSION_POS)                    /*!< 0x00000001 */
 #define RCC_CSR_LSION                   RCC_CSR_LSION_MASK
 
-#define RCC_CSR_LSIRDY_POSITION         (1U)
-#define RCC_CSR_LSIRDY_MASK             (0x1U << RCC_CSR_LSIRDY_POSITION)                   /*!< 0x00000002 */
+#define RCC_CSR_LSIRDY_POS              (1U)
+#define RCC_CSR_LSIRDY_MASK             (0x1U << RCC_CSR_LSIRDY_POS)                   /*!< 0x00000002 */
 #define RCC_CSR_LSIRDY                  RCC_CSR_LSIRDY_MASK
 
-#define RCC_CSR_RMVF_POSITION           (24U)
-#define RCC_CSR_RMVF_MASK               (0x1U << RCC_CSR_RMVF_POSITION)                     /*!< 0x01000000 */
+#define RCC_CSR_RMVF_POS                (24U)
+#define RCC_CSR_RMVF_MASK               (0x1U << RCC_CSR_RMVF_POS)                     /*!< 0x01000000 */
 #define RCC_CSR_RMVF                    RCC_CSR_RMVF_MASK
 
-#define RCC_CSR_BORRSTF_POSITION        (25U)
-#define RCC_CSR_BORRSTF_MASK            (0x1U << RCC_CSR_BORRSTF_POSITION)                  /*!< 0x02000000 */
+#define RCC_CSR_BORRSTF_POS             (25U)
+#define RCC_CSR_BORRSTF_MASK            (0x1U << RCC_CSR_BORRSTF_POS)                  /*!< 0x02000000 */
 #define RCC_CSR_BORRSTF                 RCC_CSR_BORRSTF_MASK
 
-#define RCC_CSR_PINRSTF_POSITION        (26U)
-#define RCC_CSR_PINRSTF_MASK            (0x1U << RCC_CSR_PINRSTF_POSITION)                  /*!< 0x04000000 */
+#define RCC_CSR_PINRSTF_POS             (26U)
+#define RCC_CSR_PINRSTF_MASK            (0x1U << RCC_CSR_PINRSTF_POS)                  /*!< 0x04000000 */
 #define RCC_CSR_PINRSTF                 RCC_CSR_PINRSTF_MASK
 
-#define RCC_CSR_PORRSTF_POSITION        (27U)
-#define RCC_CSR_PORRSTF_MASK            (0x1U << RCC_CSR_PORRSTF_POSITION)                  /*!< 0x08000000 */
+#define RCC_CSR_PORRSTF_POS             (27U)
+#define RCC_CSR_PORRSTF_MASK            (0x1U << RCC_CSR_PORRSTF_POS)                  /*!< 0x08000000 */
 #define RCC_CSR_PORRSTF                 RCC_CSR_PORRSTF_MASK
 
-#define RCC_CSR_SFTRSTF_POSITION        (28U)
-#define RCC_CSR_SFTRSTF_MASK            (0x1U << RCC_CSR_SFTRSTF_POSITION)                  /*!< 0x10000000 */
+#define RCC_CSR_SFTRSTF_POS             (28U)
+#define RCC_CSR_SFTRSTF_MASK            (0x1U << RCC_CSR_SFTRSTF_POS)                  /*!< 0x10000000 */
 #define RCC_CSR_SFTRSTF                 RCC_CSR_SFTRSTF_MASK
 
-#define RCC_CSR_IWDGRSTF_POSITION       (29U)
-#define RCC_CSR_IWDGRSTF_MASK           (0x1U << RCC_CSR_IWDGRSTF_POSITION)                 /*!< 0x20000000 */
+#define RCC_CSR_IWDGRSTF_POS            (29U)
+#define RCC_CSR_IWDGRSTF_MASK           (0x1U << RCC_CSR_IWDGRSTF_POS)                 /*!< 0x20000000 */
 #define RCC_CSR_IWDGRSTF                RCC_CSR_IWDGRSTF_MASK
 
-#define RCC_CSR_WWDGRSTF_POSITION       (30U)
-#define RCC_CSR_WWDGRSTF_MASK           (0x1U << RCC_CSR_WWDGRSTF_POSITION)                 /*!< 0x40000000 */
+#define RCC_CSR_WWDGRSTF_POS            (30U)
+#define RCC_CSR_WWDGRSTF_MASK           (0x1U << RCC_CSR_WWDGRSTF_POS)                 /*!< 0x40000000 */
 #define RCC_CSR_WWDGRSTF                RCC_CSR_WWDGRSTF_MASK
 
-#define RCC_CSR_LPWRRSTF_POSITION       (31U)
-#define RCC_CSR_LPWRRSTF_MASK           (0x1U << RCC_CSR_LPWRRSTF_POSITION)                 /*!< 0x80000000 */
+#define RCC_CSR_LPWRRSTF_POS            (31U)
+#define RCC_CSR_LPWRRSTF_MASK           (0x1U << RCC_CSR_LPWRRSTF_POS)                 /*!< 0x80000000 */
 #define RCC_CSR_LPWRRSTF                RCC_CSR_LPWRRSTF_MASK
 
 /**************************************** Bit definition for RCC_SSCGR register ****************************************/
-#define RCC_SSCGR_MODPER_POSITION       (0U)
-#define RCC_SSCGR_MODPER_MASK           (0x1U << RCC_SSCGR_MODPER_POSITION)                 /*!< 0x00000001 */
+#define RCC_SSCGR_MODPER_POS            (0U)
+#define RCC_SSCGR_MODPER_MASK           (0x1U << RCC_SSCGR_MODPER_POS)                 /*!< 0x00000001 */
 #define RCC_SSCGR_MODPER                RCC_SSCGR_MODPER_MASK
 
-#define RCC_SSCGR_INCSTEP_POSITION      (13U)
-#define RCC_SSCGR_INCSTEP_MASK          (0x1U << RCC_SSCGR_INCSTEP_POSITION)                /*!< 0x00002000 */
+#define RCC_SSCGR_INCSTEP_POS           (13U)
+#define RCC_SSCGR_INCSTEP_MASK          (0x1U << RCC_SSCGR_INCSTEP_POS)                /*!< 0x00002000 */
 #define RCC_SSCGR_INCSTEP               RCC_SSCGR_INCSTEP_MASK
 
-#define RCC_SSCGR_SPREADSEL_POSITION    (30U)
-#define RCC_SSCGR_SPREADSEL_MASK        (0x1U << RCC_SSCGR_SPREADSEL_POSITION)              /*!< 0x40000000 */
+#define RCC_SSCGR_SPREADSEL_POS         (30U)
+#define RCC_SSCGR_SPREADSEL_MASK        (0x1U << RCC_SSCGR_SPREADSEL_POS)              /*!< 0x40000000 */
 #define RCC_SSCGR_SPREADSEL             RCC_SSCGR_SPREADSEL_MASK
 
-#define RCC_SSCGR_SSCGEN_POSITION       (31U)
-#define RCC_SSCGR_SSCGEN_MASK           (0x1U << RCC_SSCGR_SSCGEN_POSITION)                 /*!< 0x80000000 */
+#define RCC_SSCGR_SSCGEN_POS            (31U)
+#define RCC_SSCGR_SSCGEN_MASK           (0x1U << RCC_SSCGR_SSCGEN_POS)                 /*!< 0x80000000 */
 #define RCC_SSCGR_SSCGEN                RCC_SSCGR_SSCGEN_MASK
 
 /**************************************** Bit definition for RCC_PLLI2SCFGR register ****************************************/
-#define RCC_PLLI2SCFGR_PLLI2SM_POSITION (0U)
-#define RCC_PLLI2SCFGR_PLLI2SM_MASK     (0x3FU << RCC_PLLI2SCFGR_PLLI2SM_POSITION)          /*!< 0x0000003F */
+#define RCC_PLLI2SCFGR_PLLI2SM_POS      (0U)
+#define RCC_PLLI2SCFGR_PLLI2SM_MASK     (0x3FU << RCC_PLLI2SCFGR_PLLI2SM_POS)          /*!< 0x0000003F */
 #define RCC_PLLI2SCFGR_PLLI2SM          RCC_PLLI2SCFGR_PLLI2SM_MASK
-#define RCC_PLLI2SCFGR_PLLI2SM_0        (0x01U << RCC_PLLI2SCFGR_PLLI2SM_POSITION)          /*!< 0x00000001 */
-#define RCC_PLLI2SCFGR_PLLI2SM_1        (0x02U << RCC_PLLI2SCFGR_PLLI2SM_POSITION)          /*!< 0x00000002 */
-#define RCC_PLLI2SCFGR_PLLI2SM_2        (0x04U << RCC_PLLI2SCFGR_PLLI2SM_POSITION)          /*!< 0x00000004 */
-#define RCC_PLLI2SCFGR_PLLI2SM_3        (0x08U << RCC_PLLI2SCFGR_PLLI2SM_POSITION)          /*!< 0x00000008 */
-#define RCC_PLLI2SCFGR_PLLI2SM_4        (0x10U << RCC_PLLI2SCFGR_PLLI2SM_POSITION)          /*!< 0x00000010 */
-#define RCC_PLLI2SCFGR_PLLI2SM_5        (0x20U << RCC_PLLI2SCFGR_PLLI2SM_POSITION)          /*!< 0x00000020 */
+#define RCC_PLLI2SCFGR_PLLI2SM_0        (0x01U << RCC_PLLI2SCFGR_PLLI2SM_POS)          /*!< 0x00000001 */
+#define RCC_PLLI2SCFGR_PLLI2SM_1        (0x02U << RCC_PLLI2SCFGR_PLLI2SM_POS)          /*!< 0x00000002 */
+#define RCC_PLLI2SCFGR_PLLI2SM_2        (0x04U << RCC_PLLI2SCFGR_PLLI2SM_POS)          /*!< 0x00000004 */
+#define RCC_PLLI2SCFGR_PLLI2SM_3        (0x08U << RCC_PLLI2SCFGR_PLLI2SM_POS)          /*!< 0x00000008 */
+#define RCC_PLLI2SCFGR_PLLI2SM_4        (0x10U << RCC_PLLI2SCFGR_PLLI2SM_POS)          /*!< 0x00000010 */
+#define RCC_PLLI2SCFGR_PLLI2SM_5        (0x20U << RCC_PLLI2SCFGR_PLLI2SM_POS)          /*!< 0x00000020 */
 
-#define RCC_PLLI2SCFGR_PLLI2SN_POSITION (6U)
-#define RCC_PLLI2SCFGR_PLLI2SN_MASK     (0x1FFU << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00007FC0 */
+#define RCC_PLLI2SCFGR_PLLI2SN_POS      (6U)
+#define RCC_PLLI2SCFGR_PLLI2SN_MASK     (0x1FFU << RCC_PLLI2SCFGR_PLLI2SN_POS)         /*!< 0x00007FC0 */
 #define RCC_PLLI2SCFGR_PLLI2SN          RCC_PLLI2SCFGR_PLLI2SN_MASK
-#define RCC_PLLI2SCFGR_PLLI2SN_0        (0x001U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00000040 */
-#define RCC_PLLI2SCFGR_PLLI2SN_1        (0x002U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00000080 */
-#define RCC_PLLI2SCFGR_PLLI2SN_2        (0x004U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00000100 */
-#define RCC_PLLI2SCFGR_PLLI2SN_3        (0x008U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00000200 */
-#define RCC_PLLI2SCFGR_PLLI2SN_4        (0x010U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00000400 */
-#define RCC_PLLI2SCFGR_PLLI2SN_5        (0x020U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00000800 */
-#define RCC_PLLI2SCFGR_PLLI2SN_6        (0x040U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00001000 */
-#define RCC_PLLI2SCFGR_PLLI2SN_7        (0x080U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00002000 */
-#define RCC_PLLI2SCFGR_PLLI2SN_8        (0x100U << RCC_PLLI2SCFGR_PLLI2SN_POSITION)         /*!< 0x00004000 */
+#define RCC_PLLI2SCFGR_PLLI2SN_0        (0x001U << RCC_PLLI2SCFGR_PLLI2SN_POS)         /*!< 0x00000040 */
+#define RCC_PLLI2SCFGR_PLLI2SN_1        (0x002U << RCC_PLLI2SCFGR_PLLI2SN_POS)         /*!< 0x00000080 */
+#define RCC_PLLI2SCFGR_PLLI2SN_2        (0x004U << RCC_PLLI2SCFGR_PLLI2SN_POS)         /*!< 0x00000100 */
+#define RCC_PLLI2SCFGR_PLLI2SN_3        (0x008U << RCC_PLLI2SCFGR_PLLI2SN_POS)         /*!< 0x00000200 */
+#define RCC_PLLI2SCFGR_PLLI2SN_4        (0x010U << RCC_PLLI2SCFGR_PLLI2SN_POS)         /*!< 0x00000400 */
+#define RCC_PLLI2SCFGR_PLLI2SN_5        (0x020U << RCC_PLLI2SCFGR_PLLI2SN_POS)         /*!< 0x00000800 */
+#define RCC_PLLI2SCFGR_PLLI2SN_6        (0x040U << RCC_PLLI2SCFGR_PLLI2SN_POS)         /*!< 0x00001000 */
+#define RCC_PLLI2SCFGR_PLLI2SN_7        (0x080U << RCC_PLLI2SCFGR_PLLI2SN_POS)         /*!< 0x00002000 */
+#define RCC_PLLI2SCFGR_PLLI2SN_8        (0x100U << RCC_PLLI2SCFGR_PLLI2SN_POS)         /*!< 0x00004000 */
 
-#define RCC_PLLI2SCFGR_PLLI2SR_POSITION (28U)
-#define RCC_PLLI2SCFGR_PLLI2SR_MASK     (0x7U << RCC_PLLI2SCFGR_PLLI2SR_POSITION)           /*!< 0x70000000 */
+#define RCC_PLLI2SCFGR_PLLI2SR_POS      (28U)
+#define RCC_PLLI2SCFGR_PLLI2SR_MASK     (0x7U << RCC_PLLI2SCFGR_PLLI2SR_POS)           /*!< 0x70000000 */
 #define RCC_PLLI2SCFGR_PLLI2SR          RCC_PLLI2SCFGR_PLLI2SR_MASK
 
 /**************************************** Bit definition for RCC_DCKCFGR register ****************************************/
-#define RCC_DCKCFGR_TIMPRE_POSITION     (24U)
-#define RCC_DCKCFGR_TIMPRE_MASK         (0x1U << RCC_DCKCFGR_TIMPRE_POSITION)               /*!< 0x01000000 */
+#define RCC_DCKCFGR_TIMPRE_POS          (24U)
+#define RCC_DCKCFGR_TIMPRE_MASK         (0x1U << RCC_DCKCFGR_TIMPRE_POS)               /*!< 0x01000000 */
 #define RCC_DCKCFGR_TIMPRE              RCC_DCKCFGR_TIMPRE_MASK
 
 /***************************************************************************************************************************

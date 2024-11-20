@@ -12,6 +12,7 @@
 #define UNUSED(x)               ((void)x)
 
 #define SET_REGISTER(register_name, clear_mask, set_mask)   (((register_name) & (~(clear_mask))) | ((set_mask) & (clear_mask)))
+#define GET_REGISTER(register_name, clear_mask)             ((register_name) & (clear_mask))
 #define SET_BIT(register_name, bit_name)                    ((register_name) |= (bit_name))
 
 typedef enum

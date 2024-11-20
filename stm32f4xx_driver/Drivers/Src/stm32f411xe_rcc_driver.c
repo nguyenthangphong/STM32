@@ -7,8 +7,8 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
         return STATUS_ERROR;
     }
 
-    uint32_t Clock_Status = ((RCC->CFGR >> RCC_CFGR_SWS) & 0x3u);
-    uint32_t Oscillator_Type = ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLSRC) & 0x1u);
+    uint32_t Clock_Status = GET_REGISTER(RCC->CFGR, RCC_CFGR_SWS);
+    uint32_t Oscillator_Type = GET_REGISTER(RCC->PLLCFGR, RCC_PLLCFGR_PLLSRC);
     uint32_t PLL_Config;
 
     /* HSE Configuration */
@@ -18,7 +18,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
 
         if ((Clock_Status == RCC_SWS_HSE_OSCILLATOR) || ((Clock_Status == RCC_SWS_PLL) && (Oscillator_Type == RCC_PLLSRC_HSE)))
         {
-            HSE_Status = ((RCC->CR >> RCC_CR_HSERDY) & 0x1u);
+            HSE_Status = GET_REGISTER(RCC->CR, RCC_CR_HSERDY);
 
             if ((HSE_Status != RESET) && (pRCC_Oscillator->HSEState == RCC_HSE_OFF))
             {
@@ -30,24 +30,24 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
             /* Set the new HSE State */
             if (pRCC_Oscillator->HSEState == RCC_HSE_ON)
             {
-                RCC->CR |= (1 << RCC_CR_HSEON);
+                SET_REGISTER(RCC->CR, RCC_CR_HSEON, SET);
             }
             else if (pRCC_Oscillator->HSEState == RCC_HSE_BYPASS)
             {
-                RCC->CR |= (1 << RCC_CR_HSEON);
-                RCC->CR |= (1 << RCC_CR_HSEBYP);
+                SET_REGISTER(RCC->CR, RCC_CR_HSEON, SET);
+                SET_REGISTER(RCC->CR, RCC_CR_HSEBYP, SET);
             }
             else
             {
-                RCC->CR &= ~(1 << RCC_CR_HSEON);
-                RCC->CR &= ~(1 << RCC_CR_HSEBYP);
+                SET_REGISTER(RCC->CR, RCC_CR_HSEON, RESET);
+                SET_REGISTER(RCC->CR, RCC_CR_HSEBYP, RESET);
             }
 
             /* Check the HSE State */
             if (pRCC_Oscillator->HSEState != RCC_HSE_OFF)
             {
                 /* Wait till HSE is ready */
-                HSE_Status = ((RCC->CR >> RCC_CR_HSERDY) & 0x1u);
+                HSE_Status = GET_REGISTER(RCC->CR, RCC_CR_HSERDY);
 
                 while (HSE_Status == RESET)
                 {
@@ -57,7 +57,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
             else
             {
                 /* Wait till HSE is bypassed or disabled */
-                HSE_Status = ((RCC->CR >> RCC_CR_HSERDY) & 0x1u);
+                HSE_Status = GET_REGISTER(RCC->CR, RCC_CR_HSERDY);
 
                 while (HSE_Status != RESET)
                 {
@@ -146,7 +146,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
         if (pRCC_Oscillator->LSEState != RCC_LSE_OFF)
         {
             /* Wait till LSE is ready */
-            LSE_Status = ((RCC->BDCR >> RCC_BDCR_LSERDY) & 0x1u);
+            LSE_Status = GET_REGISTER(RCC->BDCR, RCC_BDCR_LSERDY);
 
             while (LSE_Status == RESET)
             {
@@ -156,7 +156,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
         else
         {
             /* Wait till LSE is bypassed or disabled */
-            LSE_Status = ((RCC->BDCR >> RCC_BDCR_LSERDY) & 0x1u);
+            LSE_Status = GET_REGISTER(RCC->BDCR, RCC_BDCR_LSERDY);
 
             while (LSE_Status != RESET)
             {
@@ -177,7 +177,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
             RCC_LSI_ENABLE();
 
             /* Wait till LSI is ready */
-            LSI_Status = ((RCC->CSR >> RCC_CSR_LSIRDY) & 0x1u);
+            LSI_Status = GET_REGISTER(RCC->CSR, RCC_CSR_LSIRDY);
 
             while (LSI_Status == RESET)
             {
@@ -190,7 +190,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
             RCC_LSI_DISABLE();
 
             /* Wait till LSI is bypassed or disabled */
-            LSI_Status = ((RCC->CSR >> RCC_CSR_LSIRDY) & 0x1u);
+            LSI_Status = GET_REGISTER(RCC->CSR, RCC_CSR_LSIRDY);
 
             while (LSI_Status != RESET)
             {

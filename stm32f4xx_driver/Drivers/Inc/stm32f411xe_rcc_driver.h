@@ -49,8 +49,8 @@
  */
 
 #define RCC_LSE_OFF                             (0x00000000U)
-#define RCC_LSE_ON                              (1 << RCC_BDCR_LSEON)
-#define RCC_LSE_BYPASS                          ((1 << RCC_BDCR_LSEBYP) | (1 << RCC_BDCR_LSEON))
+#define RCC_LSE_ON                              (0x00000001U)
+#define RCC_LSE_BYPASS                          (0x00000002U)
 
 /*
  * RCC LSI Config
