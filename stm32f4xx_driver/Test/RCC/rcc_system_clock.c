@@ -12,6 +12,20 @@ int main(void)
     f_PLL_general_clock_output = RCC_GetSysClockFreq();
     UNUSED(f_PLL_general_clock_output);
 
+    RCC_MCOConfig(RCC_MCO1, RCC_MCO1_HSI_CLOCK_SOURCE, RCC_MCO1_PRESCALER_DIV_2);
+
+    volatile uint32_t MCO1Source = READ_REGISTER(RCC->CFGR, RCC_CFGR_MCO1);
+    UNUSED(MCO1Source);
+
+    volatile uint32_t MCO1Div = READ_REGISTER(RCC->CFGR, RCC_CFGR_MCO1PRE);
+    UNUSED(MCO1Div);
+
+    while (1)
+    {
+        GPIO_ToggleOutputPin(GPIOA, GPIO_PIN_NO_8);
+        delay(500000); 
+    }
+
     return 0;
 }
 

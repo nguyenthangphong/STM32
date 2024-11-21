@@ -301,7 +301,6 @@ e_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock)
 void RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_MCODiv)
 {
     st_GPIO_Handle_t GPIO_MCOx;
-    uint32_t temp = 0u;
 
     if (RCC_MCOx == RCC_MCO1)
     {
@@ -315,16 +314,14 @@ void RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_MCODi
         GPIO_MCOx.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
         GPIO_MCOx.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
         GPIO_MCOx.GPIO_PinConfig.GPIO_PinAltFunMode  = GPIO_AF0_MCO;
+        GPIO_MCOx.GPIO_PinConfig.GPIO_PinOPType      = GPIO_OP_TYPE_PP;
         GPIO_Init(&GPIO_MCOx);
 
         /* Set MCO1 Clock Source */
-        temp |= (RCC_MCOSource << RCC_CFGR_MCO1);
+        SET_REGISTER(RCC->CFGR, RCC_CFGR_MCO1, RCC_MCOSource);
 
         /* Set MCO1 Prescaler */
-        temp |= (RCC_MCODiv << RCC_CFGR_MCO1PRE);
-
-        /* Configuration CFGR Register */
-        RCC->CFGR = temp;
+        SET_REGISTER(RCC->CFGR, RCC_CFGR_MCO1PRE, RCC_MCODiv);
     }
     else
     {
@@ -338,16 +335,14 @@ void RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_MCODi
         GPIO_MCOx.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
         GPIO_MCOx.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
         GPIO_MCOx.GPIO_PinConfig.GPIO_PinAltFunMode  = GPIO_AF0_MCO;
+        GPIO_MCOx.GPIO_PinConfig.GPIO_PinOPType      = GPIO_OP_TYPE_PP;
         GPIO_Init(&GPIO_MCOx);
 
         /* Set MCO2 Clock Source */
-        temp |= (RCC_MCOSource << RCC_CFGR_MCO2);
+        SET_REGISTER(RCC->CFGR, RCC_CFGR_MCO2, RCC_MCOSource);
 
         /* Set MCO2 Prescaler */
-        temp |= (RCC_MCODiv << RCC_CFGR_MCO2PRE);
-
-        /* Configuration CFGR Register */
-        RCC->CFGR = temp;
+        SET_REGISTER(RCC->CFGR, RCC_CFGR_MCO2PRE, RCC_MCODiv);
     }
 }
 
