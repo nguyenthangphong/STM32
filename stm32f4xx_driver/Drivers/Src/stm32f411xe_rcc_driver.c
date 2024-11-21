@@ -7,18 +7,18 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
         return STATUS_ERROR;
     }
 
-    uint32_t Clock_Status = READ_BIT(RCC->CFGR, RCC_CFGR_SWS);
-    uint32_t Oscillator_Type = READ_BIT(RCC->PLLCFGR, RCC_PLLCFGR_PLLSRC);
+    uint32_t Clock_Status = READ_REGISTER(RCC->CFGR, RCC_CFGR_SWS);
+    uint32_t Oscillator_Type = READ_REGISTER(RCC->PLLCFGR, RCC_PLLCFGR_PLLSRC);
     uint32_t PLL_Config;
 
     /* HSE Configuration */
     if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_HSE) == RCC_OSCILLATORTYPE_HSE)
     {
-        uint32_t HSE_Status;
+        volatile uint32_t HSE_Status;
 
         if ((Clock_Status == RCC_SWS_HSE_OSCILLATOR) || ((Clock_Status == RCC_SWS_PLL) && (Oscillator_Type == RCC_PLLSRC_HSE)))
         {
-            HSE_Status = READ_BIT(RCC->CR, RCC_CR_HSERDY);
+            HSE_Status = READ_REGISTER(RCC->CR, RCC_CR_HSERDY);
 
             if ((HSE_Status != RESET) && (pRCC_Oscillator->HSEState == RCC_HSE_OFF))
             {
@@ -47,7 +47,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
             if (pRCC_Oscillator->HSEState != RCC_HSE_OFF)
             {
                 /* Wait till HSE is ready */
-                HSE_Status = READ_BIT(RCC->CR, RCC_CR_HSERDY);
+                HSE_Status = READ_REGISTER(RCC->CR, RCC_CR_HSERDY);
 
                 while (HSE_Status == RESET)
                 {
@@ -57,7 +57,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
             else
             {
                 /* Wait till HSE is bypassed or disabled */
-                HSE_Status = READ_BIT(RCC->CR, RCC_CR_HSERDY);
+                HSE_Status = READ_REGISTER(RCC->CR, RCC_CR_HSERDY);
 
                 while (HSE_Status != RESET)
                 {
@@ -70,11 +70,11 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
     /* HSI Configuration */
     if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_HSI) == RCC_OSCILLATORTYPE_HSI)
     {
-        uint32_t HSI_Status;
+        volatile uint32_t HSI_Status;
 
         if ((Clock_Status == RCC_SWS_HSI_OSCILLATOR) || ((Clock_Status == RCC_SWS_PLL) && (Oscillator_Type == RCC_PLLSRC_HSI)))
         {
-            HSI_Status = READ_BIT(RCC->CR, RCC_CR_HSIRDY);
+            HSI_Status = READ_REGISTER(RCC->CR, RCC_CR_HSIRDY);
 
             if ((HSI_Status != RESET) && (pRCC_Oscillator->HSIState == RCC_HSI_OFF))
             {
@@ -95,7 +95,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
                 RCC_HSI_ENABLE();
 
                 /* Wait till HSI is ready */
-                HSI_Status = READ_BIT(RCC->CR, RCC_CR_HSIRDY);
+                HSI_Status = READ_REGISTER(RCC->CR, RCC_CR_HSIRDY);
 
                 while (HSI_Status == RESET)
                 {
@@ -111,7 +111,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
                 RCC_HSI_DISABLE();
 
                 /* Wait till HSI is bypassed or disabled */
-                HSI_Status = READ_BIT(RCC->CR, RCC_CR_HSIRDY);
+                HSI_Status = READ_REGISTER(RCC->CR, RCC_CR_HSIRDY);
 
                 while (HSI_Status != RESET)
                 {
@@ -124,7 +124,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
     /* LSE Configuration */
     if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_LSE) == RCC_OSCILLATORTYPE_LSE)
     {
-        uint32_t LSE_Status;
+        volatile uint32_t LSE_Status;
 
         /* Set the new LSE State */
         if (pRCC_Oscillator->LSEState == RCC_LSE_ON)
@@ -146,7 +146,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
         if (pRCC_Oscillator->LSEState != RCC_LSE_OFF)
         {
             /* Wait till LSE is ready */
-            LSE_Status = READ_BIT(RCC->BDCR, RCC_BDCR_LSERDY);
+            LSE_Status = READ_REGISTER(RCC->BDCR, RCC_BDCR_LSERDY);
 
             while (LSE_Status == RESET)
             {
@@ -156,7 +156,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
         else
         {
             /* Wait till LSE is bypassed or disabled */
-            LSE_Status = READ_BIT(RCC->BDCR, RCC_BDCR_LSERDY);
+            LSE_Status = READ_REGISTER(RCC->BDCR, RCC_BDCR_LSERDY);
 
             while (LSE_Status != RESET)
             {
@@ -168,7 +168,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
     /* LSI Configuration */
     if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_LSI) == RCC_OSCILLATORTYPE_LSI)
     {
-        uint32_t LSI_Status;
+        volatile uint32_t LSI_Status;
 
         /* Check the LSI State */
         if (pRCC_Oscillator->LSIState == RCC_LSI_ON)
@@ -177,7 +177,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
             RCC_LSI_ENABLE();
 
             /* Wait till LSI is ready */
-            LSI_Status = READ_BIT(RCC->CSR, RCC_CSR_LSIRDY);
+            LSI_Status = READ_REGISTER(RCC->CSR, RCC_CSR_LSIRDY);
 
             while (LSI_Status == RESET)
             {
@@ -190,7 +190,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
             RCC_LSI_DISABLE();
 
             /* Wait till LSI is bypassed or disabled */
-            LSI_Status = READ_BIT(RCC->CSR, RCC_CSR_LSIRDY);
+            LSI_Status = READ_REGISTER(RCC->CSR, RCC_CSR_LSIRDY);
 
             while (LSI_Status != RESET)
             {
@@ -202,8 +202,8 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
     /* PLL Configuration */
     if (pRCC_Oscillator->PLL.PLLState != RCC_PLL_NONE)
     {
-        uint32_t PLL_Status;
-        uint8_t System_Clock_Source = READ_BIT(RCC->CFGR, RCC_CFGR_SWS);
+        volatile uint32_t PLL_Status;
+        uint8_t System_Clock_Source = READ_REGISTER(RCC->CFGR, RCC_CFGR_SWS);
 
         /* Check if the PLL is used as system clock or not */
         if (System_Clock_Source != RCC_SWS_PLL)
@@ -214,25 +214,27 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
                 RCC_PLL_DISABLE();
 
                 /* Wait till PLL is disabled */
-                PLL_Status = ((RCC->CR >> RCC_CR_PLLRDY) & 0x1u);
+                PLL_Status = READ_REGISTER(RCC->CR, RCC_CR_PLLRDY);
 
                 while (PLL_Status != RESET)
                 {
 
                 }
 
+                /* Clear the PLLCFGR register */
+                CLEAR_REGISTER(RCC->PLLCFGR);
+
                 /* Configure the main PLL clock source, multiplication and division factos */
-                RCC->PLLCFGR |= (pRCC_Oscillator->PLL.PLLSource << RCC_PLLCFGR_PLLSRC);
-                RCC->PLLCFGR |= (pRCC_Oscillator->PLL.PLLM << RCC_PLLCFGR_PLLM);
-                RCC->PLLCFGR |= (pRCC_Oscillator->PLL.PLLN << RCC_PLLCFGR_PLLN);
-                RCC->PLLCFGR |= (((pRCC_Oscillator->PLL.PLLP >> 1u) - 1u) << RCC_PLLCFGR_PLLP);
-                RCC->PLLCFGR |= (pRCC_Oscillator->PLL.PLLQ << RCC_PLLCFGR_PLLQ);
+                SET_REGISTER(RCC->PLLCFGR, RCC_PLLCFGR_PLLSRC, pRCC_Oscillator->PLL.PLLSource);
+                SET_REGISTER(RCC->PLLCFGR, RCC_PLLCFGR_PLLM  , pRCC_Oscillator->PLL.PLLM);
+                SET_REGISTER(RCC->PLLCFGR, RCC_PLLCFGR_PLLN  , pRCC_Oscillator->PLL.PLLN);
+                SET_REGISTER(RCC->PLLCFGR, RCC_PLLCFGR_PLLP  , pRCC_Oscillator->PLL.PLLP);
 
                 /* Enable the main PLL */
                 RCC_PLL_ENABLE();
 
                 /* Wait till PLL is ready */
-                PLL_Status = ((RCC->CR >> RCC_CR_PLLRDY) & 0x1u);
+                PLL_Status = READ_REGISTER(RCC->CR, RCC_CR_PLLRDY);
 
                 while (PLL_Status == RESET)
                 {
@@ -245,7 +247,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
                 RCC_PLL_DISABLE();
 
                 /* Wait till PLL is disabled */
-                PLL_Status = ((RCC->CR >> RCC_CR_PLLRDY) & 0x1u);
+                PLL_Status = READ_REGISTER(RCC->CR, RCC_CR_PLLRDY);
 
                 while (PLL_Status != RESET)
                 {
@@ -347,4 +349,33 @@ void RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_MCODi
         /* Configuration CFGR Register */
         RCC->CFGR = temp;
     }
+}
+
+uint32_t RCC_GetSysClockFreq(void)
+{
+    uint32_t SWS_Status;
+    uint32_t f_PLL_clock_input, f_VCO_clock, f_PLL_general_clock_output;
+    uint32_t PLLN, PLLM, PLLP;
+
+    SWS_Status = READ_REGISTER(RCC->CFGR, RCC_CFGR_SWS);
+
+    if (SWS_Status == RCC_SWS_HSI_OSCILLATOR)
+    {
+        f_PLL_clock_input = RCC_HSI_CLOCK;
+    }
+    else
+    {
+        f_PLL_clock_input = RCC_HSE_CLOCK;
+    }
+
+    PLLM = READ_REGISTER(RCC->PLLCFGR, RCC_PLLCFGR_PLLM);
+    PLLN = READ_REGISTER(RCC->PLLCFGR, RCC_PLLCFGR_PLLN);
+    PLLP = READ_REGISTER(RCC->PLLCFGR, RCC_PLLCFGR_PLLP);
+
+    f_VCO_clock = (f_PLL_clock_input / PLLM) * PLLN;
+
+    PLLP = RCC_PLLP_DIV_FACTOR(PLLP);
+    f_PLL_general_clock_output = f_VCO_clock / PLLP;
+
+    return f_PLL_general_clock_output;
 }

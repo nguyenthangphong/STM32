@@ -11,7 +11,8 @@
 #define FLAG_RESET              RESET
 #define UNUSED(x)               ((void)x)
 
-#define SET_REGISTER(register_name, bit_name, value)      (((register_name) & (~(bit_name))) | ((value) & (bit_name)))
+#define SET_REGISTER(register_name, bit_name, value)      (((register_name) |= ((value << bit_name##_POS) & (bit_name##_MASK))))
+#define READ_REGISTER(register_name, bit_name)            (((register_name) & (bit_name##_MASK)) >> (bit_name##_POS))
 #define CLEAR_REGISTER(register_name)                     ((register_name) = (0x00000000U))
 
 #define SET_BIT(register_name, bit_name)                  ((register_name) |= (bit_name))
