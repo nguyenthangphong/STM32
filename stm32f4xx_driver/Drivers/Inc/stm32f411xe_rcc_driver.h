@@ -8,41 +8,66 @@
 #define RCC_HSI_CLOCK                           (0x00F42400U)                   /* !< 16000000 MHz */
 #define RCC_HSE_CLOCK                           (0x007A1200U)                   /* !< 8000000 MHz */
 
-/*
- * RCC Oscillator Type
- */
-
+/* Oscillator Type */
 #define RCC_OSCILLATORTYPE_NONE                 (0x00000000U)
 #define RCC_OSCILLATORTYPE_HSE                  (0x00000001U)
 #define RCC_OSCILLATORTYPE_HSI                  (0x00000002U)
 #define RCC_OSCILLATORTYPE_LSE                  (0x00000004U)
 #define RCC_OSCILLATORTYPE_LSI                  (0x00000008U)
 
-/*
- * RCC System Clock Type
- */
-
+/* Clock Type */
 #define RCC_CLOCKTYPE_SYSCLK                    (0x00000001U)
 #define RCC_CLOCKTYPE_HCLK                      (0x00000002U)
 #define RCC_CLOCKTYPE_PCLK1                     (0x00000004U)
 #define RCC_CLOCKTYPE_PCLK2                     (0x00000008U)
 
-/*
- * RCC HSE Config
- */
+/* System Clock Source */
+#define RCC_SYSCLKSOURCE_HSI                    RCC_CFGR_SW_HSI
+#define RCC_SYSCLKSOURCE_HSE                    RCC_CFGR_SW_HSE
+#define RCC_SYSCLKSOURCE_PLLCLK                 RCC_CFGR_SW_PLL
 
+/* HSE Config */
 #define RCC_HSE_OFF                             (0x00000000U)                       /*!< HSE oscillator OFF */
 #define RCC_HSE_ON                              (0x00000001U)                       /*!< HSE oscillator ON */
 #define RCC_HSE_BYPASS                          (RCC_CR_HSEON | RCC_CR_HSEBYP)      /*!< HSE oscillator bypassed with an external clock */
 
-/*
- * RCC HSI Config
- */
-
+/* HSI Config */
 #define RCC_HSI_OFF                             (0x00000000U)                       /*!< HSI oscillator OFF */
 #define RCC_HSI_ON                              (0x00000001U)                       /*!< HSI oscillator ON */
 
-#define RCC_HSICALIBRATION_DEFAULT              (0x00000010U)
+/* HSICALIBRATION  */
+#define RCC_HSITRIM_0                          (0x00000000U)                        /*!< HSITRIM = 0 */
+#define RCC_HSITRIM_1                          (0x00000001U)                        /*!< HSITRIM = 1 */
+#define RCC_HSITRIM_2                          (0x00000002U)                        /*!< HSITRIM = 2 */
+#define RCC_HSITRIM_3                          (0x00000003U)                        /*!< HSITRIM = 3 */
+#define RCC_HSITRIM_4                          (0x00000004U)                        /*!< HSITRIM = 4 */
+#define RCC_HSITRIM_5                          (0x00000005U)                        /*!< HSITRIM = 5 */
+#define RCC_HSITRIM_6                          (0x00000006U)                        /*!< HSITRIM = 6 */
+#define RCC_HSITRIM_7                          (0x00000007U)                        /*!< HSITRIM = 7 */
+#define RCC_HSITRIM_8                          (0x00000008U)                        /*!< HSITRIM = 8 */
+#define RCC_HSITRIM_9                          (0x00000009U)                        /*!< HSITRIM = 9 */
+#define RCC_HSITRIM_10                         (0x0000000AU)                        /*!< HSITRIM = 10 */
+#define RCC_HSITRIM_11                         (0x0000000BU)                        /*!< HSITRIM = 11 */
+#define RCC_HSITRIM_12                         (0x0000000CU)                        /*!< HSITRIM = 12 */
+#define RCC_HSITRIM_13                         (0x0000000DU)                        /*!< HSITRIM = 13 */
+#define RCC_HSITRIM_14                         (0x0000000EU)                        /*!< HSITRIM = 14 */
+#define RCC_HSITRIM_15                         (0x0000000FU)                        /*!< HSITRIM = 15 */
+#define RCC_HSITRIM_16                         (0x00000010U)                        /*!< HSITRIM = 16 */
+#define RCC_HSITRIM_17                         (0x00000011U)                        /*!< HSITRIM = 17 */
+#define RCC_HSITRIM_18                         (0x00000012U)                        /*!< HSITRIM = 18 */
+#define RCC_HSITRIM_19                         (0x00000013U)                        /*!< HSITRIM = 19 */
+#define RCC_HSITRIM_20                         (0x00000014U)                        /*!< HSITRIM = 20 */
+#define RCC_HSITRIM_21                         (0x00000015U)                        /*!< HSITRIM = 21 */
+#define RCC_HSITRIM_22                         (0x00000016U)                        /*!< HSITRIM = 22 */
+#define RCC_HSITRIM_23                         (0x00000017U)                        /*!< HSITRIM = 23 */
+#define RCC_HSITRIM_24                         (0x00000018U)                        /*!< HSITRIM = 24 */
+#define RCC_HSITRIM_25                         (0x00000019U)                        /*!< HSITRIM = 25 */
+#define RCC_HSITRIM_26                         (0x0000001AU)                        /*!< HSITRIM = 26 */
+#define RCC_HSITRIM_27                         (0x0000001BU)                        /*!< HSITRIM = 27 */
+#define RCC_HSITRIM_28                         (0x0000001CU)                        /*!< HSITRIM = 28 */
+#define RCC_HSITRIM_29                         (0x0000001DU)                        /*!< HSITRIM = 29 */
+#define RCC_HSITRIM_30                         (0x0000001EU)                        /*!< HSITRIM = 30 */
+#define RCC_HSITRIM_31                         (0x0000001FU)                        /*!< HSITRIM = 31 */
 
 /* LSE Config */
 #define RCC_LSE_OFF                             (0x00000000U)                       /*!< LSE oscillator OFF */
@@ -58,21 +83,30 @@
 #define RCC_PLL_OFF                             (0x00000001U)                       /*!< PLL OFF */
 #define RCC_PLL_ON                              (0x00000002U)                       /*!< PLL ON */
 
-/* System Clock */
-#define RCC_SYSTEM_CLOCK_DIV_2                  (0x00000008U)
-#define RCC_SYSTEM_CLOCK_DIV_4                  (0x00000009U)
-#define RCC_SYSTEM_CLOCK_DIV_8                  (0x0000000AU)
-#define RCC_SYSTEM_CLOCK_DIV_16                 (0x0000000BU)
-#define RCC_SYSTEM_CLOCK_DIV_64                 (0x0000000CU)
-#define RCC_SYSTEM_CLOCK_DIV_128                (0x0000000DU)
-#define RCC_SYSTEM_CLOCK_DIV_256                (0x0000000EU)
-#define RCC_SYSTEM_CLOCK_DIV_512                (0x0000000FU)
+/* AHB Clock Divider */
+#define RCC_AHB_PRESCALER_1                     RCC_CFGR_HPRE_DIV_1
+#define RCC_AHB_PRESCALER_2                     RCC_CFGR_HPRE_DIV_2
+#define RCC_AHB_PRESCALER_4                     RCC_CFGR_HPRE_DIV_4
+#define RCC_AHB_PRESCALER_8                     RCC_CFGR_HPRE_DIV_8
+#define RCC_AHB_PRESCALER_16                    RCC_CFGR_HPRE_DIV_16
+#define RCC_AHB_PRESCALER_64                    RCC_CFGR_HPRE_DIV_64
+#define RCC_AHB_PRESCALER_128                   RCC_CFGR_HPRE_DIV_128
+#define RCC_AHB_PRESCALER_256                   RCC_CFGR_HPRE_DIV_256
+#define RCC_AHB_PRESCALER_512                   RCC_CFGR_HPRE_DIV_512
 
-/* AHB Clock */
-#define RCC_AHB_CLOCK_DIV_2                     (0x00000004U)
-#define RCC_AHB_CLOCK_DIV_4                     (0x00000005U)
-#define RCC_AHB_CLOCK_DIV_8                     (0x00000006U)
-#define RCC_AHB_CLOCK_DIV_16                    (0x00000007U)
+/* APB1 Clock Divider */
+#define RCC_APB1_PRESCALER_1                    RCC_CFGR_PPRE1_DIV_1
+#define RCC_APB1_PRESCALER_2                    RCC_CFGR_PPRE1_DIV_2
+#define RCC_APB1_PRESCALER_4                    RCC_CFGR_PPRE1_DIV_4
+#define RCC_APB1_PRESCALER_8                    RCC_CFGR_PPRE1_DIV_8
+#define RCC_APB1_PRESCALER_16                   RCC_CFGR_PPRE1_DIV_16
+
+/* APB2 Clock Divider */
+#define RCC_APB2_PRESCALER_1                    RCC_CFGR_PPRE2_DIV_1
+#define RCC_APB2_PRESCALER_2                    RCC_CFGR_PPRE2_DIV_2
+#define RCC_APB2_PRESCALER_4                    RCC_CFGR_PPRE2_DIV_4
+#define RCC_APB2_PRESCALER_8                    RCC_CFGR_PPRE2_DIV_8
+#define RCC_APB2_PRESCALER_16                   RCC_CFGR_PPRE2_DIV_16
 
 /* Division factor for the main PLL (PLL) input clock */
 #define RCC_PLLM_DIV_2                          (0x00000002U)                       /*!< PLLM = 2 */
@@ -717,5 +751,8 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
 e_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock);
 void RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_MCODiv);
 uint32_t RCC_GetSysClockFreq(void);
+uint32_t RCC_GetHCLKFreq(void);
+uint32_t RCC_GetPCLK1Freq(void);
+uint32_t RCC_GetPCLK2Freq(void);
 
 #endif /* INC_STM32F411XE_RCC_DRIVER_H_ */

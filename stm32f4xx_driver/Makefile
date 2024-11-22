@@ -8,9 +8,7 @@ C_SOURCES =  \
 Test/RCC/rcc_system_clock.c \
 Core/Src/delay.c \
 Drivers/Src/stm32f411xe_gpio_driver.c \
-Drivers/Src/stm32f411xe_spi_driver.c \
-Drivers/Src/stm32f411xe_rcc_driver.c \
-Drivers/Src/stm32f411xe_usart_driver.c
+Drivers/Src/stm32f411xe_rcc_driver.c
 
 # ASM sources
 ASM_SOURCES =  \

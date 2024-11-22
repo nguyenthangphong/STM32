@@ -1,5 +1,9 @@
 #include "stm32f411xe_rcc_driver.h"
 
+uint32_t SystemCoreClock = 16000000U;
+const uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
+const uint8_t APBPrescTable[8] = {0, 0, 0, 0, 1, 2, 3, 4};
+
 e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Oscillator)
 {
     if (pRCC_Oscillator == NULL)
@@ -9,7 +13,6 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
 
     uint32_t Clock_Status = READ_REGISTER(RCC->CFGR, RCC_CFGR_SWS);
     uint32_t Oscillator_Type = READ_REGISTER(RCC->PLLCFGR, RCC_PLLCFGR_PLLSRC);
-    uint32_t PLL_Config;
 
     /* HSE Configuration */
     if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_HSE) == RCC_OSCILLATORTYPE_HSE)
@@ -264,12 +267,14 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
             }
             else
             {
-                if ((pRCC_Oscillator->PLL.PLLState  == RCC_PLL_OFF)                                     || \
-                    (pRCC_Oscillator->PLL.PLLSource != ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLSRC) & 0x1u))   || \
-                    (pRCC_Oscillator->PLL.PLLM      != ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLM) & 0x3Fu))    || \
-                    (pRCC_Oscillator->PLL.PLLN      != ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLN) & 0x1FFu))   || \
-                    (pRCC_Oscillator->PLL.PLLP      != ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLP) & 0x2u))     || \
-                    (pRCC_Oscillator->PLL.PLLQ      != ((RCC->PLLCFGR >> RCC_PLLCFGR_PLLQ) & 0xFu))
+                uint32_t PLLSrc_Cur = READ_REGISTER(RCC->PLLCFGR, RCC_PLLCFGR_PLLSRC);
+                uint32_t PLLM_Cur   = READ_REGISTER(RCC->PLLCFGR, RCC_PLLCFGR_PLLM);
+                uint32_t PLLN_Cur   = READ_REGISTER(RCC->PLLCFGR, RCC_PLLCFGR_PLLN);
+                uint32_t PLLP_Cur   = READ_REGISTER(RCC->PLLCFGR, RCC_PLLCFGR_PLLP);
+
+                if ((pRCC_Oscillator->PLL.PLLState == RCC_PLL_ON) || \
+                    (pRCC_Oscillator->PLL.PLLSource != PLLSrc_Cur) || (pRCC_Oscillator->PLL.PLLM != PLLM_Cur) || \
+                    (pRCC_Oscillator->PLL.PLLN != PLLN_Cur) || (pRCC_Oscillator->PLL.PLLP != PLLP_Cur)
                 )
                 {
                     return STATUS_ERROR;
@@ -293,9 +298,72 @@ e_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock)
     {
         if (((pRCC_Clock->ClockType) & RCC_CLOCKTYPE_PCLK1) == RCC_CLOCKTYPE_PCLK1)
         {
-            RCC->CFGR |= (RCC_CFGR_PPRE1_DIV_16 << RCC_CFGR_PPRE1);
+            SET_BIT(RCC->CFGR, RCC_APB1_PRESCALER_16);
+        }
+
+        if (((pRCC_Clock->ClockType) & RCC_CLOCKTYPE_PCLK2) == RCC_CLOCKTYPE_PCLK2)
+        {
+            SET_BIT(RCC->CFGR, RCC_APB2_PRESCALER_16);
+        }
+
+        SET_BIT(RCC->CFGR, pRCC_Clock->AHB_ClockDivider);
+    }
+
+    /* SYSCLK Configuration */
+    if (((pRCC_Clock->ClockType) & RCC_CLOCKTYPE_SYSCLK) == RCC_CLOCKTYPE_SYSCLK)
+    {
+        /* HSE is selected as System Clock Source */
+        if (pRCC_Clock->SystemClockSource == RCC_SYSCLKSOURCE_HSE)
+        {
+            /* Check the HSE ready flag */
+            if (READ_REGISTER(RCC->CR, RCC_CR_HSERDY) == RESET)
+            {
+                return STATUS_ERROR;
+            }
+        }
+        /* PLL is selected as System Clock Source */
+        else if (pRCC_Clock->SystemClockSource == RCC_SYSCLKSOURCE_PLLCLK)
+        {
+            /* Check the PLL ready flag */
+            if (READ_REGISTER(RCC->CR, RCC_CR_PLLRDY) == RESET)
+            {
+                return STATUS_ERROR;
+            }
+        }
+        /* HSI is selected as System Clock Source */
+        else
+        {
+            /* Check the HSI ready flag */
+            if (READ_REGISTER(RCC->CR, RCC_CR_HSIRDY) == RESET)
+            {
+                return STATUS_ERROR;
+            }
+        }
+
+        SET_REGISTER(RCC->CFGR, RCC_CFGR_SW, pRCC_Clock->SystemClockSource);
+
+        while (READ_REGISTER(RCC->CFGR, RCC_CFGR_SWS) != pRCC_Clock->SystemClockSource)
+        {
+
         }
     }
+
+    /* PCLK1 Configuration */
+    if (((pRCC_Clock->ClockType) & RCC_CLOCKTYPE_PCLK1) == RCC_CLOCKTYPE_PCLK1)
+    {
+        SET_BIT(RCC->CFGR, pRCC_Clock->APB1_ClockDivider);
+    }
+
+    /* PCLK2 Configuration */
+    if (((pRCC_Clock->ClockType) & RCC_CLOCKTYPE_PCLK2) == RCC_CLOCKTYPE_PCLK2)
+    {
+        SET_BIT(RCC->CFGR, pRCC_Clock->APB2_ClockDivider);
+    }
+
+    /* Update the SystemCoreClock global variable */
+    SystemCoreClock = RCC_GetSysClockFreq() >> AHBPrescTable[READ_REGISTER(RCC->CFGR, RCC_CFGR_HPRE)];
+
+    return STATUS_OK;
 }
 
 void RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_MCODiv)
@@ -373,4 +441,23 @@ uint32_t RCC_GetSysClockFreq(void)
     f_PLL_general_clock_output = f_VCO_clock / PLLP;
 
     return f_PLL_general_clock_output;
+}
+
+uint32_t RCC_GetHCLKFreq(void)
+{
+    return SystemCoreClock;
+}
+
+uint32_t RCC_GetPCLK1Freq(void)
+{
+    uint32_t f_APB1 = 0x00000000U;
+    f_APB1 = (RCC_GetHCLKFreq() >> APBPrescTable[READ_REGISTER(RCC->CFGR, RCC_CFGR_PPRE1)]);
+    return f_APB1;
+}
+
+uint32_t RCC_GetPCLK2Freq(void)
+{
+    uint32_t f_APB2 = 0x00000000U;
+    f_APB2 = (RCC_GetHCLKFreq() >> APBPrescTable[READ_REGISTER(RCC->CFGR, RCC_CFGR_PPRE2)]);
+    return f_APB2;
 }
