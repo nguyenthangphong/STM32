@@ -1176,83 +1176,83 @@ typedef struct
  ***********************************************************************************************************************/
 
 /* Enable for GPIOx Peripherals */
-#define GPIOA_PCLK_EN()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOAEN, ENABLE))   /*!< Enable GPIOA */
-#define GPIOB_PCLK_EN()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOBEN, ENABLE))   /*!< Enable GPIOB */
-#define GPIOC_PCLK_EN()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOCEN, ENABLE))   /*!< Enable GPIOC */
-#define GPIOD_PCLK_EN()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIODEN, ENABLE))   /*!< Enable GPIOD */
-#define GPIOE_PCLK_EN()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOEEN, ENABLE))   /*!< Enable GPIOE */
-#define GPIOH_PCLK_EN()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOHEN, ENABLE))   /*!< Enable GPIOH */
+#define GPIOA_PCLK_EN()         (RCC->AHB1ENR = (RCC->AHB1ENR & ~(RCC_AHB1ENR_GPIOAEN)) | ((ENABLE << RCC_AHB1ENR_GPIOAEN_POS) & RCC_AHB1ENR_GPIOAEN))      /*!< Enable GPIOA */
+#define GPIOB_PCLK_EN()         (RCC->AHB1ENR = (RCC->AHB1ENR & ~(RCC_AHB1ENR_GPIOBEN)) | ((ENABLE << RCC_AHB1ENR_GPIOBEN_POS) & RCC_AHB1ENR_GPIOBEN))      /*!< Enable GPIOB */
+#define GPIOC_PCLK_EN()         (RCC->AHB1ENR = (RCC->AHB1ENR & ~(RCC_AHB1ENR_GPIOCEN)) | ((ENABLE << RCC_AHB1ENR_GPIOCEN_POS) & RCC_AHB1ENR_GPIOCEN))      /*!< Enable GPIOC */
+#define GPIOD_PCLK_EN()         (RCC->AHB1ENR = (RCC->AHB1ENR & ~(RCC_AHB1ENR_GPIODEN)) | ((ENABLE << RCC_AHB1ENR_GPIODEN_POS) & RCC_AHB1ENR_GPIODEN))      /*!< Enable GPIOD */
+#define GPIOE_PCLK_EN()         (RCC->AHB1ENR = (RCC->AHB1ENR & ~(RCC_AHB1ENR_GPIOEEN)) | ((ENABLE << RCC_AHB1ENR_GPIOEEN_POS) & RCC_AHB1ENR_GPIOEEN))      /*!< Enable GPIOE */
+#define GPIOH_PCLK_EN()         (RCC->AHB1ENR = (RCC->AHB1ENR & ~(RCC_AHB1ENR_GPIOHEN)) | ((ENABLE << RCC_AHB1ENR_GPIOHEN_POS) & RCC_AHB1ENR_GPIOHEN))      /*!< Enable GPIOH */
 
 /* Enable for I2Cx Peripherals */
-#define I2C1_PCLK_EN()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_I2C1EN, ENABLE))    /*!< Enable I2C1 */
-#define I2C2_PCLK_EN()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_I2C2EN, ENABLE))    /*!< Enable I2C2 */
-#define I2C3_PCLK_EN()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_I2C3EN, ENABLE))    /*!< Enable I2C3 */
+#define I2C1_PCLK_EN()          (RCC->APB1ENR = (RCC->APB1ENR & ~(RCC_APB1ENR_I2C1EN)) | ((ENABLE << RCC_APB1ENR_I2C1EN_POS) & RCC_APB1ENR_I2C1EN))         /*!< Enable I2C1 */
+#define I2C2_PCLK_EN()          (RCC->APB1ENR = (RCC->APB1ENR & ~(RCC_APB1ENR_I2C2EN)) | ((ENABLE << RCC_APB1ENR_I2C2EN_POS) & RCC_APB1ENR_I2C2EN))         /*!< Enable I2C2 */
+#define I2C3_PCLK_EN()          (RCC->APB1ENR = (RCC->APB1ENR & ~(RCC_APB1ENR_I2C3EN)) | ((ENABLE << RCC_APB1ENR_I2C3EN_POS) & RCC_APB1ENR_I2C3EN))         /*!< Enable I2C3 */
 
 /* Enable for SPIx Peripherals */
-#define SPI1_PCLK_EN()          (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_SPI1EN, ENABLE))    /*!< Enable SPI1 */
-#define SPI2_PCLK_EN()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_SPI2EN, ENABLE))    /*!< Enable SPI2 */
-#define SPI3_PCLK_EN()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_SPI3EN, ENABLE))    /*!< Enable SPI3 */
-#define SPI4_PCLK_EN()          (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_SPI4EN, ENABLE))    /*!< Enable SPI4 */
-#define SPI5_PCLK_EN()          (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_SPI5EN, ENABLE))    /*!< Enable SPI5 */
+#define SPI1_PCLK_EN()          (RCC->APB2ENR = (RCC->APB2ENR & ~(RCC_APB2ENR_SPI1EN)) | ((ENABLE << RCC_APB2ENR_SPI1EN_POS) & RCC_APB2ENR_SPI1EN))         /*!< Enable SPI1 */
+#define SPI2_PCLK_EN()          (RCC->APB1ENR = (RCC->APB1ENR & ~(RCC_APB1ENR_SPI2EN)) | ((ENABLE << RCC_APB1ENR_SPI2EN_POS) & RCC_APB1ENR_SPI2EN))         /*!< Enable SPI2 */
+#define SPI3_PCLK_EN()          (RCC->APB1ENR = (RCC->APB1ENR & ~(RCC_APB1ENR_SPI3EN)) | ((ENABLE << RCC_APB1ENR_SPI3EN_POS) & RCC_APB1ENR_SPI3EN))         /*!< Enable SPI3 */
+#define SPI4_PCLK_EN()          (RCC->APB2ENR = (RCC->APB2ENR & ~(RCC_APB2ENR_SPI4EN)) | ((ENABLE << RCC_APB2ENR_SPI4EN_POS) & RCC_APB2ENR_SPI4EN))         /*!< Enable SPI4 */
+#define SPI5_PCLK_EN()          (RCC->APB2ENR = (RCC->APB2ENR & ~(RCC_APB2ENR_SPI5EN)) | ((ENABLE << RCC_APB2ENR_SPI5EN_POS) & RCC_APB2ENR_SPI5EN))         /*!< Enable SPI5 */
 
 /* Enable for USARTx Peripherals */
-#define USART1_PCLK_EN()        (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_USART1EN, ENABLE))  /*!< Enable USART1 */
-#define USART2_PCLK_EN()        (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_USART2EN, ENABLE))  /*!< Enable USART2 */
-#define USART6_PCLK_EN()        (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_USART6EN, ENABLE))  /*!< Enable USART3 */
+#define USART1_PCLK_EN()        (RCC->APB2ENR = (RCC->APB2ENR & ~(RCC_APB2ENR_USART1EN)) | ((ENABLE << RCC_APB2ENR_USART1EN_POS) & RCC_APB2ENR_USART1EN))   /*!< Enable USART1 */
+#define USART2_PCLK_EN()        (RCC->APB1ENR = (RCC->APB1ENR & ~(RCC_APB1ENR_USART2EN)) | ((ENABLE << RCC_APB1ENR_USART2EN_POS) & RCC_APB1ENR_USART2EN))   /*!< Enable USART2 */
+#define USART6_PCLK_EN()        (RCC->APB2ENR = (RCC->APB2ENR & ~(RCC_APB2ENR_USART6EN)) | ((ENABLE << RCC_APB2ENR_USART6EN_POS) & RCC_APB2ENR_USART6EN))   /*!< Enable USART6 */
 
 /* Enable for SYSCFG Peripherals */
-#define SYSCFG_PCLK_EN()        (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_SYSCFGEN, ENABLE))  /*!< Enable SYSCFG */
+#define SYSCFG_PCLK_EN()        (RCC->APB2ENR = (RCC->APB2ENR & ~(RCC_APB2ENR_SYSCFGEN)) | ((ENABLE << RCC_APB2ENR_SYSCFGEN_POS) & RCC_APB2ENR_SYSCFGEN))   /*!< Enable SYSCFG */
 
 /*************************************************************************************************************************
  ************************************************** Disable Peripherals **************************************************
  ************************************************************************************************************************/
 
 /* Disable for GPIOx Peripherals */
-#define GPIOA_PCLK_DI()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOAEN, DISABLE))  /*!< Disable GPIOA */
-#define GPIOB_PCLK_DI()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOBEN, DISABLE))  /*!< Disable GPIOB */
-#define GPIOC_PCLK_DI()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOCEN, DISABLE))  /*!< Disable GPIOC */
-#define GPIOD_PCLK_DI()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIODEN, DISABLE))  /*!< Disable GPIOD */
-#define GPIOE_PCLK_DI()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOEEN, DISABLE))  /*!< Disable GPIOE */
-#define GPIOH_PCLK_DI()         (SET_REGISTER(RCC->AHB1ENR, RCC_AHB1ENR_GPIOHEN, DISABLE))  /*!< Disable GPIOH */
+#define GPIOA_PCLK_DI()         (RCC->AHB1ENR = (RCC->AHB1ENR & ~(RCC_AHB1ENR_GPIOAEN)))     /*!< Disable GPIOA */
+#define GPIOB_PCLK_DI()         (RCC->AHB1ENR = (RCC->AHB1ENR & ~(RCC_AHB1ENR_GPIOBEN)))     /*!< Disable GPIOB */
+#define GPIOC_PCLK_DI()         (RCC->AHB1ENR = (RCC->AHB1ENR & ~(RCC_AHB1ENR_GPIOCEN)))     /*!< Disable GPIOC */
+#define GPIOD_PCLK_DI()         (RCC->AHB1ENR = (RCC->AHB1ENR & ~(RCC_AHB1ENR_GPIODEN)))     /*!< Disable GPIOD */
+#define GPIOE_PCLK_DI()         (RCC->AHB1ENR = (RCC->AHB1ENR & ~(RCC_AHB1ENR_GPIOEEN)))     /*!< Disable GPIOE */
+#define GPIOH_PCLK_DI()         (RCC->AHB1ENR = (RCC->AHB1ENR & ~(RCC_AHB1ENR_GPIOHEN)))     /*!< Disable GPIOH */
 
 /* Disable for I2Cx Peripherals */
-#define I2C1_PCLK_DI()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_I2C1EN, DISABLE))   /*!< Disable I2C1 */
-#define I2C2_PCLK_DI()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_I2C2EN, DISABLE))   /*!< Disable I2C2 */
-#define I2C3_PCLK_DI()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_I2C3EN, DISABLE))   /*!< Disable I2C3 */
+#define I2C1_PCLK_DI()          (RCC->APB1ENR = (RCC->APB1ENR & ~(RCC_APB1ENR_I2C1EN)))      /*!< Disable I2C1 */
+#define I2C2_PCLK_DI()          (RCC->APB1ENR = (RCC->APB1ENR & ~(RCC_APB1ENR_I2C2EN)))      /*!< Disable I2C2 */
+#define I2C3_PCLK_DI()          (RCC->APB1ENR = (RCC->APB1ENR & ~(RCC_APB1ENR_I2C3EN)))      /*!< Disable I2C3 */
 
 /* Disable for SPIx Peripherals */
-#define SPI1_PCLK_DI()          (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_SPI1EN, DISABLE))   /*!< Disable SPI1 */
-#define SPI2_PCLK_DI()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_SPI2EN, DISABLE))   /*!< Disable SPI2 */
-#define SPI3_PCLK_DI()          (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_SPI3EN, DISABLE))   /*!< Disable SPI3 */
-#define SPI4_PCLK_DI()          (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_SPI4EN, DISABLE))   /*!< Disable SPI4 */
-#define SPI5_PCLK_DI()          (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_SPI5EN, DISABLE))   /*!< Disable SPI5 */
+#define SPI1_PCLK_DI()          (RCC->APB2ENR = (RCC->APB2ENR & ~(RCC_APB2ENR_SPI1EN)))      /*!< Disable SPI1 */
+#define SPI2_PCLK_DI()          (RCC->APB1ENR = (RCC->APB1ENR & ~(RCC_APB1ENR_SPI2EN)))      /*!< Disable SPI2 */
+#define SPI3_PCLK_DI()          (RCC->APB1ENR = (RCC->APB1ENR & ~(RCC_APB1ENR_SPI3EN)))      /*!< Disable SPI3 */
+#define SPI4_PCLK_DI()          (RCC->APB2ENR = (RCC->APB2ENR & ~(RCC_APB2ENR_SPI4EN)))      /*!< Disable SPI4 */
+#define SPI5_PCLK_DI()          (RCC->APB2ENR = (RCC->APB2ENR & ~(RCC_APB2ENR_SPI5EN)))      /*!< Disable SPI5 */
 
 /* Disable for USARTx Peripherals */
-#define USART1_PCLK_DI()        (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_USART1EN, DISABLE)) /*!< Disable USART1 */
-#define USART2_PCLK_DI()        (SET_REGISTER(RCC->APB1ENR, RCC_APB1ENR_USART2EN, DISABLE)) /*!< Disable USART2 */
-#define USART6_PCLK_DI()        (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_USART6EN, DISABLE)) /*!< Disable USART6 */
+#define USART1_PCLK_DI()        (RCC->APB2ENR = (RCC->APB2ENR & ~(RCC_APB2ENR_USART1EN)))    /*!< Disable USART1 */
+#define USART2_PCLK_DI()        (RCC->APB1ENR = (RCC->APB1ENR & ~(RCC_APB1ENR_USART2EN)))    /*!< Disable USART2 */
+#define USART6_PCLK_DI()        (RCC->APB2ENR = (RCC->APB2ENR & ~(RCC_APB2ENR_USART6EN)))    /*!< Disable USART6 */
 
 /* Disable for SYSCFG Peripherals */
-#define SYSCFG_PCLK_DI()        (SET_REGISTER(RCC->APB2ENR, RCC_APB2ENR_SYSCFGEN, DISABLE)) /*!< Disable SYSCFG */
+#define SYSCFG_PCLK_DI()        (RCC->APB2ENR = (RCC->APB2ENR & ~(RCC_APB2ENR_SYSCFGEN)))    /*!< Disable SYSCFG */
 
 /***********************************************************************************************************************
  ************************************************** Reset Peripherals **************************************************
  **********************************************************************************************************************/
 
 /* Reset GPIOx Peripherals */
-#define GPIOA_REG_RESET()       do { (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOARST, SET)); (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOARST, RESET)); } while (0)
-#define GPIOB_REG_RESET()       do { (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOBRST, SET)); (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOBRST, RESET)); } while (0)
-#define GPIOC_REG_RESET()       do { (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOCRST, SET)); (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOCRST, RESET)); } while (0)
-#define GPIOD_REG_RESET()       do { (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIODRST, SET)); (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIODRST, RESET)); } while (0)
-#define GPIOE_REG_RESET()       do { (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOERST, SET)); (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOERST, RESET)); } while (0)
-#define GPIOH_REG_RESET()       do { (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOHRST, SET)); (SET_REGISTER(RCC->AHB1RSTR, RCC_AHB1RSTR_GPIOHRST, RESET)); } while (0)
+#define GPIOA_REG_RESET()       do { GPIOA_PCLK_EN(); GPIOA_PCLK_DI(); } while (0)
+#define GPIOB_REG_RESET()       do { GPIOB_PCLK_EN(); GPIOB_PCLK_DI(); } while (0)
+#define GPIOC_REG_RESET()       do { GPIOC_PCLK_EN(); GPIOC_PCLK_DI(); } while (0)
+#define GPIOD_REG_RESET()       do { GPIOD_PCLK_EN(); GPIOD_PCLK_DI(); } while (0)
+#define GPIOE_REG_RESET()       do { GPIOE_PCLK_EN(); GPIOE_PCLK_DI(); } while (0)
+#define GPIOH_REG_RESET()       do { GPIOH_PCLK_EN(); GPIOH_PCLK_DI(); } while (0)
 
 /* Reset SPIx Peripherals */
-#define SPI1_REG_RESET()        do { (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI1RST, SET)); (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI1RST, RESET)); } while (0)
-#define SPI2_REG_RESET()        do { (SET_REGISTER(RCC->APB1RSTR, RCC_APB1RSTR_SPI2RST, SET)); (SET_REGISTER(RCC->APB1RSTR, RCC_APB1RSTR_SPI2RST, RESET)); } while (0)
-#define SPI3_REG_RESET()        do { (SET_REGISTER(RCC->APB1RSTR, RCC_APB1RSTR_SPI3RST, SET)); (SET_REGISTER(RCC->APB1RSTR, RCC_APB1RSTR_SPI3RST, RESET)); } while (0)
-#define SPI4_REG_RESET()        do { (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI4RST, SET)); (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI4RST, RESET)); } while (0)
-#define SPI5_REG_RESET()        do { (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI5RST, SET)); (SET_REGISTER(RCC->APB2RSTR, RCC_APB2RSTR_SPI5RST, RESET)); } while (0)
+#define SPI1_REG_RESET()        do { SPI1_PCLK_EN(); SPI1_PCLK_DI(); } while (0)
+#define SPI2_REG_RESET()        do { SPI2_PCLK_EN(); SPI2_PCLK_DI(); } while (0)
+#define SPI3_REG_RESET()        do { SPI3_PCLK_EN(); SPI3_PCLK_DI(); } while (0)
+#define SPI4_REG_RESET()        do { SPI4_PCLK_EN(); SPI4_PCLK_DI(); } while (0)
+#define SPI5_REG_RESET()        do { SPI5_PCLK_EN(); SPI5_PCLK_DI(); } while (0)
 
 /* Return port code for given GPIOx base address */
 #define GPIO_BASEADDR_TO_CODE(x)    ((x == GPIOA) ? 0U : (x == GPIOB) ? 1U : (x == GPIOC) ? 2U : (x == GPIOD) ? 3U : (x == GPIOE) ? 4U : (x == GPIOH) ? 7U : 0U)
