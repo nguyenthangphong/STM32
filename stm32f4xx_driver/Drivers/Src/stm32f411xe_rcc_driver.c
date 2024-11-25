@@ -206,11 +206,13 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
     /* PLL Configuration */
     if (pRCC_Oscillator->PLL.PLLState != RCC_PLL_NONE)
     {
-        volatile uint32_t PLLRDY_state;
+        system_clock_switch_status = ((RCC->CFGR & RCC_CFGR_SWS) >> RCC_CFGR_SWS_POS);
 
         /* Check if the PLL is used as system clock or not */
-        if (PLLRDY_state != RCC_SWS_PLL)
+        if (system_clock_switch_status != RCC_SWS_PLL)
         {
+            volatile uint32_t PLLRDY_state;
+
             if (pRCC_Oscillator->PLL.PLLState == RCC_PLL_ON)
             {
                 /* Disable the main PLL */
@@ -320,7 +322,7 @@ e_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock)
         if (pRCC_Clock->SystemClockSource == RCC_SYSCLKSOURCE_HSE)
         {
             /* Check the HSE ready flag */
-            if (((RCC->CR & RCC_CR_HSERDY) & RCC_CR_HSERDY_POS) == NOT_READY)
+            if (((RCC->CR & RCC_CR_HSERDY) >> RCC_CR_HSERDY_POS) == NOT_READY)
             {
                 return STATUS_ERROR;
             }
@@ -329,7 +331,7 @@ e_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock)
         else if (pRCC_Clock->SystemClockSource == RCC_SYSCLKSOURCE_PLLCLK)
         {
             /* Check the PLL ready flag */
-            if (((RCC->CR & RCC_CR_PLLRDY) & RCC_CR_PLLRDY_POS) == NOT_READY)
+            if (((RCC->CR & RCC_CR_PLLRDY) >> RCC_CR_PLLRDY_POS) == NOT_READY)
             {
                 return STATUS_ERROR;
             }
@@ -338,7 +340,7 @@ e_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock)
         else
         {
             /* Check the HSI ready flag */
-            if (((RCC->CR & RCC_CR_HSIRDY) & RCC_CR_HSIRDY_POS) == NOT_READY)
+            if (((RCC->CR & RCC_CR_HSIRDY) >> RCC_CR_HSIRDY_POS) == NOT_READY)
             {
                 return STATUS_ERROR;
             }
@@ -432,12 +434,12 @@ uint32_t RCC_GetSysClockFreq(void)
     /* PLL used as system clock source */
     else if (system_clock_switch_status == RCC_SWS_PLL)
     {
-        uint32_t pllm = ((RCC->CFGR & RCC_PLLCFGR_PLLM) >> RCC_PLLCFGR_PLLM_POS);
-        uint32_t plln = ((RCC->CFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_POS);
-        uint32_t pllp = RCC_PLLP_DIV_FACTOR(((RCC->CFGR & RCC_PLLCFGR_PLLP) >> RCC_PLLCFGR_PLLP_POS));
+        uint32_t pllm = ((RCC->PLLCFGR & RCC_PLLCFGR_PLLM) >> RCC_PLLCFGR_PLLM_POS);
+        uint32_t plln = ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_POS);
+        uint32_t pllp = RCC_PLLP_DIV_FACTOR(((RCC->PLLCFGR & RCC_PLLCFGR_PLLP) >> RCC_PLLCFGR_PLLP_POS));
         uint32_t f_PLL_clock_input = 0U;
 
-        uint32_t pll_clock_source_type = ((RCC->CFGR & RCC_PLLCFGR_PLLSRC) >> RCC_PLLCFGR_PLLSRC_POS);
+        uint32_t pll_clock_source_type = ((RCC->PLLCFGR & RCC_PLLCFGR_PLLSRC) >> RCC_PLLCFGR_PLLSRC_POS);
 
         /* HSI used as PLL clock source */
         if (pll_clock_source_type == RCC_PLLSRC_HSI)
