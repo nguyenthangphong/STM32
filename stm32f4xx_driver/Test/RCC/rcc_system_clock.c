@@ -10,7 +10,7 @@ void RCC_SystemClockConfigHSE(void);
 
 int main(void)
 {
-    RCC_SystemClockConfigHSE();
+    RCC_SystemClockConfigHSI();
 
     volatile uint32_t f_APB1;
     volatile uint32_t f_APB2;
@@ -26,6 +26,8 @@ int main(void)
 
 /*
  *  16_000_000 Hz => PLL => 16_000_000 * 72 / 16 = 72_000_000 Hz
+ *  APB1 = 72_000_000 / 8 = 9_000_000 Hz
+ *  APB2 = 72_000_000 / 4 = 18_000_000 Hz
  */
 void RCC_SystemClockConfigHSI(void)
 {
@@ -59,8 +61,8 @@ void RCC_SystemClockConfigHSI(void)
 
 /*
  *  8_000_000 Hz => PLL => 8_000_000 * 72 / 16 = 36_000_000 Hz
- *  APB1 = 36_000_000 / 8 = 4_500_000
- *  APB2 = 36_000_000 / 4 = 9_000_000
+ *  APB1 = 36_000_000 / 8 = 4_500_000 Hz
+ *  APB2 = 36_000_000 / 4 = 9_000_000 Hz
  */
 void RCC_SystemClockConfigHSE(void)
 {

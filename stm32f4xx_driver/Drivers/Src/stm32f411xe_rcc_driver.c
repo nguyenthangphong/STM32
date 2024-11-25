@@ -18,13 +18,13 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
     /* HSE Configuration */
     if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_HSE) == RCC_OSCILLATORTYPE_HSE)
     {
-        volatile uint32_t HSE_state;
+        volatile uint32_t HSERDY_state;
 
         if ((system_clock_switch_status == RCC_SWS_HSE_OSCILLATOR) || ((system_clock_switch_status == RCC_SWS_PLL) && (pll_clock_source_type == RCC_PLLSRC_HSE)))
         {
-            HSE_state = ((RCC->CR & RCC_CR_HSERDY) >> RCC_CR_HSERDY_POS);
+            HSERDY_state = ((RCC->CR & RCC_CR_HSERDY) >> RCC_CR_HSERDY_POS);
 
-            if ((HSE_state != NOT_READY) && (pRCC_Oscillator->HSEState == RCC_HSE_OFF))
+            if ((HSERDY_state != NOT_READY) && (pRCC_Oscillator->HSEState == RCC_HSE_OFF))
             {
                 return STATUS_ERROR;
             }
@@ -51,9 +51,9 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
             if (pRCC_Oscillator->HSEState != RCC_HSE_OFF)
             {
                 /* Wait till HSE is ready */
-                HSE_state = ((RCC->CR & RCC_CR_HSERDY) >> RCC_CR_HSERDY_POS);
+                HSERDY_state = ((RCC->CR & RCC_CR_HSERDY) >> RCC_CR_HSERDY_POS);
 
-                while (HSE_state == NOT_READY)
+                while (HSERDY_state == NOT_READY)
                 {
 
                 }
@@ -61,9 +61,9 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
             else
             {
                 /* Wait till HSE is bypassed or disabled */
-                HSE_state = ((RCC->CR & RCC_CR_HSERDY) >> RCC_CR_HSERDY_POS);
+                HSERDY_state = ((RCC->CR & RCC_CR_HSERDY) >> RCC_CR_HSERDY_POS);
 
-                while (HSE_state != NOT_READY)
+                while (HSERDY_state != NOT_READY)
                 {
 
                 }
@@ -87,7 +87,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
             else
             {
                 /* Adjusts the Internal High Speed oscillator (HSI) calibration value */
-                RCC->CR |= ((pRCC_Oscillator->HSICalibrationValue << RCC_CR_HSITRIM_POS) & RCC_CR_HSITRIM);
+                RCC->CR = (RCC->CR & ~(RCC_CR_HSITRIM)) | ((pRCC_Oscillator->HSICalibrationValue << RCC_CR_HSITRIM_POS) & RCC_CR_HSITRIM);
             }
         }
         else
@@ -107,7 +107,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
                 }
 
                 /* Adjusts the Internal High Speed oscillator (HSI) calibration value */
-                RCC->CR |= ((pRCC_Oscillator->HSICalibrationValue << RCC_CR_HSITRIM_POS) & RCC_CR_HSITRIM);
+                RCC->CR = (RCC->CR & ~(RCC_CR_HSITRIM)) | ((pRCC_Oscillator->HSICalibrationValue << RCC_CR_HSITRIM_POS) & RCC_CR_HSITRIM);
             }
             else
             {
@@ -348,9 +348,14 @@ e_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock)
 
         RCC->CFGR = (RCC->CFGR & ~(RCC_CFGR_SW)) | ((pRCC_Clock->SystemClockSource << RCC_CFGR_SW_POS) & RCC_CFGR_SW);
 
+        uint32_t timeout = 1000000U;
         while (((RCC->CFGR & RCC_CFGR_SWS) >> RCC_CFGR_SWS_POS) != pRCC_Clock->SystemClockSource)
         {
-
+            /* Wait until the system clock transitions to the desired state */
+            if (timeout-- == 0)
+            {
+                break;
+            }
         }
     }
 
