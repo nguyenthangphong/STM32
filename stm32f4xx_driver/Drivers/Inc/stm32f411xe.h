@@ -217,6 +217,16 @@ typedef struct
     volatile uint32_t           GTPR;                    /*!< USART Guard time and prescaler register,                               Address offset : 0x18 */
 } st_USART_RegDef_t;
 
+typedef struct
+{
+    volatile uint32_t           ACR;                     /*!< FLASH access control register,                                         Address offset : 0x00 */
+    volatile uint32_t           KEYR;                    /*!< FLASH key register,                                                    Address offset : 0x04 */
+    volatile uint32_t           OPTKEYR;                 /*!< FLASH option key register,                                             Address offset : 0x08 */
+    volatile uint32_t           SR;                      /*!< FLASH status register,                                                 Address offset : 0x0C */
+    volatile uint32_t           CR;                      /*!< FLASH control register,                                                Address offset : 0x10 */
+    volatile uint32_t           OPTCR;                   /*!< FLASH option control register,                                         Address offset : 0x14 */
+} st_FLASH_RegDef_t;
+
 /***************************************************************************************************************************************
  ************************************************** Serial Peripheral Interface (SPI) **************************************************
  **************************************************************************************************************************************/
@@ -1149,6 +1159,87 @@ typedef struct
 #define RCC_DCKCFGR_TIMPRE_MASK         (0x1U << RCC_DCKCFGR_TIMPRE_POS)               /*!< 0x01000000 */
 #define RCC_DCKCFGR_TIMPRE              RCC_DCKCFGR_TIMPRE_MASK
 
+/*********************************************************************************************************************
+ ************************************************** FLASH interface **************************************************
+ ********************************************************************************************************************/
+
+/**************************************** Bit definition for FLASH_ACR register ****************************************/
+#define FLASH_ACR_LATENCY_POS           (0U)
+#define FLASH_ACR_LATENCY_MASK          (0xFU << FLASH_ACR_LATENCY_POS)                /*!< 0x0000000F */
+#define FLASH_ACR_LATENCY               FLASH_ACR_LATENCY_MASK
+#define FLASH_ACR_LATENCY_0             (0x1U << FLASH_ACR_LATENCY_POS)                /*!< 0x00000001 */
+#define FLASH_ACR_LATENCY_1             (0x2U << FLASH_ACR_LATENCY_POS)                /*!< 0x00000002 */
+#define FLASH_ACR_LATENCY_2             (0x4U << FLASH_ACR_LATENCY_POS)                /*!< 0x00000004 */
+#define FLASH_ACR_LATENCY_3             (0x8U << FLASH_ACR_LATENCY_POS)                /*!< 0x00000008 */
+
+#define FLASH_ACR_PRFTEN_POS            (8U)
+#define FLASH_ACR_PRFTEN_MASK           (0x1U << FLASH_ACR_PRFTEN_POS)                 /*!< 0x00000100 */
+#define FLASH_ACR_PRFTEN                FLASH_ACR_PRFTEN_MASK
+
+#define FLASH_ACR_ICEN_POS              (9U)
+#define FLASH_ACR_ICEN_MASK             (0x1U << FLASH_ACR_ICEN_POS)                   /*!< 0x00000200 */
+#define FLASH_ACR_ICEN                  FLASH_ACR_ICEN_MASK
+
+#define FLASH_ACR_DCEN_POS              (10U)
+#define FLASH_ACR_DCEN_MASK             (0x1U << FLASH_ACR_DCEN_POS)                   /*!< 0x00000400 */
+#define FLASH_ACR_DCEN                  FLASH_ACR_DCEN_MASK
+
+#define FLASH_ACR_ICRST_POS             (11U)
+#define FLASH_ACR_ICRST_MASK            (0x1U << FLASH_ACR_ICRST_POS)                  /*!< 0x00000800 */
+#define FLASH_ACR_ICRST                 FLASH_ACR_ICRST_MASK
+
+#define FLASH_ACR_DCRST_POS             (12U)
+#define FLASH_ACR_DCRST_MASK            (0x1U << FLASH_ACR_DCRST_POS)                  /*!< 0x00001000 */
+#define FLASH_ACR_DCRST                 FLASH_ACR_DCRST_MASK
+
+/**************************************** Bit definition for FLASH_KEYR register ****************************************/
+#define FLASH_KEYR_KEY1                 (0x45670123U)
+#define FLASH_KEYR_KEY2                 (0xCDEF89ABU)
+
+/**************************************** Bit definition for FLASH_OPTKEYR register ****************************************/
+#define FLASH_OPTKEYR_OPTKEY1           (0x08192A3BU)
+#define FLASH_OPTKEYR_OPTKEY2           (0x4C5D6E7FU)
+
+/**************************************** Bit definition for FLASH_SR register ****************************************/
+#define FLASH_SR_EOP_POS                (0U)
+#define FLASH_SR_EOP_MASK               (0x1U << FLASH_SR_EOP_POS)                  /*!< 0x00000001 */
+#define FLASH_SR_EOP                    FLASH_SR_EOP_MASK
+
+#define FLASH_SR_OPERR_POS              (1U)
+#define FLASH_SR_OPERR_MASK             (0x1U << FLASH_SR_OPERR_POS)                /*!< 0x00000002 */
+#define FLASH_SR_OPERR                  FLASH_SR_OPERR_MASK
+
+#define FLASH_SR_WRPERR_POS             (4U)
+#define FLASH_SR_WRPERR_MASK            (0x1U << FLASH_SR_WRPERR_POS)               /*!< 0x00000010 */
+#define FLASH_SR_WRPERR                 FLASH_SR_WRPERR_MASK
+
+#define FLASH_SR_PGAERR_POS             (5U)
+#define FLASH_SR_PGAERR_MASK            (0x1U << FLASH_SR_PGAERR_POS)               /*!< 0x00000020 */
+#define FLASH_SR_PGAERR                 FLASH_SR_PGAERR_MASK
+
+#define FLASH_SR_PGPERR_POS             (6U)
+#define FLASH_SR_PGPERR_MASK            (0x1U << FLASH_SR_PGPERR_POS)               /*!< 0x00000040 */
+#define FLASH_SR_PGPERR                 FLASH_SR_PGPERR_MASK
+
+#define FLASH_SR_PGSERR_POS             (7U)
+#define FLASH_SR_PGSERR_MASK            (0x1U << FLASH_SR_PGSERR_POS)               /*!< 0x00000080 */
+#define FLASH_SR_PGSERR                 FLASH_SR_PGSERR_MASK
+
+#define FLASH_SR_RDERR_POS              (8U)
+#define FLASH_SR_RDERR_MASK             (0x1U << FLASH_SR_RDERR_POS)                /*!< 0x00000100 */
+#define FLASH_SR_RDERR                  FLASH_SR_RDERR_MASK
+
+#define FLASH_SR_BSY_POS                (16U)
+#define FLASH_SR_BSY_MASK               (0x1U << FLASH_SR_BSY_POS)                  /*!< 0x00010000 */
+#define FLASH_SR_BSY                    FLASH_SR_BSY_MASK
+
+/**************************************** Bit definition for FLASH_CR register ****************************************/
+#define FLASH_CR_PG_POS                 (0U)
+#define FLASH_CR_PG_MASK                (0x1U << FLASH_CR_PG_POS)                   /*!< 0x00000001 */
+#define FLASH_CR_PG                     FLASH_CR_PG_MASK
+
+/**************************************** Bit definition for FLASH_OPTCR register ****************************************/
+
 /***************************************************************************************************************************
  ************************************************** Peripheral Definition **************************************************
  **************************************************************************************************************************/
@@ -1170,6 +1261,7 @@ typedef struct
 #define USART1                  ((st_USART_RegDef_t *)USART1_BASEADDR)
 #define USART2                  ((st_USART_RegDef_t *)USART2_BASEADDR)
 #define USART6                  ((st_USART_RegDef_t *)USART6_BASEADDR)
+#define FLASH                   ((st_FLASH_RegDef_t *)FLASH_BASEADDR)
 
 /************************************************************************************************************************
  ************************************************** Enable Peripherals **************************************************
