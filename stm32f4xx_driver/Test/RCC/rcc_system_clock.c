@@ -1,6 +1,7 @@
 #include "stm32f411xe.h"
 #include "stm32f411xe_gpio_driver.h"
 #include "stm32f411xe_rcc_driver.h"
+#include "stm32f411xe_flash_driver.h"
 #include "delay.h"
 
 extern uint32_t SystemCoreClock;
@@ -10,7 +11,7 @@ void RCC_SystemClockConfigHSE(void);
 
 int main(void)
 {
-    RCC_SystemClockConfigHSI();
+    RCC_SystemClockConfigHSE();
 
     volatile uint32_t f_APB1;
     volatile uint32_t f_APB2;
@@ -48,13 +49,12 @@ void RCC_SystemClockConfigHSI(void)
 
     st_RCC_ClockInitTypeDef_t rcc_clock_config = {0};
 
-    rcc_clock_config.ClockType                = RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
+    rcc_clock_config.ClockType                = RCC_CLOCKTYPE_SYSCLK|RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
     rcc_clock_config.SystemClockSource        = RCC_SYSCLKSOURCE_PLLCLK;
-    rcc_clock_config.AHB_ClockDivider         = RCC_AHB_PRESCALER_1;
     rcc_clock_config.APB1_ClockDivider        = RCC_APB1_PRESCALER_8;
     rcc_clock_config.APB2_ClockDivider        = RCC_APB2_PRESCALER_4;
 
-    ret = RCC_ClockConfig(&rcc_clock_config);
+    ret = RCC_ClockConfig(&rcc_clock_config, FLASH_LATENCY_2);
 
     UNUSED(ret);
 }
@@ -82,13 +82,12 @@ void RCC_SystemClockConfigHSE(void)
 
     st_RCC_ClockInitTypeDef_t rcc_clock_config = {0};
 
-    rcc_clock_config.ClockType                = RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
+    rcc_clock_config.ClockType                = RCC_CLOCKTYPE_SYSCLK|RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
     rcc_clock_config.SystemClockSource        = RCC_SYSCLKSOURCE_PLLCLK;
-    rcc_clock_config.AHB_ClockDivider         = RCC_AHB_PRESCALER_1;
     rcc_clock_config.APB1_ClockDivider        = RCC_APB1_PRESCALER_8;
     rcc_clock_config.APB2_ClockDivider        = RCC_APB2_PRESCALER_4;
 
-    ret = RCC_ClockConfig(&rcc_clock_config);
+    ret = RCC_ClockConfig(&rcc_clock_config, FLASH_LATENCY_1);
 
     UNUSED(ret);
 }

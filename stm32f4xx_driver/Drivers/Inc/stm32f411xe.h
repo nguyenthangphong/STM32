@@ -602,14 +602,14 @@ typedef struct
 #define RCC_CFGR_HPRE_3                 (0x8U << RCC_CFGR_HPRE_POS)                    /*!< 0x00000080 */
 
 #define RCC_CFGR_HPRE_DIV_1             (0x00000000U)                                  /*!< system clock not divided */
-#define RCC_CFGR_HPRE_DIV_2             (0x00000080U)                                  /*!< system clock divided by 2 */
-#define RCC_CFGR_HPRE_DIV_4             (0x00000090U)                                  /*!< system clock divided by 4 */
-#define RCC_CFGR_HPRE_DIV_8             (0x000000A0U)                                  /*!< system clock divided by 8 */
-#define RCC_CFGR_HPRE_DIV_16            (0x000000B0U)                                  /*!< system clock divided by 16 */
-#define RCC_CFGR_HPRE_DIV_64            (0x000000C0U)                                  /*!< system clock divided by 64 */
-#define RCC_CFGR_HPRE_DIV_128           (0x000000D0U)                                  /*!< system clock divided by 128 */
-#define RCC_CFGR_HPRE_DIV_256           (0x000000E0U)                                  /*!< system clock divided by 256 */
-#define RCC_CFGR_HPRE_DIV_512           (0x000000F0U)                                  /*!< system clock divided by 512 */
+#define RCC_CFGR_HPRE_DIV_2             (0x00000008U)                                  /*!< system clock divided by 2 */
+#define RCC_CFGR_HPRE_DIV_4             (0x00000009U)                                  /*!< system clock divided by 4 */
+#define RCC_CFGR_HPRE_DIV_8             (0x0000000AU)                                  /*!< system clock divided by 8 */
+#define RCC_CFGR_HPRE_DIV_16            (0x0000000BU)                                  /*!< system clock divided by 16 */
+#define RCC_CFGR_HPRE_DIV_64            (0x0000000CU)                                  /*!< system clock divided by 64 */
+#define RCC_CFGR_HPRE_DIV_128           (0x0000000DU)                                  /*!< system clock divided by 128 */
+#define RCC_CFGR_HPRE_DIV_256           (0x0000000EU)                                  /*!< system clock divided by 256 */
+#define RCC_CFGR_HPRE_DIV_512           (0x0000000FU)                                  /*!< system clock divided by 512 */
 
 #define RCC_CFGR_PPRE1_POS              (10U)
 #define RCC_CFGR_PPRE1_MASK             (0x7U << RCC_CFGR_PPRE1_POS)                   /*!< 0x00001C00 */
@@ -619,10 +619,10 @@ typedef struct
 #define RCC_CFGR_PPRE1_2                (0x4U << RCC_CFGR_PPRE1_POS)                   /*!< 0x00001000 */
 
 #define RCC_CFGR_PPRE1_DIV_1            (0x00000000U)                                  /*!< AHB clock not divided */
-#define RCC_CFGR_PPRE1_DIV_2            (0x00001000U)                                  /*!< AHB clock divided by 2 */
-#define RCC_CFGR_PPRE1_DIV_4            (0x00001400U)                                  /*!< AHB clock divided by 4 */
-#define RCC_CFGR_PPRE1_DIV_8            (0x00001800U)                                  /*!< AHB clock divided by 8 */
-#define RCC_CFGR_PPRE1_DIV_16           (0x00001C00U)                                  /*!< AHB clock divided by 16 */
+#define RCC_CFGR_PPRE1_DIV_2            (0x00000004U)                                  /*!< AHB clock divided by 2 */
+#define RCC_CFGR_PPRE1_DIV_4            (0x00000005U)                                  /*!< AHB clock divided by 4 */
+#define RCC_CFGR_PPRE1_DIV_8            (0x00000006U)                                  /*!< AHB clock divided by 8 */
+#define RCC_CFGR_PPRE1_DIV_16           (0x00000007U)                                  /*!< AHB clock divided by 16 */
 
 #define RCC_CFGR_PPRE2_POS              (13U)
 #define RCC_CFGR_PPRE2_MASK             (0x7U << RCC_CFGR_PPRE2_POS)                   /*!< 0x0000E000 */
@@ -632,10 +632,10 @@ typedef struct
 #define RCC_CFGR_PPRE2_2                (0x4U << RCC_CFGR_PPRE2_POS)                   /*!< 0x00008000 */
 
 #define RCC_CFGR_PPRE2_DIV_1            (0x00000000U)                                  /*!< AHB clock not divided */
-#define RCC_CFGR_PPRE2_DIV_2            (0x00008000U)                                  /*!< AHB clock divided by 2 */
-#define RCC_CFGR_PPRE2_DIV_4            (0x0000A000U)                                  /*!< AHB clock divided by 4 */
-#define RCC_CFGR_PPRE2_DIV_8            (0x0000C000U)                                  /*!< AHB clock divided by 8 */
-#define RCC_CFGR_PPRE2_DIV_16           (0x0000E000U)                                  /*!< AHB clock divided by 16 */
+#define RCC_CFGR_PPRE2_DIV_2            (0x00000004U)                                  /*!< AHB clock divided by 2 */
+#define RCC_CFGR_PPRE2_DIV_4            (0x00000005U)                                  /*!< AHB clock divided by 4 */
+#define RCC_CFGR_PPRE2_DIV_8            (0x00000006U)                                  /*!< AHB clock divided by 8 */
+#define RCC_CFGR_PPRE2_DIV_16           (0x00000007U)                                  /*!< AHB clock divided by 16 */
 
 #define RCC_CFGR_RTCPRE_POS             (16U)
 #define RCC_CFGR_RTCPRE_MASK            (0x1FU << RCC_CFGR_RTCPRE_POS)                 /*!< 0x001F0000 */
@@ -1165,12 +1165,11 @@ typedef struct
 
 /**************************************** Bit definition for FLASH_ACR register ****************************************/
 #define FLASH_ACR_LATENCY_POS           (0U)
-#define FLASH_ACR_LATENCY_MASK          (0xFU << FLASH_ACR_LATENCY_POS)                /*!< 0x0000000F */
+#define FLASH_ACR_LATENCY_MASK          (0x7U << FLASH_ACR_LATENCY_POS)                /*!< 0x0000000F */
 #define FLASH_ACR_LATENCY               FLASH_ACR_LATENCY_MASK
 #define FLASH_ACR_LATENCY_0             (0x1U << FLASH_ACR_LATENCY_POS)                /*!< 0x00000001 */
 #define FLASH_ACR_LATENCY_1             (0x2U << FLASH_ACR_LATENCY_POS)                /*!< 0x00000002 */
 #define FLASH_ACR_LATENCY_2             (0x4U << FLASH_ACR_LATENCY_POS)                /*!< 0x00000004 */
-#define FLASH_ACR_LATENCY_3             (0x8U << FLASH_ACR_LATENCY_POS)                /*!< 0x00000008 */
 
 #define FLASH_ACR_PRFTEN_POS            (8U)
 #define FLASH_ACR_PRFTEN_MASK           (0x1U << FLASH_ACR_PRFTEN_POS)                 /*!< 0x00000100 */
@@ -1238,7 +1237,98 @@ typedef struct
 #define FLASH_CR_PG_MASK                (0x1U << FLASH_CR_PG_POS)                   /*!< 0x00000001 */
 #define FLASH_CR_PG                     FLASH_CR_PG_MASK
 
+#define FLASH_CR_SER_POS                (1U)
+#define FLASH_CR_SER_MASK               (0x1U << FLASH_CR_SER_POS)                  /*!< 0x00000002 */
+#define FLASH_CR_SER                    FLASH_CR_SER_MASK
+
+#define FLASH_CR_MER_POS                (2U)
+#define FLASH_CR_MER_MASK               (0x1U << FLASH_CR_MER_POS)                  /*!< 0x00000004 */
+#define FLASH_CR_MER                    FLASH_CR_MER_MASK
+
+#define FLASH_CR_SNB_POS                (3U)
+#define FLASH_CR_SNB_MASK               (0xFU << FLASH_CR_SNB_POS)                  /*!< 0x00000078 */
+#define FLASH_CR_SNB                    FLASH_CR_SNB_MASK
+#define FLASH_CR_SNB_0                  (0x1U << FLASH_CR_SNB_POS)                  /*!< 0x00000008 */
+#define FLASH_CR_SNB_1                  (0x2U << FLASH_CR_SNB_POS)                  /*!< 0x00000010 */
+#define FLASH_CR_SNB_2                  (0x4U << FLASH_CR_SNB_POS)                  /*!< 0x00000020 */
+#define FLASH_CR_SNB_3                  (0x8U << FLASH_CR_SNB_POS)                  /*!< 0x00000040 */
+
+#define FLASH_CR_PSIZE_POS              (8U)
+#define FLASH_CR_PSIZE_MASK             (0x3U << FLASH_CR_PSIZE_POS)                /*!< 0x00000300 */
+#define FLASH_CR_PSIZE                  FLASH_CR_PSIZE_MASK
+#define FLASH_CR_PSIZE_0                (0x1U << FLASH_CR_PSIZE_POS)                /*!< 0x00000100 */
+#define FLASH_CR_PSIZE_1                (0x2U << FLASH_CR_PSIZE_POS)                /*!< 0x00000200 */
+
+#define FLASH_CR_STRT_POS               (16U)
+#define FLASH_CR_STRT_MASK              (0x1U << FLASH_CR_STRT_POS)                 /*!< 0x00010000 */
+#define FLASH_CR_STRT                   FLASH_CR_STRT_MASK
+
+#define FLASH_CR_EOPIE_POS              (24U)
+#define FLASH_CR_EOPIE_MASK             (0x1U << FLASH_CR_EOPIE_POS)                /*!< 0x01000000 */
+#define FLASH_CR_EOPIE                  FLASH_CR_EOPIE_MASK
+
+#define FLASH_CR_ERRIE_POS              (25U)
+#define FLASH_CR_ERRIE_MASK             (0x1U << FLASH_CR_ERRIE_POS)                /*!< 0x02000000 */
+#define FLASH_CR_ERRIE                  FLASH_CR_ERRIE_MASK
+
+#define FLASH_CR_LOCK_POS               (31U)
+#define FLASH_CR_LOCK_MASK              (0x1U << FLASH_CR_LOCK_POS)                 /*!< 0x80000000 */
+#define FLASH_CR_LOCK                   FLASH_CR_LOCK_MASK
+
 /**************************************** Bit definition for FLASH_OPTCR register ****************************************/
+#define FLASH_OPTCR_OPTLOCK_POS         (0U)
+#define FLASH_OPTCR_OPTLOCK_MASK        (0x1U << FLASH_OPTCR_OPTLOCK_POS)           /*!< 0x00000001 */
+#define FLASH_OPTCR_OPTLOCK             FLASH_OPTCR_OPTLOCK_MASK
+
+#define FLASH_OPTCR_OPTSTRT_POS         (1U)
+#define FLASH_OPTCR_OPTSTRT_MASK        (0x1U << FLASH_OPTCR_OPTSTRT_POS)           /*!< 0x00000002 */
+#define FLASH_OPTCR_OPTSTRT             FLASH_OPTCR_OPTSTRT_MASK
+
+#define FLASH_OPTCR_BOR_LEV_POS         (2U)
+#define FLASH_OPTCR_BOR_LEV_MASK        (0x3U << FLASH_OPTCR_BOR_LEV_POS)           /*!< 0x0000000C */
+#define FLASH_OPTCR_BOR_LEV             FLASH_OPTCR_BOR_LEV_MASK
+#define FLASH_OPTCR_BOR_LEV_0           (0x1U << FLASH_OPTCR_BOR_LEV_POS)           /*!< 0x00000004 */
+#define FLASH_OPTCR_BOR_LEV_1           (0x2U << FLASH_OPTCR_BOR_LEV_POS)           /*!< 0x00000008 */
+
+#define FLASH_OPTCR_WDG_SW_POS          (5U)
+#define FLASH_OPTCR_WDG_SW_MASK         (0x1U << FLASH_OPTCR_WDG_SW_POS)            /*!< 0x00000020 */
+#define FLASH_OPTCR_WDG_SW              FLASH_OPTCR_WDG_SW_MASK
+
+#define FLASH_OPTCR_nRST_STOP_POS       (6U)
+#define FLASH_OPTCR_nRST_STOP_MASK      (0x1U << FLASH_OPTCR_nRST_STOP_POS)         /*!< 0x00000040 */
+#define FLASH_OPTCR_nRST_STOP           FLASH_OPTCR_nRST_STOP_MASK
+
+#define FLASH_OPTCR_nRST_STDBY_POS      (7U)
+#define FLASH_OPTCR_nRST_STDBY_MASK     (0x1U << FLASH_OPTCR_nRST_STDBY_POS)        /*!< 0x00000080 */
+#define FLASH_OPTCR_nRST_STDBY          FLASH_OPTCR_nRST_STDBY_MASK
+
+#define FLASH_OPTCR_RDP_POS             (8U)
+#define FLASH_OPTCR_RDP_MASK            (0xFFU << FLASH_OPTCR_RDP_POS)              /*!< 0x0000FF00 */
+#define FLASH_OPTCR_RDP                 FLASH_OPTCR_RDP_MASK
+#define FLASH_OPTCR_RDP_0               (0x01U << FLASH_OPTCR_RDP_POS)              /*!< 0x00000100 */
+#define FLASH_OPTCR_RDP_1               (0x02U << FLASH_OPTCR_RDP_POS)              /*!< 0x00000200 */
+#define FLASH_OPTCR_RDP_2               (0x04U << FLASH_OPTCR_RDP_POS)              /*!< 0x00000400 */
+#define FLASH_OPTCR_RDP_3               (0x08U << FLASH_OPTCR_RDP_POS)              /*!< 0x00000800 */
+#define FLASH_OPTCR_RDP_4               (0x10U << FLASH_OPTCR_RDP_POS)              /*!< 0x00001000 */
+#define FLASH_OPTCR_RDP_5               (0x20U << FLASH_OPTCR_RDP_POS)              /*!< 0x00002000 */
+#define FLASH_OPTCR_RDP_6               (0x40U << FLASH_OPTCR_RDP_POS)              /*!< 0x00004000 */
+#define FLASH_OPTCR_RDP_7               (0x80U << FLASH_OPTCR_RDP_POS)              /*!< 0x00008000 */
+
+#define FLASH_OPTCR_nWRP_POS            (16U)
+#define FLASH_OPTCR_nWRP_MASK           (0xFFU << FLASH_OPTCR_nWRP_POS)             /*!< 0x00FF0000 */
+#define FLASH_OPTCR_nWRP                FLASH_OPTCR_nWRP_MASK
+#define FLASH_OPTCR_nWRP_0              (0x01U << FLASH_OPTCR_nWRP_POS)             /*!< 0x00010000 */
+#define FLASH_OPTCR_nWRP_1              (0x02U << FLASH_OPTCR_nWRP_POS)             /*!< 0x00020000 */
+#define FLASH_OPTCR_nWRP_2              (0x04U << FLASH_OPTCR_nWRP_POS)             /*!< 0x00040000 */
+#define FLASH_OPTCR_nWRP_3              (0x08U << FLASH_OPTCR_nWRP_POS)             /*!< 0x00080000 */
+#define FLASH_OPTCR_nWRP_4              (0x10U << FLASH_OPTCR_nWRP_POS)             /*!< 0x00100000 */
+#define FLASH_OPTCR_nWRP_5              (0x20U << FLASH_OPTCR_nWRP_POS)             /*!< 0x00200000 */
+#define FLASH_OPTCR_nWRP_6              (0x40U << FLASH_OPTCR_nWRP_POS)             /*!< 0x00400000 */
+#define FLASH_OPTCR_nWRP_7              (0x80U << FLASH_OPTCR_nWRP_POS)             /*!< 0x00800000 */
+
+#define FLASH_OPTCR_SPRMOD_POS          (31U)
+#define FLASH_OPTCR_SPRMOD_MASK         (0x1U << FLASH_OPTCR_SPRMOD_POS)            /*!< 0x80000000 */
+#define FLASH_OPTCR_SPRMOD              FLASH_OPTCR_SPRMOD_MASK
 
 /***************************************************************************************************************************
  ************************************************** Peripheral Definition **************************************************
@@ -1261,7 +1351,7 @@ typedef struct
 #define USART1                  ((st_USART_RegDef_t *)USART1_BASEADDR)
 #define USART2                  ((st_USART_RegDef_t *)USART2_BASEADDR)
 #define USART6                  ((st_USART_RegDef_t *)USART6_BASEADDR)
-#define FLASH                   ((st_FLASH_RegDef_t *)FLASH_BASEADDR)
+#define FLASH                   ((st_FLASH_RegDef_t *)FLASH_INTERFACE_REGISTER_BASEADDR)
 
 /************************************************************************************************************************
  ************************************************** Enable Peripherals **************************************************

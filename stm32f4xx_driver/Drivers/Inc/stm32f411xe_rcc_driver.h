@@ -748,7 +748,7 @@ typedef struct
 } st_RCC_ClockInitTypeDef_t;
 
 e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Oscillator);
-e_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock);
+e_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock, uint32_t f_Latency);
 void RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_MCODiv);
 uint32_t RCC_GetSysClockFreq(void);
 uint32_t RCC_GetHCLKFreq(void);

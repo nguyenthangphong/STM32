@@ -1,4 +1,5 @@
 #include "stm32f411xe_rcc_driver.h"
+#include "stm32f411xe_flash_driver.h"
 
 uint32_t system_core_clock = 16000000U;
 
@@ -11,20 +12,21 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
     {
         return STATUS_ERROR;
     }
-    
-    uint32_t system_clock_switch_status = ((RCC->CFGR & RCC_CFGR_SWS) >> RCC_CFGR_SWS_POS);
-    uint32_t pll_clock_source_type = ((RCC->CFGR & RCC_PLLCFGR_PLLSRC) >> RCC_PLLCFGR_PLLSRC_POS);
+
+    uint32_t system_clock_switch_status;
+    uint32_t pll_clock_source_type;
 
     /* HSE Configuration */
     if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_HSE) == RCC_OSCILLATORTYPE_HSE)
     {
-        volatile uint32_t HSERDY_state;
+        system_clock_switch_status = ((RCC->CFGR & RCC_CFGR_SWS) >> RCC_CFGR_SWS_POS);
+        pll_clock_source_type = ((RCC->CFGR & RCC_PLLCFGR_PLLSRC) >> RCC_PLLCFGR_PLLSRC_POS);
 
-        if ((system_clock_switch_status == RCC_SWS_HSE_OSCILLATOR) || ((system_clock_switch_status == RCC_SWS_PLL) && (pll_clock_source_type == RCC_PLLSRC_HSE)))
+        if ((system_clock_switch_status == RCC_SWS_HSE_OSCILLATOR) || \
+           ((system_clock_switch_status == RCC_SWS_PLL) && (pll_clock_source_type == RCC_PLLSRC_HSE))
+        )
         {
-            HSERDY_state = ((RCC->CR & RCC_CR_HSERDY) >> RCC_CR_HSERDY_POS);
-
-            if ((HSERDY_state != NOT_READY) && (pRCC_Oscillator->HSEState == RCC_HSE_OFF))
+            if ((((RCC->CR & RCC_CR_HSERDY) >> RCC_CR_HSERDY_POS) != NOT_READY) && (pRCC_Oscillator->HSEState == RCC_HSE_OFF))
             {
                 return STATUS_ERROR;
             }
@@ -51,9 +53,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
             if (pRCC_Oscillator->HSEState != RCC_HSE_OFF)
             {
                 /* Wait till HSE is ready */
-                HSERDY_state = ((RCC->CR & RCC_CR_HSERDY) >> RCC_CR_HSERDY_POS);
-
-                while (HSERDY_state == NOT_READY)
+                while (((RCC->CR & RCC_CR_HSERDY) >> RCC_CR_HSERDY_POS) == NOT_READY)
                 {
 
                 }
@@ -61,9 +61,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
             else
             {
                 /* Wait till HSE is bypassed or disabled */
-                HSERDY_state = ((RCC->CR & RCC_CR_HSERDY) >> RCC_CR_HSERDY_POS);
-
-                while (HSERDY_state != NOT_READY)
+                while (((RCC->CR & RCC_CR_HSERDY) >> RCC_CR_HSERDY_POS) != NOT_READY)
                 {
 
                 }
@@ -74,13 +72,14 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
     /* HSI Configuration */
     if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_HSI) == RCC_OSCILLATORTYPE_HSI)
     {
-        volatile uint32_t HSIRDY_state;
-
-        if ((system_clock_switch_status == RCC_SWS_HSI_OSCILLATOR) || ((system_clock_switch_status == RCC_SWS_PLL) && (pll_clock_source_type == RCC_PLLSRC_HSI)))
+        system_clock_switch_status = ((RCC->CFGR & RCC_CFGR_SWS) >> RCC_CFGR_SWS_POS);
+        pll_clock_source_type = ((RCC->CFGR & RCC_PLLCFGR_PLLSRC) >> RCC_PLLCFGR_PLLSRC_POS);
+        
+        if ((system_clock_switch_status == RCC_SWS_HSI_OSCILLATOR) || \
+           ((system_clock_switch_status == RCC_SWS_PLL) && (pll_clock_source_type == RCC_PLLSRC_HSI))
+        )
         {
-            HSIRDY_state = ((RCC->CR & RCC_CR_HSIRDY) >> RCC_CR_HSIRDY_POS);
-
-            if ((HSIRDY_state != NOT_READY) && (pRCC_Oscillator->HSIState == RCC_HSI_OFF))
+            if ((((RCC->CR & RCC_CR_HSIRDY) >> RCC_CR_HSIRDY_POS) != NOT_READY) && (pRCC_Oscillator->HSIState == RCC_HSI_OFF))
             {
                 return STATUS_ERROR;
             }
@@ -99,9 +98,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
                 RCC_HSI_ENABLE();
 
                 /* Wait till HSI is ready */
-                HSIRDY_state = ((RCC->CR & RCC_CR_HSIRDY) >> RCC_CR_HSIRDY_POS);
-
-                while (HSIRDY_state == NOT_READY)
+                while (((RCC->CR & RCC_CR_HSIRDY) >> RCC_CR_HSIRDY_POS) == NOT_READY)
                 {
                     
                 }
@@ -115,9 +112,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
                 RCC_HSI_DISABLE();
 
                 /* Wait till HSI is bypassed or disabled */
-                HSIRDY_state = ((RCC->CR & RCC_CR_HSIRDY) >> RCC_CR_HSIRDY_POS);
-
-                while (HSIRDY_state != NOT_READY)
+                while (((RCC->CR & RCC_CR_HSIRDY) >> RCC_CR_HSIRDY_POS) != NOT_READY)
                 {
 
                 }
@@ -128,8 +123,6 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
     /* LSE Configuration */
     if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_LSE) == RCC_OSCILLATORTYPE_LSE)
     {
-        volatile uint32_t LSERDY_state;
-
         /* Set the new LSE State */
         if (pRCC_Oscillator->LSEState == RCC_LSE_ON)
         {
@@ -150,9 +143,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
         if (pRCC_Oscillator->LSEState != RCC_LSE_OFF)
         {
             /* Wait till LSE is ready */
-            LSERDY_state = ((RCC->BDCR & RCC_BDCR_LSERDY) >> RCC_BDCR_LSERDY_POS);
-
-            while (LSERDY_state == NOT_READY)
+            while (((RCC->BDCR & RCC_BDCR_LSERDY) >> RCC_BDCR_LSERDY_POS) == NOT_READY)
             {
                 
             }
@@ -160,9 +151,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
         else
         {
             /* Wait till LSE is bypassed or disabled */
-            LSERDY_state = ((RCC->BDCR & RCC_BDCR_LSERDY) >> RCC_BDCR_LSERDY_POS);
-
-            while (LSERDY_state != NOT_READY)
+            while (((RCC->BDCR & RCC_BDCR_LSERDY) >> RCC_BDCR_LSERDY_POS) != NOT_READY)
             {
                 
             }
@@ -172,8 +161,6 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
     /* LSI Configuration */
     if (((pRCC_Oscillator->OscillatorType) & RCC_OSCILLATORTYPE_LSI) == RCC_OSCILLATORTYPE_LSI)
     {
-        volatile uint32_t LSIRDY_state;
-
         /* Check the LSI State */
         if (pRCC_Oscillator->LSIState == RCC_LSI_ON)
         {
@@ -181,9 +168,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
             RCC_LSI_ENABLE();
 
             /* Wait till LSI is ready */
-            LSIRDY_state = ((RCC->CSR & RCC_CSR_LSIRDY) & RCC_CSR_LSIRDY_POS);
-
-            while (LSIRDY_state == RESET)
+            while (((RCC->CSR & RCC_CSR_LSIRDY) & RCC_CSR_LSIRDY_POS) == NOT_READY)
             {
                 
             }
@@ -194,9 +179,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
             RCC_LSI_DISABLE();
 
             /* Wait till LSI is bypassed or disabled */
-            LSIRDY_state = ((RCC->CSR & RCC_CSR_LSIRDY) & RCC_CSR_LSIRDY_POS);
-
-            while (LSIRDY_state != RESET)
+            while (((RCC->CSR & RCC_CSR_LSIRDY) & RCC_CSR_LSIRDY_POS) != NOT_READY)
             {
 
             }
@@ -211,17 +194,13 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
         /* Check if the PLL is used as system clock or not */
         if (system_clock_switch_status != RCC_SWS_PLL)
         {
-            volatile uint32_t PLLRDY_state;
-
             if (pRCC_Oscillator->PLL.PLLState == RCC_PLL_ON)
             {
                 /* Disable the main PLL */
                 RCC_PLL_DISABLE();
 
                 /* Wait till PLL is disabled */
-                PLLRDY_state = ((RCC->CR & RCC_CR_PLLRDY) >> RCC_CR_PLLRDY_POS);
-
-                while (PLLRDY_state != NOT_READY)
+                while (((RCC->CR & RCC_CR_PLLRDY) >> RCC_CR_PLLRDY_POS) != NOT_READY)
                 {
 
                 }
@@ -243,9 +222,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
                 RCC_PLL_ENABLE();
 
                 /* Wait till PLL is ready */
-                PLLRDY_state = ((RCC->CR & RCC_CR_PLLRDY) >> RCC_CR_PLLRDY_POS);
-
-                while (PLLRDY_state == NOT_READY)
+                while (((RCC->CR & RCC_CR_PLLRDY) >> RCC_CR_PLLRDY_POS) == NOT_READY)
                 {
 
                 }
@@ -256,9 +233,7 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
                 RCC_PLL_DISABLE();
 
                 /* Wait till PLL is disabled */
-                PLLRDY_state = ((RCC->CR & RCC_CR_PLLRDY) >> RCC_CR_PLLRDY_POS);
-
-                while (PLLRDY_state != NOT_READY)
+                while (((RCC->CR & RCC_CR_PLLRDY) >> RCC_CR_PLLRDY_POS) != NOT_READY)
                 {
 
                 }
@@ -273,14 +248,11 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
             }
             else
             {
-                uint32_t PLLSrc_Cur = ((RCC->PLLCFGR & RCC_PLLCFGR_PLLSRC) >> RCC_PLLCFGR_PLLSRC_POS);
-                uint32_t PLLM_Cur   = ((RCC->PLLCFGR & RCC_PLLCFGR_PLLM) >> RCC_PLLCFGR_PLLM_POS);
-                uint32_t PLLN_Cur   = ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_POS);
-                uint32_t PLLP_Cur   = ((RCC->PLLCFGR & RCC_PLLCFGR_PLLP) >> RCC_PLLCFGR_PLLP_POS);
-
-                if ((pRCC_Oscillator->PLL.PLLState == RCC_PLL_ON) || \
-                    (pRCC_Oscillator->PLL.PLLSource != PLLSrc_Cur) || (pRCC_Oscillator->PLL.PLLM != PLLM_Cur) || \
-                    (pRCC_Oscillator->PLL.PLLN != PLLN_Cur) || (pRCC_Oscillator->PLL.PLLP != PLLP_Cur)
+                if ((pRCC_Oscillator->PLL.PLLState  == RCC_PLL_ON)                                                      || \
+                    (pRCC_Oscillator->PLL.PLLSource != ((RCC->PLLCFGR & RCC_PLLCFGR_PLLSRC) >> RCC_PLLCFGR_PLLSRC_POS)) || \
+                    (pRCC_Oscillator->PLL.PLLM      != ((RCC->PLLCFGR & RCC_PLLCFGR_PLLM) >> RCC_PLLCFGR_PLLM_POS))     || \
+                    (pRCC_Oscillator->PLL.PLLN      != ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_POS))     || \
+                    (pRCC_Oscillator->PLL.PLLP      != ((RCC->PLLCFGR & RCC_PLLCFGR_PLLP) >> RCC_PLLCFGR_PLLP_POS))
                 )
                 {
                     return STATUS_ERROR;
@@ -292,11 +264,24 @@ e_StatusTypeDef_t RCC_OscillatorConfig(st_RCC_OscillatorInitTypeDef_t *pRCC_Osci
     return STATUS_OK;
 }
 
-e_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock)
+e_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock, uint32_t f_Latency)
 {
     if (pRCC_Clock == NULL)
     {
         return STATUS_ERROR;
+    }
+
+    uint32_t latency;
+
+    /* Increasing the number of wait states because of higher CPU frequency */
+    if (((FLASH->ACR & FLASH_ACR_LATENCY) >> FLASH_ACR_LATENCY_POS) < f_Latency)
+    {
+        FLASH->ACR = (FLASH->ACR & ~(FLASH_ACR_LATENCY)) | ((f_Latency << FLASH_ACR_LATENCY_POS) & FLASH_ACR_LATENCY);
+
+        if (((FLASH->ACR & FLASH_ACR_LATENCY) >> FLASH_ACR_LATENCY_POS) != f_Latency)
+        {
+            return STATUS_ERROR;
+        }
     }
 
     /* HCLK Configuration */
@@ -304,15 +289,15 @@ e_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock)
     {
         if (((pRCC_Clock->ClockType) & RCC_CLOCKTYPE_PCLK1) == RCC_CLOCKTYPE_PCLK1)
         {
-            RCC->CFGR = (RCC->CFGR & ~(RCC_CFGR_PPRE1)) | ((RCC_APB1_PRESCALER_16) & RCC_CFGR_PPRE1);
+            RCC->CFGR = (RCC->CFGR & ~(RCC_CFGR_PPRE1)) | ((RCC_APB1_PRESCALER_16 << RCC_CFGR_PPRE1_POS) & RCC_CFGR_PPRE1);
         }
 
         if (((pRCC_Clock->ClockType) & RCC_CLOCKTYPE_PCLK2) == RCC_CLOCKTYPE_PCLK2)
         {
-            RCC->CFGR = (RCC->CFGR & ~(RCC_CFGR_PPRE2)) | ((RCC_APB2_PRESCALER_16) & RCC_CFGR_PPRE2);
+            RCC->CFGR = (RCC->CFGR & ~(RCC_CFGR_PPRE2)) | ((RCC_APB2_PRESCALER_16 << RCC_CFGR_PPRE2_POS) & RCC_CFGR_PPRE2);
         }
 
-        RCC->CFGR = (RCC->CFGR & ~(RCC_CFGR_HPRE)) | ((pRCC_Clock->AHB_ClockDivider) & RCC_CFGR_HPRE);
+        RCC->CFGR = (RCC->CFGR & ~(RCC_CFGR_HPRE)) | ((pRCC_Clock->AHB_ClockDivider << RCC_CFGR_HPRE_POS) & RCC_CFGR_HPRE);
     }
 
     /* SYSCLK Configuration */
@@ -348,27 +333,33 @@ e_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock)
 
         RCC->CFGR = (RCC->CFGR & ~(RCC_CFGR_SW)) | ((pRCC_Clock->SystemClockSource << RCC_CFGR_SW_POS) & RCC_CFGR_SW);
 
-        uint32_t timeout = 1000000U;
         while (((RCC->CFGR & RCC_CFGR_SWS) >> RCC_CFGR_SWS_POS) != pRCC_Clock->SystemClockSource)
         {
-            /* Wait until the system clock transitions to the desired state */
-            if (timeout-- == 0)
-            {
-                break;
-            }
+
+        }
+    }
+
+    /* Decreasing the number of wait states because of lower CPU frequency */
+    if (((FLASH->ACR & FLASH_ACR_LATENCY) >> FLASH_ACR_LATENCY_POS) > f_Latency)
+    {
+        FLASH->ACR = (FLASH->ACR & ~(FLASH_ACR_LATENCY)) | ((f_Latency << FLASH_ACR_LATENCY_POS) & FLASH_ACR_LATENCY);
+
+        if (((FLASH->ACR & FLASH_ACR_LATENCY) >> FLASH_ACR_LATENCY_POS) != f_Latency)
+        {
+            return STATUS_ERROR;
         }
     }
 
     /* PCLK1 Configuration */
     if (((pRCC_Clock->ClockType) & RCC_CLOCKTYPE_PCLK1) == RCC_CLOCKTYPE_PCLK1)
     {
-        RCC->CFGR = (RCC->CFGR & ~(RCC_CFGR_PPRE1)) | ((pRCC_Clock->APB1_ClockDivider) & RCC_CFGR_PPRE1);
+        RCC->CFGR = (RCC->CFGR & ~(RCC_CFGR_PPRE1)) | ((pRCC_Clock->APB1_ClockDivider << RCC_CFGR_PPRE1_POS) & RCC_CFGR_PPRE1);
     }
 
     /* PCLK2 Configuration */
     if (((pRCC_Clock->ClockType) & RCC_CLOCKTYPE_PCLK2) == RCC_CLOCKTYPE_PCLK2)
     {
-        RCC->CFGR = (RCC->CFGR & ~(RCC_CFGR_PPRE2)) | ((pRCC_Clock->APB2_ClockDivider) & RCC_CFGR_PPRE2);
+        RCC->CFGR = (RCC->CFGR & ~(RCC_CFGR_PPRE2)) | ((pRCC_Clock->APB2_ClockDivider << RCC_CFGR_PPRE2_POS) & RCC_CFGR_PPRE2);
     }
 
     /* Update the SystemCoreClock global variable */
@@ -379,22 +370,23 @@ e_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock)
 
 void RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_MCODiv)
 {
-    st_GPIO_Handle_t GPIO_MCOx;
+    st_GPIO_Handle_t gpio_MCox = {0};
 
+    /* MCO1 Configuration */
     if (RCC_MCOx == RCC_MCO1)
     {
         /* MCO1 Clock Enable */
         GPIOA_PCLK_EN();
 
         /* Configure the MCO1 Pin */
-        GPIO_MCOx.pGPIOx                             = GPIOA;
-        GPIO_MCOx.GPIO_PinConfig.GPIO_PinNumber      = GPIO_PIN_NO_8;
-        GPIO_MCOx.GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_ALTFN;
-        GPIO_MCOx.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
-        GPIO_MCOx.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
-        GPIO_MCOx.GPIO_PinConfig.GPIO_PinAltFunMode  = GPIO_AF0_MCO;
-        GPIO_MCOx.GPIO_PinConfig.GPIO_PinOPType      = GPIO_OP_TYPE_PP;
-        GPIO_Init(&GPIO_MCOx);
+        gpio_MCox.pGPIOx                             = GPIOA;
+        gpio_MCox.GPIO_PinConfig.GPIO_PinNumber      = GPIO_PIN_NO_8;
+        gpio_MCox.GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_ALTFN;
+        gpio_MCox.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
+        gpio_MCox.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+        gpio_MCox.GPIO_PinConfig.GPIO_PinAltFunMode  = GPIO_AF0_MCO;
+        gpio_MCox.GPIO_PinConfig.GPIO_PinOPType      = GPIO_OP_TYPE_PP;
+        GPIO_Init(&gpio_MCox);
 
         /* Set MCO1 Clock Source */
         RCC->CFGR = (RCC->CFGR & ~(RCC_CFGR_MCO1)) | ((RCC_MCOSource << RCC_CFGR_MCO1_POS) & RCC_CFGR_MCO1);
@@ -402,20 +394,21 @@ void RCC_MCOConfig(uint32_t RCC_MCOx, uint32_t RCC_MCOSource, uint32_t RCC_MCODi
         /* Set MCO1 Prescaler */
         RCC->CFGR = (RCC->CFGR & ~(RCC_CFGR_MCO1PRE)) | ((RCC_MCODiv << RCC_CFGR_MCO1PRE_POS) & RCC_CFGR_MCO1PRE);
     }
+    /* MCO2 Configuration */
     else
     {
         /* MCO2 Clock Enable */
         GPIOC_PCLK_EN();
 
         /* Configure the MCO2 Pin */
-        GPIO_MCOx.pGPIOx                             = GPIOC;
-        GPIO_MCOx.GPIO_PinConfig.GPIO_PinNumber      = GPIO_PIN_NO_9;
-        GPIO_MCOx.GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_ALTFN;
-        GPIO_MCOx.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
-        GPIO_MCOx.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
-        GPIO_MCOx.GPIO_PinConfig.GPIO_PinAltFunMode  = GPIO_AF0_MCO;
-        GPIO_MCOx.GPIO_PinConfig.GPIO_PinOPType      = GPIO_OP_TYPE_PP;
-        GPIO_Init(&GPIO_MCOx);
+        gpio_MCox.pGPIOx                             = GPIOC;
+        gpio_MCox.GPIO_PinConfig.GPIO_PinNumber      = GPIO_PIN_NO_9;
+        gpio_MCox.GPIO_PinConfig.GPIO_PinMode        = GPIO_MODE_ALTFN;
+        gpio_MCox.GPIO_PinConfig.GPIO_PinSpeed       = GPIO_SPEED_FAST;
+        gpio_MCox.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+        gpio_MCox.GPIO_PinConfig.GPIO_PinAltFunMode  = GPIO_AF0_MCO;
+        gpio_MCox.GPIO_PinConfig.GPIO_PinOPType      = GPIO_OP_TYPE_PP;
+        GPIO_Init(&gpio_MCox);
 
         /* Set MCO2 Clock Source */
         RCC->CFGR = (RCC->CFGR & ~(RCC_CFGR_MCO2)) | ((RCC_MCOSource << RCC_CFGR_MCO2_POS) & RCC_CFGR_MCO2);
@@ -429,38 +422,37 @@ uint32_t RCC_GetSysClockFreq(void)
 {
     uint32_t system_clock_freq = 0U;
 
-    uint32_t system_clock_switch_status = ((RCC->CFGR & RCC_CFGR_SWS) >> RCC_CFGR_SWS_POS);
-
     /* HSE used as system clock source */
-    if (system_clock_switch_status == RCC_SWS_HSE_OSCILLATOR)
+    if (((RCC->CFGR & RCC_CFGR_SWS) >> RCC_CFGR_SWS_POS) == RCC_SWS_HSE_OSCILLATOR)
     {
         system_clock_freq = RCC_HSE_CLOCK;
     }
     /* PLL used as system clock source */
-    else if (system_clock_switch_status == RCC_SWS_PLL)
+    else if (((RCC->CFGR & RCC_CFGR_SWS) >> RCC_CFGR_SWS_POS) == RCC_SWS_PLL)
     {
         uint32_t pllm = ((RCC->PLLCFGR & RCC_PLLCFGR_PLLM) >> RCC_PLLCFGR_PLLM_POS);
         uint32_t plln = ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_POS);
         uint32_t pllp = RCC_PLLP_DIV_FACTOR(((RCC->PLLCFGR & RCC_PLLCFGR_PLLP) >> RCC_PLLCFGR_PLLP_POS));
-        uint32_t f_PLL_clock_input = 0U;
-
-        uint32_t pll_clock_source_type = ((RCC->PLLCFGR & RCC_PLLCFGR_PLLSRC) >> RCC_PLLCFGR_PLLSRC_POS);
+        uint32_t f_pll_clock_input = 0U;
+        uint32_t f_vco_clock = 0U;
+        uint32_t f_pll_general_clock_output = 0U;
 
         /* HSI used as PLL clock source */
-        if (pll_clock_source_type == RCC_PLLSRC_HSI)
+        if (((RCC->PLLCFGR & RCC_PLLCFGR_PLLSRC) >> RCC_PLLCFGR_PLLSRC_POS) == RCC_PLLSRC_HSI)
         {
-            f_PLL_clock_input = RCC_HSI_CLOCK;
+            f_pll_clock_input = RCC_HSI_CLOCK;
         }
         /* HSE used as PLL clock source */
         else
         {
-            f_PLL_clock_input = RCC_HSE_CLOCK;
+            f_pll_clock_input = RCC_HSE_CLOCK;
         }
 
-        uint32_t f_VCO_clock = (f_PLL_clock_input * plln) / pllm;
-        uint32_t f_PLL_general_clock_output = f_VCO_clock / pllp;
+        f_vco_clock = (f_pll_clock_input * plln) / pllm;
 
-        system_clock_freq = f_PLL_general_clock_output;
+        f_pll_general_clock_output = f_vco_clock / pllp;
+
+        system_clock_freq = f_pll_general_clock_output;
     }
     /* HSI used as system clock source */
     else
@@ -478,14 +470,10 @@ uint32_t RCC_GetHCLKFreq(void)
 
 uint32_t RCC_GetPCLK1Freq(void)
 {
-    uint32_t f_APB1 = 0U;
-    f_APB1 = (RCC_GetHCLKFreq() >> APBPrescTable[((RCC->CFGR & RCC_CFGR_PPRE1) >> RCC_CFGR_PPRE1_POS)]);
-    return f_APB1;
+    return (RCC_GetHCLKFreq() >> APBPrescTable[((RCC->CFGR & RCC_CFGR_PPRE1) >> RCC_CFGR_PPRE1_POS)]);
 }
 
 uint32_t RCC_GetPCLK2Freq(void)
 {
-    uint32_t f_APB2 = 0U;
-    f_APB2 = (RCC_GetHCLKFreq() >> APBPrescTable[((RCC->CFGR & RCC_CFGR_PPRE2) >> RCC_CFGR_PPRE2_POS)]);
-    return f_APB2;
+    return (RCC_GetHCLKFreq() >> APBPrescTable[((RCC->CFGR & RCC_CFGR_PPRE2) >> RCC_CFGR_PPRE2_POS)]);
 }
