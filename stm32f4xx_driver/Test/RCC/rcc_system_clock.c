@@ -4,23 +4,15 @@
 #include "stm32f411xe_flash_driver.h"
 #include "delay.h"
 
-extern uint32_t SystemCoreClock;
+extern uint32_t system_core_clock;
 
 void RCC_SystemClockConfigHSI(void);
 void RCC_SystemClockConfigHSE(void);
 
 int main(void)
 {
-    RCC_SystemClockConfigHSE();
-
-    volatile uint32_t f_APB1;
-    volatile uint32_t f_APB2;
-
-    f_APB1 = RCC_GetPCLK1Freq();
-    f_APB2 = RCC_GetPCLK2Freq();
-
-    UNUSED(f_APB1);
-    UNUSED(f_APB2);
+    RCC_SystemClockConfigHSI();
+    RCC_MCOConfig(RCC_MCO1, RCC_MCO1_PLL_CLOCK_SOURCE, RCC_MCO1_PRESCALER_DIV_2);
 
     return 0;
 }

@@ -271,8 +271,6 @@ e_StatusTypeDef_t RCC_ClockConfig(st_RCC_ClockInitTypeDef_t *pRCC_Clock, uint32_
         return STATUS_ERROR;
     }
 
-    uint32_t latency;
-
     /* Increasing the number of wait states because of higher CPU frequency */
     if (((FLASH->ACR & FLASH_ACR_LATENCY) >> FLASH_ACR_LATENCY_POS) < f_Latency)
     {
