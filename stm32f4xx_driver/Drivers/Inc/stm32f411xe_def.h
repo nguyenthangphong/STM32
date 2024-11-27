@@ -7,10 +7,11 @@
 #define RESET                   DISABLE
 #define READY                   ENABLE
 #define NOT_READY               DISABLE
+#define FULL                    ENABLE
+#define NOT_EMPTY               DISABLE
+#define EMPTY                   ENABLE
 #define GPIO_PIN_SET            ENABLE
 #define GPIO_PIN_RESET          DISABLE
-#define FLAG_SET                SET
-#define FLAG_RESET              RESET
 #define UNUSED(x)               ((void)x)
 
 typedef enum

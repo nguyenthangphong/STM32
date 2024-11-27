@@ -245,8 +245,20 @@ typedef struct
 #define SPI_CR1_MSTR                SPI_CR1_MSTR_MASK
 
 #define SPI_CR1_BR_POS              (3U)
-#define SPI_CR1_BR_MASK             (0x1U << SPI_CR1_BR_POS)                           /*!< 0x00000008 */
+#define SPI_CR1_BR_MASK             (0x7U << SPI_CR1_BR_POS)                           /*!< 0x00000038 */
 #define SPI_CR1_BR                  SPI_CR1_BR_MASK
+#define SPI_CR1_BR_0                (0x1U << SPI_CR1_BR_POS)                           /*!< 0x00000008 */
+#define SPI_CR1_BR_1                (0x2U << SPI_CR1_BR_POS)                           /*!< 0x00000010 */
+#define SPI_CR1_BR_2                (0x4U << SPI_CR1_BR_POS)                           /*!< 0x00000020 */
+
+#define SPI_CR1_BR_DIV_2            (0x00000000U)                                      /*!< f_PCLK / 2 */
+#define SPI_CR1_BR_DIV_4            (0x00000001U)                                      /*!< f_PCLK / 4 */
+#define SPI_CR1_BR_DIV_8            (0x00000002U)                                      /*!< f_PCLK / 8 */
+#define SPI_CR1_BR_DIV_16           (0x00000003U)                                      /*!< f_PCLK / 16 */
+#define SPI_CR1_BR_DIV_32           (0x00000004U)                                      /*!< f_PCLK / 32 */
+#define SPI_CR1_BR_DIV_64           (0x00000005U)                                      /*!< f_PCLK / 64 */
+#define SPI_CR1_BR_DIV_128          (0x00000006U)                                      /*!< f_PCLK / 128 */
+#define SPI_CR1_BR_DIV_256          (0x00000007U)                                      /*!< f_PCLK / 256 */
 
 #define SPI_CR1_SPE_POS             (6U)
 #define SPI_CR1_SPE_MASK            (0x1U << SPI_CR1_SPE_POS)                          /*!< 0x00000040 */
@@ -261,8 +273,8 @@ typedef struct
 #define SPI_CR1_SSI                 SPI_CR1_SSI_MASK
 
 #define SPI_CR1_SSM_POS             (9U)
-#define SPI_CR1_CPHA_MASK           (0x1U << SPI_CR1_CPHA_POS)                         /*!< 0x00000200 */
-#define SPI_CR1_CPHA                SPI_CR1_CPHA_MASK
+#define SPI_CR1_SSM_MASK            (0x1U << SPI_CR1_SSM_POS)                          /*!< 0x00000200 */
+#define SPI_CR1_SSM                 SPI_CR1_SSM_MASK
 
 #define SPI_CR1_RXONLY_POS          (10U)
 #define SPI_CR1_RXONLY_MASK         (0x1U << SPI_CR1_RXONLY_POS)                       /*!< 0x00000400 */
