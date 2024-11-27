@@ -564,23 +564,30 @@
 #define RCC_PLLP_DIV_8                          (0x00000003U)                       /*!< PLLP = 8 */
 
 /* Microcontroller clock output 1 */
-#define RCC_MCO1_HSI_CLOCK_SOURCE               (0x00000000U)
-#define RCC_MCO1_LSE_CLOCK_SOURCE               (0x00000001U)
-#define RCC_MCO1_HSE_CLOCK_SOURCE               (0x00000002U)
-#define RCC_MCO1_PLL_CLOCK_SOURCE               (0x00000003U)
+#define RCC_MCO1_HSI_CLOCK_SOURCE               (0x00000000U)                       /*!< HSI clock selected */
+#define RCC_MCO1_LSE_CLOCK_SOURCE               (0x00000001U)                       /*!< LSE oscillator selected */
+#define RCC_MCO1_HSE_CLOCK_SOURCE               (0x00000002U)                       /*!< HSE oscillator clock selected */
+#define RCC_MCO1_PLL_CLOCK_SOURCE               (0x00000003U)                       /*!< PLL clock selected */
 
 /* Microcontroller clock output 1 MCO1 prescaler */
-
-#define RCC_MCO1_PRESCALER_DIV_2                (0x00000004U)
-#define RCC_MCO1_PRESCALER_DIV_3                (0x00000005U)
-#define RCC_MCO1_PRESCALER_DIV_4                (0x00000006U)
-#define RCC_MCO1_PRESCALER_DIV_5                (0x00000007U)
+#define RCC_MCO1_PRESCALER_DIV_1                (0x00000000U)                       /*!< no division */
+#define RCC_MCO1_PRESCALER_DIV_2                (0x00000004U)                       /*!< division by 2 */
+#define RCC_MCO1_PRESCALER_DIV_3                (0x00000005U)                       /*!< division by 3 */
+#define RCC_MCO1_PRESCALER_DIV_4                (0x00000006U)                       /*!< division by 4 */
+#define RCC_MCO1_PRESCALER_DIV_5                (0x00000007U)                       /*!< division by 5 */
 
 /* Microcontroller clock output 2 */
-#define RCC_MCO2_SYSTEM_CLOCK_SOURCE            (0x00000000U)
-#define RCC_MCO2_PLLI2S_CLOCK_SOURCE            (0x00000001U)
-#define RCC_MCO2_HSEOSCILLATOR_CLOCK_SOURCE     (0x00000002U)
-#define RCC_MCO2_PLL_CLOCK_SOURCE               (0x00000003U)
+#define RCC_MCO2_SYSTEM_CLOCK_SOURCE            (0x00000000U)                       /*!< System clock (SYSCLK) selected */
+#define RCC_MCO2_PLLI2S_CLOCK_SOURCE            (0x00000001U)                       /*!< PLLI2S clock selected */
+#define RCC_MCO2_HSEOSCILLATOR_CLOCK_SOURCE     (0x00000002U)                       /*!< HSE oscillator clock selected */
+#define RCC_MCO2_PLL_CLOCK_SOURCE               (0x00000003U)                       /*!< PLL clock selected */
+
+/* Microcontroller clock output 2 MCO1 prescaler */
+#define RCC_MCO2_PRESCALER_DIV_1                (0x00000000U)                       /*!< no division */
+#define RCC_MCO2_PRESCALER_DIV_2                (0x00000004U)                       /*!< division by 2 */
+#define RCC_MCO2_PRESCALER_DIV_3                (0x00000005U)                       /*!< division by 3 */
+#define RCC_MCO2_PRESCALER_DIV_4                (0x00000006U)                       /*!< division by 4 */
+#define RCC_MCO2_PRESCALER_DIV_5                (0x00000007U)                       /*!< division by 5 */
 
 /* System clock switch status */
 #define RCC_SWS_HSI_OSCILLATOR                  (0x00000000U)
